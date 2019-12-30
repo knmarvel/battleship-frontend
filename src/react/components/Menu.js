@@ -15,8 +15,10 @@ class Menu extends React.Component {
         <h1>Battleship</h1>
         {this.props.isAuthenticated && (
           <div id="menu-links">
-            <Link to="/messagefeed">Message Feed</Link>
+            <Link to = "/setup">Set Up (remove this link later)</Link>
+            <Link to = "/play">PlayGame (remove this link later)</Link>
             <Link to="/" onClick={this.handleLogout}>
+            <Link to="/credits">Credits</Link>
               Logout
             </Link>
           </div>

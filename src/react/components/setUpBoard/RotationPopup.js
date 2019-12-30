@@ -5,7 +5,7 @@
 //and "connect" along with "withAsynchAction" when exporting
 
 import React from "react"
-import {ConfirmOrientation, RotationButton} from "."
+import {ConfirmOrientationButton, RotationButton} from "."
 
 class RotationPopup extends React.Component {
     state = {
@@ -13,9 +13,10 @@ class RotationPopup extends React.Component {
         }
 
     componentDidMount = () => {
+        //note: may need to use .then here
         this.determineWhichShip()
-        .then(this.determineOrientation(this.state.ship))
-        .then(this.drawShip(this.state.ship, this.state.orientation))
+        this.determineOrientation(this.state.ship)
+        this.drawShip(this.state.ship, this.state.orientation)
     }
 
     determineWhichShip = () => {
@@ -36,7 +37,7 @@ class RotationPopup extends React.Component {
             {this.state.ship} 
            
             "Draw a ship here"
-            <ConfirmOrientation/>
+            <ConfirmOrientationButton/>
             <RotationButton />
         </React.Fragment>)
     }
