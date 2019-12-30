@@ -8,11 +8,17 @@ class InitialBoard extends React.Component {
     drawBoard = () => {
         //use nested loops to define the initial divs
         let rowLabels = [" ", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J"]
-
+console.log(rowLabels)
         //first, draw the header row
         for (let headerRowLabels = 0; headerRowLabels <= 10; headerRowLabels ++) {
-            if (headerRowLabels === 0) {let label = " "}
-            else {let label = headerRowLabels}
+            if (headerRowLabels === 0) {
+                let label = " "
+                console.log(label)
+            }
+            else {
+                let label = headerRowLabels
+                console.log(label)
+            }
 
             //create a new div with innerHTML of label
 
