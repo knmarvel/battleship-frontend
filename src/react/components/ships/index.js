@@ -1,0 +1,5 @@
+export {default as Cruiser} from "./cruiser"
+export {default as Carrier} from "./carrier"
+export {default as Battleship} from "./battleship"
+export {default as Destroyer} from "./destroyer"
+export {default as Submarine} from "./submarine"
