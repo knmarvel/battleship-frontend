@@ -2,9 +2,12 @@
 //when a div is clicked, it calculates what the grid numbers would be for
 //the ship being placed, and stores them to post when the Ready button is clicked.
 import React from "react";
+import { connect } from "react-redux";
+import { withAsyncAction } from "../../HOCs";
+// import { placeShip } from "../../../redux";
 
 class InitialBoard extends React.Component {
-  placeShip = e => {
+  placeShipClick = e => {
     //suggestion: try to break this down into multiple smaller functions.
     //determine ship to be placed by taking from the state
     //of selectedShip from ShipsAvailable
@@ -21,6 +24,12 @@ class InitialBoard extends React.Component {
     //return cursor to the no-ship-selected cursor.
   };
 
+  SillyplaceShip = () => {
+    // console.log(this.props.placeShip);
+
+    //this sends the message "test" - works.  Will need to send "Game 1234 submarine B2"
+    this.props.placeShip({ text: "test" });
+  };
   drawBoard = () => {
     //use nested loops to define the initial divs
     let rowLabels = [" ", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J"];
@@ -60,8 +69,20 @@ class InitialBoard extends React.Component {
   };
 
   render() {
-    return <React.Fragment>This is the initial board</React.Fragment>;
+    return (
+      <React.Fragment>
+        <button onClick={this.SillyplaceShip}>DANGEROUS-BUTTON </button>
+        This is the initial board
+      </React.Fragment>
+    );
   }
 }
 
-export default InitialBoard;
+const mapStateToProps = state => {
+  return { selectedShip: state.selectedShip };
+};
+const mapDispatchToProps = {};
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withAsyncAction("setUpGame", "placeShip")(InitialBoard));
