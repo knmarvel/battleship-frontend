@@ -1,17 +1,17 @@
 import React from "react";
-import { LoginForm, Menu } from "../components";
-import { userIsNotAuthenticated } from "../HOCs";
+import { Welcome } from "../components";
+// import { userIsNotAuthenticated } from "../HOCs";
 
 class Home extends React.Component {
   render() {
     return (
       <>
-        <Menu />
+        {/* <Menu /> */}
         <h2>Welcome to Battleship!</h2>
-        <LoginForm />
+        <Welcome />
       </>
     );
   }
 }
 
-export default userIsNotAuthenticated(Home);
+export default Home;

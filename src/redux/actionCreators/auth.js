@@ -1,9 +1,10 @@
 import { domain, jsonHeaders, handleJsonResponse } from "./constants";
 import { LOGIN, LOGOUT } from "../actionTypes";
+import { startGame } from ".";
 
 const url = domain + "/auth";
 
-export const login = loginData => dispatch => {
+export const _login = loginData => dispatch => {
   dispatch({
     type: LOGIN.START
   });
@@ -23,6 +24,13 @@ export const login = loginData => dispatch => {
     .catch(err => {
       return Promise.reject(dispatch({ type: LOGIN.FAIL, payload: err }));
     });
+};
+
+export const login = (gameNumber, loginData) => dispatch => {
+  return dispatch(_login(loginData)).then(() => {
+    console.log("player should be logged in as " + loginData.username);
+    return dispatch(startGame(gameNumber));
+  });
 };
 
 export const logout = () => (dispatch, getState) => {
