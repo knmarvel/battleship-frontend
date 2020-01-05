@@ -5,6 +5,7 @@
   align-items: center;
   padding: 0 1em;
   border-radius: 1em;
+  align-self: stretch;
 }
 
 #menu-links {

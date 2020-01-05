@@ -4,3 +4,4 @@ export * from "./messages";
 export * from "./likes";
 export * from "./setUpGame";
 export * from "./welcome";
+export * from "./waitScreen";

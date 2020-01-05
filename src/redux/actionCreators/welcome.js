@@ -1,5 +1,5 @@
 import { domain, jsonHeaders, handleJsonResponse } from "./constants";
-import { STARTGAME } from "../actionTypes";
+import { STARTGAME, VERIFYJOIN } from "../actionTypes";
 
 const url = domain + "/messages";
 
@@ -24,5 +24,26 @@ export const startGame = gameNumber => dispatch => {
     })
     .catch(err => {
       return Promise.reject(dispatch({ type: STARTGAME.FAIL, payload: err }));
+    });
+};
+
+export const verifyJoin = () => dispatch => {
+  dispatch({
+    type: VERIFYJOIN.START
+  });
+
+  return fetch(url + "?limit=1&offset=0", {
+    method: "GET",
+    headers: jsonHeaders
+  })
+    .then(handleJsonResponse)
+    .then(result => {
+      return dispatch({
+        type: VERIFYJOIN.SUCCESS,
+        payload: result
+      });
+    })
+    .catch(err => {
+      return Promise.reject(dispatch({ type: VERIFYJOIN.FAIL, payload: err }));
     });
 };

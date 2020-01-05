@@ -1,0 +1,29 @@
+.homePage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.homePage h1 {
+  text-transform: uppercase;
+  color: var(--normalText);
+  margin: 0px;
+}
+
+.homePage h3 {
+  color: var(--accentColor1);
+  margin-top: 0px;
+}
+
+.CreateAndJoin {
+  width: 60vw;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.JoinGameForm {
+  display: flex;
+  flex-direction: row;
+}

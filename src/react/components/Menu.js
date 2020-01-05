@@ -12,17 +12,17 @@ class Menu extends React.Component {
   render() {
     return (
       <div id="menu">
-        <h1>Battleship</h1>
+        <Link to="/home">Home</Link>
         {this.props.isAuthenticated && (
           <div id="menu-links">
-            <Link to = "/setup">Set Up (remove this link later)</Link>
-            <Link to = "/play">PlayGame (remove this link later)</Link>
-            <Link to="/" onClick={this.handleLogout}>
-            <Link to="/credits">Credits</Link>
-              Logout
-            </Link>
+            <Link to="/setup">Set Up (remove this link later)</Link>
+            <Link to="/play">PlayGame (remove this link later)</Link>
           </div>
         )}
+        <Link to="/credits">Credits</Link>
+        {/* <Link to="/" onClick={this.handleLogout}>
+          Logout
+        </Link> */}
       </div>
     );
   }
