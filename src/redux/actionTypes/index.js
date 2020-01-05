@@ -17,3 +17,8 @@ export const PLACESHIP = createActionTypes("PLACESHIP");
 //action types related to welcome
 
 export const STARTGAME = createActionTypes("STARTGAME");
+export const VERIFYJOIN = createActionTypes("VERIFYJOIN");
+
+//action types related to the waiting/memo screens
+
+export const CHECKREADY = createActionTypes("CHECKREADY");
