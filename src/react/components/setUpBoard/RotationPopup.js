@@ -6,10 +6,14 @@
 
 import React from "react";
 import { ConfirmOrientationButton, RotationButton } from ".";
+import { Modal } from "semantic-ui-react";
+import { connect } from "../../HOCs/index";
 
 class RotationPopup extends React.Component {
   state = {
-    visibility: "hidden"
+    visibility: "hidden",
+    ship: "",
+    orientation: "horizontal"
   };
 
   componentDidMount = () => {
@@ -33,14 +37,21 @@ class RotationPopup extends React.Component {
 
   render() {
     return (
-      <React.Fragment>
+      <Modal>
+        <p>Select Orientation</p>
         {this.state.ship}
-        "Draw a ship here"
         <ConfirmOrientationButton />
         <RotationButton />
-      </React.Fragment>
+      </Modal>
     );
   }
 }
 
-export default RotationPopup;
+const mapStateToProps = state => {
+  return {
+    ship: state.ship.ship,
+    name: state.ship.name
+  };
+};
+
+export default connect(mapStateToProps)(RotationPopup);
