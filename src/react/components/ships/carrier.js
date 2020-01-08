@@ -13,7 +13,7 @@ class Carrier extends React.Component {
     orientation: "horizontal",
     gridLocations: [[], [], [], [], []],
     imageHorizontal: fiveHorizontal,
-    imageVertical: fiveVertical
+    imageVertical: fiveVertical,
   };
 
   rotateShip = () => {};
@@ -37,8 +37,14 @@ class Carrier extends React.Component {
             <img
               alt={`ship with ${this.state.length} possible hits}`}
               src={this.state.imageHorizontal}
-              height={this.vh(6)}
-              width={this.vh(30)}
+              height={((getComputedStyle(document.documentElement).getPropertyValue('--shipSquare'))*(Math.max(
+                document.documentElement.clientHeight,
+                window.innerHeight || 0)
+                ))/100}
+              width={this.state.length*((getComputedStyle(document.documentElement).getPropertyValue('--shipSquare'))*(Math.max(
+                document.documentElement.clientHeight,
+                window.innerHeight || 0)
+                ))/100}
             />
           </div>
         ) : (
@@ -46,8 +52,14 @@ class Carrier extends React.Component {
             <img
               alt={`ship with ${this.state.length} possible hits}`}
               src={this.state.imageVertical}
-              height={this.vh(30)}
-              width={this.vh(6)}
+              height={this.state.length*((getComputedStyle(document.documentElement).getPropertyValue('--shipSquare'))*(Math.max(
+                document.documentElement.clientHeight,
+                window.innerHeight || 0)
+                ))/100}
+              width={((getComputedStyle(document.documentElement).getPropertyValue('--shipSquare'))*(Math.max(
+                document.documentElement.clientHeight,
+                window.innerHeight || 0)
+                ))/100}
             />
           </div>
         )}

@@ -13,7 +13,7 @@ class Battleship extends React.Component {
     orientation: "horizontal",
     gridLocations: [[], [], [], []],
     imageHorizontal: fourHorizontal,
-    imageVertical: fourVertical
+    imageVertical: fourVertical,
   };
 
   rotateShip = () => {};
@@ -21,24 +21,6 @@ class Battleship extends React.Component {
   determineGridLocations = () => {};
 
   selectShipImage = () => {};
-  //===========================================
-  //janell says:
-  //got the images to display the proper size by computing
-  //what vh is with another function (thanks stack overflow!)
-  //then hard coded the height and width directly for each picture.
-  //i couldn't make it use css variables, so if we decide that
-  //"squareSize" should be something other than 6vh,
-  //we will need to go in and manually change all 10 different sizes
-  //(2 for each ship)
-  //======================================================
-
-  vh = v => {
-    var h = Math.max(
-      document.documentElement.clientHeight,
-      window.innerHeight || 0
-    );
-    return (v * h) / 100;
-  };
 
   render() {
     return (
@@ -48,8 +30,14 @@ class Battleship extends React.Component {
             <img
               alt={`ship with ${this.state.length} possible hits}`}
               src={this.state.imageHorizontal}
-              height={this.vh(6)}
-              width={this.vh(24)}
+              height={((getComputedStyle(document.documentElement).getPropertyValue('--shipSquare'))*(Math.max(
+                document.documentElement.clientHeight,
+                window.innerHeight || 0)
+                ))/100}
+              width={this.state.length*((getComputedStyle(document.documentElement).getPropertyValue('--shipSquare'))*(Math.max(
+                document.documentElement.clientHeight,
+                window.innerHeight || 0)
+                ))/100}
             />
           </div>
         ) : (
@@ -57,8 +45,16 @@ class Battleship extends React.Component {
             <img
               alt={`ship with ${this.state.length} possible hits}`}
               src={this.state.imageVertical}
-              height={this.vh(24)}
-              width={this.vh(6)}
+              height={this.state.length*((getComputedStyle(document.documentElement)
+                .getPropertyValue('--shipSquare'))*(Math.max(
+                document.documentElement.clientHeight,
+                window.innerHeight || 0)
+                ))/100}
+              width={((getComputedStyle(document.documentElement)
+                .getPropertyValue('--shipSquare'))*(Math.max(
+                document.documentElement.clientHeight,
+                window.innerHeight || 0)
+                ))/100}
             />
           </div>
         )}
