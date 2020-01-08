@@ -11,7 +11,7 @@
 //it actually works...
 
 import React from "react";
-import { InitialBoard } from "../setUpBoard";
+import { InitialBoard } from "../setUpBoard/initialBoard";
 
 class PlayerBoard extends React.Component {
   componentDidMount = () => {

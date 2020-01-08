@@ -10,9 +10,9 @@
   --normalText: blue;
   --highLightText: purple;
 
-  --accentColor1: seagreen;
-  --accentColor2: yellow;
-  --accentColor3: maroon;
+  --accentColorDark: seagreen;
+  --accentColorLight: yellow;
+  --accentColorAlternate: maroon;
 
   --selectedSquare: orange;
   --unsunkShip: lightgray;

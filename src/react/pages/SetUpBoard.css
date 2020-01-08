@@ -1,15 +1,16 @@
 .newBoardSquare {
-  width: 40px;
-  height: 40px;
-  background-color: orange;
+  --squareSize: 6vh;
+  width: var(--squareSize);
+  height: var(--squareSize);
+  background-color: var(--accentColorLight);
+  text-align: center;
 }
 
 .newBoardSquare:hover {
-  background-color: green;
+  background-color: var(--accentColorDark);
 }
 
 .newBoard {
-  padding: 40px;
-  width: 400px;
-  color: blue;
+  padding: 50px;
+  max-width: calc(50vw - 2em);
 }

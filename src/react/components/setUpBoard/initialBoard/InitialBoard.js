@@ -3,13 +3,11 @@
 //the ship being placed, and stores them to post when the Ready button is clicked.
 import React from "react";
 import { connect } from "react-redux";
-import { withAsyncAction } from "../../HOCs";
-import InitialBoardSquare from "./InitialBoardSquare";
+import { withAsyncAction } from "../../../HOCs";
 import InitialBoardGrid from "./InitialBoardGrid";
-import { placeShip } from "../../../redux";
+import { placeShip } from "../../../../redux";
 
 class InitialBoard extends React.Component {
-  statee = { newBoard: "" };
   newBoard = [];
   newRow = [];
   label = "";
@@ -41,17 +39,18 @@ class InitialBoard extends React.Component {
   };
 
   //==================================================
-  //stopping point: initialboardgrid displays on page
+
   //onclick does not yet function
-  //and drashti wants to test login
+
   //========================
   render() {
     // let myNewBoard = this.drawBoard();
     return (
       <React.Fragment>
-        <div></div>
-        <InitialBoardGrid className={"newBoard"} />"
-        <button onClick={this.SillyplaceShip}>DANGEROUS-BUTTON </button>
+        <div className="newBoard">
+          <InitialBoardGrid />
+        </div>
+        <button onClick={this.placeShip}>DANGEROUS-BUTTON </button>
         This is the initial board
       </React.Fragment>
     );
@@ -61,7 +60,7 @@ class InitialBoard extends React.Component {
 const mapStateToProps = state => {
   return { selectedShip: state.selectedShip };
 };
-const mapDispatchToProps = {};
+const mapDispatchToProps = { placeShip };
 export default connect(
   mapStateToProps,
   mapDispatchToProps
