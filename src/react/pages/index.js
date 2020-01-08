@@ -7,9 +7,10 @@ import PlayGame from "./PlayGame";
 
 export default {
   Home: { path: "/home", component: Home },
+  Home: { path: "/", component: Home },
   Profile: { path: "/profile/:username", component: Profile },
   SetUpBoard: { path: "/setup", component: SetUpBoard },
   PlayGame: { path: "/play", component: PlayGame },
   Credits: { path: "/credits", component: Credits },
-  NotFound: { path: "*", component: NotFound }
+  NotFound: { path: "/*", component: NotFound }
 };
