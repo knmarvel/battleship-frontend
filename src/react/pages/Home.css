@@ -23,7 +23,7 @@
 }
 
 .homePage h3 {
-  color: var(--accentColor1);
+  color: var(--accentColorDark);
   margin-top: 200px;
 }
 
@@ -42,5 +42,4 @@
 .JoinGameForm {
   display: flex;
   flex-direction: row;
-   
 }

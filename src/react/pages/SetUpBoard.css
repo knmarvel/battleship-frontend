@@ -1,0 +1,16 @@
+.newBoardSquare {
+  --squareSize: 6vh;
+  width: var(--squareSize);
+  height: var(--squareSize);
+  background-color: var(--accentColorLight);
+  text-align: center;
+}
+
+.newBoardSquare:hover {
+  background-color: var(--accentColorDark);
+}
+
+.newBoard {
+  padding: 50px;
+  max-width: calc(50vw - 2em);
+}
