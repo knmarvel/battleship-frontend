@@ -10,7 +10,7 @@ class Battleship extends React.Component {
   state = {
     name: "Battleship",
     length: 4,
-    orientation: "vertical",
+    orientation: "horizontal",
     gridLocations: [[], [], [], []],
     imageHorizontal: fourHorizontal,
     imageVertical: fourVertical,
