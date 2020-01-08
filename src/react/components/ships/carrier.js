@@ -3,6 +3,8 @@
 //own ships on their half of the board
 
 import React from "react";
+import fiveHorizontal from "../../../Battleship-image/ships/5Horizontal.PNG";
+import fiveVertical from "../../../Battleship-image/ships/5Vertical.PNG";
 
 class Carrier extends React.Component {
   state = {
@@ -10,8 +12,8 @@ class Carrier extends React.Component {
     length: 5,
     orientation: "horizontal",
     gridLocations: [[], [], [], [], []],
-    imageHorizontal: "../../../Battleship-image/ships/5Horizontal.PNG",
-    imageVertical: "../../../Battleship-image/ships/5Vertical.PNG"
+    imageHorizontal: fiveHorizontal,
+    imageVertical: fiveVertical
   };
 
   rotateShip = () => {};
@@ -23,9 +25,7 @@ class Carrier extends React.Component {
   render() {
     return (
       <div>
-        <img height="25px" src={ require( "../../../Battleship-image/ships/5Horizontal.PNG") } />   
-            {/* the line below should work but instead error: Module NotFound */} 
-            {/*<img height="25px" src={ require( `${ this.state.imageHorizontal }`) } />       */}
+        <img alt={`ship with ${this.length} possible hits}`} src={ this.state.imageHorizontal } />  
       </div>
     );
   }

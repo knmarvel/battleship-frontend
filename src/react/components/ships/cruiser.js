@@ -5,14 +5,17 @@
 
 import React from "react";
 
+import threeHorizontal from "../../../Battleship-image/ships/3Horizontal.PNG";
+import threeVertical from "../../../Battleship-image/ships/3Vertical.PNG";
+
 class Cruiser extends React.Component {
   state = {
     name: "Cruiser",
     length: 3,
     orientation: "horizontal",
     gridLocations: [[], [], []],
-    imageHorizontal: "../../../Battleship-image/ships/3Horizontal.PNG",
-    imageVertical: "../../../Battleship-image/ships/3Vertical.PNG"
+    imageHorizontal: threeHorizontal,
+    imageVertical: threeVertical
   };
 
   rotateShip = () => {};
@@ -24,9 +27,7 @@ class Cruiser extends React.Component {
   render() {
     return (
       <div>
-        <img height="25px" src={ require( "../../../Battleship-image/ships/3Horizontal.PNG") } />   
-            {/* the line below should work but instead error: Module NotFound */} 
-            {/*<img height="25px" src={ require( `${ this.state.imageHorizontal }`) } />       */}
+        <img alt={`ship with ${this.length} possible hits}`} src={ this.state.imageHorizontal } />  
       </div>
     );
   }
