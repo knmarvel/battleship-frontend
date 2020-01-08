@@ -5,14 +5,17 @@
 
 import React from "react";
 
+import threeHorizontal from "../../../Battleship-image/ships/3Horizontal.PNG";
+import threeVertical from "../../../Battleship-image/ships/3Vertical.PNG";
+
 class Cruiser extends React.Component {
   state = {
     name: "Cruiser",
     length: 3,
     orientation: "horizontal",
     gridLocations: [[], [], []],
-    imageHorizontal: "../../../Battleship-image/ships/3Horizontal",
-    imageVertical: "../../../Battleship-image/ships/3Vertical"
+    imageHorizontal: threeHorizontal,
+    imageVertical: threeVertical,
   };
 
   rotateShip = () => {};
@@ -21,8 +24,50 @@ class Cruiser extends React.Component {
 
   selectShipImage = () => {};
 
+  vh = v => {
+    var h = Math.max(
+      document.documentElement.clientHeight,
+      window.innerHeight || 0
+    );
+    return (v * h) / 100;
+  };
+
   render() {
-    return <>image of horizontal or vertical cruiser</>;
+    return (
+      <div>
+        {this.state.orientation === "horizontal" ? (
+          <div className="horizontalBattleship">
+            <img
+              alt={`ship with ${this.state.length} possible hits}`}
+              src={this.state.imageHorizontal}
+              height={((getComputedStyle(document.documentElement).getPropertyValue('--shipSquare'))*(Math.max(
+                document.documentElement.clientHeight,
+                window.innerHeight || 0)
+                ))/100}
+              width={this.state.length*((getComputedStyle(document.documentElement).getPropertyValue('--shipSquare'))*(Math.max(
+                document.documentElement.clientHeight,
+                window.innerHeight || 0)
+                ))/100}
+            />
+          </div>
+        ) : (
+          <div className="verticalBattleship">
+            <img
+              alt={`ship with ${this.state.length} possible hits}`}
+              src={this.state.imageVertical}
+              height={this.state.length*((getComputedStyle(document.documentElement).getPropertyValue('--shipSquare'))*(Math.max(
+                document.documentElement.clientHeight,
+                window.innerHeight || 0)
+                ))/100}
+              width={((getComputedStyle(document.documentElement).getPropertyValue('--shipSquare'))*(Math.max(
+                document.documentElement.clientHeight,
+                window.innerHeight || 0)
+                ))/100}
+            />
+          </div>
+        )}
+      </div>
+    );
   }
 }
 

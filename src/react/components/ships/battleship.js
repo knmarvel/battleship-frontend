@@ -3,6 +3,8 @@
 //own ships on their half of the board
 
 import React from "react";
+import fourHorizontal from "../../../Battleship-image/ships/4Horizontal.PNG";
+import fourVertical from "../../../Battleship-image/ships/4Vertical.PNG";
 
 class Battleship extends React.Component {
   state = {
@@ -10,8 +12,8 @@ class Battleship extends React.Component {
     length: 4,
     orientation: "horizontal",
     gridLocations: [[], [], [], []],
-    imageHorizontal: "../../../Battleship-image/ships/4Horizontal",
-    imageVertical: "../../../Battleship-image/ships/4Vertical"
+    imageHorizontal: fourHorizontal,
+    imageVertical: fourVertical,
   };
 
   rotateShip = () => {};
@@ -19,23 +21,43 @@ class Battleship extends React.Component {
   determineGridLocations = () => {};
 
   selectShipImage = () => {};
-  //===========================================
-  //stopping point: trying to render the ships by showing a div with the img as the
-  //background because i couldn't get them to render an image
-  //======================================================
 
   render() {
     return (
       <div>
         {this.state.orientation === "horizontal" ? (
           <div className="horizontalBattleship">
-            Image of Horizontal Battleship
+            <img
+              alt={`ship with ${this.state.length} possible hits}`}
+              src={this.state.imageHorizontal}
+              height={((getComputedStyle(document.documentElement).getPropertyValue('--shipSquare'))*(Math.max(
+                document.documentElement.clientHeight,
+                window.innerHeight || 0)
+                ))/100}
+              width={this.state.length*((getComputedStyle(document.documentElement).getPropertyValue('--shipSquare'))*(Math.max(
+                document.documentElement.clientHeight,
+                window.innerHeight || 0)
+                ))/100}
+            />
           </div>
         ) : (
-          <div className="verticalBattleship" />
+          <div className="verticalBattleship">
+            <img
+              alt={`ship with ${this.state.length} possible hits}`}
+              src={this.state.imageVertical}
+              height={this.state.length*((getComputedStyle(document.documentElement)
+                .getPropertyValue('--shipSquare'))*(Math.max(
+                document.documentElement.clientHeight,
+                window.innerHeight || 0)
+                ))/100}
+              width={((getComputedStyle(document.documentElement)
+                .getPropertyValue('--shipSquare'))*(Math.max(
+                document.documentElement.clientHeight,
+                window.innerHeight || 0)
+                ))/100}
+            />
+          </div>
         )}
-
-        {/* <>image of horizontal or vertical battleship</> */}
       </div>
     );
   }

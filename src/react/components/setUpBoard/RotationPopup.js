@@ -5,13 +5,12 @@
 //and "connect" along with "withAsyncAction" when exporting
 
 import React from "react";
-import { ConfirmOrientationButton, RotationButton } from ".";
-import { Button, Header, Image, Modal } from "semantic-ui-react";
-import { connect } from "../../HOCs/index";
+import { ConfirmOrientationButton, RotationButton, ShipsAvailable } from ".";
+import { connect, withAsyncAction } from "../../HOCs";
 
 class RotationPopup extends React.Component {
   state = {
-    ship: this.props.ship,
+    selectedShip: this.props.selectedShip,
     shipName: this.props.ship.name,
     shipPicture: this.props.ship.orientation.picture,
     orientation: "horizontal"
@@ -38,30 +37,19 @@ class RotationPopup extends React.Component {
 
   render() {
     return (
-      <Modal trigger={this.props.ship}>
-        <Modal.Header>Select Orientation</Modal.Header>
-        <Modal.Content>
-          <Image wrapped size="medium" src="this.state.shipPicture" />
-          <Modal.Description>
-            <Header>this.state.shipName</Header>
-            <RotationButton />
-          </Modal.Description>
-        </Modal.Content>
-      </Modal>
-      // <React.Fragment>
-      //   <p>Select Orientation</p>
-      //   {this.state.ship}
-      //   <ConfirmOrientationButton />
-      //   <RotationButton />
-      // </React.Fragment>
+      <React.Fragment>
+        <p>Select Orientation</p>
+        {this.props.selectedShip}
+        <ConfirmOrientationButton />
+        <RotationButton />
+      </React.Fragment>
     );
   }
 }
 
 const mapStateToProps = state => {
   return {
-    ship: state.ship.ship,
-    name: state.ship.name
+    selectedShip: state.selectedShip
   };
 };
 
