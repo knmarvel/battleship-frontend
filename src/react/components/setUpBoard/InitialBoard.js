@@ -4,9 +4,16 @@
 import React from "react";
 import { connect } from "react-redux";
 import { withAsyncAction } from "../../HOCs";
-// import { placeShip } from "../../../redux";
+import InitialBoardSquare from "./InitialBoardSquare";
+import InitialBoardGrid from "./InitialBoardGrid";
+import { placeShip } from "../../../redux";
 
 class InitialBoard extends React.Component {
+  statee = { newBoard: "" };
+  newBoard = [];
+  newRow = [];
+  label = "";
+
   placeShipClick = e => {
     //suggestion: try to break this down into multiple smaller functions.
     //determine ship to be placed by taking from the state
@@ -24,53 +31,26 @@ class InitialBoard extends React.Component {
     //return cursor to the no-ship-selected cursor.
   };
 
-  SillyplaceShip = () => {
-    // console.log(this.props.placeShip);
-
+  placeShip = () => {
     //this sends the message "test" - works.  Will need to send "Game 1234 submarine B2"
     this.props.placeShip({ text: "test" });
   };
-  drawBoard = () => {
-    //use nested loops to define the initial divs
-    let rowLabels = [" ", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J"];
-    //first, draw the header row
-    for (let headerRowLabels = 0; headerRowLabels <= 10; headerRowLabels++) {
-      if (headerRowLabels === 0) {
-        let label = " ";
-        console.log(label);
-      } else {
-        let label = headerRowLabels;
-        console.log(label);
-      }
 
-      //create a new div with innerHTML of label
-
-      //draw that div to the screen
-    }
-    //then draw the rest of the rows
-    for (let row = 1; row <= 10; row++)
-      //create a div with label of rowLabel[row]
-
-      for (let column = 0; column <= 10; column++) {
-        if (column === 0) {
-          let label = rowLabels[row];
-          console.log(label);
-        } else {
-          let label = rowLabels[row] + column.toString();
-          console.log(label);
-        }
-        //create a div
-        //give it an id of label  example: A1
-        //give it a class that's styled in the CSS to be a specific size, hover, etc
-        //the css should be under "setUpBoard.css"
-        //give it an onClick of this.placeShip
-        //draw that div on the screen
-      }
+  handleClick = e => {
+    return console.log(e.value);
   };
 
+  //==================================================
+  //stopping point: initialboardgrid displays on page
+  //onclick does not yet function
+  //and drashti wants to test login
+  //========================
   render() {
+    // let myNewBoard = this.drawBoard();
     return (
       <React.Fragment>
+        <div></div>
+        <InitialBoardGrid className={"newBoard"} />"
         <button onClick={this.SillyplaceShip}>DANGEROUS-BUTTON </button>
         This is the initial board
       </React.Fragment>
