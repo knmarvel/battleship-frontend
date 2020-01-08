@@ -35,7 +35,7 @@ class RotationPopup extends React.Component {
     return (
       <React.Fragment>
         {this.state.ship}
-        "Draw a ship here"
+        "Rotation-popup-may-be-deleted-by-chelsea"
         <ConfirmOrientationButton />
         <RotationButton />
       </React.Fragment>

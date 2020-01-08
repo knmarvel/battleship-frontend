@@ -22,10 +22,36 @@ class Destroyer extends React.Component {
 
   selectShipImage = () => {};
 
+  vh = v => {
+    var h = Math.max(
+      document.documentElement.clientHeight,
+      window.innerHeight || 0
+    );
+    return (v * h) / 100;
+  };
+
   render() {
     return (
       <div>
-        <img alt={`ship with ${this.length} possible hits}`} src={ this.state.imageHorizontal } />  
+        {this.state.orientation === "horizontal" ? (
+          <div className="horizontalBattleship">
+            <img
+              alt={`ship with ${this.state.length} possible hits}`}
+              src={this.state.imageHorizontal}
+              height={this.vh(6)}
+              width={this.vh(12)}
+            />
+          </div>
+        ) : (
+          <div className="verticalBattleship">
+            <img
+              alt={`ship with ${this.state.length} possible hits}`}
+              src={this.state.imageVertical}
+              height={this.vh(12)}
+              width={this.vh(6)}
+            />
+          </div>
+        )}
       </div>
     );
   }

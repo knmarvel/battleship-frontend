@@ -14,15 +14,6 @@
   background-color: var(--accentColorAlternate);
 }
 
-.horizontalBattleship {
-  display: flex;
-  background-image: var(--horizontalBattleship);
-  background-color: blue;
-  background-repeat: no-repeat;
-  height: var(--squareSize);
-  width: var(--squareSize);
-}
-
 .shipsAvailable {
   display: flex;
   flex-direction: column;
@@ -36,4 +27,9 @@
 .initialShip2 {
   width: 400px;
   height: 200px;
+}
+
+.setUpBoard {
+  display: flex;
+  flex-direction: row;
 }

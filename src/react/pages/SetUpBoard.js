@@ -23,10 +23,14 @@ class SetUpBoard extends React.Component {
       <React.Fragment>
         <Menu />
         <h2>Initial SetUp Page</h2>
-        <InitialBoard />
-        <ReadyButton />
-        <ClearBoardButton />
-        <ShipsAvailable />
+        <div className="setUpBoard">
+          <div className="initialBoard">
+            <InitialBoard />
+            <ReadyButton />
+            <ClearBoardButton />
+          </div>
+          <ShipsAvailable />
+        </div>
         <RotationPopup />
       </React.Fragment>
     );
