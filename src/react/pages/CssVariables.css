@@ -1,18 +1,18 @@
 :root {
   box-sizing: border-box;
   font-family: Arial, Helvetica, sans-serif;
-  background-image: url("https://cdn.pixabay.com/photo/2015/12/24/21/57/submarine-1107176_960_720.jpg");
   background-repeat: no-repeat;
-  background-size: 100vw;
-  background-color: rgba(255, 255, 255, 0.6);
+  background-size: 100%;
+  background-color: rgba(255, 255, 255, 0.2);
   background-blend-mode: lighten;
+  background-image: url(../../Battleship-image/backgroundimage.jpg);
 
   --normalText: blue;
   --highLightText: purple;
 
-  --accentColor1: seagreen;
-  --accentColor2: yellow;
-  --accentColor3: maroon;
+  --accentColorDark: seagreen;
+  --accentColorLight: yellow;
+  --accentColorAlternate: maroon;
 
   --selectedSquare: orange;
   --unsunkShip: lightgray;
@@ -25,16 +25,19 @@
 h1 {
   --h: 80vw;
   font-size: calc((var(--h) / 9));
+  margin: 0;
 }
 
 h2 {
   --h: 80vw;
   font-size: calc((var(--h) / 11));
+  margin: 0;
 }
 
 h3 {
   --h: 80vw;
   font-size: calc((var(--h) / 17));
+  margin: 0;
 }
 
 p {

@@ -1,21 +1,24 @@
 #menu {
-  background-color: lightskyblue;
+  /* background-color: lightskyblue; */
   display: flex;
-  justify-content: space-between;
+  /* justify-content: space-between;  */
   align-items: center;
   padding: 0 1em;
   border-radius: 1em;
   align-self: stretch;
+  margin-left: 82%;
+  /* margin: 20px; */
+  position: fixed;
 }
 
-#menu-links {
+/* #menu-links {
   display: flex;
   padding-left: 1em;
-}
+} */
 
 #menu-links a {
   padding-right: 0.5em;
-  color: darkblue;
+  color: red;
   text-decoration: underline;
   cursor: pointer;
 }

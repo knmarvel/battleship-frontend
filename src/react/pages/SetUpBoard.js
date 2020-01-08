@@ -3,30 +3,34 @@
 //should be default.  get "selectedShip" from "ShipsAvailable" via
 //"mapStateToProps" and "connect"
 //
-// suggest using "mapStateToProps" and "connec"
+// suggest using "mapStateToProps" and "connect"
 //to get relevant props
 
-import React from "react"
-import {InitialBoard, ReadyButton, ClearBoardButton, ShipsAvailable, RotationPopup} from "../components/setUpBoard"
-import {Menu} from "../components"
-import "./SetUpBoard.css"
-
+import React from "react";
+import {
+  InitialBoard,
+  ReadyButton,
+  ClearBoardButton,
+  ShipsAvailable,
+  RotationPopup
+} from "../components/setUpBoard";
+import { Menu } from "../components";
+import "./SetUpBoard.css";
 
 class SetUpBoard extends React.Component {
-render () {
-   return (
+  render() {
+    return (
       <React.Fragment>
-         <Menu />
-         Initial SetUp Page
-         <InitialBoard />
-         <ReadyButton />
-         <ClearBoardButton />
-         <ShipsAvailable />
-         <RotationPopup />
+        <Menu />
+        <h2>Initial SetUp Page</h2>
+        <InitialBoard />
+        <ReadyButton />
+        <ClearBoardButton />
+        <ShipsAvailable />
+        <RotationPopup />
       </React.Fragment>
-   )
-}
+    );
+  }
 }
 
-export default SetUpBoard
-
+export default SetUpBoard;

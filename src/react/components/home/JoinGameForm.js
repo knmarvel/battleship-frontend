@@ -45,7 +45,7 @@ class JoinGameForm extends React.Component {
   render() {
     const { loading, error } = this.props;
     if (this.state.goToSetup === true) {
-      return <Redirect to="/setup" />;
+      return <Redirect to="/setup" />
     }
     return (
       <React.Fragment>
