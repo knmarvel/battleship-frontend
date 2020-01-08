@@ -3,27 +3,44 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  background-repeat: no-repeat;
+  margin-left: auto;
+  margin-right: auto;
+  height: 150px;
+  /* margin-left: 37%; */
+  margin-top: 6%;
+  size: 23px;
 }
+
 .homePage h1 {
   text-transform: uppercase;
-  color: var(--normalText);
   margin: 0px;
+  color: #ea4701;
+  text-shadow: 1px 1px 0 #6866ee, 5px 5px 0 #6866ee;
+  text-align: center;
+  margin-right: 60%;
+  position: fixed;
 }
 
 .homePage h3 {
   color: var(--accentColor1);
-  margin-top: 0px;
+  margin-top: 200px;
 }
 
 .CreateAndJoin {
-  width: 60vw;
+  margin-top: 45%;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  align-items: flex-start;
+  background: rgba(214, 196, 196, 0.5);
+  width: 300px;
+  font-size: 20px;
+  padding: 90px 70px;
+  border: 1px solid lightblue;
 }
 
 .JoinGameForm {
   display: flex;
   flex-direction: row;
+   
 }

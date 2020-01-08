@@ -7,6 +7,7 @@ import { connect } from "react-redux";
 import { Redirect } from "..";
 import { WaitScreen } from "../waitScreen/";
 import { checkReady } from "../../../redux/actionCreators";
+import "./CreateGameButton.css";
 
 class CreateGameButton extends React.Component {
   state = {
@@ -83,7 +84,7 @@ class CreateGameButton extends React.Component {
     return (
       <React.Fragment>
         {this.state.gameCreated && <WaitScreen message={this.state.message} />}
-        <button onClick={this.handleClick}>Create New Game</button>;
+        <button id="createNewGame" onClick={this.handleClick}>Create New Game</button>
       </React.Fragment>
     );
   }
