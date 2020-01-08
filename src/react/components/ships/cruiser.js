@@ -3,25 +3,27 @@
 //graphical drawings and for the play game page, to display the player's
 //own ships on their half of the board
 
-import React from "react"
+import React from "react";
 
 class Cruiser extends React.Component {
-    state = {
-        name: "Cruiser",
-        length: 3,
-        orientation: "horizontal",
-        gridLocations: [[],[],[]]
-    }
+  state = {
+    name: "Cruiser",
+    length: 3,
+    orientation: "horizontal",
+    gridLocations: [[], [], []],
+    imageHorizontal: "../../../Battleship-image/ships/3Horizontal",
+    imageVertical: "../../../Battleship-image/ships/3Vertical"
+  };
 
-    rotateShip = () => {}
+  rotateShip = () => {};
 
-    determineGridLocations = () => {}
+  determineGridLocations = () => {};
 
-    selectShipImage = () => {}
+  selectShipImage = () => {};
 
-    render () {
-        return <>image of horizontal or vertical cruiser</>
-    }
+  render() {
+    return <>image of horizontal or vertical cruiser</>;
+  }
 }
 
-export default Cruiser
+export default Cruiser;

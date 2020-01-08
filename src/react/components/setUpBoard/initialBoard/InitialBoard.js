@@ -44,14 +44,12 @@ class InitialBoard extends React.Component {
 
   //========================
   render() {
-    // let myNewBoard = this.drawBoard();
     return (
       <React.Fragment>
         <div className="newBoard">
           <InitialBoardGrid />
         </div>
-        <button onClick={this.placeShip}>DANGEROUS-BUTTON </button>
-        This is the initial board
+        <button onClick={this.placeShip}>Send "Test" </button>
       </React.Fragment>
     );
   }
