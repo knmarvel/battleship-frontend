@@ -10,8 +10,8 @@ class Carrier extends React.Component {
     length: 5,
     orientation: "horizontal",
     gridLocations: [[], [], [], [], []],
-    imageHorizontal: "../../../Battleship-image/ships/5Horizontal",
-    imageVertical: "../../../Battleship-image/ships/5Vertical"
+    imageHorizontal: "../../../Battleship-image/ships/5Horizontal.PNG",
+    imageVertical: "../../../Battleship-image/ships/5Vertical.PNG"
   };
 
   rotateShip = () => {};
@@ -23,7 +23,9 @@ class Carrier extends React.Component {
   render() {
     return (
       <div>
-        <>image of horizontal or vertical carrier</>
+        <img height="25px" src={ require( "../../../Battleship-image/ships/5Horizontal.PNG") } />   
+            {/* the line below should work but instead error: Module NotFound */} 
+            {/*<img height="25px" src={ require( `${ this.state.imageHorizontal }`) } />       */}
       </div>
     );
   }

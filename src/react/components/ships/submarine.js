@@ -10,8 +10,8 @@ class Submarine extends React.Component {
     length: 2,
     orientation: "horizontal",
     gridLocations: [[], []],
-    imageHorizontal: "../../../Battleship-image/ships/2Horizontal",
-    imageVertical: "../../../Battleship-image/ships/2Vertical"
+    imageHorizontal: "../../../Battleship-image/ships/2Horizontal.PNG",
+    imageVertical: "../../../Battleship-image/ships/2Vertical.PNG"
   };
 
   rotateShip = () => {};
@@ -21,7 +21,13 @@ class Submarine extends React.Component {
   selectShipImage = () => {};
 
   render() {
-    return <>image of horizontal or vertical submarine</>;
+    return (
+      <div>
+        <img height="25px" src={ require( "../../../Battleship-image/ships/2Horizontal.PNG") } />   
+            {/* the line below should work but instead error: Module NotFound */} 
+            {/*<img height="25px" src={ require( `${ this.state.imageHorizontal }`) } />       */}
+      </div>
+    );
   }
 }
 
