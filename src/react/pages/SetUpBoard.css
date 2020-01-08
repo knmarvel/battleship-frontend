@@ -10,7 +10,6 @@
   background-color: var(--accentColorDark);
 }
 
-.newBoard {
-  padding: 50px;
-  max-width: calc(50vw - 2em);
+.newBoardSquare:focus {
+  background-color: var(--accentColorAlternate);
 }

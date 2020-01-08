@@ -3,7 +3,7 @@
 //should be default.  get "selectedShip" from "ShipsAvailable" via
 //"mapStateToProps" and "connect"
 //
-// suggest using "mapStateToProps" and "connec"
+// suggest using "mapStateToProps" and "connect"
 //to get relevant props
 
 import React from "react";
@@ -22,7 +22,7 @@ class SetUpBoard extends React.Component {
     return (
       <React.Fragment>
         <Menu />
-        Initial SetUp Page
+        <h2>Initial SetUp Page</h2>
         <InitialBoard />
         <ReadyButton />
         <ClearBoardButton />
