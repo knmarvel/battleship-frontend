@@ -13,7 +13,15 @@ class Carrier extends React.Component {
     orientation: "horizontal",
     gridLocations: [[], [], [], [], []],
     imageHorizontal: fiveHorizontal,
-    imageVertical: fiveVertical
+    imageVertical: fiveVertical,
+    height: ((getComputedStyle(document.documentElement).getPropertyValue('--battleshipHeight'))*(Math.max(
+      document.documentElement.clientHeight,
+      window.innerHeight || 0)
+      ))/100,
+    width: ((getComputedStyle(document.documentElement).getPropertyValue('--battleshipWidth'))*(Math.max(
+      document.documentElement.clientHeight,
+      window.innerHeight || 0)
+      ))/100,
   };
 
   rotateShip = () => {};
@@ -37,8 +45,8 @@ class Carrier extends React.Component {
             <img
               alt={`ship with ${this.state.length} possible hits}`}
               src={this.state.imageHorizontal}
-              height={this.vh(6)}
-              width={this.vh(30)}
+              height={this.state.height}
+              width={this.state.width}
             />
           </div>
         ) : (
@@ -46,8 +54,8 @@ class Carrier extends React.Component {
             <img
               alt={`ship with ${this.state.length} possible hits}`}
               src={this.state.imageVertical}
-              height={this.vh(30)}
-              width={this.vh(6)}
+              height={this.state.width}
+              width={this.state.height}
             />
           </div>
         )}
