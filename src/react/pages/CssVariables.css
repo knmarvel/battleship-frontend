@@ -19,8 +19,8 @@
   --verticalDestroyer: url(../../Battleship-image/ships/2Vertical.PNG);
   --horizontalSubmarine: url(../../Battleship-image/ships/2Horizontal.PNG);
   --verticalSubmarine: url(../../Battleship-image/ships/2Vertical.PNG);
-  --battleshipHeight: 6;
-  --battleshipWidth: 24;
+  --shipSquare: 6;
+
 
   /*text colors */
 
