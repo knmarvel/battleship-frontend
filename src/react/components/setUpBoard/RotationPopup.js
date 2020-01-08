@@ -6,13 +6,14 @@
 
 import React from "react";
 import { ConfirmOrientationButton, RotationButton } from ".";
-import { Modal } from "semantic-ui-react";
+import { Button, Header, Image, Modal } from "semantic-ui-react";
 import { connect } from "../../HOCs/index";
 
 class RotationPopup extends React.Component {
   state = {
-    visibility: "hidden",
-    ship: "",
+    ship: this.props.ship,
+    shipName: this.props.ship.name,
+    shipPicture: this.props.ship.orientation.picture,
     orientation: "horizontal"
   };
 
@@ -37,12 +38,22 @@ class RotationPopup extends React.Component {
 
   render() {
     return (
-      <Modal>
-        <p>Select Orientation</p>
-        {this.state.ship}
-        <ConfirmOrientationButton />
-        <RotationButton />
+      <Modal trigger={this.props.ship}>
+        <Modal.Header>Select Orientation</Modal.Header>
+        <Modal.Content>
+          <Image wrapped size="medium" src="this.state.shipPicture" />
+          <Modal.Description>
+            <Header>this.state.shipName</Header>
+            <RotationButton />
+          </Modal.Description>
+        </Modal.Content>
       </Modal>
+      // <React.Fragment>
+      //   <p>Select Orientation</p>
+      //   {this.state.ship}
+      //   <ConfirmOrientationButton />
+      //   <RotationButton />
+      // </React.Fragment>
     );
   }
 }
