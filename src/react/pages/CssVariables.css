@@ -5,16 +5,32 @@
   background-size: 100%;
   background-color: rgba(255, 255, 255, 0.2);
   background-blend-mode: lighten;
+
+  /* images */
   background-image: url(../../Battleship-image/backgroundimage.jpg);
+
+  --horizontalBattleship: url(../../Battleship-image/ships/4Horizontal.PNG);
+  --verticalBattleship: url(../../Battleship-image/ships/4Vertical.PNG);
+  --horizontalCarrier: url(../../Battleship-image/ships/5Horizontal.PNG);
+  --verticalCarrier: url(../../Battleship-image/ships/5Vertical.PNG);
+  --horizontalCruiser: url(../../Battleship-image/ships/3Horizontal.PNG);
+  --verticalCruiser: url(../../Battleship-image/ships/3Vertical.PNG);
+  --horizontalDestroyer: url(../../Battleship-image/ships/2Horizontal.PNG);
+  --verticalDestroyer: url(../../Battleship-image/ships/2Vertical.PNG);
+  --horizontalSubmarine: url(../../Battleship-image/ships/2Horizontal.PNG);
+  --verticalSubmarine: url(../../Battleship-image/ships/2Vertical.PNG);
+
+  /*text colors */
 
   --normalText: blue;
   --highLightText: purple;
+
+  /*theme colors */
 
   --accentColorDark: seagreen;
   --accentColorLight: yellow;
   --accentColorAlternate: maroon;
 
-  --selectedSquare: orange;
   --unsunkShip: lightgray;
   --sunkShip: darkgray;
 

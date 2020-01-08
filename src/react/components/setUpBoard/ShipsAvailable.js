@@ -4,20 +4,30 @@
 //when a ship has been placed, that ship should no longer be visible.
 
 import React from "react";
+import { Battleship, Carrier, Cruiser, Destroyer, Submarine } from "../ships";
+import { connect, withAsyncAction } from "../../HOCs";
 
 class ShipsAvailable extends React.Component {
   state = {
-    ships: ["battleship", "carrier", "cruiser", "destroyer", "submarine"],
+    battleship: true,
+    carrier: true,
+    cruiser: true,
+    destroyer: true,
+    submarine: true,
+    shipList: ["battleship", "carrier", "cruiser", "destroyer", "submarine"],
     selectedShip: ""
   };
 
-  componentDidMount = () => {
-    this.drawShips(this.state.ships);
-  };
+  shipsAvailable = [];
+  sillyShips = [];
 
-  componentDidUpdate = () => {
-    this.drawShips(this.state.ships);
-  };
+  // componentDidMount = () => {
+  //   this.drawShips(this.state.ships);
+  // };
+
+  // componentDidUpdate = () => {
+  //   this.drawShips(this.state.ships);
+  // };
 
   handleClick = () => {
     //target event for each individual ship
@@ -27,19 +37,58 @@ class ShipsAvailable extends React.Component {
     //make the rotation popup visible
   };
 
-  drawShips = ships => {
-    //map over "ships" to return an image for each ship
-    //give a click handler to each image
-  };
+  // drawShips = ships => {
+  //   this.shipsAvailable = this.state.ships.map(ship => {
+  //     console.log(ship);
+  //     return (
+  //       <div className={"horizontal" + ship.name}>
+  //         <img
+  //           src="/src/Battleship-image/ships/4Horizontal.PNG"
+  //           className={"initialShip" + ship.length.toString()}
+  //           alt={ship.name}
+  //         />
+  //       </div>
+  //     );
+  //   });
+  //   //map over "ships" to return an image for each ship
+  //   //give a click handler to each image
+  //   console.log(this.shipsAvailable);
+  //   return this.shipsAvailable;
+  // };
 
   render() {
+    // this.sillyShips = this.drawShips();
     return (
       <React.Fragment>
         Ships Available
-        {this.drawShips(this.state.ships)}
+        <div className="shipsAvailable">
+          {this.state.battleship && <Battleship />}
+          {this.state.carrier && <Carrier />}
+          {this.state.cruiser && <Cruiser />}
+          {this.state.destroyer && <Destroyer />}
+          {this.state.submarine && <Submarine />}
+        </div>
+        {/* {this.sillyShips}
+        {this.shipsAvailable} */}
       </React.Fragment>
     );
   }
 }
 
-export default ShipsAvailable;
+// export default ShipsAvailable;
+
+const mapStateToProps = state => {
+  return {
+    selectedShip: state.selectedShip,
+    Battleship: Battleship.props,
+    Carrier: Carrier,
+    Cruiser: Cruiser,
+    Destroyer: Destroyer,
+    Submarine: Submarine
+  };
+};
+const mapDispatchToProps = {};
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withAsyncAction("setUpGame", "placeShip")(ShipsAvailable));

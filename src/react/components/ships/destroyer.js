@@ -2,25 +2,27 @@
 //graphical drawings and for the play game page, to display the player's
 //own ships on their half of the board
 
-import React from "react"
+import React from "react";
 
 class Destroyer extends React.Component {
-    state = {
-        name: "Destroyer",
-        length: 2,
-        orientation: "horizontal",
-        gridLocations: [[],[]]
-    }
+  state = {
+    name: "Destroyer",
+    length: 2,
+    orientation: "horizontal",
+    gridLocations: [[], []],
+    imageHorizontal: "../../../Battleship-image/ships/2Horizontal",
+    imageVertical: "../../../Battleship-image/ships/2Vertical"
+  };
 
-    rotateShip = () => {}
+  rotateShip = () => {};
 
-    determineGridLocations = () => {}
+  determineGridLocations = () => {};
 
-    selectShipImage = () => {}
+  selectShipImage = () => {};
 
-    render () {
-        return <>image of horizontal or vertical destroyer</>
-    }
+  render() {
+    return <>image of horizontal or vertical destroyer</>;
+  }
 }
 
-export default Destroyer
+export default Destroyer;
