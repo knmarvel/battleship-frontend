@@ -3,15 +3,17 @@
 //own ships on their half of the board
 
 import React from "react";
+import fourHorizontal from "../../../Battleship-image/ships/4Horizontal.PNG";
+import fourVertical from "../../../Battleship-image/ships/4Vertical.PNG";
 
 class Battleship extends React.Component {
   state = {
     name: "Battleship",
     length: 4,
-    orientation: "horizontal",
+    orientation: "vertical",
     gridLocations: [[], [], [], []],
-    imageHorizontal: "../../../Battleship-image/ships/4Horizontal",
-    imageVertical: "../../../Battleship-image/ships/4Vertical"
+    imageHorizontal: fourHorizontal,
+    imageVertical: fourVertical
   };
 
   rotateShip = () => {};
@@ -20,22 +22,46 @@ class Battleship extends React.Component {
 
   selectShipImage = () => {};
   //===========================================
-  //stopping point: trying to render the ships by showing a div with the img as the
-  //background because i couldn't get them to render an image
+  //janell says:
+  //got the images to display the proper size by computing
+  //what vh is with another function (thanks stack overflow!)
+  //then hard coded the height and width directly for each picture.
+  //i couldn't make it use css variables, so if we decide that
+  //"squareSize" should be something other than 6vh,
+  //we will need to go in and manually change all 10 different sizes
+  //(2 for each ship)
   //======================================================
+
+  vh = v => {
+    var h = Math.max(
+      document.documentElement.clientHeight,
+      window.innerHeight || 0
+    );
+    return (v * h) / 100;
+  };
 
   render() {
     return (
       <div>
         {this.state.orientation === "horizontal" ? (
           <div className="horizontalBattleship">
-            Image of Horizontal Battleship
+            <img
+              alt={`ship with ${this.state.length} possible hits}`}
+              src={this.state.imageHorizontal}
+              height={this.vh(6)}
+              width={this.vh(24)}
+            />
           </div>
         ) : (
-          <div className="verticalBattleship" />
+          <div className="verticalBattleship">
+            <img
+              alt={`ship with ${this.state.length} possible hits}`}
+              src={this.state.imageVertical}
+              height={this.vh(24)}
+              width={this.vh(6)}
+            />
+          </div>
         )}
-
-        {/* <>image of horizontal or vertical battleship</> */}
       </div>
     );
   }

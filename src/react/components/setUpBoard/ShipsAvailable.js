@@ -18,8 +18,7 @@ class ShipsAvailable extends React.Component {
     selectedShip: ""
   };
 
-  shipsAvailable = [];
-  sillyShips = [];
+  // shipsAvailable = [];
 
   // componentDidMount = () => {
   //   this.drawShips(this.state.ships);
@@ -38,18 +37,7 @@ class ShipsAvailable extends React.Component {
   };
 
   // drawShips = ships => {
-  //   this.shipsAvailable = this.state.ships.map(ship => {
-  //     console.log(ship);
-  //     return (
-  //       <div className={"horizontal" + ship.name}>
-  //         <img
-  //           src="/src/Battleship-image/ships/4Horizontal.PNG"
-  //           className={"initialShip" + ship.length.toString()}
-  //           alt={ship.name}
-  //         />
-  //       </div>
-  //     );
-  //   });
+
   //   //map over "ships" to return an image for each ship
   //   //give a click handler to each image
   //   console.log(this.shipsAvailable);
@@ -57,25 +45,20 @@ class ShipsAvailable extends React.Component {
   // };
 
   render() {
-    // this.sillyShips = this.drawShips();
     return (
       <React.Fragment>
-        Ships Available
         <div className="shipsAvailable">
+          Ships Available
           {this.state.battleship && <Battleship />}
           {this.state.carrier && <Carrier />}
           {this.state.cruiser && <Cruiser />}
           {this.state.destroyer && <Destroyer />}
           {this.state.submarine && <Submarine />}
         </div>
-        {/* {this.sillyShips}
-        {this.shipsAvailable} */}
       </React.Fragment>
     );
   }
 }
-
-// export default ShipsAvailable;
 
 const mapStateToProps = state => {
   return {
