@@ -1,7 +1,7 @@
 import React from "react";
 import InitialBoardSquare from "./InitialBoardSquare";
 
-export default class InitialBoardGrid extends React.Component {
+class InitialBoardGrid extends React.Component {
   label = "";
   newRow = [];
   newBoard = [];
@@ -20,6 +20,17 @@ export default class InitialBoardGrid extends React.Component {
 
   drawRow = (newRow, rowLabel) => {
     return <div key={rowLabel}>{newRow}</div>;
+  };
+
+  handleClick = e => {
+    let targetRow = e.target.innerHTML.slice(0, 1);
+    let targetColumn = e.target.innerHTML.slice(1);
+    if (targetColumn === "" || targetColumn === "0") {
+      return;
+    } //is the case if a header row/column is clicked
+    console.log("target row is " + targetRow);
+    console.log("target column is " + targetColumn);
+    console.log(e.target.innerHTML);
   };
 
   render() {
@@ -54,3 +65,9 @@ export default class InitialBoardGrid extends React.Component {
     return this.newBoard;
   }
 }
+
+//===================
+//stopping point: shaquon meet 11 am zoom tomorrow
+//====================
+
+export default InitialBoardGrid;

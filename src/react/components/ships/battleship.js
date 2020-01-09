@@ -5,39 +5,54 @@
 import React from "react";
 import fourHorizontal from "../../../Battleship-image/ships/4Horizontal.PNG";
 import fourVertical from "../../../Battleship-image/ships/4Vertical.PNG";
+import { connect } from "../../HOCs";
+import { selectShip } from "../../../redux/index";
 
 class Battleship extends React.Component {
   state = {
     name: "Battleship",
     length: 4,
     orientation: "horizontal",
-    gridLocations: [[], [], [], []],
     imageHorizontal: fourHorizontal,
-    imageVertical: fourVertical,
+    imageVertical: fourVertical
   };
 
   rotateShip = () => {};
-
-  determineGridLocations = () => {};
-
-  selectShipImage = () => {};
 
   render() {
     return (
       <div>
         {this.state.orientation === "horizontal" ? (
-          <div className="horizontalBattleship">
+          <div className="">
             <img
               alt={`ship with ${this.state.length} possible hits}`}
               src={this.state.imageHorizontal}
-              height={((getComputedStyle(document.documentElement).getPropertyValue('--shipSquare'))*(Math.max(
-                document.documentElement.clientHeight,
-                window.innerHeight || 0)
-                ))/100}
-              width={this.state.length*((getComputedStyle(document.documentElement).getPropertyValue('--shipSquare'))*(Math.max(
-                document.documentElement.clientHeight,
-                window.innerHeight || 0)
-                ))/100}
+              height={
+                (getComputedStyle(document.documentElement).getPropertyValue(
+                  "--shipSquare"
+                ) *
+                  Math.max(
+                    document.documentElement.clientHeight,
+                    window.innerHeight || 0
+                  )) /
+                100
+              }
+              width={
+                (this.state.length *
+                  (getComputedStyle(document.documentElement).getPropertyValue(
+                    "--shipSquare"
+                  ) *
+                    Math.max(
+                      document.documentElement.clientHeight,
+                      window.innerHeight || 0
+                    ))) /
+                100
+              }
+              onClick={() => {
+                this.props.selectShip({
+                  text: "selecting horizontal battleship"
+                });
+              }}
             />
           </div>
         ) : (
@@ -45,16 +60,32 @@ class Battleship extends React.Component {
             <img
               alt={`ship with ${this.state.length} possible hits}`}
               src={this.state.imageVertical}
-              height={this.state.length*((getComputedStyle(document.documentElement)
-                .getPropertyValue('--shipSquare'))*(Math.max(
-                document.documentElement.clientHeight,
-                window.innerHeight || 0)
-                ))/100}
-              width={((getComputedStyle(document.documentElement)
-                .getPropertyValue('--shipSquare'))*(Math.max(
-                document.documentElement.clientHeight,
-                window.innerHeight || 0)
-                ))/100}
+              height={
+                (this.state.length *
+                  (getComputedStyle(document.documentElement).getPropertyValue(
+                    "--shipSquare"
+                  ) *
+                    Math.max(
+                      document.documentElement.clientHeight,
+                      window.innerHeight || 0
+                    ))) /
+                100
+              }
+              width={
+                (getComputedStyle(document.documentElement).getPropertyValue(
+                  "--shipSquare"
+                ) *
+                  Math.max(
+                    document.documentElement.clientHeight,
+                    window.innerHeight || 0
+                  )) /
+                100
+              }
+              onClick={() => {
+                this.props.selectShip({
+                  text: "selecting vertical battleship"
+                });
+              }}
             />
           </div>
         )}
@@ -63,4 +94,10 @@ class Battleship extends React.Component {
   }
 }
 
-export default Battleship;
+const mapStateToProps = state => {
+  return {};
+};
+
+const mapDispatchToProps = { selectShip };
+
+export default connect(mapStateToProps, mapDispatchToProps)(Battleship);

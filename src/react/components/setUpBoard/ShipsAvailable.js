@@ -13,47 +13,62 @@ class ShipsAvailable extends React.Component {
     carrier: true,
     cruiser: true,
     destroyer: true,
-    submarine: true,
-    shipList: ["battleship", "carrier", "cruiser", "destroyer", "submarine"],
-    selectedShip: ""
+    submarine: true
   };
 
-  // shipsAvailable = [];
-
-  // componentDidMount = () => {
-  //   this.drawShips(this.state.ships);
-  // };
-
-  // componentDidUpdate = () => {
-  //   this.drawShips(this.state.ships);
-  // };
-
-  handleClick = () => {
-    //target event for each individual ship
-    //set selectedShip to the target - used for the cursor elsewhere
-    //and in the rotation popup
-    //remove the selected ship from the array in state of "ships"
-    //make the rotation popup visible
+  onClickBattleship = e => {
+    console.log("battleship clicked");
+    this.setState({ battleship: false });
   };
 
-  // drawShips = ships => {
+  onClickCarrier = e => {
+    console.log("carrier clicked");
+    this.setState({ carrier: false });
+  };
 
-  //   //map over "ships" to return an image for each ship
-  //   //give a click handler to each image
-  //   console.log(this.shipsAvailable);
-  //   return this.shipsAvailable;
-  // };
+  onClickCruiser = e => {
+    console.log("cruiser clicked");
+    this.setState({ cruiser: false });
+  };
+
+  onClickDestroyer = e => {
+    console.log("destroyer clicked");
+    this.setState({ destroyer: false });
+  };
+
+  onClickSubmarine = e => {
+    console.log("submarine clicked");
+    this.setState({ submarine: false });
+  };
+
+  //===============================
+  //janell says:
+  //Chelsea --  ready for you to add in the modal for the popup.
+  //divs as they are currently will send a message to the API that the
+  //particular ship was clicked, and will toggle the ship from true to false.
+  //so i'm thinking we just need to wrap the modal around the divs?
+  //===============================
 
   render() {
     return (
       <React.Fragment>
         <div className="shipsAvailable">
           Ships Available
-          {this.state.battleship && <Battleship />}
-          {this.state.carrier && <Carrier />}
-          {this.state.cruiser && <Cruiser />}
-          {this.state.destroyer && <Destroyer />}
-          {this.state.submarine && <Submarine />}
+          <div onClick={this.onClickBattleship}>
+            {this.state.battleship && <Battleship />}
+          </div>
+          <div onClick={this.onClickCarrier}>
+            {this.state.carrier && <Carrier />}
+          </div>
+          <div onClick={this.onClickCruiser}>
+            {this.state.cruiser && <Cruiser />}
+          </div>
+          <div onClick={this.onClickDestroyer}>
+            {this.state.destroyer && <Destroyer />}
+          </div>
+          <div onClick={this.onClickSubmarine}>
+            {this.state.submarine && <Submarine />}
+          </div>
         </div>
       </React.Fragment>
     );
@@ -61,17 +76,10 @@ class ShipsAvailable extends React.Component {
 }
 
 const mapStateToProps = state => {
-  return {
-    selectedShip: state.selectedShip,
-    Battleship: Battleship.props,
-    Carrier: Carrier,
-    Cruiser: Cruiser,
-    Destroyer: Destroyer,
-    Submarine: Submarine
-  };
+  return {};
 };
 const mapDispatchToProps = {};
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(withAsyncAction("setUpGame", "placeShip")(ShipsAvailable));
+)(withAsyncAction("setUpGame", "selectShip")(ShipsAvailable));
