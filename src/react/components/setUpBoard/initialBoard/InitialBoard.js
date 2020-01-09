@@ -29,14 +29,16 @@ class InitialBoard extends React.Component {
     //return cursor to the no-ship-selected cursor.
   };
 
-  placeShip = () => {
-    //this sends the message "test" - works.  Will need to send "Game 1234 submarine B2"
-    this.props.placeShip({ text: "test" });
-  };
+  // placeShip = event => {
+  //   event.preventDefault();
+  //   console.log("button clicked");
+  //   //this sends the message "test" - works.  Will need to send "Game 1234 submarine B2"
+  //   // this.props.placeShip({ text: "test" });
+  // };
 
-  handleClick = e => {
-    return console.log(e.value);
-  };
+  // handleClick = e => {
+  //   return console.log(e.value);
+  // };
 
   //==================================================
 
@@ -49,7 +51,7 @@ class InitialBoard extends React.Component {
         <div className="newBoard">
           <InitialBoardGrid />
         </div>
-        <button onClick={this.placeShip}>Send "Test" </button>
+        {/* <button onClick={this.placeShip}>Send "Test" </button> */}
       </React.Fragment>
     );
   }
