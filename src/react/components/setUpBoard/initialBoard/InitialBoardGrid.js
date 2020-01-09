@@ -5,7 +5,7 @@ import { fetchLastMessage } from "../../../../redux/index";
 
 class InitialBoardGrid extends React.Component {
   state = {
-    playerName: this.props.playerName,
+    playerName: this.props.playerName
   };
 
   label = "";
@@ -56,9 +56,17 @@ class InitialBoardGrid extends React.Component {
     //kano says: we need to open the message object and then get the last word
     //=====================================================
     //
-    let lastMessage = this.props.fetchLastMessage();
-    console.log(lastMessage);
-    // let lastWord = this.determineLastWordOfLastMessage(lastMessage);
+
+    fetch(
+      `https://battleship-capstone-api.herokuapp.com/messages?limit=1&offset=0&username=${this.state.playerName}`
+    )
+      .then(responseObject => responseObject.json())
+      .then(res => {
+        let lastMessage = res.messages[0];
+        console.log(lastMessage);
+        // let lastWord = this.determineLastWordOfLastMessage(lastMessage);
+        // console.log(lastWord);
+      });
   };
 
   determineLastWordOfLastMessage = message => {};
@@ -101,8 +109,7 @@ class InitialBoardGrid extends React.Component {
 //====================
 
 const mapStateToProps = state => {
-  return { playerName: state.auth.login.result.username
-           };
+  return { playerName: state.auth.login.result.username };
 };
 
 const mapDispatchToProps = { fetchLastMessage };
