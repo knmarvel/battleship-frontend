@@ -7,47 +7,54 @@ import React from "react";
 
 import threeHorizontal from "../../../Battleship-image/ships/3Horizontal.PNG";
 import threeVertical from "../../../Battleship-image/ships/3Vertical.PNG";
+import { connect } from "../../HOCs";
+import { selectShip } from "../../../redux/index";
 
 class Cruiser extends React.Component {
   state = {
     name: "Cruiser",
     length: 3,
     orientation: "horizontal",
-    gridLocations: [[], [], []],
     imageHorizontal: threeHorizontal,
-    imageVertical: threeVertical,
+    imageVertical: threeVertical
   };
 
   rotateShip = () => {};
-
-  determineGridLocations = () => {};
-
-  selectShipImage = () => {};
-
-  vh = v => {
-    var h = Math.max(
-      document.documentElement.clientHeight,
-      window.innerHeight || 0
-    );
-    return (v * h) / 100;
-  };
 
   render() {
     return (
       <div>
         {this.state.orientation === "horizontal" ? (
-          <div className="horizontalBattleship">
+          <div className="">
             <img
               alt={`ship with ${this.state.length} possible hits}`}
               src={this.state.imageHorizontal}
-              height={((getComputedStyle(document.documentElement).getPropertyValue('--shipSquare'))*(Math.max(
-                document.documentElement.clientHeight,
-                window.innerHeight || 0)
-                ))/100}
-              width={this.state.length*((getComputedStyle(document.documentElement).getPropertyValue('--shipSquare'))*(Math.max(
-                document.documentElement.clientHeight,
-                window.innerHeight || 0)
-                ))/100}
+              height={
+                (getComputedStyle(document.documentElement).getPropertyValue(
+                  "--shipSquare"
+                ) *
+                  Math.max(
+                    document.documentElement.clientHeight,
+                    window.innerHeight || 0
+                  )) /
+                100
+              }
+              width={
+                (this.state.length *
+                  (getComputedStyle(document.documentElement).getPropertyValue(
+                    "--shipSquare"
+                  ) *
+                    Math.max(
+                      document.documentElement.clientHeight,
+                      window.innerHeight || 0
+                    ))) /
+                100
+              }
+              onClick={() => {
+                this.props.selectShip({
+                  text: "selecting horizontal cruiser"
+                });
+              }}
             />
           </div>
         ) : (
@@ -55,14 +62,32 @@ class Cruiser extends React.Component {
             <img
               alt={`ship with ${this.state.length} possible hits}`}
               src={this.state.imageVertical}
-              height={this.state.length*((getComputedStyle(document.documentElement).getPropertyValue('--shipSquare'))*(Math.max(
-                document.documentElement.clientHeight,
-                window.innerHeight || 0)
-                ))/100}
-              width={((getComputedStyle(document.documentElement).getPropertyValue('--shipSquare'))*(Math.max(
-                document.documentElement.clientHeight,
-                window.innerHeight || 0)
-                ))/100}
+              height={
+                (this.state.length *
+                  (getComputedStyle(document.documentElement).getPropertyValue(
+                    "--shipSquare"
+                  ) *
+                    Math.max(
+                      document.documentElement.clientHeight,
+                      window.innerHeight || 0
+                    ))) /
+                100
+              }
+              width={
+                (getComputedStyle(document.documentElement).getPropertyValue(
+                  "--shipSquare"
+                ) *
+                  Math.max(
+                    document.documentElement.clientHeight,
+                    window.innerHeight || 0
+                  )) /
+                100
+              }
+              onClick={() => {
+                this.props.selectShip({
+                  text: "selecting vertical cruiser"
+                });
+              }}
             />
           </div>
         )}
@@ -71,4 +96,10 @@ class Cruiser extends React.Component {
   }
 }
 
-export default Cruiser;
+const mapStateToProps = state => {
+  return {};
+};
+
+const mapDispatchToProps = { selectShip };
+
+export default connect(mapStateToProps, mapDispatchToProps)(Cruiser);

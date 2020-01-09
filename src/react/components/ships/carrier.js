@@ -5,46 +5,54 @@
 import React from "react";
 import fiveHorizontal from "../../../Battleship-image/ships/5Horizontal.PNG";
 import fiveVertical from "../../../Battleship-image/ships/5Vertical.PNG";
+import { connect } from "../../HOCs";
+import { selectShip } from "../../../redux/index";
 
 class Carrier extends React.Component {
   state = {
     name: "Carrier",
     length: 5,
     orientation: "horizontal",
-    gridLocations: [[], [], [], [], []],
     imageHorizontal: fiveHorizontal,
-    imageVertical: fiveVertical,
+    imageVertical: fiveVertical
   };
 
   rotateShip = () => {};
-
-  determineGridLocations = () => {};
-
-  selectShipImage = () => {};
-  vh = v => {
-    var h = Math.max(
-      document.documentElement.clientHeight,
-      window.innerHeight || 0
-    );
-    return (v * h) / 100;
-  };
 
   render() {
     return (
       <div>
         {this.state.orientation === "horizontal" ? (
-          <div className="horizontalBattleship">
+          <div className="">
             <img
               alt={`ship with ${this.state.length} possible hits}`}
               src={this.state.imageHorizontal}
-              height={((getComputedStyle(document.documentElement).getPropertyValue('--shipSquare'))*(Math.max(
-                document.documentElement.clientHeight,
-                window.innerHeight || 0)
-                ))/100}
-              width={this.state.length*((getComputedStyle(document.documentElement).getPropertyValue('--shipSquare'))*(Math.max(
-                document.documentElement.clientHeight,
-                window.innerHeight || 0)
-                ))/100}
+              height={
+                (getComputedStyle(document.documentElement).getPropertyValue(
+                  "--shipSquare"
+                ) *
+                  Math.max(
+                    document.documentElement.clientHeight,
+                    window.innerHeight || 0
+                  )) /
+                100
+              }
+              width={
+                (this.state.length *
+                  (getComputedStyle(document.documentElement).getPropertyValue(
+                    "--shipSquare"
+                  ) *
+                    Math.max(
+                      document.documentElement.clientHeight,
+                      window.innerHeight || 0
+                    ))) /
+                100
+              }
+              onClick={() => {
+                this.props.selectShip({
+                  text: "selecting horizontal carrier"
+                });
+              }}
             />
           </div>
         ) : (
@@ -52,14 +60,32 @@ class Carrier extends React.Component {
             <img
               alt={`ship with ${this.state.length} possible hits}`}
               src={this.state.imageVertical}
-              height={this.state.length*((getComputedStyle(document.documentElement).getPropertyValue('--shipSquare'))*(Math.max(
-                document.documentElement.clientHeight,
-                window.innerHeight || 0)
-                ))/100}
-              width={((getComputedStyle(document.documentElement).getPropertyValue('--shipSquare'))*(Math.max(
-                document.documentElement.clientHeight,
-                window.innerHeight || 0)
-                ))/100}
+              height={
+                (this.state.length *
+                  (getComputedStyle(document.documentElement).getPropertyValue(
+                    "--shipSquare"
+                  ) *
+                    Math.max(
+                      document.documentElement.clientHeight,
+                      window.innerHeight || 0
+                    ))) /
+                100
+              }
+              width={
+                (getComputedStyle(document.documentElement).getPropertyValue(
+                  "--shipSquare"
+                ) *
+                  Math.max(
+                    document.documentElement.clientHeight,
+                    window.innerHeight || 0
+                  )) /
+                100
+              }
+              onClick={() => {
+                this.props.selectShip({
+                  text: "selecting vertical carrier"
+                });
+              }}
             />
           </div>
         )}
@@ -68,4 +94,10 @@ class Carrier extends React.Component {
   }
 }
 
-export default Carrier;
+const mapStateToProps = state => {
+  return {};
+};
+
+const mapDispatchToProps = { selectShip };
+
+export default connect(mapStateToProps, mapDispatchToProps)(Carrier);
