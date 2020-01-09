@@ -57,7 +57,7 @@ class InitialBoardGrid extends React.Component {
     //
     let lastMessage = this.props.fetchLastMessage();
     console.log(lastMessage);
-    let lastWord = this.determineLastWordOfLastMessage(lastMessage);
+    // let lastWord = this.determineLastWordOfLastMessage(lastMessage);
   };
 
   determineLastWordOfLastMessage = message => {};
