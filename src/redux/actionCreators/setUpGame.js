@@ -60,7 +60,7 @@ export const fetchLastMessage = playerName => dispatch => {
   dispatch({
     type: FETCHLASTMESSAGE.START
   });
-  return fetch(url + "?limit=1&username=" + playerName, {
+  return fetch(url + `?limit=1&offset=0&username=` + playerName, {
     method: "GET",
     headers: jsonHeaders
   })
