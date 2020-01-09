@@ -2,7 +2,7 @@
 
 // placeShip action creator
 import { domain, jsonHeaders, handleJsonResponse } from "./constants";
-import { PLACESHIP, SELECTSHIP } from "../actionTypes";
+import { PLACESHIP, SELECTSHIP, FETCHLASTMESSAGE } from "../actionTypes";
 
 const url = domain + "/messages";
 
@@ -53,5 +53,27 @@ export const selectShip = messageData => dispatch => {
     })
     .catch(err => {
       return Promise.reject(dispatch({ type: SELECTSHIP.FAIL, payload: err }));
+    });
+};
+
+export const fetchLastMessage = playerName => dispatch => {
+  dispatch({
+    type: FETCHLASTMESSAGE.START
+  });
+  return fetch(url + "?limit=1&username=" + playerName, {
+    method: "GET",
+    headers: jsonHeaders
+  })
+    .then(handleJsonResponse)
+    .then(result => {
+      return dispatch({
+        type: FETCHLASTMESSAGE.SUCCESS,
+        payload: result
+      });
+    })
+    .catch(err => {
+      return Promise.reject(
+        dispatch({ type: FETCHLASTMESSAGE.FAIL, payload: err })
+      );
     });
 };
