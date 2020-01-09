@@ -39,7 +39,6 @@ class SetUpBoard extends React.Component {
           </div>
           <ShipsAvailable />
         </div>
-        <RotationPopup />
       </React.Fragment>
     );
   }
