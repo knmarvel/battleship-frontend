@@ -8,7 +8,6 @@ import React from "react";
 import threeHorizontal from "../../../Battleship-image/ships/3Horizontal.PNG";
 import threeVertical from "../../../Battleship-image/ships/3Vertical.PNG";
 import { connect } from "../../HOCs";
-import { selectShip } from "../../../redux/index";
 
 class Cruiser extends React.Component {
   state = {
@@ -54,11 +53,6 @@ class Cruiser extends React.Component {
                     ))) /
                 100
               }
-              onClick={() => {
-                this.props.selectShip({
-                  text: "selecting horizontal cruiser"
-                });
-              }}
             />
           </div>
         ) : (
@@ -87,11 +81,6 @@ class Cruiser extends React.Component {
                   )) /
                 100
               }
-              onClick={() => {
-                this.props.selectShip({
-                  text: "selecting vertical cruiser"
-                });
-              }}
             />
           </div>
         )}
@@ -105,6 +94,6 @@ const mapStateToProps = state => {
   return {};
 };
 
-const mapDispatchToProps = { selectShip };
+const mapDispatchToProps = {};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Cruiser);

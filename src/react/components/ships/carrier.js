@@ -6,7 +6,6 @@ import React from "react";
 import fiveHorizontal from "../../../Battleship-image/ships/5Horizontal.PNG";
 import fiveVertical from "../../../Battleship-image/ships/5Vertical.PNG";
 import { connect } from "../../HOCs";
-import { selectShip } from "../../../redux/index";
 
 class Carrier extends React.Component {
   state = {
@@ -52,11 +51,6 @@ class Carrier extends React.Component {
                     ))) /
                 100
               }
-              onClick={() => {
-                this.props.selectShip({
-                  text: "selecting horizontal carrier"
-                });
-              }}
             />
           </div>
         ) : (
@@ -85,11 +79,6 @@ class Carrier extends React.Component {
                   )) /
                 100
               }
-              onClick={() => {
-                this.props.selectShip({
-                  text: "selecting vertical carrier"
-                });
-              }}
             />
           </div>
         )}
@@ -103,6 +92,6 @@ const mapStateToProps = state => {
   return {};
 };
 
-const mapDispatchToProps = { selectShip };
+const mapDispatchToProps = {};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Carrier);

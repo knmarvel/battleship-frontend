@@ -6,6 +6,7 @@
 import React from "react";
 import { Battleship, Carrier, Cruiser, Destroyer, Submarine } from "../ships";
 import { connect, withAsyncAction } from "../../HOCs";
+import { selectShip } from "../../../redux/index";
 
 class ShipsAvailable extends React.Component {
   state = {
@@ -20,26 +21,31 @@ class ShipsAvailable extends React.Component {
   onClickBattleship = e => {
     console.log("battleship clicked");
     this.setState({ battleship: false, hasShipSelected: true });
+    this.props.selectShip({ text: "selected battleship" });
   };
 
   onClickCarrier = e => {
     console.log("carrier clicked");
     this.setState({ carrier: false, hasShipSelected: true });
+    this.props.selectShip({ text: "selected carrier" });
   };
 
   onClickCruiser = e => {
     console.log("cruiser clicked");
     this.setState({ cruiser: false, hasShipSelected: true });
+    this.props.selectShip({ text: "selected cruiser" });
   };
 
   onClickDestroyer = e => {
     console.log("destroyer clicked");
     this.setState({ destroyer: false, hasShipSelected: true });
+    this.props.selectShip({ text: "selected destroyer" });
   };
 
   onClickSubmarine = e => {
     console.log("submarine clicked");
     this.setState({ submarine: false, hasShipSelected: true });
+    this.props.selectShip({ text: "selected submarine" });
   };
 
   //===============================
@@ -74,7 +80,7 @@ class ShipsAvailable extends React.Component {
               </React.Fragment>
             )}
           </div>
-          <div onClick={this.onClickCruiser}>
+          <div>
             {this.state.cruiser && (
               <React.Fragment>
                 <Cruiser />
@@ -84,7 +90,7 @@ class ShipsAvailable extends React.Component {
               </React.Fragment>
             )}
           </div>
-          <div onClick={this.onClickDestroyer}>
+          <div>
             {this.state.destroyer && (
               <React.Fragment>
                 <Destroyer />
@@ -94,7 +100,7 @@ class ShipsAvailable extends React.Component {
               </React.Fragment>
             )}
           </div>
-          <div onClick={this.onClickSubmarine}>
+          <div>
             {this.state.submarine && (
               <React.Fragment>
                 <Submarine />
@@ -113,7 +119,7 @@ class ShipsAvailable extends React.Component {
 const mapStateToProps = state => {
   return {};
 };
-const mapDispatchToProps = {};
+const mapDispatchToProps = { selectShip };
 export default connect(
   mapStateToProps,
   mapDispatchToProps

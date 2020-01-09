@@ -6,7 +6,6 @@ import React from "react";
 import fourHorizontal from "../../../Battleship-image/ships/4Horizontal.PNG";
 import fourVertical from "../../../Battleship-image/ships/4Vertical.PNG";
 import { connect } from "../../HOCs";
-import { selectShip } from "../../../redux/index";
 
 class Battleship extends React.Component {
   state = {
@@ -52,11 +51,6 @@ class Battleship extends React.Component {
                     ))) /
                 100
               }
-              onClick={() => {
-                this.props.selectShip({
-                  text: "selecting horizontal battleship"
-                });
-              }}
             />
           </div>
         ) : (
@@ -85,11 +79,6 @@ class Battleship extends React.Component {
                   )) /
                 100
               }
-              onClick={() => {
-                this.props.selectShip({
-                  text: "selecting vertical battleship"
-                });
-              }}
             />
           </div>
         )}
@@ -105,6 +94,6 @@ const mapStateToProps = state => {
   return {};
 };
 
-const mapDispatchToProps = { selectShip };
+const mapDispatchToProps = {};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Battleship);

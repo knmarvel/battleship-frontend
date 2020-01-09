@@ -41,35 +41,32 @@ class InitialBoardGrid extends React.Component {
     console.log("target row is " + targetRow);
     console.log("target column is " + targetColumn);
     console.log(e.target.innerHTML);
-    this.readShipName();
+    let shipName = Promise.resolve(this.readShipName());
   };
 
   readShipName = () => {
     //====================================================
-    //janell says:  kano - i'm using connect to use a function "fetchLastMessage"
-    //with redux that should return the last message that the player posted.
-    //it's returning a promise.  i want the answer lol!
-    //the last word of the answer should be the name of the ship,
-    //which can be used for the calculations.
-    //i think the solution lies in the promise and await features but
-    //that's where i got stuck.
     //kano says: we need to open the message object and then get the last word
     //=====================================================
     //
-
+    let lastWord = "happy";
     fetch(
       `https://battleship-capstone-api.herokuapp.com/messages?limit=1&offset=0&username=${this.state.playerName}`
     )
       .then(responseObject => responseObject.json())
       .then(res => {
-        let lastMessage = res.messages[0];
-        console.log(lastMessage);
-        // let lastWord = this.determineLastWordOfLastMessage(lastMessage);
-        // console.log(lastWord);
+        let lastMessage = res.messages[0].text;
+        lastWord = this.determineLastWordOfLastMessage(lastMessage);
+        console.log(lastWord);
+        return lastWord;
       });
   };
 
-  determineLastWordOfLastMessage = message => {};
+  determineLastWordOfLastMessage = message => {
+    let splitMessage = message.split(" ");
+    let lastWord = splitMessage[splitMessage.length - 1];
+    return lastWord;
+  };
 
   render() {
     //first, draw the header row
