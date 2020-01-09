@@ -13,40 +13,40 @@ class ShipsAvailable extends React.Component {
     carrier: true,
     cruiser: true,
     destroyer: true,
-    submarine: true
+    submarine: true,
+    hasShipSelected: false
   };
 
   onClickBattleship = e => {
     console.log("battleship clicked");
-    this.setState({ battleship: false });
+    this.setState({ battleship: false, hasShipSelected: true });
   };
 
   onClickCarrier = e => {
     console.log("carrier clicked");
-    this.setState({ carrier: false });
+    this.setState({ carrier: false, hasShipSelected: true });
   };
 
   onClickCruiser = e => {
     console.log("cruiser clicked");
-    this.setState({ cruiser: false });
+    this.setState({ cruiser: false, hasShipSelected: true });
   };
 
   onClickDestroyer = e => {
     console.log("destroyer clicked");
-    this.setState({ destroyer: false });
+    this.setState({ destroyer: false, hasShipSelected: true });
   };
 
   onClickSubmarine = e => {
     console.log("submarine clicked");
-    this.setState({ submarine: false });
+    this.setState({ submarine: false, hasShipSelected: true });
   };
 
   //===============================
   //janell says:
-  //Chelsea --  ready for you to add in the modal for the popup.
-  //divs as they are currently will send a message to the API that the
-  //particular ship was clicked, and will toggle the ship from true to false.
-  //so i'm thinking we just need to wrap the modal around the divs?
+  //kano - need to find a way to set {hasShipSelected:false} after
+  //a ship is placed.  placing happens on the initialBoardGrid page (i think)
+  //
   //===============================
 
   render() {
@@ -54,20 +54,55 @@ class ShipsAvailable extends React.Component {
       <React.Fragment>
         <div className="shipsAvailable">
           Ships Available
-          <div onClick={this.onClickBattleship}>
-            {this.state.battleship && <Battleship />}
+          <div>
+            {this.state.battleship && (
+              <React.Fragment>
+                <Battleship />
+                {!this.state.hasShipSelected && (
+                  <button onClick={this.onClickBattleship}>Select Ship</button>
+                )}
+              </React.Fragment>
+            )}
           </div>
-          <div onClick={this.onClickCarrier}>
-            {this.state.carrier && <Carrier />}
+          <div>
+            {this.state.carrier && (
+              <React.Fragment>
+                <Carrier />
+                {!this.state.hasShipSelected && (
+                  <button onClick={this.onClickCarrier}>Select Ship</button>
+                )}
+              </React.Fragment>
+            )}
           </div>
           <div onClick={this.onClickCruiser}>
-            {this.state.cruiser && <Cruiser />}
+            {this.state.cruiser && (
+              <React.Fragment>
+                <Cruiser />
+                {!this.state.hasShipSelected && (
+                  <button onClick={this.onClickCruiser}>Select Ship</button>
+                )}
+              </React.Fragment>
+            )}
           </div>
           <div onClick={this.onClickDestroyer}>
-            {this.state.destroyer && <Destroyer />}
+            {this.state.destroyer && (
+              <React.Fragment>
+                <Destroyer />
+                {!this.state.hasShipSelected && (
+                  <button onClick={this.onClickDestroyer}>Select Ship</button>
+                )}
+              </React.Fragment>
+            )}
           </div>
           <div onClick={this.onClickSubmarine}>
-            {this.state.submarine && <Submarine />}
+            {this.state.submarine && (
+              <React.Fragment>
+                <Submarine />
+                {!this.state.hasShipSelected && (
+                  <button onClick={this.onClickSubmarine}>Select Ship</button>
+                )}
+              </React.Fragment>
+            )}
           </div>
         </div>
       </React.Fragment>
