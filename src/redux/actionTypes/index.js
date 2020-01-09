@@ -13,6 +13,7 @@ export const LOGOUT = createActionTypes("LOGOUT");
 //action types related to setUpGame
 
 export const PLACESHIP = createActionTypes("PLACESHIP");
+export const SELECTSHIP = createActionTypes("SELECTSHIP");
 
 //action types related to welcome
 
