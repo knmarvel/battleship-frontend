@@ -18,27 +18,27 @@ class ShipsAvailable extends React.Component {
 
   onClickBattleship = e => {
     console.log("battleship clicked");
-    // this.setState({ battleship: false });
+    this.setState({ battleship: false });
   };
 
   onClickCarrier = e => {
     console.log("carrier clicked");
-    // this.setState({ carrier: false });
+    this.setState({ carrier: false });
   };
 
   onClickCruiser = e => {
     console.log("cruiser clicked");
-    // this.setState({ cruiser: false });
+    this.setState({ cruiser: false });
   };
 
   onClickDestroyer = e => {
     console.log("destroyer clicked");
-    // this.setState({ destroyer: false });
+    this.setState({ destroyer: false });
   };
 
   onClickSubmarine = e => {
     console.log("submarine clicked");
-    // this.setState({ submarine: false });
+    this.setState({ submarine: false });
   };
 
   //===============================

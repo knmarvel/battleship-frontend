@@ -5,15 +5,16 @@
 //and "connect" along with "withAsyncAction" when exporting
 
 import React from "react";
+import { connect, withAsyncAction } from "../../HOCs";
 
 class ReadyButton extends React.Component {
   handleClick = () => {
     console.log("ReadyButton was clicked.");
-    //read the locations of all 5 ships
-    this.readLocations();
-
     //verify that all 5 ships have been placed
     this.verifyAllShipsPlaced();
+
+    //read the locations of all 5 ships
+    this.readLocations();
 
     //post a message on API for each square of each ship
     //example: 'Game 1234 submarine ["A", 1]', 'Game 1234 submarine ["B", 1]'...
@@ -23,8 +24,8 @@ class ReadyButton extends React.Component {
     this.redirectToPlayGame();
   };
 
-  readLocations = () => {};
   verifyAllShipsPlaced = () => {};
+  readLocations = () => {};
   postMessagesOfShipLocations = () => {};
   redirectToPlayGame = () => {};
 
@@ -33,4 +34,10 @@ class ReadyButton extends React.Component {
   }
 }
 
-export default ReadyButton;
+const mapStateToProps = state => {
+  return {
+    shipsPlacedMessage: state.setUpGame.placeShip.result.message
+  };
+};
+
+export default connect(mapStateToProps)(ReadyButton);
