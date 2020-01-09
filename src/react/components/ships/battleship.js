@@ -17,7 +17,11 @@ class Battleship extends React.Component {
     imageVertical: fourVertical
   };
 
-  rotateShip = () => {};
+  rotateShip = () => {
+    this.state.orientation === "horizontal"
+      ? this.setState({ orientation: "vertical" })
+      : this.setState({ orientation: "horizontal" });
+  };
 
   render() {
     return (
@@ -89,6 +93,9 @@ class Battleship extends React.Component {
             />
           </div>
         )}
+        <div>
+          <button onClick={this.rotateShip}>Rotate Ship</button>
+        </div>
       </div>
     );
   }

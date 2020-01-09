@@ -17,7 +17,11 @@ class Submarine extends React.Component {
     imageVertical: twoVertical
   };
 
-  rotateShip = () => {};
+  rotateShip = () => {
+    this.state.orientation === "horizontal"
+      ? this.setState({ orientation: "vertical" })
+      : this.setState({ orientation: "horizontal" });
+  };
 
   render() {
     return (
@@ -89,6 +93,7 @@ class Submarine extends React.Component {
             />
           </div>
         )}
+        <button onClick={this.rotateShip}>Rotate Ship</button>
       </div>
     );
   }
