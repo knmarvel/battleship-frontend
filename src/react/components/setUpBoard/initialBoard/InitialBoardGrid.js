@@ -56,34 +56,17 @@ class InitialBoardGrid extends React.Component {
     //kano says: we need to open the message object and then get the last word
     //=====================================================
     //
-<<<<<<< HEAD
 
     fetch(
       `https://battleship-capstone-api.herokuapp.com/messages?limit=1&offset=0&username=${this.state.playerName}`
     )
-=======
-<<<<<<< HEAD
-  
-    fetch(`https://battleship-capstone-api.herokuapp.com/messages?limit=1&offset=0&username=${this.state.playerName}`)
->>>>>>> ad5ea386e0b7dfcde7725e17d660be2f34096ff4
       .then(responseObject => responseObject.json())
       .then(res => {
         let lastMessage = res.messages[0];
         console.log(lastMessage);
-        let lastWord = this.determineLastWordOfLastMessage(lastMessage);
-<<<<<<< HEAD
-        console.log(lastWord);
+        // let lastWord = this.determineLastWordOfLastMessage(lastMessage);
+        // console.log(lastWord);
       });
-=======
-        console.log(lastWord)
-      })
-
-=======
-    let lastMessage = this.props.fetchLastMessage();
-    console.log(lastMessage);
-    // let lastWord = this.determineLastWordOfLastMessage(lastMessage);
->>>>>>> b9e4fcc563e8693e399422eb96c26136ab358284
->>>>>>> ad5ea386e0b7dfcde7725e17d660be2f34096ff4
   };
 
   determineLastWordOfLastMessage = message => {};
