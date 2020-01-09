@@ -14,6 +14,7 @@ export const LOGOUT = createActionTypes("LOGOUT");
 
 export const PLACESHIP = createActionTypes("PLACESHIP");
 export const SELECTSHIP = createActionTypes("SELECTSHIP");
+export const FETCHLASTMESSAGE = createActionTypes("FETCHLASTMESSAGE");
 
 //action types related to welcome
 
