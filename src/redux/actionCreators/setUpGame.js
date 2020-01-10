@@ -33,34 +33,17 @@ export const placeShip = messageData => dispatch => {
 };
 
 export const selectShip = messageData => dispatch => {
-  dispatch({
-    type: SELECTSHIP.START
-  });
-
-  const token = JSON.parse(localStorage.login).result.token;
-
-  return fetch(url, {
-    method: "POST",
-    headers: { ...jsonHeaders, Authorization: "Bearer " + token },
-    body: JSON.stringify(messageData)
-  })
-    .then(handleJsonResponse)
-    .then(result => {
-      return dispatch({
+  return dispatch({
         type: SELECTSHIP.SUCCESS,
-        payload: result
+        payload: messageData
       });
-    })
-    .catch(err => {
-      return Promise.reject(dispatch({ type: SELECTSHIP.FAIL, payload: err }));
-    });
 };
 
 export const fetchLastMessage = playerName => dispatch => {
   dispatch({
     type: FETCHLASTMESSAGE.START
   });
-  return fetch(url + "?limit=1&username=" + playerName, {
+  return fetch(url + `?limit=1&offset=0&username=` + playerName, {
     method: "GET",
     headers: jsonHeaders
   })

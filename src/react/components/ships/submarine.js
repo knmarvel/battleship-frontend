@@ -10,7 +10,7 @@ import { selectShip } from "../../../redux/index";
 
 class Submarine extends React.Component {
   state = {
-    name: "Submarine",
+    name: "submarine",
     length: 2,
     orientation: "horizontal",
     imageHorizontal: twoHorizontal,
@@ -23,9 +23,17 @@ class Submarine extends React.Component {
       : this.setState({ orientation: "horizontal" });
   };
 
+  onShipClick=() => {
+    this.props.selectShip({
+      name: this.state.name,
+      length: this.state.length,
+      orientation: this.state.orientation,
+    });
+    }
+
   render() {
     return (
-      <div>
+      <div onClick={this.onShipClick}>
         {this.state.orientation === "horizontal" ? (
           <div className="">
             <img
@@ -52,11 +60,7 @@ class Submarine extends React.Component {
                     ))) /
                 100
               }
-              onClick={() => {
-                this.props.selectShip({
-                  text: "selecting horizontal submarine"
-                });
-              }}
+              
             />
           </div>
         ) : (
@@ -85,11 +89,6 @@ class Submarine extends React.Component {
                   )) /
                 100
               }
-              onClick={() => {
-                this.props.selectShip({
-                  text: "selecting vertical submarine"
-                });
-              }}
             />
           </div>
         )}
