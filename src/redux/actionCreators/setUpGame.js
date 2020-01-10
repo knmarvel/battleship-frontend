@@ -77,25 +77,3 @@ export const fetchLastMessage = playerName => dispatch => {
       );
     });
 };
-
-export const fetchMessagesSetupComplete = playerName => dispatch => {
-  dispatch({
-    type: FETCHMESSAGESSETUPCOMPLETE.START
-  });
-  return fetch(url + playerName, {
-    method: "GET",
-    headers: jsonHeaders
-  })
-    .then(handleJsonResponse)
-    .then(result => {
-      return dispatch({
-        type: FETCHMESSAGESSETUPCOMPLETE.SUCCESS,
-        payload: result
-      });
-    })
-    .catch(err => {
-      return Promise.reject(
-        dispatch({ type: FESTCHMESSAGESSETUPCOMPLETE.FAIL, payload: err })
-      );
-    });
-};
