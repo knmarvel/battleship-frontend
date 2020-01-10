@@ -35,10 +35,11 @@ class Cruiser extends React.Component {
 
   render() {
     return (
-      <div onClick={this.onShipClick}>
+      <div>
         {this.state.orientation === "horizontal" ? (
           <div className="">
             <img
+              onClick={this.onShipClick}
               alt={`ship with ${this.state.length} possible hits}`}
               src={this.state.imageHorizontal}
               height={
@@ -67,6 +68,7 @@ class Cruiser extends React.Component {
         ) : (
           <div className="verticalBattleship">
             <img
+              onClick={this.onShipClick}
               alt={`ship with ${this.state.length} possible hits}`}
               src={this.state.imageVertical}
               height={
