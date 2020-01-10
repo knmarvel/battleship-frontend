@@ -1,42 +1,57 @@
-//PLACESHIP  is working
 
-// placeShip action creator
 import { domain, jsonHeaders, handleJsonResponse } from "./constants";
-import { PLACESHIP, SELECTSHIP, FETCHLASTMESSAGE } from "../actionTypes";
+import { PLACEBATTLESHIP, PLACECARRIER, PLACECRUISER, PLACEDESTROYER, PLACESUBMARINE, SELECTSHIP, FETCHLASTMESSAGE } from "../actionTypes";
 
 const url = domain + "/messages";
 
 //battleship-capstone-api.herokuapp.com/messages
 
-export const placeShip = messageData => dispatch => {
-  dispatch({
-    type: PLACESHIP.START
+export const placeBattleship = messageData => dispatch => {
+  console.log(messageData)
+  return dispatch({
+    type: PLACEBATTLESHIP.SUCCESS,
+    payload: messageData
   });
+};
 
-  const token = JSON.parse(localStorage.login).result.token;
+export const placeCarrier = messageData => dispatch => {
+  console.log(messageData)
+  return dispatch({
+    type: PLACECARRIER.SUCCESS,
+    payload: messageData
+  });
+};
 
-  return fetch(url, {
-    method: "POST",
-    headers: { ...jsonHeaders, Authorization: "Bearer " + token },
-    body: JSON.stringify(messageData)
-  })
-    .then(handleJsonResponse)
-    .then(result => {
-      return dispatch({
-        type: PLACESHIP.SUCCESS,
-        payload: result
-      });
-    })
-    .catch(err => {
-      return Promise.reject(dispatch({ type: PLACESHIP.FAIL, payload: err }));
-    });
+export const placeCruiser = messageData => dispatch => {
+  console.log(messageData)
+  return dispatch({
+    type: PLACECRUISER.SUCCESS,
+    payload: messageData
+  });
+};
+
+export const placeDestroyer = messageData => dispatch => {
+  console.log(messageData)
+  return dispatch({
+    type: PLACEDESTROYER.SUCCESS,
+    payload: messageData
+  });
+};
+
+export const placeSubmarine = messageData => dispatch => {
+  console.log(messageData)
+  return dispatch({
+    type: PLACESUBMARINE.SUCCESS,
+    payload: messageData
+  });
 };
 
 export const selectShip = messageData => dispatch => {
+  console.log(messageData)
   return dispatch({
-        type: SELECTSHIP.SUCCESS,
-        payload: messageData
-      });
+    type: SELECTSHIP.SUCCESS,
+    payload: messageData
+  });
 };
 
 export const fetchLastMessage = playerName => dispatch => {

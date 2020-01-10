@@ -5,7 +5,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { withAsyncAction } from "../../../HOCs";
 import InitialBoardGrid from "./InitialBoardGrid";
-import { placeShip } from "../../../../redux";
+import { placeBattleship } from "../../../../redux";
 
 class InitialBoard extends React.Component {
   newBoard = [];
@@ -51,7 +51,7 @@ class InitialBoard extends React.Component {
         <div className="newBoard">
           <InitialBoardGrid />
         </div>
-        {/* <button onClick={this.placeShip}>Send "Test" </button> */}
+        <button onClick={this.props.placeBattleship("wackawacka")}>Send "Test" </button>
       </React.Fragment>
     );
   }
@@ -60,8 +60,8 @@ class InitialBoard extends React.Component {
 const mapStateToProps = state => {
   return { selectedShip: state.selectedShip };
 };
-const mapDispatchToProps = { placeShip };
+const mapDispatchToProps = { placeBattleship };
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(withAsyncAction("setUpGame", "placeShip")(InitialBoard));
+)(withAsyncAction("setUpGame", "placeBattleship")(InitialBoard));
