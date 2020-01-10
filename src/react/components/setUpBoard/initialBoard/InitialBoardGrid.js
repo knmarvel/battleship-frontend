@@ -41,8 +41,8 @@ class InitialBoardGrid extends React.Component {
     console.log("target row is " + targetRow);
     console.log("target column is " + targetColumn);
     console.log(e.target.innerHTML);
-    if(this.props.activeShip !==null){
-      console.log(this.props.activeShip.result.name)
+    if(this.props.activeShip !== null){
+      console.log(this.props.activeShip.result)
     }
   };
 
@@ -85,7 +85,8 @@ class InitialBoardGrid extends React.Component {
 
 const mapStateToProps = state => {
   return { playerName: state.auth.login.result.username,
-           activeShip: state.setUpGame.selectShip};
+           activeShip: state.setUpGame.selectShip 
+          };
 };
 
 const mapDispatchToProps = { fetchLastMessage };
