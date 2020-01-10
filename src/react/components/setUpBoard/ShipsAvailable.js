@@ -6,7 +6,7 @@
 import React from "react";
 import { Battleship, Carrier, Cruiser, Destroyer, Submarine } from "../ships";
 import { connect, withAsyncAction } from "../../HOCs";
-import { selectShip } from "../../../redux/index";
+// import { selectShip } from "../../../redux/index";
 
 class ShipsAvailable extends React.Component {
   renderShip = () => {
@@ -20,61 +20,62 @@ class ShipsAvailable extends React.Component {
           <Submarine />
         </div>
       );
-    }
-    switch (this.props.isShipSelected.name) {
-      case "battleship":
-        return (
-          <div className="shipsAvailable">
-            <Carrier />
-            <Cruiser />
-            <Destroyer />
-            <Submarine />
-          </div>
-        );
-      case "carrier":
-        return (
-          <div className="shipsAvailable">
-            <Battleship />
-            <Cruiser />
-            <Destroyer />
-            <Submarine />
-          </div>
-        );
-      case "cruiser":
-        return (
-          <div className="shipsAvailable">
-            <Battleship />
-            <Carrier />
-            <Destroyer />
-            <Submarine />
-          </div>
-        );
-      case "destroyer":
-        return (
-          <div className="shipsAvailable">
-            <Battleship />
-            <Carrier />
-            <Cruiser />
-            <Submarine />
-          </div>
-        );
-      case "submarine":
-        return (
-          <div className="shipsAvailable">
-            <Battleship />
-            <Carrier />
-            <Cruiser />
-            <Destroyer />
-          </div>
-        );
-      default:
-        return (
-          <div className="shipsAvailable">
-            Sorry, something's wrong. Coders, check ShipsAvailable compenent. No
-            one should ever see this message, there's an XKCD about this very
-            phenomenon.
-          </div>
-        );
+    } else {
+      switch (this.props.isShipSelected.name) {
+        case "battleship":
+          return (
+            <div className="shipsAvailable">
+              <Carrier />
+              <Cruiser />
+              <Destroyer />
+              <Submarine />
+            </div>
+          );
+        case "carrier":
+          return (
+            <div className="shipsAvailable">
+              <Battleship />
+              <Cruiser />
+              <Destroyer />
+              <Submarine />
+            </div>
+          );
+        case "cruiser":
+          return (
+            <div className="shipsAvailable">
+              <Battleship />
+              <Carrier />
+              <Destroyer />
+              <Submarine />
+            </div>
+          );
+        case "destroyer":
+          return (
+            <div className="shipsAvailable">
+              <Battleship />
+              <Carrier />
+              <Cruiser />
+              <Submarine />
+            </div>
+          );
+        case "submarine":
+          return (
+            <div className="shipsAvailable">
+              <Battleship />
+              <Carrier />
+              <Cruiser />
+              <Destroyer />
+            </div>
+          );
+        default:
+          return (
+            <div className="shipsAvailable">
+              Sorry, something's wrong. Coders, check ShipsAvailable compenent.
+              No one should ever see this message, there's an XKCD about this
+              very phenomenon.
+            </div>
+          );
+      }
     }
   };
   //===============================
@@ -96,7 +97,7 @@ const mapStateToProps = state => {
       : null
   };
 };
-const mapDispatchToProps = { selectShip };
+const mapDispatchToProps = {};
 export default connect(
   mapStateToProps,
   mapDispatchToProps

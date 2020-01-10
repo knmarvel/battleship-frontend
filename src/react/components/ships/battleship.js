@@ -6,6 +6,7 @@ import React from "react";
 import fourHorizontal from "../../../Battleship-image/ships/4Horizontal.PNG";
 import fourVertical from "../../../Battleship-image/ships/4Vertical.PNG";
 import { connect } from "../../HOCs";
+import { selectShip } from "../../../redux/index";
 
 class Battleship extends React.Component {
   state = {
@@ -101,6 +102,6 @@ const mapStateToProps = state => {
   return {};
 };
 
-const mapDispatchToProps = {};
+const mapDispatchToProps = { selectShip };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Battleship);
