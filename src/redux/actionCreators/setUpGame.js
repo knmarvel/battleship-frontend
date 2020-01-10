@@ -33,7 +33,6 @@ export const placeShip = messageData => dispatch => {
 };
 
 export const selectShip = messageData => dispatch => {
-  console.log(messageData)
   return dispatch({
         type: SELECTSHIP.SUCCESS,
         payload: messageData
