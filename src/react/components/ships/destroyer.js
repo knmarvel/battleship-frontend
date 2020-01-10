@@ -25,13 +25,15 @@ class Destroyer extends React.Component {
 
   onShipClick=() => {
     this.props.selectShip({
-      text: `selecting ${this.state.orientation} ${this.state.name}`
+      name: this.state.name,
+      length: this.state.length,
+      orientation: this.state.orientation,
     });
     }
 
   render() {
     return (
-      <div>
+      <div onClick={this.onShipClick}>
         {this.state.orientation === "horizontal" ? (
           <div className="">
             <img
@@ -89,7 +91,6 @@ class Destroyer extends React.Component {
             />
           </div>
         )}
-        <button onClick={this.onShipClick}>Select Ship</button>
         <button onClick={this.rotateShip}>Rotate Ship</button>
       </div>
     );

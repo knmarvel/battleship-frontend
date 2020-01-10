@@ -6,34 +6,71 @@
 import React from "react";
 import { Battleship, Carrier, Cruiser, Destroyer, Submarine } from "../ships";
 import { connect, withAsyncAction } from "../../HOCs";
+import { selectShip } from "../../../redux/index";
 
 class ShipsAvailable extends React.Component {
-  state = {
-    battleship: true,
-    carrier: true,
-    cruiser: true,
-    destroyer: true,
-    submarine: true,
-    hasShipSelected: false
-  };
 
-  componentDidUpdate = () =>{
-    if(this.props.isShipSelected === null){ 
+      
+  renderShip = () => {
+    if(this.props.isShipSelected === null){
+      return <div 
+          className = "shipsAvailable">
+            <Battleship />
+            <Carrier />
+            <Cruiser />
+            <Destroyer />
+            <Submarine />
+        </div>
+      
     }
-    else {
-      if(this.props.isShipSelected)
-      // this.setState(
-      //   {
-      //     hasShipSelected: true,
-      //   }
-      // )
-      console.log(this.props.isShipSelected.name)
-      // nameOfShipSelected = this.props.isShipSelected.name
-      // console.log(nameOfShipSelected)
-
+    switch (this.props.isShipSelected.name) {
+      case "battleship":
+        return <div 
+          className = "shipsAvailable">
+            <Carrier />
+            <Cruiser />
+            <Destroyer />
+            <Submarine />
+          </div>
+      case "carrier":
+        return <div 
+          className = "shipsAvailable">
+            <Battleship />
+            <Cruiser />
+            <Destroyer />
+            <Submarine />
+          </div>
+      case "cruiser":
+        return <div 
+          className = "shipsAvailable">
+            <Battleship />
+            <Carrier />
+            <Destroyer />
+            <Submarine />
+          </div>
+      case "destroyer":
+        return <div 
+          className = "shipsAvailable">
+            <Battleship />
+            <Carrier />
+            <Cruiser />
+            <Submarine />
+          </div>
+      case "submarine":
+        return <div 
+          className = "shipsAvailable">
+            <Battleship />
+            <Carrier />
+            <Cruiser />
+            <Destroyer />
+          </div>
+      default: 
+        return <div
+          className = "shipsAvailable">
+            Sorry, something's wrong. Coders, check ShipsAvailable compenent. No one should ever see this message, there's an XKCD about this very phenomenon.
+          </div>
     }
   }
-
   //===============================
   //janell says:
   //kano - need to find a way to set {hasShipSelected:false} after
@@ -44,52 +81,7 @@ class ShipsAvailable extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <div 
-        className="shipsAvailable"
-        onClick={this.onDivClick}
-        >
-          Ships Available
-          <div>
-            {this.state.battleship && (
-              <React.Fragment>
-                <Battleship />
-                {!this.state.hasShipSelected}
-              </React.Fragment>
-            )}
-          </div>
-          <div>
-            {this.state.carrier && (
-              <React.Fragment>
-                <Carrier />
-                {!this.state.hasShipSelected }
-              </React.Fragment>
-            )}
-          </div>
-          <div>
-            {this.state.cruiser && (
-              <React.Fragment>
-                <Cruiser />
-                {!this.state.hasShipSelected }
-              </React.Fragment>
-            )}
-          </div>
-          <div>
-            {this.state.destroyer && (
-              <React.Fragment>
-                <Destroyer />
-                {!this.state.hasShipSelected }
-              </React.Fragment>
-            )}
-          </div>
-          <div >
-            {this.state.submarine && (
-              <React.Fragment>
-                <Submarine />
-                {!this.state.hasShipSelected}
-              </React.Fragment>
-            )}
-          </div>
-        </div>
+        {this.renderShip()}
       </React.Fragment>
     );
   }
@@ -98,7 +90,7 @@ class ShipsAvailable extends React.Component {
 const mapStateToProps = state => {
   return { isShipSelected : state.setUpGame.selectShip.result ? state.setUpGame.selectShip.result : null};
 };
-const mapDispatchToProps = {};
+const mapDispatchToProps = { selectShip };
 export default connect(
   mapStateToProps,
   mapDispatchToProps

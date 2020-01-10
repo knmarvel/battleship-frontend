@@ -32,7 +32,7 @@ class Battleship extends React.Component {
     }
   render() {
     return (
-      <div>
+      <div onClick={this.onShipClick}>
         {this.state.orientation === "horizontal" ? (
           <div className="">
             <img
@@ -92,7 +92,6 @@ class Battleship extends React.Component {
           </div>
         )}
         <div>
-          <button onClick={this.onShipClick}>Select Ship</button>
           <button onClick={this.rotateShip}>Rotate Ship</button>
         </div>
       </div>
