@@ -28,6 +28,7 @@ class Battleship extends React.Component {
       name: this.state.name,
       length: this.state.length,
       orientation: this.state.orientation,
+
     });
     }
   render() {
