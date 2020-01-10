@@ -58,9 +58,7 @@ class ShipsAvailable extends React.Component {
             {this.state.battleship && (
               <React.Fragment>
                 <Battleship />
-                {!this.state.hasShipSelected && (
-                  <button onClick={this.onClickBattleship}>Select Ship</button>
-                )}
+                {!this.state.hasShipSelected}
               </React.Fragment>
             )}
           </div>
@@ -111,7 +109,7 @@ class ShipsAvailable extends React.Component {
 }
 
 const mapStateToProps = state => {
-  return {};
+  return { selectShip: state.selectShip};
 };
 const mapDispatchToProps = {};
 export default connect(

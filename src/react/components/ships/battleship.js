@@ -23,6 +23,11 @@ class Battleship extends React.Component {
       : this.setState({ orientation: "horizontal" });
   };
 
+  onShipClick=() => {
+    this.props.selectShip({
+      text: `selecting ${this.state.orientation} ${this.state.name}`
+    });
+    }
   render() {
     return (
       <div>
@@ -52,11 +57,6 @@ class Battleship extends React.Component {
                     ))) /
                 100
               }
-              onClick={() => {
-                this.props.selectShip({
-                  text: "selecting horizontal battleship"
-                });
-              }}
             />
           </div>
         ) : (
@@ -85,15 +85,12 @@ class Battleship extends React.Component {
                   )) /
                 100
               }
-              onClick={() => {
-                this.props.selectShip({
-                  text: "selecting vertical battleship"
-                });
-              }}
+              
             />
           </div>
         )}
         <div>
+          <button onClick={this.onShipClick}>Select Ship</button>
           <button onClick={this.rotateShip}>Rotate Ship</button>
         </div>
       </div>
