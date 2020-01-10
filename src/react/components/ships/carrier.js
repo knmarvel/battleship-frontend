@@ -9,7 +9,7 @@ import { connect } from "../../HOCs";
 
 class Carrier extends React.Component {
   state = {
-    name: "Carrier",
+    name: "carrier",
     length: 5,
     orientation: "horizontal",
     imageHorizontal: fiveHorizontal,
@@ -22,9 +22,17 @@ class Carrier extends React.Component {
       : this.setState({ orientation: "horizontal" });
   };
 
+  onShipClick=() => {
+    this.props.selectShip({
+      name: this.state.name,
+      length: this.state.length,
+      orientation: this.state.orientation,
+    });
+    }
+
   render() {
     return (
-      <div>
+      <div onClick={this.onShipClick}>
         {this.state.orientation === "horizontal" ? (
           <div className="">
             <img

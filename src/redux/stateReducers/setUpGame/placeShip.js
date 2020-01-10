@@ -5,7 +5,12 @@ import { withAsyncReducer } from "../../HORs";
 const initialState = {
   result: null,
   loading: false,
-  error: null
+  error: null,
+  battleship: null,
+  carrier: null,
+  cruiser: null,
+  destroyer: null,
+  submarine: null,
 };
 
 const getInitStateFromStorage = (key, initialState) => {

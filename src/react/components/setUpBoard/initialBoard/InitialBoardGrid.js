@@ -1,22 +1,14 @@
 import React from "react";
 import InitialBoardSquare from "./InitialBoardSquare";
 import { connect } from "../../../HOCs";
-import { fetchLastMessage } from "../../../../redux/index";
+import { placeShip } from "../../../../redux/index";
 
 class InitialBoardGrid extends React.Component {
-  state = {
-    playerName: this.props.playerName
-  };
-
   label = "";
   newRow = [];
   newBoard = [];
   //use nested loops to define the initial divs
   rowLabels = [" ", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J"];
-
-  componentDidMount = () => {
-    console.log(this.state.playerName);
-  };
 
   drawSquare = label => {
     return (
@@ -41,31 +33,11 @@ class InitialBoardGrid extends React.Component {
     console.log("target row is " + targetRow);
     console.log("target column is " + targetColumn);
     console.log(e.target.innerHTML);
-    let shipName = Promise.resolve(this.readShipName());
-  };
-
-  readShipName = () => {
-    //====================================================
-    //kano says: we need to open the message object and then get the last word
-    //=====================================================
-    //
-    let lastWord = "happy";
-    fetch(
-      `https://battleship-capstone-api.herokuapp.com/messages?limit=1&offset=0&username=${this.state.playerName}`
-    )
-      .then(responseObject => responseObject.json())
-      .then(res => {
-        let lastMessage = res.messages[0].text;
-        lastWord = this.determineLastWordOfLastMessage(lastMessage);
-        console.log(lastWord);
-        return lastWord;
-      });
-  };
-
-  determineLastWordOfLastMessage = message => {
-    let splitMessage = message.split(" ");
-    let lastWord = splitMessage[splitMessage.length - 1];
-    return lastWord;
+    // console.log(this.props.playerName)
+    // if(this.props.activeShip === null){
+    //   console.log(null)
+    // }
+    // else{console.log(this.props.activeShip.name)}
   };
 
   render() {
@@ -101,14 +73,15 @@ class InitialBoardGrid extends React.Component {
   }
 }
 
-//===================
-//stopping point: shaquon meet 11 am zoom tomorrow
-//====================
-
 const mapStateToProps = state => {
-  return { playerName: state.auth.login.result.username };
+  return {
+    playerName: state.auth.login.result.username,
+    activeShip: state.setUpGame.selectShip.result
+      ? state.setUpGame.selectShip.result
+      : null
+  };
 };
 
-const mapDispatchToProps = { fetchLastMessage };
+const mapDispatchToProps = { placeShip };
 
 export default connect(mapStateToProps, mapDispatchToProps)(InitialBoardGrid);

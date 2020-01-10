@@ -18,11 +18,6 @@ import { Menu } from "../components";
 import "./SetUpBoard.css";
 
 class SetUpBoard extends React.Component {
-  state = {
-    selectedShip: "",
-    selectedSquare: ""
-  };
-
   // mediaStart = e.target.src.indexOf("media");
   // shipLength = e.target.src.slice(mediaStart + 6, mediaStart + 7);
 

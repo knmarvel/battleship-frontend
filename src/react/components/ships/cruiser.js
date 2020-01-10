@@ -11,7 +11,7 @@ import { connect } from "../../HOCs";
 
 class Cruiser extends React.Component {
   state = {
-    name: "Cruiser",
+    name: "cruiser",
     length: 3,
     orientation: "horizontal",
     imageHorizontal: threeHorizontal,
@@ -24,9 +24,17 @@ class Cruiser extends React.Component {
       : this.setState({ orientation: "horizontal" });
   };
 
+  onShipClick=() => {
+    this.props.selectShip({
+      name: this.state.name,
+      length: this.state.length,
+      orientation: this.state.orientation,
+    });
+    }
+
   render() {
     return (
-      <div>
+      <div onClick={this.onShipClick}>
         {this.state.orientation === "horizontal" ? (
           <div className="">
             <img
