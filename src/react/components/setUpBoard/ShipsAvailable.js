@@ -17,30 +17,22 @@ class ShipsAvailable extends React.Component {
     hasShipSelected: false
   };
 
-  onClickBattleship = e => {
-    console.log("battleship clicked");
-    this.setState({ battleship: false, hasShipSelected: true });
-  };
+  componentDidUpdate = () =>{
+    if(this.props.isShipSelected === null){ 
+    }
+    else {
+      if(this.props.isShipSelected)
+      // this.setState(
+      //   {
+      //     hasShipSelected: true,
+      //   }
+      // )
+      console.log(this.props.isShipSelected.name)
+      // nameOfShipSelected = this.props.isShipSelected.name
+      // console.log(nameOfShipSelected)
 
-  onClickCarrier = e => {
-    console.log("carrier clicked");
-    this.setState({ carrier: false, hasShipSelected: true });
-  };
-
-  onClickCruiser = e => {
-    console.log("cruiser clicked");
-    this.setState({ cruiser: false, hasShipSelected: true });
-  };
-
-  onClickDestroyer = e => {
-    console.log("destroyer clicked");
-    this.setState({ destroyer: false, hasShipSelected: true });
-  };
-
-  onClickSubmarine = e => {
-    console.log("submarine clicked");
-    this.setState({ submarine: false, hasShipSelected: true });
-  };
+    }
+  }
 
   //===============================
   //janell says:
@@ -52,7 +44,10 @@ class ShipsAvailable extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <div className="shipsAvailable">
+        <div 
+        className="shipsAvailable"
+        onClick={this.onDivClick}
+        >
           Ships Available
           <div>
             {this.state.battleship && (
@@ -66,39 +61,31 @@ class ShipsAvailable extends React.Component {
             {this.state.carrier && (
               <React.Fragment>
                 <Carrier />
-                {!this.state.hasShipSelected && (
-                  <button onClick={this.onClickCarrier}>Select Ship</button>
-                )}
+                {!this.state.hasShipSelected }
               </React.Fragment>
             )}
           </div>
-          <div onClick={this.onClickCruiser}>
+          <div>
             {this.state.cruiser && (
               <React.Fragment>
                 <Cruiser />
-                {!this.state.hasShipSelected && (
-                  <button onClick={this.onClickCruiser}>Select Ship</button>
-                )}
+                {!this.state.hasShipSelected }
               </React.Fragment>
             )}
           </div>
-          <div onClick={this.onClickDestroyer}>
+          <div>
             {this.state.destroyer && (
               <React.Fragment>
                 <Destroyer />
-                {!this.state.hasShipSelected && (
-                  <button onClick={this.onClickDestroyer}>Select Ship</button>
-                )}
+                {!this.state.hasShipSelected }
               </React.Fragment>
             )}
           </div>
-          <div onClick={this.onClickSubmarine}>
+          <div >
             {this.state.submarine && (
               <React.Fragment>
                 <Submarine />
-                {!this.state.hasShipSelected && (
-                  <button onClick={this.onClickSubmarine}>Select Ship</button>
-                )}
+                {!this.state.hasShipSelected}
               </React.Fragment>
             )}
           </div>
@@ -109,7 +96,7 @@ class ShipsAvailable extends React.Component {
 }
 
 const mapStateToProps = state => {
-  return { selectShip: state.selectShip};
+  return { isShipSelected : state.setUpGame.selectShip.result ? state.setUpGame.selectShip.result : null};
 };
 const mapDispatchToProps = {};
 export default connect(

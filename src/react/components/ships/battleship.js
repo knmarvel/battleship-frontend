@@ -10,7 +10,7 @@ import { selectShip } from "../../../redux/index";
 
 class Battleship extends React.Component {
   state = {
-    name: "Battleship",
+    name: "battleship",
     length: 4,
     orientation: "horizontal",
     imageHorizontal: fourHorizontal,
@@ -25,7 +25,9 @@ class Battleship extends React.Component {
 
   onShipClick=() => {
     this.props.selectShip({
-      text: `selecting ${this.state.orientation} ${this.state.name}`
+      name: this.state.name,
+      length: this.state.length,
+      orientation: this.state.orientation,
     });
     }
   render() {
