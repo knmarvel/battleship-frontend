@@ -35,18 +35,17 @@ class ReadyButton extends React.Component {
       //should this conditionally render the button?
       alert("Please place all your ships on the board!");
     } else {
-      // this.readLocations();
-      // this.postMessagesOfShipLocations();
+      this.postMessagesOfShipLocations();
       this.setRedirect();
     }
     this.redirectToPlayGame();
   };
   postMessagesOfShipLocations = () => {
-    const gameNumber = this.props.gameNumber;
     const battleshipCoordinates = this.props.battleship.coordinates;
     const postCoordinatesMessage = this.props.postCoordinatesMessage;
     battleshipCoordinates.forEach(function(coordinate) {
-      postCoordinatesMessage(gameNumber + "  battleship  " + coordinate);
+      console.log("battleship " + coordinate);
+      postCoordinatesMessage({ text: `battleship ${coordinate}` });
     });
   };
 
@@ -58,7 +57,6 @@ class ReadyButton extends React.Component {
 
   redirectToPlayGame = () => {
     if (this.state.redirect === true) {
-      console.log("does this work?");
       return <Redirect to="/play" />;
     }
   };
