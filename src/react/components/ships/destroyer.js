@@ -6,6 +6,7 @@ import React from "react";
 import twoHorizontal from "../../../Battleship-image/ships/2Horizontal.PNG";
 import twoVertical from "../../../Battleship-image/ships/2Vertical.PNG";
 import { connect } from "../../HOCs";
+import { selectShip } from "../../../redux/index";
 
 class Destroyer extends React.Component {
   state = {
@@ -22,13 +23,13 @@ class Destroyer extends React.Component {
       : this.setState({ orientation: "horizontal" });
   };
 
-  onShipClick=() => {
+  onShipClick = () => {
     this.props.selectShip({
       name: this.state.name,
       length: this.state.length,
-      orientation: this.state.orientation,
+      orientation: this.state.orientation
     });
-    }
+  };
 
   render() {
     return (
@@ -102,6 +103,6 @@ const mapStateToProps = state => {
   return {};
 };
 
-const mapDispatchToProps = {};
+const mapDispatchToProps = { selectShip };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Destroyer);

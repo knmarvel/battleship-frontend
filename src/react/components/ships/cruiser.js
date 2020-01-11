@@ -8,6 +8,7 @@ import React from "react";
 import threeHorizontal from "../../../Battleship-image/ships/3Horizontal.PNG";
 import threeVertical from "../../../Battleship-image/ships/3Vertical.PNG";
 import { connect } from "../../HOCs";
+import { selectShip } from "../../../redux/index";
 
 class Cruiser extends React.Component {
   state = {
@@ -24,13 +25,13 @@ class Cruiser extends React.Component {
       : this.setState({ orientation: "horizontal" });
   };
 
-  onShipClick=() => {
+  onShipClick = () => {
     this.props.selectShip({
       name: this.state.name,
       length: this.state.length,
-      orientation: this.state.orientation,
+      orientation: this.state.orientation
     });
-    }
+  };
 
   render() {
     return (
@@ -104,6 +105,6 @@ const mapStateToProps = state => {
   return {};
 };
 
-const mapDispatchToProps = {};
+const mapDispatchToProps = { selectShip };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Cruiser);

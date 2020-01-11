@@ -11,16 +11,12 @@ import {
   InitialBoard,
   ReadyButton,
   ClearBoardButton,
-  ShipsAvailable,
-  RotationPopup
+  ShipsAvailable
 } from "../components/setUpBoard";
 import { Menu } from "../components";
 import "./SetUpBoard.css";
 
 class SetUpBoard extends React.Component {
-  // mediaStart = e.target.src.indexOf("media");
-  // shipLength = e.target.src.slice(mediaStart + 6, mediaStart + 7);
-
   render() {
     return (
       <React.Fragment>
@@ -34,7 +30,6 @@ class SetUpBoard extends React.Component {
           </div>
           <ShipsAvailable />
         </div>
-        <RotationPopup />
       </React.Fragment>
     );
   }

@@ -6,6 +6,7 @@ import React from "react";
 import fiveHorizontal from "../../../Battleship-image/ships/5Horizontal.PNG";
 import fiveVertical from "../../../Battleship-image/ships/5Vertical.PNG";
 import { connect } from "../../HOCs";
+import { selectShip } from "../../../redux/index";
 
 class Carrier extends React.Component {
   state = {
@@ -22,17 +23,17 @@ class Carrier extends React.Component {
       : this.setState({ orientation: "horizontal" });
   };
 
-  onShipClick=() => {
+  onShipClick = () => {
     this.props.selectShip({
       name: this.state.name,
       length: this.state.length,
-      orientation: this.state.orientation,
+      orientation: this.state.orientation
     });
-    }
+  };
 
   render() {
     return (
-      <div >
+      <div>
         {this.state.orientation === "horizontal" ? (
           <div className="">
             <img
@@ -102,6 +103,6 @@ const mapStateToProps = state => {
   return {};
 };
 
-const mapDispatchToProps = {};
+const mapDispatchToProps = { selectShip };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Carrier);

@@ -1,14 +1,14 @@
 import React from "react";
 import InitialBoardSquare from "./InitialBoardSquare";
 import { connect } from "../../../HOCs";
-import twoHorizontal from "../../../../Battleship-image/ships/2Horizontal.PNG";
-import threeHorizontal from "../../../../Battleship-image/ships/3Horizontal.PNG";
-import fourHorizontal from "../../../../Battleship-image/ships/4Horizontal.PNG";
-import fiveHorizontal from "../../../../Battleship-image/ships/5Horizontal.PNG";
-import twoVertical from "../../../../Battleship-image/ships/2Vertical.PNG";
-import threeVertical from "../../../../Battleship-image/ships/3Vertical.PNG";
-import fourVertical from "../../../../Battleship-image/ships/4Vertical.PNG";
-import fiveVertical from "../../../../Battleship-image/ships/4Vertical.PNG";
+// import twoHorizontal from "../../../../Battleship-image/ships/2Horizontal.PNG";
+// import threeHorizontal from "../../../../Battleship-image/ships/3Horizontal.PNG";
+// import fourHorizontal from "../../../../Battleship-image/ships/4Horizontal.PNG";
+// import fiveHorizontal from "../../../../Battleship-image/ships/5Horizontal.PNG";
+// import twoVertical from "../../../../Battleship-image/ships/2Vertical.PNG";
+// import threeVertical from "../../../../Battleship-image/ships/3Vertical.PNG";
+// import fourVertical from "../../../../Battleship-image/ships/4Vertical.PNG";
+// import fiveVertical from "../../../../Battleship-image/ships/4Vertical.PNG";
 
 import {
   placeBattleship,
