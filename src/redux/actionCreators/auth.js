@@ -1,5 +1,5 @@
 import { domain, jsonHeaders, handleJsonResponse } from "./constants";
-import { LOGIN, LOGOUT } from "../actionTypes";
+import { LOGIN, LOGOUT, GETGAMENUMBER } from "../actionTypes";
 import { startGame } from ".";
 
 const url = domain + "/auth";
@@ -56,4 +56,12 @@ export const logout = () => (dispatch, getState) => {
         dispatch({ type: LOGOUT.FAIL, payload: err.message })
       );
     });
+};
+
+export const getGameNumber = gameNumber => dispatch => {
+  console.log(gameNumber);
+  return dispatch({
+    type: GETGAMENUMBER.SUCCESS,
+    payload: gameNumber
+  });
 };
