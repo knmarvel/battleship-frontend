@@ -13,6 +13,17 @@ class ReadyButton extends React.Component {
     redirect: false
   };
 
+  tick() {
+    // start timer after button is clicked
+    this.interval = setInterval(() => {
+      this.checkReady();
+    }, 1000);
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.interval);
+  }
+
   handleClick = () => {
     console.log("ReadyButton was clicked.");
     //verify that all 5 ships have been placed
