@@ -41,19 +41,12 @@ class InitialBoardGrid extends React.Component {
     );
   };
 
-  drawShip = (shipPlacementArray) =>{
-    return(
-      <div>
-        SHIP!
-      </div>
-    )
-  }
 
   drawRow = (newRow, rowLabel) => {
     return <div key={rowLabel}>{newRow}</div>;
   };
 
-  doesAShipStartHereAndIfSoWhichOne = (coordinates) =>{
+  doesAShipResideHereAndIfSoWhichOne = (coordinates) =>{
     if(this.props.battleshipPosition !== null){
       if(this.props.battleshipPosition.coordinates.includes (coordinates)){
         return true
@@ -191,9 +184,9 @@ class InitialBoardGrid extends React.Component {
           this.label = this.rowLabels[row] + column.toString();
         }
         let newSquare = ""
-        if(!this.doesAShipStartHereAndIfSoWhichOne(this.label)){
+        if(!this.doesAShipResideHereAndIfSoWhichOne(this.label)){
           newSquare = this.drawSquare(this.label,false);}
-        if(this.doesAShipStartHereAndIfSoWhichOne(this.label)){
+        if(this.doesAShipResideHereAndIfSoWhichOne(this.label)){
             newSquare = this.drawSquare(this.label,true);}
         this.newRow.push(newSquare);
       }
