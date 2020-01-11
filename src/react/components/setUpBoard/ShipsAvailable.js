@@ -4,79 +4,76 @@ import { connect, withAsyncAction } from "../../HOCs";
 import { selectShip } from "../../../redux/index";
 
 class ShipsAvailable extends React.Component {
-
+  
       
   renderBattleship = () => {
     if(this.props.isShipSelected === null){
-      if(this.props.placeBattleship === undefined){
+      if(this.props.placeBattleship === null){
         return <Battleship />
       }
     }
-    if(this.props.isShipSelected.name !== "battleship"){
-        if(this.props.placeBattleship === undefined){
+    if(this.props.isShipSelected !== "battleship"){
+        if(this.props.placeBattleship === null){
           return <Battleship />
         }  
       }
-    else{
-      return <div>The ship once lived here</div>
-    }
   }
 
   renderCarrier = () => {
     if(this.props.isShipSelected === null){
-      if(this.props.placeCarrier === undefined){
+      if(this.props.placeCarrier === null){
         return <Carrier />
       }
     }
-    if(this.props.isShipSelected.name !== "carrier"){
-        if(this.props.placeCarrier === undefined){
+    if(this.props.isShipSelected !== "carrier"){
+        if(this.props.placeCarrier === null){
           return <Carrier />
         }  
       }
-      return <div>The ship once lived here</div>
+      
   }
 
   renderCruiser = () => {
     if(this.props.isShipSelected === null){
-      if(this.props.placeCruiser === undefined){
+      if(this.props.placeCruiser === null){
         return <Cruiser />
       }
     }
-    if(this.props.isShipSelected.name !== "cruiser"){
-        if(this.props.placeCruiser === undefined){
+    if(this.props.isShipSelected !== "cruiser"){
+        if(this.props.placeCruiser === null){
           return <Cruiser />
         }  
       }
-      return <div>The ship once lived here</div>
+      
   }
 
   renderDestroyer = () => {
     if(this.props.isShipSelected === null){
-      if(this.props.placeDestroyer === undefined){
+      if(this.props.placeDestroyer === null){
         return <Destroyer />
       }
     }
-    if(this.props.isShipSelected.name !== "destroyer"){
-        if(this.props.placeDestroyer === undefined){
+    if(this.props.isShipSelected !== "destroyer"){
+        if(this.props.placeDestroyer === null){
           return <Destroyer />
         }  
       }
-      return <div>The ship once lived here</div>
+      
   }
 
   renderSubmarine = () => {
     if(this.props.isShipSelected === null){
-      if(this.props.placeSubmarine === undefined){
+      if(this.props.placeSubmarine === null){
         return <Submarine />
       }
     }
 
-    if(this.props.isShipSelected.name !== "submarine"){
-        if(this.props.placeSubmarine === undefined){
+    if(this.props.isShipSelected !== "submarine"){
+        if(this.props.placeSubmarine === null){
           return <Submarine />
         }  
       }
-      return <div>The ship once lived here</div>
+      
   }
 
   render() {
@@ -95,12 +92,12 @@ class ShipsAvailable extends React.Component {
 }
 
 const mapStateToProps = state => {
-  return { isShipSelected : state.setUpGame.selectShip.result ? state.setUpGame.selectShip.result : null,
-           battleshipPlaced: state.placeBattleship,
-           carrierPlaced: state.placeCarrier,
-           cruiserPlaced: state.placeCruiser,
-           destroyerPlaced: state.placeDestroyer,
-           submarinePlaced: state.placeSubmarine
+  return { isShipSelected : state.setUpGame.selectShip.result ? state.setUpGame.selectShip.result.name : null,
+           placeBattleship: state.setUpGame.placeBattleship ? state.setUpGame.placeBattleship.result : null ,
+           placeCarrier: state.setUpGame.placeCarrier ? state.setUpGame.placeCarrier.result : null,
+           placeCruiser: state.setUpGame.placeCruiser ? state.setUpGame.placeCruiser.result : null,
+           placeDestroyer: state.setUpGame.placeDestroyer ? state.setUpGame.placeDestroyer.result : null,
+           placeSubmarine: state.setUpGame.placeSubmarine ? state.setUpGame.placeSubmarine.result : null
   };
 };
 const mapDispatchToProps = { selectShip };

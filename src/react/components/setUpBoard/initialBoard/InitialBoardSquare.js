@@ -5,7 +5,7 @@ export default function InitialBoardSquare(props) {
   if(props.isShip){
     nameOfClass += " placedShip"
   }
-  console.log(nameOfClass)
+  
   return (
     <button
       className= {nameOfClass}

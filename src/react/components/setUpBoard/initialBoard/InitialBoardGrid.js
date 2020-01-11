@@ -77,6 +77,13 @@ class InitialBoardGrid extends React.Component {
         return true
       }
     }
+
+    if(this.props.destroyerPosition !== null){
+      if(this.props.destroyerPosition.coordinates.includes(coordinates)){
+        return true
+      }
+    }
+
     if(this.props.submarinePosition !== null){
       if(this.props.submarinePosition.coordinates.includes(coordinates)){
         return true
@@ -208,6 +215,7 @@ const mapStateToProps = state => {
            battleshipPosition: state.setUpGame.placeBattleship.result,
            carrierPosition: state.setUpGame.placeCarrier.result,
            cruiserPosition: state.setUpGame.placeCruiser.result,
+           destroyerPosition: state.setUpGame.placeDestroyer.result,
            submarinePosition: state.setUpGame.placeSubmarine.result
           };
 };
