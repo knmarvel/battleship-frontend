@@ -7,12 +7,7 @@
 //to get relevant props
 
 import React from "react";
-import {
-  InitialBoard,
-  ReadyButton,
-  ClearBoardButton,
-  ShipsAvailable
-} from "../components/setUpBoard";
+import { InitialBoard, ShipsAvailable } from "../components/setUpBoard";
 import { Menu } from "../components";
 import "./SetUpBoard.css";
 
@@ -25,8 +20,6 @@ class SetUpBoard extends React.Component {
         <div className="setUpBoard">
           <div className="initialBoard">
             <InitialBoard />
-            <ReadyButton />
-            <ClearBoardButton />
           </div>
           <ShipsAvailable />
         </div>
