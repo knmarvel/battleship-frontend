@@ -1,11 +1,20 @@
 import React from "react";
 import InitialBoardSquare from "./InitialBoardSquare";
 import { connect } from "../../../HOCs";
+import twoHorizontal from "../../../../Battleship-image/ships/2Horizontal.PNG";
+import threeHorizontal from "../../../../Battleship-image/ships/3Horizontal.PNG";
+import fourHorizontal from "../../../../Battleship-image/ships/4Horizontal.PNG";
+import fiveHorizontal from "../../../../Battleship-image/ships/5Horizontal.PNG";
+import twoVertical from "../../../../Battleship-image/ships/2Vertical.PNG";
+import threeVertical from "../../../../Battleship-image/ships/3Vertical.PNG";
+import fourVertical from "../../../../Battleship-image/ships/4Vertical.PNG";
+import fiveVertical from "../../../../Battleship-image/ships/4Vertical.PNG";
+
 import { placeBattleship, placeCarrier, placeCruiser, placeDestroyer, placeSubmarine } from "../../../../redux/index";
 
 class InitialBoardGrid extends React.Component {
   state = {
-    playerName: this.props.playerName
+    playerName: this.props.playerName,
   };
 
   label = "";
@@ -21,19 +30,60 @@ class InitialBoardGrid extends React.Component {
     console.log(this.state.playerName);
   };
 
-  drawSquare = label => {
+  drawSquare = (label,isShip) => {
     return (
       <InitialBoardSquare
         value={label}
+        isShip={isShip}
         onClick={this.handleClick}
         key={label}
       />
     );
   };
 
+  drawShip = (shipPlacementArray) =>{
+    return(
+      <div>
+        SHIP!
+      </div>
+    )
+  }
+
   drawRow = (newRow, rowLabel) => {
     return <div key={rowLabel}>{newRow}</div>;
   };
+
+  doesAShipStartHereAndIfSoWhichOne = (coordinates) =>{
+    if(this.props.battleshipPosition !== null){
+      if(this.props.battleshipPosition.coordinates.includes (coordinates)){
+        return true
+        }
+      }
+
+    if(this.props.carrierPosition !== null){
+      if(this.props.carrierPosition.coordinates.includes(coordinates)){
+        return true
+      }
+    }
+
+    if(this.props.cruiserPosition !== null){
+      if(this.props.cruiserPosition.coordinates.includes(coordinates)){
+        return true
+      }
+    }
+
+    if(this.props.carrierPosition !== null){
+      if(this.props.carrierPosition.coordinates.includes(coordinates)){
+        return true
+      }
+    }
+    if(this.props.submarinePosition !== null){
+      if(this.props.submarinePosition.coordinates.includes(coordinates)){
+        return true
+      }
+    }
+    return false
+  }
 
   handleClick = e => {
     this.targetRow = e.target.innerHTML.slice(0, 1);
@@ -78,8 +128,14 @@ class InitialBoardGrid extends React.Component {
     }
   }
 
+ 
+
   findSegmentPositions = (length, orientation) => {
     let positionArray = []
+    let positionObject = {
+      "orientation": orientation,
+      "coordinates": positionArray
+    }
     if(orientation === "horizontal"){
       for(let shipSegment = 0; shipSegment < length; shipSegment ++){
         if((this.targetColumn*1) + shipSegment > 10){
@@ -97,17 +153,15 @@ class InitialBoardGrid extends React.Component {
         positionArray.push(((this.rowLabels[rowIndex + shipSegment]) + this.targetColumn))
       }
     }
-    return positionArray
+    return positionObject
   }
 
   render() {
+    //emptying newBoard and newRow so it doesn't infinitely add to itself on changes to state
+    this.newBoard = []
+    this.newRow = []
     //first, draw the header row
-    if(this.newBoard.length > 0){
-      this.newBoard = []
-    }
-    if(this.newRow.length > 0){
-      this.newRow = []
-    }
+
     for (let headerRowLabels = 0; headerRowLabels <= 10; headerRowLabels++) {
       if (headerRowLabels === 0) {
         this.label = "X";
@@ -129,7 +183,11 @@ class InitialBoardGrid extends React.Component {
         } else {
           this.label = this.rowLabels[row] + column.toString();
         }
-        let newSquare = this.drawSquare(this.label);
+        let newSquare = ""
+        if(!this.doesAShipStartHereAndIfSoWhichOne(this.label)){
+          newSquare = this.drawSquare(this.label,false);}
+        if(this.doesAShipStartHereAndIfSoWhichOne(this.label)){
+            newSquare = this.drawSquare(this.label,true);}
         this.newRow.push(newSquare);
       }
       this.newBoard.push(this.drawRow(this.newRow, row));

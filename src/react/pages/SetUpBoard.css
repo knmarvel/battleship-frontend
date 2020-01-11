@@ -27,8 +27,11 @@
 }
 
 .placedShip {
-  position: absolute;
-  z-index: 2;
+  --squareSize: 6vh;
+  width: var(--squareSize);
+  height: var(--squareSize);
+  background-color: var(--unsunkShip);
+  color: var(--highLightText);
 }
 
 .initialShip2 {
