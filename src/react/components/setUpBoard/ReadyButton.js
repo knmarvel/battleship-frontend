@@ -30,13 +30,14 @@ class ReadyButton extends React.Component {
   };
 
   verifyAllShipsPlaced = () => {
-    if (
-      this.props.battleship === null ||
-      this.props.carrier === null ||
-      this.props.cruiser === null ||
-      this.props.destroyer === null ||
-      this.props.submarine === null
-    ) {
+    const ships = [
+      this.props.battleship,
+      this.props.carrier,
+      this.props.cruiser,
+      this.props.destroyer,
+      this.props.submarine
+    ];
+    if (ships.includes(null)) {
       //should this conditionally render the button?
       alert("Please place all your ships on the board!");
     } else {
@@ -47,7 +48,9 @@ class ReadyButton extends React.Component {
     this.redirectToPlayGame();
   };
   readLocations = () => {
-    //Will this be taken care of in state? if not create array of arrays using Object.entries to loop through below
+    //grab array of each ship's coordinates
+    let battleshipCoordinates = this.props.battleship.coordinates;
+    console.log(battleshipCoordinates);
   };
   postMessagesOfShipLocations = () => {
     //loop through ships entries and create messages based off that
@@ -90,4 +93,6 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps)(ReadyButton);
+export default connect(mapStateToProps)(
+  withAsyncAction("setUpGame", "postCoordinatesMessage")(ReadyButton)
+);
