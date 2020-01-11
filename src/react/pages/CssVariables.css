@@ -38,6 +38,15 @@
 
   --torpedoHit: red;
   --torpedoMiss: turquoise;
+
+  /* pirate theme colors */
+
+  --battleshipPurple: #6866EE;
+  --battleshipRed: #EA4600;
+  --battleshipNavy: #364D6F;
+  --battleshipNavyBackground: #364D6F90;
+  --battleshipBlueColumnLines: #3FA3E9;
+
 }
 
 h1 {

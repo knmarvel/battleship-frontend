@@ -1,5 +1,5 @@
 #createNewGame {
-  background-color: #835E54;
+  background-color: var(--battleshipRed);
   border: none;
   color: white;
   padding: 22px 20px;

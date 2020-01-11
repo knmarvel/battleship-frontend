@@ -2,18 +2,18 @@
   --squareSize: 6vh;
   width: var(--squareSize);
   height: var(--squareSize);
-  background-color: var(--accentColorLight);
+  background-color: var(--battleshipNavyBackground);
   text-align: center;
   position: relative;
   Z-index: 1;
 }
 
 .newBoardSquare:hover {
-  background-color: var(--accentColorDark);
+  background-color: var(--battleshipRed);
 }
 
 .newBoardSquare:focus {
-  background-color: var(--accentColorAlternate);
+  background-color: var(--battleshipNavy);
 }
 
 .shipsAvailable {
@@ -21,9 +21,11 @@
   flex-direction: column;
   flex-grow: 1;
   flex-shrink: 1;
-  background-color: turquoise;
+  background-color: var(--battleshipNavyBackground);
   justify-content: center;
   align-items: center;
+  margin-left:200px;
+  margin-right:80px;
 }
 
 .placedShip {
@@ -42,4 +44,14 @@
 .setUpBoard {
   display: flex;
   flex-direction: row;
+}
+
+h2 {
+  text-transform: uppercase;
+  margin: 0px;
+  color: #ea4701;
+  text-shadow: 1px 1px 0 #6866ee, 5px 5px 0 #6866ee;
+  text-align: center;
+  /* margin-right: 60%; */
+  /* position: fixed; */
 }
