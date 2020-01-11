@@ -16,7 +16,7 @@ class SetUpBoard extends React.Component {
     return (
       <React.Fragment>
         <Menu />
-        <h2>Initial SetUp Page</h2>
+        <h2>Place Your Ships!</h2>
         <div className="setUpBoard">
           <div className="initialBoard">
             <InitialBoard />

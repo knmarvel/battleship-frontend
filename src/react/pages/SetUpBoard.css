@@ -4,13 +4,8 @@
   height: var(--squareSize);
   background-color: var(--battleshipNavyBackground);
   text-align: center;
-<<<<<<< HEAD
-  border-color: var(--battleshipBlueColumnLines);
-  color: white;
-=======
   position: relative;
   Z-index: 1;
->>>>>>> ed059cd8d599e418bb3adc592d5f679a3f74c830
 }
 
 .newBoardSquare:hover {
@@ -52,8 +47,8 @@
 h2 {
   text-transform: uppercase;
   margin: 0px;
-  color: #ea4701;
-  text-shadow: 1px 1px 0 #6866ee, 5px 5px 0 #6866ee;
+  color: var(--battleshipRed);
+  text-shadow: 1px 1px 0 var(--battleshipPurple), 5px 5px 0 var(--battleshipPurple);
   text-align: center;
   /* margin-right: 60%; */
   /* position: fixed; */
