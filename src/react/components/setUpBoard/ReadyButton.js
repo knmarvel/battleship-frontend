@@ -16,7 +16,7 @@ class ReadyButton extends React.Component {
   handleClick = () => {
     console.log("ReadyButton was clicked.");
     //verify that all 5 ships have been placed
-    // this.verifyAllShipsPlaced();
+    this.verifyAllShipsPlaced();
 
     // //read the locations of all 5 ships
     // this.readLocations();
@@ -26,7 +26,7 @@ class ReadyButton extends React.Component {
     // this.postMessagesOfShipLocations();
 
     //redirect the page from the setupBoard page to the playGame Page
-    this.setRedirect();
+    // this.setRedirect();
   };
 
   verifyAllShipsPlaced = () => {
@@ -42,6 +42,7 @@ class ReadyButton extends React.Component {
     } else {
       this.readLocations();
       this.postMessagesOfShipLocations();
+      this.setRedirect();
     }
     this.redirectToPlayGame();
   };
