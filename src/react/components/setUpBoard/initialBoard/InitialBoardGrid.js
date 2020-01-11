@@ -95,9 +95,6 @@ class InitialBoardGrid extends React.Component {
     if (this.targetColumn === "" || this.targetColumn === "0") {
       return;
     } //is the case if a header row/column is clicked
-    console.log("target row is " + this.targetRow);
-    console.log("target column is " + this.targetColumn);
-    console.log(e.target.innerHTML);
     if (this.props.activeShip === null) {
       console.log("No ship selected");
     } else {

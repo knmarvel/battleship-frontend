@@ -7,6 +7,7 @@
 import React from "react";
 import { connect, withAsyncAction } from "../../HOCs";
 import { Redirect } from "../index";
+import { checkReadyPlay } from "../../../redux/index";
 
 class ReadyButton extends React.Component {
   state = {
@@ -16,7 +17,7 @@ class ReadyButton extends React.Component {
   tick() {
     // start timer after button is clicked
     this.interval = setInterval(() => {
-      this.checkReady();
+      this.props.checkReadyPlay();
     }, 1000);
   }
 
@@ -53,7 +54,6 @@ class ReadyButton extends React.Component {
     const postCoordinatesMessage = this.props.postCoordinatesMessage;
     const battleshipCoordinates = this.props.battleship.coordinates;
     battleshipCoordinates.forEach(function(coordinate) {
-      console.log("battleship " + coordinate);
       postCoordinatesMessage({ text: `battleship ${coordinate}` });
     });
   };
@@ -61,7 +61,6 @@ class ReadyButton extends React.Component {
     const postCoordinatesMessage = this.props.postCoordinatesMessage;
     const carrierCoordinates = this.props.carrier.coordinates;
     carrierCoordinates.forEach(function(coordinate) {
-      console.log("carrier " + coordinate);
       postCoordinatesMessage({ text: `carrier ${coordinate}` });
     });
   };
@@ -69,7 +68,6 @@ class ReadyButton extends React.Component {
     const postCoordinatesMessage = this.props.postCoordinatesMessage;
     const cruiserCoordinates = this.props.cruiser.coordinates;
     cruiserCoordinates.forEach(function(coordinate) {
-      console.log("cruiser " + coordinate);
       postCoordinatesMessage({ text: `cruiser ${coordinate}` });
     });
   };
@@ -77,7 +75,6 @@ class ReadyButton extends React.Component {
     const postCoordinatesMessage = this.props.postCoordinatesMessage;
     const destroyerCoordinates = this.props.destroyer.coordinates;
     destroyerCoordinates.forEach(function(coordinate) {
-      console.log("destroyer " + coordinate);
       postCoordinatesMessage({ text: `destroyer ${coordinate}` });
     });
   };
@@ -85,7 +82,6 @@ class ReadyButton extends React.Component {
     const postCoordinatesMessage = this.props.postCoordinatesMessage;
     const submarineCoordinates = this.props.submarine.coordinates;
     submarineCoordinates.forEach(function(coordinate) {
-      console.log("submarine " + coordinate);
       postCoordinatesMessage({ text: `submarine ${coordinate}` });
     });
   };
@@ -122,7 +118,7 @@ const mapStateToProps = state => {
     // gameNumber: state.auth.getGameNumber.result
   };
 };
-const mapDispatchToProps = {};
+const mapDispatchToProps = { checkReadyPlay };
 export default connect(
   mapStateToProps,
   mapDispatchToProps

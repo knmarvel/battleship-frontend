@@ -6,7 +6,7 @@ import { withAsyncAction } from "../../HOCs";
 import { connect } from "react-redux";
 import { Redirect } from "..";
 import { WaitScreen } from "../waitScreen/";
-import { checkReady } from "../../../redux/actionCreators";
+import { checkReadyStart } from "../../../redux/actionCreators";
 import "./CreateGameButton.css";
 
 class CreateGameButton extends React.Component {
@@ -18,8 +18,8 @@ class CreateGameButton extends React.Component {
   };
 
   componentDidMount() {
-    this.checkReady();
-    this.interval = setInterval(this.checkReady, 5000);
+    this.checkReadyStart();
+    this.interval = setInterval(this.checkReadyStart, 5000);
   }
 
   componentWillUnmount() {
@@ -38,13 +38,13 @@ class CreateGameButton extends React.Component {
       gameCreated: true,
       message: this.generateMessage(gameNumber)
     });
-    this.checkReady();
+    this.checkReadyStart();
   };
 
-  checkReady = () => {
+  checkReadyStart = () => {
     console.log("game number in state is " + this.state.gameNumber);
     let numberOfMatches = 0;
-    this.props.checkReady().then(result => {
+    this.props.checkReadyStart().then(result => {
       result.payload.messages.map(message => {
         if (message.text === "Game " + this.state.gameNumber + " start") {
           numberOfMatches++;
@@ -84,7 +84,9 @@ class CreateGameButton extends React.Component {
     return (
       <React.Fragment>
         {this.state.gameCreated && <WaitScreen message={this.state.message} />}
-        <button id="createNewGame" onClick={this.handleClick}>Create New Game</button>
+        <button id="createNewGame" onClick={this.handleClick}>
+          Create New Game
+        </button>
       </React.Fragment>
     );
   }
@@ -96,7 +98,7 @@ class CreateGameButton extends React.Component {
 //   };
 // };
 
-const mapDispatchToProps = { checkReady };
+const mapDispatchToProps = { checkReadyStart };
 export default connect(
   null,
   mapDispatchToProps
