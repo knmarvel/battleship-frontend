@@ -1,5 +1,4 @@
-//placeShip state reducer (working)
-import { PLACESHIP } from "../../actionTypes";
+import { PLACEDESTROYER } from "../../actionTypes";
 import { withAsyncReducer } from "../../HORs";
 
 const initialState = {
@@ -26,16 +25,16 @@ const getInitStateFromStorage = (key, initialState) => {
   return initialState;
 };
 
-const placeShip = (
-  state = getInitStateFromStorage("placeShip", initialState),
+const placeDestroyer = (
+  state = getInitStateFromStorage("placeDestroyer", initialState),
   action
 ) => {
   switch (action.type) {
-    case PLACESHIP.SUCCESS:
+    case PLACEDESTROYER.SUCCESS:
       return { ...initialState };
     default:
       return state;
   }
 };
 
-export default withAsyncReducer(PLACESHIP, placeShip);
+export default withAsyncReducer(PLACEDESTROYER, placeDestroyer);

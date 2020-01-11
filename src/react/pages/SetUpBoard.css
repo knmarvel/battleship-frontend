@@ -4,6 +4,8 @@
   height: var(--squareSize);
   background-color: var(--accentColorLight);
   text-align: center;
+  position: relative;
+  Z-index: 1;
 }
 
 .newBoardSquare:hover {
@@ -22,6 +24,14 @@
   background-color: turquoise;
   justify-content: center;
   align-items: center;
+}
+
+.placedShip {
+  --squareSize: 6vh;
+  width: var(--squareSize);
+  height: var(--squareSize);
+  background-color: var(--unsunkShip);
+  color: var(--highLightText);
 }
 
 .initialShip2 {

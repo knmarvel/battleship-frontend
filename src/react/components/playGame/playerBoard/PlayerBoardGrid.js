@@ -1,5 +1,5 @@
 import React from "react";
-import InitialBoardSquare from "./InitialBoardSquare";
+import PlayerBoardSquare from "./PlayerBoardSquare";
 import { connect } from "../../../HOCs";
 // import twoHorizontal from "../../../../Battleship-image/ships/2Horizontal.PNG";
 // import threeHorizontal from "../../../../Battleship-image/ships/3Horizontal.PNG";
@@ -10,40 +10,25 @@ import { connect } from "../../../HOCs";
 // import fourVertical from "../../../../Battleship-image/ships/4Vertical.PNG";
 // import fiveVertical from "../../../../Battleship-image/ships/4Vertical.PNG";
 
-import {
-  placeBattleship,
-  placeCarrier,
-  placeCruiser,
-  placeDestroyer,
-  placeSubmarine
-} from "../../../../redux/index";
+// import {
+//   placeBattleship,
+//   placeCarrier,
+//   placeCruiser,
+//   placeDestroyer,
+//   placeSubmarine
+// } from "../../../../redux/index";
 
-class InitialBoardGrid extends React.Component {
-  state = {
-    playerName: this.props.playerName
-  };
-
+class PlayerBoardGrid extends React.Component {
   label = "";
   newRow = [];
   newBoard = [];
-  //use nested loops to define the initial divs
+  //use nested loops to define the Player divs
   rowLabels = [" ", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J"];
   targetRow = null;
   targetColumn = null;
 
-  componentDidMount = () => {
-    console.log(this.state.playerName);
-  };
-
   drawSquare = (label, isShip) => {
-    return (
-      <InitialBoardSquare
-        value={label}
-        isShip={isShip}
-        onClick={this.handleClick}
-        key={label}
-      />
-    );
+    return <PlayerBoardSquare value={label} isShip={isShip} key={label} />;
   };
 
   drawRow = (newRow, rowLabel) => {
@@ -87,80 +72,6 @@ class InitialBoardGrid extends React.Component {
       }
     }
     return false;
-  };
-
-  handleClick = e => {
-    this.targetRow = e.target.innerHTML.slice(0, 1);
-    this.targetColumn = e.target.innerHTML.slice(1);
-    if (this.targetColumn === "" || this.targetColumn === "0") {
-      return;
-    } //is the case if a header row/column is clicked
-    console.log("target row is " + this.targetRow);
-    console.log("target column is " + this.targetColumn);
-    console.log(e.target.innerHTML);
-    if (this.props.activeShip === null) {
-      console.log("No ship selected");
-    } else {
-      this.placeShip(this.props.activeShip.name);
-    }
-  };
-
-  placeShip = () => {
-    const position = this.findSegmentPositions(
-      this.props.activeShip.length,
-      this.props.activeShip.orientation
-    );
-    if (position === null) {
-      return null;
-    }
-    switch (this.props.activeShip.name) {
-      case "battleship":
-        this.props.placeBattleship(position);
-        break;
-      case "carrier":
-        this.props.placeCarrier(position);
-        break;
-      case "cruiser":
-        this.props.placeCruiser(position);
-        break;
-      case "destroyer":
-        this.props.placeDestroyer(position);
-        break;
-      case "submarine":
-        this.props.placeSubmarine(position);
-        break;
-      default:
-        alert("No ship selected");
-    }
-  };
-
-  findSegmentPositions = (length, orientation) => {
-    let positionArray = [];
-    let positionObject = {
-      orientation: orientation,
-      coordinates: positionArray
-    };
-    if (orientation === "horizontal") {
-      for (let shipSegment = 0; shipSegment < length; shipSegment++) {
-        if (this.targetColumn * 1 + shipSegment > 10) {
-          return null;
-        }
-        positionArray.push(
-          this.targetRow + (this.targetColumn * 1 + shipSegment)
-        );
-      }
-    } else {
-      let rowIndex = this.rowLabels.indexOf(this.targetRow);
-      for (let shipSegment = 0; shipSegment < length; shipSegment++) {
-        if (rowIndex + shipSegment > 10) {
-          return null;
-        }
-        positionArray.push(
-          this.rowLabels[rowIndex + shipSegment] + this.targetColumn
-        );
-      }
-    }
-    return positionObject;
   };
 
   render() {
@@ -209,8 +120,6 @@ class InitialBoardGrid extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    playerName: state.auth.login.result.username,
-    activeShip: state.setUpGame.selectShip.result,
     battleshipPosition: state.setUpGame.placeBattleship.result,
     carrierPosition: state.setUpGame.placeCarrier.result,
     cruiserPosition: state.setUpGame.placeCruiser.result,
@@ -219,12 +128,6 @@ const mapStateToProps = state => {
   };
 };
 
-const mapDispatchToProps = {
-  placeBattleship,
-  placeCarrier,
-  placeCruiser,
-  placeDestroyer,
-  placeSubmarine
-};
+const mapDispatchToProps = {};
 
-export default connect(mapStateToProps, mapDispatchToProps)(InitialBoardGrid);
+export default connect(mapStateToProps, mapDispatchToProps)(PlayerBoardGrid);
