@@ -7,25 +7,11 @@
 //to get relevant props
 
 import React from "react";
-import {
-  InitialBoard,
-  ReadyButton,
-  ClearBoardButton,
-  ShipsAvailable,
-  RotationPopup
-} from "../components/setUpBoard";
+import { InitialBoard, ShipsAvailable } from "../components/setUpBoard";
 import { Menu } from "../components";
 import "./SetUpBoard.css";
 
 class SetUpBoard extends React.Component {
-  state = {
-    selectedShip: "",
-    selectedSquare: ""
-  };
-
-  // mediaStart = e.target.src.indexOf("media");
-  // shipLength = e.target.src.slice(mediaStart + 6, mediaStart + 7);
-
   render() {
     return (
       <React.Fragment>
@@ -34,12 +20,9 @@ class SetUpBoard extends React.Component {
         <div className="setUpBoard">
           <div className="initialBoard">
             <InitialBoard />
-            <ReadyButton />
-            <ClearBoardButton />
           </div>
           <ShipsAvailable />
         </div>
-        <RotationPopup />
       </React.Fragment>
     );
   }

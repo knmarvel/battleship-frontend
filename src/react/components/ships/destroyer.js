@@ -10,7 +10,7 @@ import { selectShip } from "../../../redux/index";
 
 class Destroyer extends React.Component {
   state = {
-    name: "Destroyer",
+    name: "destroyer",
     length: 2,
     orientation: "horizontal",
     imageHorizontal: twoHorizontal,
@@ -23,12 +23,21 @@ class Destroyer extends React.Component {
       : this.setState({ orientation: "horizontal" });
   };
 
+  onShipClick = () => {
+    this.props.selectShip({
+      name: this.state.name,
+      length: this.state.length,
+      orientation: this.state.orientation
+    });
+  };
+
   render() {
     return (
       <div>
         {this.state.orientation === "horizontal" ? (
           <div className="">
             <img
+              onClick={this.onShipClick}
               alt={`ship with ${this.state.length} possible hits}`}
               src={this.state.imageHorizontal}
               height={
@@ -52,16 +61,12 @@ class Destroyer extends React.Component {
                     ))) /
                 100
               }
-              onClick={() => {
-                this.props.selectShip({
-                  text: "selecting horizontal destroyer"
-                });
-              }}
             />
           </div>
         ) : (
           <div className="verticalBattleship">
             <img
+              onClick={this.onShipClick}
               alt={`ship with ${this.state.length} possible hits}`}
               src={this.state.imageVertical}
               height={
@@ -85,11 +90,6 @@ class Destroyer extends React.Component {
                   )) /
                 100
               }
-              onClick={() => {
-                this.props.selectShip({
-                  text: "selecting vertical destroyer"
-                });
-              }}
             />
           </div>
         )}

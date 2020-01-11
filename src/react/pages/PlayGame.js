@@ -16,8 +16,10 @@ class PlayGame extends React.Component {
       <React.Fragment>
         <Menu />
         <TurnHandler />
-        <PlayerBoard />
-        <OpponentBoard />
+        <div className="twoBoards">
+          <PlayerBoard />
+          <OpponentBoard />
+        </div>
         <SurrenderButton />
       </React.Fragment>
     );

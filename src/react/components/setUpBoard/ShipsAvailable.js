@@ -1,74 +1,84 @@
-//this is part of the setUp board, and should be to the side of the
-//initial board.  it should vertically display horizontal pictures of
-//all 5 ships initially.
-//when a ship has been placed, that ship should no longer be visible.
-
 import React from "react";
 import { Battleship, Carrier, Cruiser, Destroyer, Submarine } from "../ships";
 import { connect, withAsyncAction } from "../../HOCs";
+// import { selectShip } from "../../../redux/index";
 
 class ShipsAvailable extends React.Component {
-  state = {
-    battleship: true,
-    carrier: true,
-    cruiser: true,
-    destroyer: true,
-    submarine: true
+  renderBattleship = () => {
+    if (this.props.isShipSelected === null) {
+      if (this.props.placeBattleship === null) {
+        return <Battleship />;
+      }
+    }
+    if (this.props.isShipSelected !== "battleship") {
+      if (this.props.placeBattleship === null) {
+        return <Battleship />;
+      }
+    }
   };
 
-  onClickBattleship = e => {
-    console.log("battleship clicked");
-    this.setState({ battleship: false });
+  renderCarrier = () => {
+    if (this.props.isShipSelected === null) {
+      if (this.props.placeCarrier === null) {
+        return <Carrier />;
+      }
+    }
+    if (this.props.isShipSelected !== "carrier") {
+      if (this.props.placeCarrier === null) {
+        return <Carrier />;
+      }
+    }
   };
 
-  onClickCarrier = e => {
-    console.log("carrier clicked");
-    this.setState({ carrier: false });
+  renderCruiser = () => {
+    if (this.props.isShipSelected === null) {
+      if (this.props.placeCruiser === null) {
+        return <Cruiser />;
+      }
+    }
+    if (this.props.isShipSelected !== "cruiser") {
+      if (this.props.placeCruiser === null) {
+        return <Cruiser />;
+      }
+    }
   };
 
-  onClickCruiser = e => {
-    console.log("cruiser clicked");
-    this.setState({ cruiser: false });
+  renderDestroyer = () => {
+    if (this.props.isShipSelected === null) {
+      if (this.props.placeDestroyer === null) {
+        return <Destroyer />;
+      }
+    }
+    if (this.props.isShipSelected !== "destroyer") {
+      if (this.props.placeDestroyer === null) {
+        return <Destroyer />;
+      }
+    }
   };
 
-  onClickDestroyer = e => {
-    console.log("destroyer clicked");
-    this.setState({ destroyer: false });
-  };
+  renderSubmarine = () => {
+    if (this.props.isShipSelected === null) {
+      if (this.props.placeSubmarine === null) {
+        return <Submarine />;
+      }
+    }
 
-  onClickSubmarine = e => {
-    console.log("submarine clicked");
-    this.setState({ submarine: false });
+    if (this.props.isShipSelected !== "submarine") {
+      if (this.props.placeSubmarine === null) {
+        return <Submarine />;
+      }
+    }
   };
-
-  //===============================
-  //janell says:
-  //Chelsea --  ready for you to add in the modal for the popup.
-  //divs as they are currently will send a message to the API that the
-  //particular ship was clicked, and will toggle the ship from true to false.
-  //so i'm thinking we just need to wrap the modal around the divs?
-  //===============================
 
   render() {
     return (
       <React.Fragment>
         <div className="shipsAvailable">
-          Ships Available
-          <div onClick={this.onClickBattleship}>
-            {this.state.battleship && <Battleship />}
-          </div>
-          <div onClick={this.onClickCarrier}>
-            {this.state.carrier && <Carrier />}
-          </div>
-          <div onClick={this.onClickCruiser}>
-            {this.state.cruiser && <Cruiser />}
-          </div>
-          <div onClick={this.onClickDestroyer}>
-            {this.state.destroyer && <Destroyer />}
-          </div>
-          <div onClick={this.onClickSubmarine}>
-            {this.state.submarine && <Submarine />}
-          </div>
+          {this.renderBattleship()}
+          {this.renderCarrier()}
+          {this.renderCruiser()}
+          {this.renderDestroyer()}
+          {this.renderSubmarine()}
         </div>
       </React.Fragment>
     );
@@ -76,7 +86,26 @@ class ShipsAvailable extends React.Component {
 }
 
 const mapStateToProps = state => {
-  return {};
+  return {
+    isShipSelected: state.setUpGame.selectShip.result
+      ? state.setUpGame.selectShip.result.name
+      : null,
+    placeBattleship: state.setUpGame.placeBattleship
+      ? state.setUpGame.placeBattleship.result
+      : null,
+    placeCarrier: state.setUpGame.placeCarrier
+      ? state.setUpGame.placeCarrier.result
+      : null,
+    placeCruiser: state.setUpGame.placeCruiser
+      ? state.setUpGame.placeCruiser.result
+      : null,
+    placeDestroyer: state.setUpGame.placeDestroyer
+      ? state.setUpGame.placeDestroyer.result
+      : null,
+    placeSubmarine: state.setUpGame.placeSubmarine
+      ? state.setUpGame.placeSubmarine.result
+      : null
+  };
 };
 const mapDispatchToProps = {};
 export default connect(

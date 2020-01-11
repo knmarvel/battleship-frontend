@@ -12,9 +12,16 @@ export const LOGOUT = createActionTypes("LOGOUT");
 
 //action types related to setUpGame
 
-export const PLACESHIP = createActionTypes("PLACESHIP");
+export const PLACEBATTLESHIP = createActionTypes("PLACEBATTLESHIP");
+export const PLACECARRIER = createActionTypes("PLACECARRIER");
+export const PLACECRUISER = createActionTypes("PLACECRUISER");
+export const PLACEDESTROYER = createActionTypes("PLACEDESTROYER");
+export const PLACESUBMARINE = createActionTypes("PLACESUBMARINE");
 export const SELECTSHIP = createActionTypes("SELECTSHIP");
 export const FETCHLASTMESSAGE = createActionTypes("FETCHLASTMESSAGE");
+export const POSTCOORDINATESMESSAGE = createActionTypes(
+  "POSTCOORDINATESMESSAGE"
+);
 
 //action types related to welcome
 

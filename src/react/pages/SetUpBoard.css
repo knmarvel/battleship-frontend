@@ -4,8 +4,13 @@
   height: var(--squareSize);
   background-color: var(--battleshipNavyBackground);
   text-align: center;
+<<<<<<< HEAD
   border-color: var(--battleshipBlueColumnLines);
   color: white;
+=======
+  position: relative;
+  Z-index: 1;
+>>>>>>> ed059cd8d599e418bb3adc592d5f679a3f74c830
 }
 
 .newBoardSquare:hover {
@@ -24,6 +29,14 @@
   background-color: var(--battleshipNavyBackground);
   justify-content: center;
   align-items: center;
+}
+
+.placedShip {
+  --squareSize: 6vh;
+  width: var(--squareSize);
+  height: var(--squareSize);
+  background-color: var(--unsunkShip);
+  color: var(--highLightText);
 }
 
 .initialShip2 {
