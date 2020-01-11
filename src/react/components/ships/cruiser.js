@@ -25,13 +25,13 @@ class Cruiser extends React.Component {
       : this.setState({ orientation: "horizontal" });
   };
 
-  onShipClick=() => {
+  onShipClick = () => {
     this.props.selectShip({
       name: this.state.name,
       length: this.state.length,
-      orientation: this.state.orientation,
+      orientation: this.state.orientation
     });
-    }
+  };
 
   render() {
     return (
