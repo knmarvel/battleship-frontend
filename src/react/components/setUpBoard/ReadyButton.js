@@ -15,12 +15,7 @@ class ReadyButton extends React.Component {
 
   handleClick = () => {
     console.log("ReadyButton was clicked.");
-    //verify that all 5 ships have been placed
-    // this.verifyAllShipsPlaced();
-
-    // //post a message on API for each square of each ship
-    // //example: 'Game 1234 submarine ["A", 1]', 'Game 1234 submarine ["B", 1]'...
-    this.postMessagesOfShipLocations();
+    this.verifyAllShipsPlaced();
   };
 
   verifyAllShipsPlaced = () => {
@@ -32,20 +27,55 @@ class ReadyButton extends React.Component {
       this.props.submarine
     ];
     if (ships.includes(null)) {
-      //should this conditionally render the button?
       alert("Please place all your ships on the board!");
     } else {
-      this.postMessagesOfShipLocations();
+      this.postMessagesOfBattleShipLocation();
+      this.postMessagesOfCarrierLocation();
+      this.postMessagesOfCruiserLocation();
+      this.postMessagesOfDestroyerLocation();
+      this.postMessagesOfSubmarineLocation();
       this.setRedirect();
     }
     this.redirectToPlayGame();
   };
-  postMessagesOfShipLocations = () => {
-    const battleshipCoordinates = this.props.battleship.coordinates;
+  postMessagesOfBattleShipLocation = () => {
     const postCoordinatesMessage = this.props.postCoordinatesMessage;
+    const battleshipCoordinates = this.props.battleship.coordinates;
     battleshipCoordinates.forEach(function(coordinate) {
       console.log("battleship " + coordinate);
       postCoordinatesMessage({ text: `battleship ${coordinate}` });
+    });
+  };
+  postMessagesOfCarrierLocation = () => {
+    const postCoordinatesMessage = this.props.postCoordinatesMessage;
+    const carrierCoordinates = this.props.carrier.coordinates;
+    carrierCoordinates.forEach(function(coordinate) {
+      console.log("carrier " + coordinate);
+      postCoordinatesMessage({ text: `carrier ${coordinate}` });
+    });
+  };
+  postMessagesOfCruiserLocation = () => {
+    const postCoordinatesMessage = this.props.postCoordinatesMessage;
+    const cruiserCoordinates = this.props.cruiser.coordinates;
+    cruiserCoordinates.forEach(function(coordinate) {
+      console.log("cruiser " + coordinate);
+      postCoordinatesMessage({ text: `cruiser ${coordinate}` });
+    });
+  };
+  postMessagesOfDestroyerLocation = () => {
+    const postCoordinatesMessage = this.props.postCoordinatesMessage;
+    const destroyerCoordinates = this.props.destroyer.coordinates;
+    destroyerCoordinates.forEach(function(coordinate) {
+      console.log("destroyer " + coordinate);
+      postCoordinatesMessage({ text: `destroyer ${coordinate}` });
+    });
+  };
+  postMessagesOfSubmarineLocation = () => {
+    const postCoordinatesMessage = this.props.postCoordinatesMessage;
+    const submarineCoordinates = this.props.submarine.coordinates;
+    submarineCoordinates.forEach(function(coordinate) {
+      console.log("submarine " + coordinate);
+      postCoordinatesMessage({ text: `submarine ${coordinate}` });
     });
   };
 
@@ -77,8 +107,8 @@ const mapStateToProps = state => {
     carrier: state.setUpGame.placeCarrier.result,
     cruiser: state.setUpGame.placeCruiser.result,
     destroyer: state.setUpGame.placeDestroyer.result,
-    submarine: state.setUpGame.placeSubmarine.result,
-    gameNumber: state.auth.login.gameNumber
+    submarine: state.setUpGame.placeSubmarine.result
+    // gameNumber: state.auth.getGameNumber.result
   };
 };
 const mapDispatchToProps = {};
