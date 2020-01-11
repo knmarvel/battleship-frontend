@@ -18,15 +18,9 @@ class ReadyButton extends React.Component {
     //verify that all 5 ships have been placed
     this.verifyAllShipsPlaced();
 
-    // //read the locations of all 5 ships
-    // this.readLocations();
-
     // //post a message on API for each square of each ship
     // //example: 'Game 1234 submarine ["A", 1]', 'Game 1234 submarine ["B", 1]'...
     // this.postMessagesOfShipLocations();
-
-    //redirect the page from the setupBoard page to the playGame Page
-    // this.setRedirect();
   };
 
   verifyAllShipsPlaced = () => {
@@ -41,19 +35,15 @@ class ReadyButton extends React.Component {
       //should this conditionally render the button?
       alert("Please place all your ships on the board!");
     } else {
-      this.readLocations();
-      this.postMessagesOfShipLocations();
+      // this.readLocations();
+      // this.postMessagesOfShipLocations();
       this.setRedirect();
     }
     this.redirectToPlayGame();
   };
-  readLocations = () => {
-    //grab array of each ship's coordinates
-    let battleshipCoordinates = this.props.battleship.coordinates;
-    console.log(battleshipCoordinates);
-  };
   postMessagesOfShipLocations = () => {
     //loop through ships entries and create messages based off that
+    // this.props.battleship.coordinates.forEach(function(element) {});
   };
 
   setRedirect = () => {
@@ -66,10 +56,6 @@ class ReadyButton extends React.Component {
     if (this.state.redirect === true) {
       console.log("does this work?");
       return <Redirect to="/play" />;
-      console.log("this worked!");
-      this.setState({
-        redirect: false
-      });
     }
   };
 
@@ -92,7 +78,8 @@ const mapStateToProps = state => {
     submarine: state.setUpGame.placeSubmarine.result
   };
 };
-
-export default connect(mapStateToProps)(
-  withAsyncAction("setUpGame", "postCoordinatesMessage")(ReadyButton)
-);
+const mapDispatchToProps = {};
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withAsyncAction("setUpGame", "postCoordinatesMessage")(ReadyButton));
