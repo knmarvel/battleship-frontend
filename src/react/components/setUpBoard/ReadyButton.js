@@ -16,11 +16,11 @@ class ReadyButton extends React.Component {
   handleClick = () => {
     console.log("ReadyButton was clicked.");
     //verify that all 5 ships have been placed
-    this.verifyAllShipsPlaced();
+    // this.verifyAllShipsPlaced();
 
     // //post a message on API for each square of each ship
     // //example: 'Game 1234 submarine ["A", 1]', 'Game 1234 submarine ["B", 1]'...
-    // this.postMessagesOfShipLocations();
+    this.postMessagesOfShipLocations();
   };
 
   verifyAllShipsPlaced = () => {
@@ -42,8 +42,12 @@ class ReadyButton extends React.Component {
     this.redirectToPlayGame();
   };
   postMessagesOfShipLocations = () => {
-    //loop through ships entries and create messages based off that
-    // this.props.battleship.coordinates.forEach(function(element) {});
+    const gameNumber = this.props.gameNumber;
+    const battleshipCoordinates = this.props.battleship.coordinates;
+    const postCoordinatesMessage = this.props.postCoordinatesMessage;
+    battleshipCoordinates.forEach(function(coordinate) {
+      postCoordinatesMessage(gameNumber + "  battleship  " + coordinate);
+    });
   };
 
   setRedirect = () => {
@@ -75,7 +79,8 @@ const mapStateToProps = state => {
     carrier: state.setUpGame.placeCarrier.result,
     cruiser: state.setUpGame.placeCruiser.result,
     destroyer: state.setUpGame.placeDestroyer.result,
-    submarine: state.setUpGame.placeSubmarine.result
+    submarine: state.setUpGame.placeSubmarine.result,
+    gameNumber: state.auth.login.gameNumber
   };
 };
 const mapDispatchToProps = {};
