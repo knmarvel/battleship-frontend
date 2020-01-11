@@ -7,13 +7,8 @@ import React from "react";
 class ClearBoardButton extends React.Component {
   handleClick = () => {
     console.log("ClearBoardButton was clicked.");
-    //set the state of all the ships locations back to empty arrays
+    window.location.reload();
 
-    //todo: make sure that setupBoard is redrawn empty
-
-    //make sure that ships in the "available ships" section are redrawn
-
-    //delete all messages from the player that have been sent after "Game 1234 start"
   };
 
   render() {
