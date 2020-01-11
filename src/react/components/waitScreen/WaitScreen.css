@@ -13,9 +13,9 @@
 
 .waitMessage {
   display: flex;
-  border: 1px solid black;
   padding: 2em;
   margin: 4em;
   border-radius: 1em;
-  background-color: var(--accentColorLight);
+  background-color: var(--battleshipNavyBackground);
+  border: 2px solid var(--battleshipBlueColumnLines)
 }
