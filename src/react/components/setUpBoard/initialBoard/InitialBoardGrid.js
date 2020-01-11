@@ -102,6 +102,12 @@ class InitialBoardGrid extends React.Component {
 
   render() {
     //first, draw the header row
+    if(this.newBoard.length > 0){
+      this.newBoard = []
+    }
+    if(this.newRow.length > 0){
+      this.newRow = []
+    }
     for (let headerRowLabels = 0; headerRowLabels <= 10; headerRowLabels++) {
       if (headerRowLabels === 0) {
         this.label = "X";
@@ -129,6 +135,7 @@ class InitialBoardGrid extends React.Component {
       this.newBoard.push(this.drawRow(this.newRow, row));
     }
     this.newBoard.className = "newBoard";
+
     return this.newBoard;
   }
 }
@@ -139,7 +146,11 @@ class InitialBoardGrid extends React.Component {
 
 const mapStateToProps = state => {
   return { playerName: state.auth.login.result.username,
-           activeShip: state.setUpGame.selectShip.result 
+           activeShip: state.setUpGame.selectShip.result,
+           battleshipPosition: state.setUpGame.placeBattleship.result,
+           carrierPosition: state.setUpGame.placeCarrier.result,
+           cruiserPosition: state.setUpGame.placeCruiser.result,
+           submarinePosition: state.setUpGame.placeSubmarine.result
           };
 };
 
