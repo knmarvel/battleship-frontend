@@ -24,6 +24,8 @@
   background-color: var(--battleshipNavyBackground);
   justify-content: center;
   align-items: center;
+  margin-left:200px;
+  margin-right:80px;
 }
 
 .placedShip {
