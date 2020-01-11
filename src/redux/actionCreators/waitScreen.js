@@ -1,11 +1,11 @@
 import { domain, jsonHeaders, handleJsonResponse } from "./constants";
-import { CHECKREADY } from "../actionTypes";
+import { CHECKREADYSTART } from "../actionTypes";
 
 const url = domain + "/messages";
 
-export const checkReady = () => dispatch => {
+export const checkReadyStart = () => dispatch => {
   dispatch({
-    type: CHECKREADY.START
+    type: CHECKREADYSTART.START //yes, it's checkreadystart.start
   });
 
   return fetch(url + "?limit=2&offset=0", {
@@ -15,11 +15,13 @@ export const checkReady = () => dispatch => {
     .then(handleJsonResponse)
     .then(result => {
       return dispatch({
-        type: CHECKREADY.SUCCESS,
+        type: CHECKREADYSTART.SUCCESS,
         payload: result
       });
     })
     .catch(err => {
-      return Promise.reject(dispatch({ type: CHECKREADY.FAIL, payload: err }));
+      return Promise.reject(
+        dispatch({ type: CHECKREADYSTART.FAIL, payload: err })
+      );
     });
 };

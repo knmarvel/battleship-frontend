@@ -7,20 +7,27 @@
 import React from "react";
 import { connect, withAsyncAction } from "../../HOCs";
 import { Redirect } from "../index";
+import { checkReadyPlay } from "../../../redux/index";
 
 class ReadyButton extends React.Component {
   state = {
     redirect: false
   };
 
+  tick() {
+    // start timer after button is clicked
+    this.interval = setInterval(() => {
+      this.props.checkReadyPlay();
+    }, 1000);
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.interval);
+  }
+
   handleClick = () => {
     console.log("ReadyButton was clicked.");
-    //verify that all 5 ships have been placed
     this.verifyAllShipsPlaced();
-
-    // //post a message on API for each square of each ship
-    // //example: 'Game 1234 submarine ["A", 1]', 'Game 1234 submarine ["B", 1]'...
-    // this.postMessagesOfShipLocations();
   };
 
   verifyAllShipsPlaced = () => {
@@ -32,18 +39,51 @@ class ReadyButton extends React.Component {
       this.props.submarine
     ];
     if (ships.includes(null)) {
-      //should this conditionally render the button?
       alert("Please place all your ships on the board!");
     } else {
-      // this.readLocations();
-      // this.postMessagesOfShipLocations();
+      this.postMessagesOfBattleShipLocation();
+      this.postMessagesOfCarrierLocation();
+      this.postMessagesOfCruiserLocation();
+      this.postMessagesOfDestroyerLocation();
+      this.postMessagesOfSubmarineLocation();
       this.setRedirect();
     }
     this.redirectToPlayGame();
   };
-  postMessagesOfShipLocations = () => {
-    //loop through ships entries and create messages based off that
-    // this.props.battleship.coordinates.forEach(function(element) {});
+  postMessagesOfBattleShipLocation = () => {
+    const postCoordinatesMessage = this.props.postCoordinatesMessage;
+    const battleshipCoordinates = this.props.battleship.coordinates;
+    battleshipCoordinates.forEach(function(coordinate) {
+      postCoordinatesMessage({ text: `battleship ${coordinate}` });
+    });
+  };
+  postMessagesOfCarrierLocation = () => {
+    const postCoordinatesMessage = this.props.postCoordinatesMessage;
+    const carrierCoordinates = this.props.carrier.coordinates;
+    carrierCoordinates.forEach(function(coordinate) {
+      postCoordinatesMessage({ text: `carrier ${coordinate}` });
+    });
+  };
+  postMessagesOfCruiserLocation = () => {
+    const postCoordinatesMessage = this.props.postCoordinatesMessage;
+    const cruiserCoordinates = this.props.cruiser.coordinates;
+    cruiserCoordinates.forEach(function(coordinate) {
+      postCoordinatesMessage({ text: `cruiser ${coordinate}` });
+    });
+  };
+  postMessagesOfDestroyerLocation = () => {
+    const postCoordinatesMessage = this.props.postCoordinatesMessage;
+    const destroyerCoordinates = this.props.destroyer.coordinates;
+    destroyerCoordinates.forEach(function(coordinate) {
+      postCoordinatesMessage({ text: `destroyer ${coordinate}` });
+    });
+  };
+  postMessagesOfSubmarineLocation = () => {
+    const postCoordinatesMessage = this.props.postCoordinatesMessage;
+    const submarineCoordinates = this.props.submarine.coordinates;
+    submarineCoordinates.forEach(function(coordinate) {
+      postCoordinatesMessage({ text: `submarine ${coordinate}` });
+    });
   };
 
   setRedirect = () => {
@@ -54,7 +94,6 @@ class ReadyButton extends React.Component {
 
   redirectToPlayGame = () => {
     if (this.state.redirect === true) {
-      console.log("does this work?");
       return <Redirect to="/play" />;
     }
   };
@@ -76,9 +115,10 @@ const mapStateToProps = state => {
     cruiser: state.setUpGame.placeCruiser.result,
     destroyer: state.setUpGame.placeDestroyer.result,
     submarine: state.setUpGame.placeSubmarine.result
+    // gameNumber: state.auth.getGameNumber.result
   };
 };
-const mapDispatchToProps = {};
+const mapDispatchToProps = { checkReadyPlay };
 export default connect(
   mapStateToProps,
   mapDispatchToProps

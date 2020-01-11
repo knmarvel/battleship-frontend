@@ -1,1 +1,1 @@
-export { default as checkReady } from "./checkReady";
+export { default as checkReadyStart } from "./checkReadyStart";
