@@ -5,3 +5,4 @@ export * from "./likes";
 export * from "./setUpGame";
 export * from "./welcome";
 export * from "./waitScreen";
+export * from "./checkWin";

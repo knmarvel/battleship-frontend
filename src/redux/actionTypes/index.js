@@ -23,6 +23,9 @@ export const POSTCOORDINATESMESSAGE = createActionTypes(
   "POSTCOORDINATESMESSAGE"
 );
 
+//action types related to win conditions
+export const CHECKWIN = createActionTypes("CHECKWIN")
+
 //action types related to welcome
 
 export const STARTGAME = createActionTypes("STARTGAME");
