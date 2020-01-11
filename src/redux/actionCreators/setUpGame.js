@@ -6,7 +6,8 @@ import {
   PLACEDESTROYER,
   PLACESUBMARINE,
   SELECTSHIP,
-  FETCHLASTMESSAGE
+  FETCHLASTMESSAGE,
+  POSTCOORDINATESMESSAGE
 } from "../actionTypes";
 
 const url = domain + "/messages";
@@ -79,6 +80,37 @@ export const fetchLastMessage = playerName => dispatch => {
     .catch(err => {
       return Promise.reject(
         dispatch({ type: FETCHLASTMESSAGE.FAIL, payload: err })
+      );
+    });
+};
+
+export const postCoordinatesMessage = messageBody => (dispatch, getState) => {
+  dispatch({
+    type: POSTCOORDINATESMESSAGE.START
+  });
+  const token = getState().auth.login.result.token;
+
+  return fetch(url, {
+    method: "POST",
+    headers: { Authorization: "Bearer " + token, ...jsonHeaders },
+    body: JSON.stringify(messageBody)
+  })
+    .then(handleJsonResponse)
+    .then(result => {
+      return dispatch({
+        type: POSTCOORDINATESMESSAGE.SUCCESS,
+        payload: result
+      });
+    })
+    .catch(err => {
+      if (err.statusCode === 401) {
+        return dispatch({
+          type: POSTCOORDINATESMESSAGE.SUCCESS,
+          payload: { statusCode: 200 }
+        });
+      }
+      return Promise.reject(
+        dispatch({ type: POSTCOORDINATESMESSAGE.FAIL, payload: err.message })
       );
     });
 };

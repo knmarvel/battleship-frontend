@@ -5,8 +5,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { withAsyncAction } from "../../../HOCs";
 import InitialBoardGrid from "./InitialBoardGrid";
-import { ClearBoardButton } from "../index";
-import { Link } from "../../index";
+import { ClearBoardButton, ReadyButton } from "../index";
 
 class InitialBoard extends React.Component {
   newBoard = [];
@@ -23,13 +22,7 @@ class InitialBoard extends React.Component {
         <div className="newBoard">
           <InitialBoardGrid />
         </div>
-        <Link
-          to="/play"
-          className="btn btn-primary"
-          onClick={this.handleReadyClick}
-        >
-          Ready Mama!
-        </Link>
+        <ReadyButton />
         <ClearBoardButton />
       </React.Fragment>
     );
