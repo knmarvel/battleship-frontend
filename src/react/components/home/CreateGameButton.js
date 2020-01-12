@@ -30,8 +30,6 @@ class CreateGameButton extends React.Component {
     const gameNumber = this.generateGameNumber();
     const loginData = this.generateLoginData();
     this.props.login(gameNumber, loginData);
-    //post to the player (popup?) what that number is and
-    //inform them they need to let their partner know the game number
 
     this.setState({
       gameNumber: gameNumber,
