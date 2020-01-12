@@ -7,28 +7,38 @@
 import React from "react";
 import { connect, withAsyncAction } from "../../HOCs";
 import { Redirect } from "../index";
-import { checkReadyPlay } from "../../../redux/index";
+import { fetchLastMessage, postMessage } from "../../../redux/index";
 
 class ReadyButton extends React.Component {
   state = {
-    redirect: false
+    redirect: false,
+    // opponentReady: false,
+    opponentName: ""
   };
 
-  tick() {
-    // start timer after button is clicked
-    this.interval = setInterval(() => {
-      this.props.checkReadyPlay();
-    }, 1000);
-  }
+  // ReadyButton.contextTypes = {
+  //   router: React.PropTypes.object
+  // }
+
+  componentDidMount = () => {
+    this.determineOpponentName();
+  };
+
+  determineOpponentName = () => {
+    if (this.props.playerName === "playerA") {
+      this.setState({ opponentName: "playerB" });
+    } else if (this.props.playerName === "playerB") {
+      this.setState({ opponentName: "playerA" });
+    } else {
+      console.log(
+        "cannot set opponent name because playername is not playerA or playerB"
+      );
+    }
+  };
 
   componentWillUnmount() {
     clearInterval(this.interval);
   }
-
-  handleClick = () => {
-    console.log("ReadyButton was clicked.");
-    this.verifyAllShipsPlaced();
-  };
 
   verifyAllShipsPlaced = () => {
     const ships = [
@@ -40,15 +50,16 @@ class ReadyButton extends React.Component {
     ];
     if (ships.includes(null)) {
       alert("Please place all your ships on the board!");
+      return false;
     } else {
       this.postMessagesOfBattleShipLocation();
       this.postMessagesOfCarrierLocation();
       this.postMessagesOfCruiserLocation();
       this.postMessagesOfDestroyerLocation();
       this.postMessagesOfSubmarineLocation();
-      this.setRedirect();
+      // this.setRedirect();
+      return true;
     }
-    this.redirectToPlayGame();
   };
   postMessagesOfBattleShipLocation = () => {
     const postCoordinatesMessage = this.props.postCoordinatesMessage;
@@ -86,22 +97,51 @@ class ReadyButton extends React.Component {
     });
   };
 
-  setRedirect = () => {
-    this.setState({
-      redirect: true
+  startCheckingForOpponentReady = () => {
+    this.interval = setInterval(() => {
+      console.log("checking opponent readiness");
+      this.checkReadyPlay();
+    }, 2000);
+  };
+
+  checkReadyPlay = () => {
+    console.log("checkReadyPlay has been called");
+    this.props.fetchLastMessage(this.state.opponentName).then(result => {
+      result.payload.messages.map(message => {
+        if (message.text.includes("ready")) {
+          console.log("player is ready");
+          return this.redirectToPlayGame();
+        } else return false;
+      });
     });
   };
 
   redirectToPlayGame = () => {
-    if (this.state.redirect === true) {
-      return <Redirect to="/play" />;
+    console.log("redirectiong to /play");
+    this.setState({ redirect: true });
+    console.log(this.state);
+    // this.context.router.push("/play");
+    // return <Redirect from="/setup" to="/play" />;
+  };
+
+  handleClick = () => {
+    console.log("ReadyButton was clicked.");
+    if (this.verifyAllShipsPlaced() === false) {
+      return;
     }
+    // this.props.postMessage({ text: `${this.props.gameNumber}` + " ready" });
+    this.props.postMessage({ text: " ready" });
+
+    this.startCheckingForOpponentReady();
   };
 
   render() {
+    if (this.state.redirect === true) {
+      return <Redirect to="/play" />;
+    }
     return (
       <React.Fragment>
-        {this.redirectToPlayGame()}
+        {/* {this.redirectToPlayGame()} */}
         <button onClick={this.handleClick}>Ready!</button>
       </React.Fragment>
     );
@@ -114,11 +154,12 @@ const mapStateToProps = state => {
     carrier: state.setUpGame.placeCarrier.result,
     cruiser: state.setUpGame.placeCruiser.result,
     destroyer: state.setUpGame.placeDestroyer.result,
-    submarine: state.setUpGame.placeSubmarine.result
+    submarine: state.setUpGame.placeSubmarine.result,
+    playerName: state.auth.login.result.username
     // gameNumber: state.auth.getGameNumber.result
   };
 };
-const mapDispatchToProps = { checkReadyPlay };
+const mapDispatchToProps = { fetchLastMessage, postMessage };
 export default connect(
   mapStateToProps,
   mapDispatchToProps

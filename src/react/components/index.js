@@ -6,5 +6,10 @@ export { Welcome } from "./home";
 export { WaitScreen } from "./waitScreen";
 
 // components from other packages
-export { Switch, Route, Link, Redirect } from "react-router-dom";
+export { Router, Switch, Route, Link, Redirect } from "react-router-dom";
 export { default as Spinner } from "react-spinkit";
+// export {
+//   Router,
+//   Route as ReactRouterRoute,
+//   browserHistory
+// } from "react-router";
