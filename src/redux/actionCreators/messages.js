@@ -2,7 +2,7 @@
 import { domain, jsonHeaders, handleJsonResponse } from "./constants";
 import { POSTMESSAGE, FETCHLASTMESSAGE } from "../actionTypes";
 
-const url = domain + "/message";
+const url = domain + "/messages";
 
 //battleship-capstone-api.herokuapp.com/messages
 
