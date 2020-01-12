@@ -5,7 +5,7 @@
   background-color: var(--battleshipNavyBackground);
   text-align: center;
   position: relative;
-  Z-index: 1;
+  z-index: 1;
 }
 
 .newBoardSquare:hover {
@@ -19,13 +19,19 @@
 .shipsAvailable {
   display: flex;
   flex-direction: column;
+  flex-wrap: wrap;
   flex-grow: 1;
   flex-shrink: 1;
   background-color: var(--battleshipNavyBackground);
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
-  margin-left:200px;
-  margin-right:80px;
+  margin-left: 10vh;
+  margin-right: 4vh;
+  max-height: 80vh;
+}
+
+.initialBoard {
+  margin: 4vh;
 }
 
 .placedShip {
@@ -34,6 +40,10 @@
   height: var(--squareSize);
   background-color: var(--unsunkShip);
   color: var(--highLightText);
+}
+
+.availableShip {
+  margin: 4vh;
 }
 
 .initialShip2 {

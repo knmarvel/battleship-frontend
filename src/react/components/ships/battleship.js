@@ -3,8 +3,8 @@
 //own ships on their half of the board
 
 import React from "react";
-import fourHorizontal from "../../../Battleship-image/ships/4Horizontal.PNG";
-import fourVertical from "../../../Battleship-image/ships/4Vertical.PNG";
+import battleshipHorizontal from "../../../Battleship-image/ships/battleshipHorizontal.PNG";
+import battleshipVertical from "../../../Battleship-image/ships/battleshipVertical.PNG";
 import { connect } from "../../HOCs";
 import { selectShip } from "../../../redux/index";
 
@@ -13,8 +13,8 @@ class Battleship extends React.Component {
     name: "battleship",
     length: 4,
     orientation: "horizontal",
-    imageHorizontal: fourHorizontal,
-    imageVertical: fourVertical
+    imageHorizontal: battleshipHorizontal,
+    imageVertical: battleshipVertical
   };
 
   rotateShip = () => {
