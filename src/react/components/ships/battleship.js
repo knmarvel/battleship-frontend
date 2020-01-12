@@ -24,6 +24,8 @@ class Battleship extends React.Component {
   };
 
   onShipClick = () => {
+    document.body.style.cursor =
+      "url(../../../Battleship-image/ships/battleshipHorizontal.PNG),help";
     this.props.selectShip({
       name: this.state.name,
       length: this.state.length,
