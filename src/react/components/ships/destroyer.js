@@ -3,8 +3,8 @@
 //own ships on their half of the board
 
 import React from "react";
-import twoHorizontal from "../../../Battleship-image/ships/2Horizontal.PNG";
-import twoVertical from "../../../Battleship-image/ships/2Vertical.PNG";
+import destroyerHorizontal from "../../../Battleship-image/ships/destroyerHorizontal.PNG";
+import destroyerVertical from "../../../Battleship-image/ships/destroyerVertical.PNG";
 import { connect } from "../../HOCs";
 import { selectShip } from "../../../redux/index";
 
@@ -13,8 +13,8 @@ class Destroyer extends React.Component {
     name: "destroyer",
     length: 2,
     orientation: "horizontal",
-    imageHorizontal: twoHorizontal,
-    imageVertical: twoVertical
+    imageHorizontal: destroyerHorizontal,
+    imageVertical: destroyerVertical
   };
 
   rotateShip = () => {

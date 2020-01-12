@@ -7,12 +7,20 @@ class ShipsAvailable extends React.Component {
   renderBattleship = () => {
     if (this.props.isShipSelected === null) {
       if (this.props.placeBattleship === null) {
-        return <Battleship />;
+        return (
+          <div className="availableShip">
+            <Battleship />
+          </div>
+        );
       }
     }
     if (this.props.isShipSelected !== "battleship") {
       if (this.props.placeBattleship === null) {
-        return <Battleship />;
+        return (
+          <div className="availableShip">
+            <Battleship />
+          </div>
+        );
       }
     }
   };
@@ -20,12 +28,20 @@ class ShipsAvailable extends React.Component {
   renderCarrier = () => {
     if (this.props.isShipSelected === null) {
       if (this.props.placeCarrier === null) {
-        return <Carrier />;
+        return (
+          <div className="availableShip">
+            <Carrier />
+          </div>
+        );
       }
     }
     if (this.props.isShipSelected !== "carrier") {
       if (this.props.placeCarrier === null) {
-        return <Carrier />;
+        return (
+          <div className="availableShip">
+            <Carrier />
+          </div>
+        );
       }
     }
   };
@@ -33,12 +49,20 @@ class ShipsAvailable extends React.Component {
   renderCruiser = () => {
     if (this.props.isShipSelected === null) {
       if (this.props.placeCruiser === null) {
-        return <Cruiser />;
+        return (
+          <div className="availableShip">
+            <Cruiser />
+          </div>
+        );
       }
     }
     if (this.props.isShipSelected !== "cruiser") {
       if (this.props.placeCruiser === null) {
-        return <Cruiser />;
+        return (
+          <div className="availableShip">
+            <Cruiser />
+          </div>
+        );
       }
     }
   };
@@ -46,12 +70,20 @@ class ShipsAvailable extends React.Component {
   renderDestroyer = () => {
     if (this.props.isShipSelected === null) {
       if (this.props.placeDestroyer === null) {
-        return <Destroyer />;
+        return (
+          <div className="availableShip">
+            <Destroyer />
+          </div>
+        );
       }
     }
     if (this.props.isShipSelected !== "destroyer") {
       if (this.props.placeDestroyer === null) {
-        return <Destroyer />;
+        return (
+          <div className="availableShip">
+            <Destroyer />
+          </div>
+        );
       }
     }
   };
@@ -59,13 +91,21 @@ class ShipsAvailable extends React.Component {
   renderSubmarine = () => {
     if (this.props.isShipSelected === null) {
       if (this.props.placeSubmarine === null) {
-        return <Submarine />;
+        return (
+          <div className="availableShip">
+            <Submarine />
+          </div>
+        );
       }
     }
 
     if (this.props.isShipSelected !== "submarine") {
       if (this.props.placeSubmarine === null) {
-        return <Submarine />;
+        return (
+          <div className="availableShip">
+            <Submarine />
+          </div>
+        );
       }
     }
   };

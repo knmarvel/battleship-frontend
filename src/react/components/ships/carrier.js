@@ -3,8 +3,8 @@
 //own ships on their half of the board
 
 import React from "react";
-import fiveHorizontal from "../../../Battleship-image/ships/5Horizontal.PNG";
-import fiveVertical from "../../../Battleship-image/ships/5Vertical.PNG";
+import carrierHorizontal from "../../../Battleship-image/ships/carrierHorizontal.PNG";
+import carrierVertical from "../../../Battleship-image/ships/carrierVertical.PNG";
 import { connect } from "../../HOCs";
 import { selectShip } from "../../../redux/index";
 
@@ -13,8 +13,8 @@ class Carrier extends React.Component {
     name: "carrier",
     length: 5,
     orientation: "horizontal",
-    imageHorizontal: fiveHorizontal,
-    imageVertical: fiveVertical
+    imageHorizontal: carrierHorizontal,
+    imageVertical: carrierVertical
   };
 
   rotateShip = () => {
