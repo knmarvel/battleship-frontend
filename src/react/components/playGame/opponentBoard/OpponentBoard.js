@@ -3,16 +3,27 @@ import React from "react";
 import { OpponentBoardGrid } from ".";
 
 class OpponentBoard extends React.Component {
+  state = {
+    TargetCell: ""
+  };
+
+  clickHandler = event => {
+    console.log("test Fire " + event.target.innerHTML)
+    this.setState({TargetCell : event.target.innerHTML})
+  }
+
   render() {
     return (
       <React.Fragment>
-        <div className="newBoard">
+        <div className="newBoard" onClick={this.clickHandler}>
           Opponent Board
-          <OpponentBoardGrid />
+          <OpponentBoardGrid/>
         </div>
       </React.Fragment>
     );
   }
 }
+
+
 
 export default OpponentBoard;
