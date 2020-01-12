@@ -12,13 +12,8 @@ import { fetchLastMessage, postMessage } from "../../../redux/index";
 class ReadyButton extends React.Component {
   state = {
     redirect: false,
-    // opponentReady: false,
     opponentName: ""
   };
-
-  // ReadyButton.contextTypes = {
-  //   router: React.PropTypes.object
-  // }
 
   componentDidMount = () => {
     this.determineOpponentName();
@@ -106,9 +101,11 @@ class ReadyButton extends React.Component {
 
   checkReadyPlay = () => {
     console.log("checkReadyPlay has been called");
+    console.log("opponent name is " + this.state.opponentName);
+    console.log("playerName is " + this.props.playerName);
     this.props.fetchLastMessage(this.state.opponentName).then(result => {
       result.payload.messages.map(message => {
-        if (message.text.includes("ready")) {
+        if (!message.text.includes("start")) {
           console.log("player is ready");
           return this.redirectToPlayGame();
         } else return false;
@@ -119,7 +116,6 @@ class ReadyButton extends React.Component {
   redirectToPlayGame = () => {
     console.log("redirectiong to /play");
     this.setState({ redirect: true });
-    console.log(this.state);
     // this.context.router.push("/play");
     // return <Redirect from="/setup" to="/play" />;
   };
