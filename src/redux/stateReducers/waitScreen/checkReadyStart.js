@@ -1,5 +1,5 @@
 //checkReady state reducer
-import { CHECKREADY } from "../../actionTypes";
+import { CHECKREADYSTART } from "../../actionTypes";
 import { withAsyncReducer } from "../../HORs";
 
 const initialState = {
@@ -26,16 +26,16 @@ const getInitStateFromStorage = (key, initialState) => {
   return initialState;
 };
 
-const checkReady = (
-  state = getInitStateFromStorage("checkReady", initialState),
+const checkReadyStart = (
+  state = getInitStateFromStorage("checkReadyStart", initialState),
   action
 ) => {
   switch (action.type) {
-    case CHECKREADY.SUCCESS:
+    case CHECKREADYSTART.SUCCESS:
       return { ...initialState };
     default:
       return state;
   }
 };
 
-export default withAsyncReducer(CHECKREADY, checkReady);
+export default withAsyncReducer(CHECKREADYSTART, checkReadyStart);

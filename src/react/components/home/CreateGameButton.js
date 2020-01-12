@@ -18,8 +18,8 @@ class CreateGameButton extends React.Component {
   };
 
   componentDidMount() {
-    this.checkReady();
-    this.interval = setInterval(this.checkReady, 5000);
+    this.checkReadyStart();
+    this.interval = setInterval(this.checkReadyStart, 5000);
   }
 
   componentWillUnmount() {
@@ -32,21 +32,18 @@ class CreateGameButton extends React.Component {
     this.props.getGameNumber(gameNumber);
     this.props.login(gameNumber, loginData);
 
-    //post to the player (popup?) what that number is and
-    //inform them they need to let their partner know the game number
-
     this.setState({
       gameNumber: gameNumber,
       gameCreated: true,
       message: this.generateMessage(gameNumber)
     });
-    this.checkReady();
+    this.checkReadyStart();
   };
 
-  checkReady = () => {
+  checkReadyStart = () => {
     console.log("game number in state is " + this.state.gameNumber);
     let numberOfMatches = 0;
-    this.props.checkReady().then(result => {
+    this.props.checkReadyStart().then(result => {
       result.payload.messages.map(message => {
         if (message.text === "Game " + this.state.gameNumber + " start") {
           numberOfMatches++;

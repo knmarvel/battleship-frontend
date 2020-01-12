@@ -15,7 +15,8 @@ import {
   placeCarrier,
   placeCruiser,
   placeDestroyer,
-  placeSubmarine
+  placeSubmarine,
+  selectShip
 } from "../../../../redux/index";
 
 class InitialBoardGrid extends React.Component {
@@ -95,9 +96,6 @@ class InitialBoardGrid extends React.Component {
     if (this.targetColumn === "" || this.targetColumn === "0") {
       return;
     } //is the case if a header row/column is clicked
-    console.log("target row is " + this.targetRow);
-    console.log("target column is " + this.targetColumn);
-    console.log(e.target.innerHTML);
     if (this.props.activeShip === null) {
       console.log("No ship selected");
     } else {
@@ -116,18 +114,23 @@ class InitialBoardGrid extends React.Component {
     switch (this.props.activeShip.name) {
       case "battleship":
         this.props.placeBattleship(position);
+        this.props.selectShip(null);
         break;
       case "carrier":
         this.props.placeCarrier(position);
+        this.props.selectShip(null);
         break;
       case "cruiser":
         this.props.placeCruiser(position);
+        this.props.selectShip(null);
         break;
       case "destroyer":
         this.props.placeDestroyer(position);
+        this.props.selectShip(null);
         break;
       case "submarine":
         this.props.placeSubmarine(position);
+        this.props.selectShip(null);
         break;
       default:
         alert("No ship selected");
@@ -142,7 +145,9 @@ class InitialBoardGrid extends React.Component {
     };
     if (orientation === "horizontal") {
       for (let shipSegment = 0; shipSegment < length; shipSegment++) {
-        if (this.targetColumn * 1 + shipSegment > 10) {
+        if (this.targetColumn * 1 + shipSegment > 10
+          || this.doesAShipResideHereAndIfSoWhichOne(this.targetRow + (this.targetColumn * 1 + shipSegment))
+          ) {
           return null;
         }
         positionArray.push(
@@ -152,7 +157,9 @@ class InitialBoardGrid extends React.Component {
     } else {
       let rowIndex = this.rowLabels.indexOf(this.targetRow);
       for (let shipSegment = 0; shipSegment < length; shipSegment++) {
-        if (rowIndex + shipSegment > 10) {
+        if (rowIndex + shipSegment > 10
+          || this.doesAShipResideHereAndIfSoWhichOne(this.rowLabels[rowIndex + shipSegment] + this.targetColumn)
+          ) {
           return null;
         }
         positionArray.push(
@@ -224,7 +231,8 @@ const mapDispatchToProps = {
   placeCarrier,
   placeCruiser,
   placeDestroyer,
-  placeSubmarine
+  placeSubmarine,
+  selectShip
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(InitialBoardGrid);

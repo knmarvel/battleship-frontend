@@ -7,17 +7,36 @@
 import React from "react";
 import { connect, withAsyncAction } from "../../HOCs";
 import { Redirect } from "../index";
+import { fetchLastMessage, postMessage } from "../../../redux/index";
+import { WaitScreen } from "../waitScreen";
 
 class ReadyButton extends React.Component {
   state = {
-    redirect: false
+    redirect: false,
+    opponentName: "",
+    playerReady: false,
+    message: "Waiting for your opponent to finish placing ships..."
   };
 
-  handleClick = () => {
-    console.log("ReadyButton was clicked.");
-    console.log(this.props.gameNumber);
-    this.verifyAllShipsPlaced();
+  componentDidMount = () => {
+    this.determineOpponentName();
   };
+
+  determineOpponentName = () => {
+    if (this.props.playerName === "playerA") {
+      this.setState({ opponentName: "playerB" });
+    } else if (this.props.playerName === "playerB") {
+      this.setState({ opponentName: "playerA" });
+    } else {
+      console.log(
+        "cannot set opponent name because playername is not playerA or playerB"
+      );
+    }
+  };
+
+  componentWillUnmount() {
+    clearInterval(this.interval);
+  }
 
   verifyAllShipsPlaced = () => {
     const ships = [
@@ -29,78 +48,107 @@ class ReadyButton extends React.Component {
     ];
     if (ships.includes(null)) {
       alert("Please place all your ships on the board!");
+      return false;
     } else {
       this.postMessagesOfBattleShipLocation();
       this.postMessagesOfCarrierLocation();
       this.postMessagesOfCruiserLocation();
       this.postMessagesOfDestroyerLocation();
       this.postMessagesOfSubmarineLocation();
-      this.setRedirect();
+      return true;
     }
-    this.redirectToPlayGame();
   };
   postMessagesOfBattleShipLocation = () => {
     const postCoordinatesMessage = this.props.postCoordinatesMessage;
     const battleshipCoordinates = this.props.battleship.coordinates;
-    const gameNumber = this.props.gameNumber;
+    //const gameNumber = this.props.gameNumber;
     battleshipCoordinates.forEach(function(coordinate) {
-      console.log(gameNumber + " battleship " + coordinate);
       postCoordinatesMessage({ text: `battleship ${coordinate}` });
+      //postCoordinatesMessage({ text: `${gameNumber} battleship ${coordinate}` });
     });
   };
   postMessagesOfCarrierLocation = () => {
     const postCoordinatesMessage = this.props.postCoordinatesMessage;
     const carrierCoordinates = this.props.carrier.coordinates;
-    const gameNumber = this.props.gameNumber;
+    //const gameNumber = this.props.gameNumber;
     carrierCoordinates.forEach(function(coordinate) {
-      console.log(gameNumber + " carrier " + coordinate);
       postCoordinatesMessage({ text: `carrier ${coordinate}` });
+      //postCoordinatesMessage({ text: `${gameNumber} carrier ${coordinate}` });
     });
   };
   postMessagesOfCruiserLocation = () => {
     const postCoordinatesMessage = this.props.postCoordinatesMessage;
     const cruiserCoordinates = this.props.cruiser.coordinates;
-    const gameNumber = this.props.gameNumber;
+    //const gameNumber = this.props.gameNumber;
     cruiserCoordinates.forEach(function(coordinate) {
-      console.log(gameNumber + " cruiser " + coordinate);
       postCoordinatesMessage({ text: `cruiser ${coordinate}` });
+      //postCoordinatesMessage({ text: `${gameNumber} cruiser ${coordinate}` });
     });
   };
   postMessagesOfDestroyerLocation = () => {
     const postCoordinatesMessage = this.props.postCoordinatesMessage;
     const destroyerCoordinates = this.props.destroyer.coordinates;
-    const gameNumber = this.props.gameNumber;
+    //const gameNumber = this.props.gameNumber;
     destroyerCoordinates.forEach(function(coordinate) {
-      console.log(gameNumber + " destroyer " + coordinate);
       postCoordinatesMessage({ text: `destroyer ${coordinate}` });
+      //postCoordinatesMessage({ text: `${gameNumber} destroyer ${coordinate}` });
     });
   };
   postMessagesOfSubmarineLocation = () => {
     const postCoordinatesMessage = this.props.postCoordinatesMessage;
     const submarineCoordinates = this.props.submarine.coordinates;
-    const gameNumber = this.props.gameNumber;
+    //const gameNumber = this.props.gameNumber;
     submarineCoordinates.forEach(function(coordinate) {
-      console.log(gameNumber + " submarine " + coordinate);
       postCoordinatesMessage({ text: `submarine ${coordinate}` });
+      //postCoordinatesMessage({ text: `${gameNumber} submarine ${coordinate}` });
     });
   };
 
-  setRedirect = () => {
-    this.setState({
-      redirect: true
+  startCheckingForOpponentReady = () => {
+    this.interval = setInterval(() => {
+      console.log("checking opponent readiness");
+      this.checkReadyPlay();
+    }, 2000);
+  };
+
+  checkReadyPlay = () => {
+    console.log("checkReadyPlay has been called");
+    console.log("opponent name is " + this.state.opponentName);
+    console.log("playerName is " + this.props.playerName);
+    this.props.fetchLastMessage(this.state.opponentName).then(result => {
+      result.payload.messages.map(message => {
+        if (!message.text.includes("start")) {
+          console.log("player is ready");
+          return this.redirectToPlayGame();
+        } else return false;
+      });
     });
   };
 
   redirectToPlayGame = () => {
-    if (this.state.redirect === true) {
-      return <Redirect to="/play" />;
+    console.log("redirectiong to /play");
+    this.setState({ redirect: true });
+  };
+
+  handleClick = () => {
+    console.log("ReadyButton was clicked.");
+    if (this.verifyAllShipsPlaced() === false) {
+      return;
     }
+    this.setState({ playerReady: true });
+    // this.props.postMessage({ text: `${this.props.gameNumber}` + " ready" });
+    this.props.postMessage({ text: " ready" });
+
+    this.startCheckingForOpponentReady();
   };
 
   render() {
+    if (this.state.redirect === true) {
+      return <Redirect to="/play" />;
+    }
     return (
       <React.Fragment>
-        {this.redirectToPlayGame()}
+        {this.state.playerReady && <WaitScreen message={this.state.message} />}
         <button onClick={this.handleClick}>Ready!</button>
       </React.Fragment>
     );
@@ -114,10 +162,11 @@ const mapStateToProps = state => {
     cruiser: state.setUpGame.placeCruiser.result,
     destroyer: state.setUpGame.placeDestroyer.result,
     submarine: state.setUpGame.placeSubmarine.result,
-    gameNumber: state.auth.getGameNumber.result
+    playerName: state.auth.login.result.username
+    // gameNumber: state.auth.getGameNumber.result
   };
 };
-const mapDispatchToProps = {};
+const mapDispatchToProps = { fetchLastMessage, postMessage };
 export default connect(
   mapStateToProps,
   mapDispatchToProps

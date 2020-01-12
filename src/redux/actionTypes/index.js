@@ -31,4 +31,5 @@ export const VERIFYJOIN = createActionTypes("VERIFYJOIN");
 
 //action types related to the waiting/memo screens
 
-export const CHECKREADY = createActionTypes("CHECKREADY");
+export const CHECKREADYSTART = createActionTypes("CHECKREADYSTART");
+export const POSTMESSAGE = createActionTypes("POSTMESSAGE");
