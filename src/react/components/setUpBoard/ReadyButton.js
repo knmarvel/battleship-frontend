@@ -8,17 +8,15 @@ import React from "react";
 import { connect, withAsyncAction } from "../../HOCs";
 import { Redirect } from "../index";
 import { fetchLastMessage, postMessage } from "../../../redux/index";
+import { WaitScreen } from "../waitScreen";
 
 class ReadyButton extends React.Component {
   state = {
     redirect: false,
-    // opponentReady: false,
-    opponentName: ""
+    opponentName: "",
+    playerReady: false,
+    message: "Waiting for your opponent to finish placing ships..."
   };
-
-  // ReadyButton.contextTypes = {
-  //   router: React.PropTypes.object
-  // }
 
   componentDidMount = () => {
     this.determineOpponentName();
@@ -57,7 +55,6 @@ class ReadyButton extends React.Component {
       this.postMessagesOfCruiserLocation();
       this.postMessagesOfDestroyerLocation();
       this.postMessagesOfSubmarineLocation();
-      // this.setRedirect();
       return true;
     }
   };
@@ -106,9 +103,11 @@ class ReadyButton extends React.Component {
 
   checkReadyPlay = () => {
     console.log("checkReadyPlay has been called");
+    console.log("opponent name is " + this.state.opponentName);
+    console.log("playerName is " + this.props.playerName);
     this.props.fetchLastMessage(this.state.opponentName).then(result => {
       result.payload.messages.map(message => {
-        if (message.text.includes("ready")) {
+        if (!message.text.includes("start")) {
           console.log("player is ready");
           return this.redirectToPlayGame();
         } else return false;
@@ -119,9 +118,6 @@ class ReadyButton extends React.Component {
   redirectToPlayGame = () => {
     console.log("redirectiong to /play");
     this.setState({ redirect: true });
-    console.log(this.state);
-    // this.context.router.push("/play");
-    // return <Redirect from="/setup" to="/play" />;
   };
 
   handleClick = () => {
@@ -129,6 +125,7 @@ class ReadyButton extends React.Component {
     if (this.verifyAllShipsPlaced() === false) {
       return;
     }
+    this.setState({ playerReady: true });
     // this.props.postMessage({ text: `${this.props.gameNumber}` + " ready" });
     this.props.postMessage({ text: " ready" });
 
@@ -141,7 +138,7 @@ class ReadyButton extends React.Component {
     }
     return (
       <React.Fragment>
-        {/* {this.redirectToPlayGame()} */}
+        {this.state.playerReady && <WaitScreen message={this.state.message} />}
         <button onClick={this.handleClick}>Ready!</button>
       </React.Fragment>
     );
