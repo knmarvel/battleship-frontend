@@ -6,7 +6,7 @@ import { withAsyncAction } from "../../HOCs";
 import { connect } from "react-redux";
 import { Redirect } from "..";
 import { WaitScreen } from "../waitScreen/";
-import { checkReady, getGameNumber } from "../../../redux/actionCreators";
+import { checkReadyStart } from "../../../redux/actionCreators";
 import "./CreateGameButton.css";
 
 class CreateGameButton extends React.Component {
@@ -29,7 +29,6 @@ class CreateGameButton extends React.Component {
   handleClick = () => {
     const gameNumber = this.generateGameNumber();
     const loginData = this.generateLoginData();
-    this.props.getGameNumber(gameNumber);
     this.props.login(gameNumber, loginData);
 
     this.setState({
@@ -97,7 +96,7 @@ class CreateGameButton extends React.Component {
 //   };
 // };
 
-const mapDispatchToProps = { checkReady, getGameNumber };
+const mapDispatchToProps = { checkReadyStart };
 export default connect(
   null,
   mapDispatchToProps

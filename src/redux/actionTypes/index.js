@@ -9,7 +9,6 @@ const createActionTypes = actionName => {
 
 export const LOGIN = createActionTypes("LOGIN");
 export const LOGOUT = createActionTypes("LOGOUT");
-export const GETGAMENUMBER = createActionTypes("GETGAMENUMBER");
 
 //action types related to setUpGame
 

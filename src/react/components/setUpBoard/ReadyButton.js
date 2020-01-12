@@ -131,6 +131,7 @@ class ReadyButton extends React.Component {
   };
 
   handleClick = () => {
+    console.log(this.props.gameNumber)
     console.log("ReadyButton was clicked.");
     if (this.verifyAllShipsPlaced() === false) {
       return;
@@ -162,8 +163,8 @@ const mapStateToProps = state => {
     cruiser: state.setUpGame.placeCruiser.result,
     destroyer: state.setUpGame.placeDestroyer.result,
     submarine: state.setUpGame.placeSubmarine.result,
-    playerName: state.auth.login.result.username
-    // gameNumber: state.auth.getGameNumber.result
+    playerName: state.auth.login.result.username,
+    gameNumber: state.welcome.startGame.result.message.text
   };
 };
 const mapDispatchToProps = { fetchLastMessage, postMessage };
