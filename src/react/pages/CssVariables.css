@@ -9,16 +9,16 @@
   /* images */
   background-image: url(../../Battleship-image/backgroundimage.jpg);
 
-  --horizontalBattleship: url(../../Battleship-image/ships/4Horizontal.PNG);
-  --verticalBattleship: url(../../Battleship-image/ships/4Vertical.PNG);
-  --horizontalCarrier: url(../../Battleship-image/ships/5Horizontal.PNG);
-  --verticalCarrier: url(../../Battleship-image/ships/5Vertical.PNG);
-  --horizontalCruiser: url(../../Battleship-image/ships/3Horizontal.PNG);
-  --verticalCruiser: url(../../Battleship-image/ships/3Vertical.PNG);
-  --horizontalDestroyer: url(../../Battleship-image/ships/2Horizontal.PNG);
-  --verticalDestroyer: url(../../Battleship-image/ships/2Vertical.PNG);
-  --horizontalSubmarine: url(../../Battleship-image/ships/2Horizontal.PNG);
-  --verticalSubmarine: url(../../Battleship-image/ships/2Vertical.PNG);
+  --horizontalBattleship: url(../../Battleship-image/cursor.png);
+  --verticalBattleship: url(../../Battleship-image/cursor.png);
+  --horizontalCarrier: url(../../Battleship-image/cursor.png);
+  --verticalCarrier: url(../../Battleship-image/cursor.png);
+  --horizontalCruiser: url(../../Battleship-image/cursor.png);
+  --verticalCruiser: url(../../Battleship-image/cursor.png);
+  --horizontalDestroyer: url(../../Battleship-image/cursor.png);
+  --verticalDestroyer: url(../../Battleship-image/cursor.png);
+  --horizontalSubmarine: url(../../Battleship-image/cursor.png);
+  --verticalSubmarine: url(../../Battleship-image/cursor.png);
   --shipSquare: 6;
 
 
