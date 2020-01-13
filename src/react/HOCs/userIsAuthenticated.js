@@ -9,8 +9,7 @@ const userIsAuthenticated = connectedRouterRedirect({
     state.auth &&
     state.auth.login &&
     state.auth.login.result &&
-    state.auth.login.result.token !== undefined &&
-    state.welcome.stateGame.result.message.text !== undefined,
+    state.auth.login.result.token !== undefined,
   // A nice display name for this check
   wrapperDisplayName: "UserIsAuthenticated"
 });

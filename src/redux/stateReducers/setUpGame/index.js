@@ -5,3 +5,4 @@ export { default as placeDestroyer } from "./placeDestroyer";
 export { default as placeSubmarine } from "./placeSubmarine";
 export { default as selectShip } from "./selectShip";
 export { default as postCoordinatesMessage } from "./postCoordinatesMessage";
+export { default as getGameNumber } from "./getGameNumber";

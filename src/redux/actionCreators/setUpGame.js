@@ -6,7 +6,8 @@ import {
   PLACEDESTROYER,
   PLACESUBMARINE,
   SELECTSHIP,
-  POSTCOORDINATESMESSAGE
+  POSTCOORDINATESMESSAGE,
+  GETGAMENUMBER
 } from "../actionTypes";
 
 const url = domain + "/messages";
@@ -84,4 +85,11 @@ export const postCoordinatesMessage = messageBody => (dispatch, getState) => {
         dispatch({ type: POSTCOORDINATESMESSAGE.FAIL, payload: err.message })
       );
     });
+};
+
+export const getGameNumber = gameNumber => dispatch => {
+  return dispatch({
+    type: GETGAMENUMBER.SUCCESS,
+    payload: gameNumber
+  });
 };

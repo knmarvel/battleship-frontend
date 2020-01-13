@@ -22,6 +22,7 @@ export const FETCHLASTMESSAGE = createActionTypes("FETCHLASTMESSAGE");
 export const POSTCOORDINATESMESSAGE = createActionTypes(
   "POSTCOORDINATESMESSAGE"
 );
+export const GETGAMENUMBER = createActionTypes("GETGAMENUMBER");
 
 //action types related to welcome
 

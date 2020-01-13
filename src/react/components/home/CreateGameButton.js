@@ -6,7 +6,7 @@ import { withAsyncAction } from "../../HOCs";
 import { connect } from "react-redux";
 import { Redirect } from "..";
 import { WaitScreen } from "../waitScreen/";
-import { checkReadyStart } from "../../../redux/actionCreators";
+import { checkReadyStart, getGameNumber } from "../../../redux/actionCreators";
 import "./CreateGameButton.css";
 
 class CreateGameButton extends React.Component {
@@ -96,7 +96,7 @@ class CreateGameButton extends React.Component {
 //   };
 // };
 
-const mapDispatchToProps = { checkReadyStart };
+const mapDispatchToProps = { checkReadyStart, getGameNumber };
 export default connect(
   null,
   mapDispatchToProps
