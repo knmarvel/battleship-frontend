@@ -9,16 +9,7 @@
   /* images */
   background-image: url(../../Battleship-image/backgroundimage.jpg);
 
-  --horizontalBattleship: url(../../Battleship-image/cursor.png);
-  --verticalBattleship: url(../../Battleship-image/cursor.png);
-  --horizontalCarrier: url(../../Battleship-image/cursor.png);
-  --verticalCarrier: url(../../Battleship-image/cursor.png);
-  --horizontalCruiser: url(../../Battleship-image/cursor.png);
-  --verticalCruiser: url(../../Battleship-image/cursor.png);
-  --horizontalDestroyer: url(../../Battleship-image/cursor.png);
-  --verticalDestroyer: url(../../Battleship-image/cursor.png);
-  --horizontalSubmarine: url(../../Battleship-image/cursor.png);
-  --verticalSubmarine: url(../../Battleship-image/cursor.png);
+
   --shipSquare: 6;
 
 
