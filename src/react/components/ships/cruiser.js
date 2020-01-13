@@ -4,8 +4,8 @@
 //own ships on their half of the board
 
 import React from "react";
-import cruiserHorizontal from "../../../Battleship-image/ships/horizShip2.PNG";
-import cruiserVertical from "../../../Battleship-image/ships/vertShip2.PNG";
+import cruiserHorizontal from "../../../Battleship-image/ships/horizShip2.png";
+import cruiserVertical from "../../../Battleship-image/ships/vertShip2.png";
 import { connect } from "../../HOCs";
 import { selectShip } from "../../../redux/index";
 

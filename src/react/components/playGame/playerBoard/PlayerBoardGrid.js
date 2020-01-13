@@ -1,16 +1,16 @@
 import React from "react";
 import PlayerBoardSquare from "./PlayerBoardSquare";
 import { connect } from "../../../HOCs";
-// import horizontalDestroyer from "../../../../Battleship-image/ships/horizShip1.PNG"
-// import horizontalCruiser from "../../../../Battleship-image/ships/horizShip2.PNG"
-// import horizontalSubmarine from "../../../../Battleship-image/ships/horizShip3.PNG"
-// import horizontalBattleship from "../../../../Battleship-image/ships/horizShip4.PNG"
-// import horizontalCarrier from "../../../../Battleship-image/ships/horizShip5.PNG"
-// import verticalDestroyer from "../../../../Battleship-image/ships/vertShip1.PNG"
-// import verticalCruiser from "../../../../Battleship-image/ships/vertShip2.PNG"
-// import verticalSubmarine from "../../../../Battleship-image/ships/vertShip3.PNG"
-// import verticalBattleship from "../../../../Battleship-image/ships/vertShip4.PNG"
-// import verticalCarrier from "../../../../Battleship-image/ships/vertShip5.PNG"
+// import horizontalDestroyer from "../../../../Battleship-image/ships/horizShip1.png"
+// import horizontalCruiser from "../../../../Battleship-image/ships/horizShip2.png"
+// import horizontalSubmarine from "../../../../Battleship-image/ships/horizShip3.png"
+// import horizontalBattleship from "../../../../Battleship-image/ships/horizShip4.png"
+// import horizontalCarrier from "../../../../Battleship-image/ships/horizShip5.png"
+// import verticalDestroyer from "../../../../Battleship-image/ships/vertShip1.png"
+// import verticalCruiser from "../../../../Battleship-image/ships/vertShip2.png"
+// import verticalSubmarine from "../../../../Battleship-image/ships/vertShip3.png"
+// import verticalBattleship from "../../../../Battleship-image/ships/vertShip4.png"
+// import verticalCarrier from "../../../../Battleship-image/ships/vertShip5.png"
 
 
 // import {
