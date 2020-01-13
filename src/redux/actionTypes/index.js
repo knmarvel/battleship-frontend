@@ -27,6 +27,8 @@ export const POSTCOORDINATESMESSAGE = createActionTypes(
 
 export const STARTGAME = createActionTypes("STARTGAME");
 export const VERIFYJOIN = createActionTypes("VERIFYJOIN");
+export const DELETEMESSAGE = createActionTypes("DELETEMESSAGE");
+export const GETOLDMESSAGES = createActionTypes("GETOLDMESSAGES");
 
 //action types related to the waiting/memo screens
 

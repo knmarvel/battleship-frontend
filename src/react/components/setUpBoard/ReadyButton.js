@@ -127,7 +127,7 @@ class ReadyButton extends React.Component {
     }
     this.setState({ playerReady: true });
     // this.props.postMessage({ text: `${this.props.gameNumber}` + " ready" });
-    this.props.postMessage({ text: " ready" });
+    this.props.postMessage({ text: " ready" }, this.props.token);
 
     this.startCheckingForOpponentReady();
   };
@@ -152,8 +152,9 @@ const mapStateToProps = state => {
     cruiser: state.setUpGame.placeCruiser.result,
     destroyer: state.setUpGame.placeDestroyer.result,
     submarine: state.setUpGame.placeSubmarine.result,
-    playerName: state.auth.login.result.username
+    playerName: state.auth.login.result.username,
     // gameNumber: state.auth.getGameNumber.result
+    token: state.auth.login.result.token
   };
 };
 const mapDispatchToProps = { fetchLastMessage, postMessage };

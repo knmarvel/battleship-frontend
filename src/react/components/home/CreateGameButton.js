@@ -6,7 +6,12 @@ import { withAsyncAction } from "../../HOCs";
 import { connect } from "react-redux";
 import { Redirect } from "..";
 import { WaitScreen } from "../waitScreen/";
-import { checkReadyStart } from "../../../redux/actionCreators";
+import {
+  checkReadyStart,
+  getOldMessages,
+  deleteMessage,
+  startGame
+} from "../../../redux/actionCreators";
 import "./CreateGameButton.css";
 
 class CreateGameButton extends React.Component {
@@ -14,12 +19,12 @@ class CreateGameButton extends React.Component {
     goToSetup: false,
     gameCreated: false,
     message: "",
-    gameNumber: "0"
+    gameNumber: "0",
+    hasPostedStart: false
   };
 
   componentDidMount() {
     this.checkReadyStart();
-    this.interval = setInterval(this.checkReadyStart, 5000);
   }
 
   componentWillUnmount() {
@@ -28,29 +33,55 @@ class CreateGameButton extends React.Component {
 
   handleClick = () => {
     const gameNumber = this.generateGameNumber();
-    const loginData = this.generateLoginData();
-    this.props.login(gameNumber, loginData);
+    this.props.login({ username: "playerA", password: "playerA" });
 
     this.setState({
       gameNumber: gameNumber,
       gameCreated: true,
       message: this.generateMessage(gameNumber)
     });
-    this.checkReadyStart();
+    this.interval = setInterval(this.checkReadyStart, 5000);
+  };
+
+  deleteOldMessages = () => {
+    this.props.getOldMessages("playerA").then(result => {
+      result.payload.messages.map(message =>
+        this.props.deleteMessage(message.id)
+      );
+    });
   };
 
   checkReadyStart = () => {
-    console.log("game number in state is " + this.state.gameNumber);
-    let numberOfMatches = 0;
+    if (this.props.token) {
+      if (this.state.hasPostedStart === false) {
+        if (this.state.gameNumber !== 0) {
+          this.props.startGame(this.state.gameNumber, this.props.token);
+          this.setState({ hasPostedStart: true });
+          console.log("i started " + this.state.gameNumber);
+        }
+      }
+    }
+
     this.props.checkReadyStart().then(result => {
       result.payload.messages.map(message => {
-        if (message.text === "Game " + this.state.gameNumber + " start") {
-          numberOfMatches++;
+        if (this.state.gameNumber != 0) {
+          console.log(
+            "game number in creategamebutton is " + this.state.gameNumber
+          );
+          if (message.text === "Game " + this.state.gameNumber + " start") {
+            if (message.username === "playerB") {
+              return this.setState({ goToSetup: true });
+            }
+
+            //       numberOfMatches++;
+            //     }
+            //     if (numberOfMatches === 2) {
+            //       clearInterval(this.interval);
+            //       return this.setState({ goToSetup: true });
+            //     } else return false;
+            //   });
+          }
         }
-        if (numberOfMatches === 2) {
-          clearInterval(this.interval);
-          return this.setState({ goToSetup: true });
-        } else return false;
       });
     });
   };
@@ -90,14 +121,22 @@ class CreateGameButton extends React.Component {
   }
 }
 
-// const mapStateToProps = state => {
-//   return {
-//     //example  --- selectedShip: state.selectedShip
-//   };
-// };
+const mapStateToProps = state => {
+  if (state.auth.login.result) {
+    return {
+      token: state.auth.login.result.token
+    };
+  } else return {};
+};
 
-const mapDispatchToProps = { checkReadyStart };
+const mapDispatchToProps = {
+  checkReadyStart,
+  deleteMessage,
+  getOldMessages,
+  startGame
+};
+
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(withAsyncAction("auth", "login")(CreateGameButton));

@@ -114,7 +114,7 @@ class ShipsAvailable extends React.Component {
     return (
       <React.Fragment>
         <div className="shipsAvailable">
-          <div classname="shipInstructions">/sdfjoipfsd</div>
+          <div className="shipInstructions">/sdfjoipfsd</div>
           {this.renderBattleship()}
           {this.renderCarrier()}
           {this.renderCruiser()}

@@ -3,13 +3,14 @@ import { STARTGAME, VERIFYJOIN } from "../actionTypes";
 
 const url = domain + "/messages";
 
-export const startGame = gameNumber => dispatch => {
+export const startGame = (gameNumber, token) => dispatch => {
   dispatch({
     type: STARTGAME.START
   });
-  const token = JSON.parse(localStorage.login).result.token;
-  console.log("posting a start game message for game # " + gameNumber);
+  // const token = getState().auth.login.result.token;
 
+  console.log("posting a start game message for game # " + gameNumber);
+  console.log(token);
   return fetch(url, {
     method: "POST",
     headers: { ...jsonHeaders, Authorization: "Bearer " + token },
@@ -32,7 +33,7 @@ export const verifyJoin = () => dispatch => {
     type: VERIFYJOIN.START
   });
 
-  return fetch(url + "?limit=1&offset=0", {
+  return fetch(url, {
     method: "GET",
     headers: jsonHeaders
   })
