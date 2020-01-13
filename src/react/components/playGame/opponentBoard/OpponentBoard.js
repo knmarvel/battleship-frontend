@@ -24,6 +24,11 @@ class OpponentBoard extends React.Component {
   }
 }
 
+const mapStateToProps = state => {
+  return {
+    TargetCell: state.TargetCell,
+  };
+};
 
-
+// function connect (mapStateToProps,mapDispatchToProps)
 export default OpponentBoard;
