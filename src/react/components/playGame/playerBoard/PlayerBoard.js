@@ -1,5 +1,4 @@
 import React from "react";
-
 import { PlayerBoardGrid } from ".";
 
 class PlayerBoard extends React.Component {

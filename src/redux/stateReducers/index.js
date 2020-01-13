@@ -2,6 +2,7 @@ import { combineReducers } from "redux";
 import { connectRouter } from "connected-react-router";
 import * as auth from "./auth";
 import * as messages from "./messages";
+import * as playGame from "./playGame";
 import * as setUpGame from "./setUpGame";
 import * as welcome from "./welcome";
 import * as waitScreen from "./waitScreen";
@@ -11,6 +12,7 @@ export default history =>
     router: connectRouter(history),
     auth: combineReducers(auth),
     messages: combineReducers(messages),
+    playGame: combineReducers(playGame),
     setUpGame: combineReducers(setUpGame),
     welcome: combineReducers(welcome),
     waitScreen: combineReducers(waitScreen)
