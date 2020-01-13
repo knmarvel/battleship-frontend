@@ -61,46 +61,48 @@ class ReadyButton extends React.Component {
   postMessagesOfBattleShipLocation = () => {
     const postCoordinatesMessage = this.props.postCoordinatesMessage;
     const battleshipCoordinates = this.props.battleship.coordinates;
-    //const gameNumber = this.props.gameNumber;
+    const gameNumber = this.props.gameNumber;
     battleshipCoordinates.forEach(function(coordinate) {
-      postCoordinatesMessage({ text: `battleship ${coordinate}` });
-      //postCoordinatesMessage({ text: `${gameNumber} battleship ${coordinate}` });
+      // postCoordinatesMessage({ text: `battleship ${coordinate}` });
+      postCoordinatesMessage({
+        text: `${gameNumber} battleship ${coordinate}`
+      });
     });
   };
   postMessagesOfCarrierLocation = () => {
     const postCoordinatesMessage = this.props.postCoordinatesMessage;
     const carrierCoordinates = this.props.carrier.coordinates;
-    //const gameNumber = this.props.gameNumber;
+    const gameNumber = this.props.gameNumber;
     carrierCoordinates.forEach(function(coordinate) {
-      postCoordinatesMessage({ text: `carrier ${coordinate}` });
-      //postCoordinatesMessage({ text: `${gameNumber} carrier ${coordinate}` });
+      // postCoordinatesMessage({ text: `carrier ${coordinate}` });
+      postCoordinatesMessage({ text: `${gameNumber} carrier ${coordinate}` });
     });
   };
   postMessagesOfCruiserLocation = () => {
     const postCoordinatesMessage = this.props.postCoordinatesMessage;
     const cruiserCoordinates = this.props.cruiser.coordinates;
-    //const gameNumber = this.props.gameNumber;
+    const gameNumber = this.props.gameNumber;
     cruiserCoordinates.forEach(function(coordinate) {
-      postCoordinatesMessage({ text: `cruiser ${coordinate}` });
-      //postCoordinatesMessage({ text: `${gameNumber} cruiser ${coordinate}` });
+      // postCoordinatesMessage({ text: `cruiser ${coordinate}` });
+      postCoordinatesMessage({ text: `${gameNumber} cruiser ${coordinate}` });
     });
   };
   postMessagesOfDestroyerLocation = () => {
     const postCoordinatesMessage = this.props.postCoordinatesMessage;
     const destroyerCoordinates = this.props.destroyer.coordinates;
-    //const gameNumber = this.props.gameNumber;
+    const gameNumber = this.props.gameNumber;
     destroyerCoordinates.forEach(function(coordinate) {
-      postCoordinatesMessage({ text: `destroyer ${coordinate}` });
-      //postCoordinatesMessage({ text: `${gameNumber} destroyer ${coordinate}` });
+      // postCoordinatesMessage({ text: `destroyer ${coordinate}` });
+      postCoordinatesMessage({ text: `${gameNumber} destroyer ${coordinate}` });
     });
   };
   postMessagesOfSubmarineLocation = () => {
     const postCoordinatesMessage = this.props.postCoordinatesMessage;
     const submarineCoordinates = this.props.submarine.coordinates;
-    //const gameNumber = this.props.gameNumber;
+    const gameNumber = this.props.gameNumber;
     submarineCoordinates.forEach(function(coordinate) {
-      postCoordinatesMessage({ text: `submarine ${coordinate}` });
-      //postCoordinatesMessage({ text: `${gameNumber} submarine ${coordinate}` });
+      // postCoordinatesMessage({ text: `submarine ${coordinate}` });
+      postCoordinatesMessage({ text: `${gameNumber} submarine ${coordinate}` });
     });
   };
 
@@ -131,14 +133,14 @@ class ReadyButton extends React.Component {
   };
 
   handleClick = () => {
-    console.log(this.props.gameNumber)
+    console.log(this.props.gameNumber);
     console.log("ReadyButton was clicked.");
     if (this.verifyAllShipsPlaced() === false) {
       return;
     }
     this.setState({ playerReady: true });
-    // this.props.postMessage({ text: `${this.props.gameNumber}` + " ready" });
-    this.props.postMessage({ text: " ready" });
+    this.props.postMessage({ text: `${this.props.gameNumber}` + " ready" });
+    // this.props.postMessage({ text: " ready" });
 
     this.startCheckingForOpponentReady();
   };
@@ -164,7 +166,7 @@ const mapStateToProps = state => {
     destroyer: state.setUpGame.placeDestroyer.result,
     submarine: state.setUpGame.placeSubmarine.result,
     playerName: state.auth.login.result.username,
-    gameNumber: state.welcome.startGame.result.message.text
+    gameNumber: state.welcome.startGame.result.message.text.slice(5, 9)
   };
 };
 const mapDispatchToProps = { fetchLastMessage, postMessage };
