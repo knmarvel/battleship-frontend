@@ -139,7 +139,7 @@ class ReadyButton extends React.Component {
       return;
     }
     this.setState({ playerReady: true });
-    this.props.postMessage({ text: `${this.props.gameNumber}` + " ready" });
+    this.props.postMessage({ text: `${this.props.gameNumber} ready` });
     // this.props.postMessage({ text: " ready" });
 
     this.startCheckingForOpponentReady();
