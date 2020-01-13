@@ -12,7 +12,7 @@ export const LOGOUT = createActionTypes("LOGOUT");
 
 //action type for play game
 export const FIRETORPEDO = createActionTypes("FIRETORPEDO");
-
+export const ADDCOORDINATES = createActionTypes("ADDCOORDINATES");
 //action types related to setUpGame
 export const PLACEBATTLESHIP = createActionTypes("PLACEBATTLESHIP");
 export const PLACECARRIER = createActionTypes("PLACECARRIER");

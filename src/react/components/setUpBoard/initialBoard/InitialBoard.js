@@ -16,16 +16,11 @@ class InitialBoard extends React.Component {
     console.log("ready button clicked mama");
   };
 
-  disableHeaderRows = event => {
-    if(event.target.innerHTML.length === 1){
-      console.log("header row")
-    }
-  }
   render() {
     return (
       <React.Fragment>
         <div className="newBoard">
-          <InitialBoardGrid onClick={this.disableHeaderRows}/>
+          <InitialBoardGrid />
         </div>
         <ReadyButton />
         <ClearBoardButton />

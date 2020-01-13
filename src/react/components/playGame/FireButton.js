@@ -1,14 +1,14 @@
 import React from "react";
 import { connect } from "react-redux";
-import { withAsyncAction } from "../../HOCs";
+import { fireTorpedo} from "../../../redux/index"
 //get the last cell clicked from the oppenent board
 // check state to see if player guess hit enemy ship
 //send a message to the turnHandler that a turn has been taken
 
 class FireButton extends React.Component {
     FireTorpedo = event => {
-
-        console.log("Torpedo Fired!");
+        this.props.fireTorpedo({"text": this.props.TargetCell})
+        console.log("Torpedo Fired!", this.props.TargetCell);
     };
 
     checkStateForHitMarkers(cellToCheck) {
@@ -22,14 +22,16 @@ class FireButton extends React.Component {
     }
 }
 
-// export default FireButton;
 const mapStateToProps = state => {
     return {
-        // selectedShip: state.selectedShip
+        TargetCell: state.play.addCoordinates.result,
     };
 };
-const mapDispatchToProps = {};
+
+// export default FireButton;
+const mapDispatchToProps = { fireTorpedo };
+
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(withAsyncAction("play", "fireTorpedo")(FireButton));
+)(FireButton);

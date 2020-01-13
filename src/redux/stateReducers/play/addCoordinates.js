@@ -1,4 +1,4 @@
-import { FIRETORPEDO } from "../../actionTypes";
+import { ADDCOORDINATES } from "../../actionTypes";
 import { withAsyncReducer } from "../../HORs";
 
 const initialState = {
@@ -7,11 +7,11 @@ const initialState = {
     error : null
 };
 
-const fireTorpedo = (state = initialState, action) => {
+const addCoordinates = (state = initialState, action) => {
     switch (action.type) {
         default:
             return state;
     }
 };
 
-export default withAsyncReducer(FIRETORPEDO, fireTorpedo);
+export default withAsyncReducer(ADDCOORDINATES, addCoordinates);

@@ -1,20 +1,20 @@
 import { domain, jsonHeaders, handleJsonResponse } from "./constants";
-import { FIRETORPEDO } from "../actionTypes";
-const url = domain + "/play";
+import { FIRETORPEDO, ADDCOORDINATES } from "../actionTypes";
+const url = domain + "/messages";
 
-export const FireTorpedo = messageData => dispatch => {
+export const addCoordinates = messageData => dispatch => {
     return dispatch({
-        type: FIRETORPEDO.SUCCESS,
+        type: ADDCOORDINATES.SUCCESS,
         payload: messageData
     });
 };
 
-export const postCoordinatesMessage = messageBody => (dispatch, getState) => {
+export const fireTorpedo = messageBody => (dispatch, getState) => {
     dispatch({
-        type: POSTCOORDINATESMESSAGE.START
+        type: FIRETORPEDO.START
     });
     const token = getState().auth.login.result.token;
-
+    console.log(token)
     return fetch(url, {
         method: "POST",
         headers: { Authorization: "Bearer " + token, ...jsonHeaders },
@@ -23,19 +23,19 @@ export const postCoordinatesMessage = messageBody => (dispatch, getState) => {
         .then(handleJsonResponse)
         .then(result => {
             return dispatch({
-                type: POSTCOORDINATESMESSAGE.SUCCESS,
+                type: FIRETORPEDO.SUCCESS,
                 payload: result
             });
         })
         .catch(err => {
             if (err.statusCode === 401) {
                 return dispatch({
-                    type: POSTCOORDINATESMESSAGE.SUCCESS,
+                    type: FIRETORPEDO.SUCCESS,
                     payload: { statusCode: 200 }
                 });
             }
             return Promise.reject(
-                dispatch({ type: POSTCOORDINATESMESSAGE.FAIL, payload: err.message })
+                dispatch({ type: FIRETORPEDO.FAIL, payload: err.message })
             );
         });
 };
