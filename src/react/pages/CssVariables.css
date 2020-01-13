@@ -9,16 +9,6 @@
   /* images */
   background-image: url(../../Battleship-image/backgroundimage.jpg);
 
-  --horizontalBattleship: url(../../Battleship-image/ships/4Horizontal.PNG);
-  --verticalBattleship: url(../../Battleship-image/ships/4Vertical.PNG);
-  --horizontalCarrier: url(../../Battleship-image/ships/5Horizontal.PNG);
-  --verticalCarrier: url(../../Battleship-image/ships/5Vertical.PNG);
-  --horizontalCruiser: url(../../Battleship-image/ships/3Horizontal.PNG);
-  --verticalCruiser: url(../../Battleship-image/ships/3Vertical.PNG);
-  --horizontalDestroyer: url(../../Battleship-image/ships/2Horizontal.PNG);
-  --verticalDestroyer: url(../../Battleship-image/ships/2Vertical.PNG);
-  --horizontalSubmarine: url(../../Battleship-image/ships/2Horizontal.PNG);
-  --verticalSubmarine: url(../../Battleship-image/ships/2Vertical.PNG);
   --shipSquare: 6;
 
   /*text colors */
@@ -43,7 +33,7 @@
   --battleshipPurple: #6866ee;
   --battleshipRed: #ea4600;
   --battleshipNavy: #364d6f;
-  --battleshipNavyBackground: #364d6f90;
+  --battleshipNavyBackground: #a2b1c7ee;
   --battleshipBlueColumnLines: #3fa3e9;
 
   /* changing cursors */

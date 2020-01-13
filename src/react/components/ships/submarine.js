@@ -3,8 +3,8 @@
 //own ships on their half of the board
 
 import React from "react";
-import submarineHorizontal from "../../../Battleship-image/ships/submarineHorizontal.PNG";
-import submarineVertical from "../../../Battleship-image/ships/submarineVertical.PNG";
+import submarineHorizontal from "../../../Battleship-image/ships/horizShip3.PNG";
+import submarineVertical from "../../../Battleship-image/ships/vertShip3.PNG";
 import { connect } from "../../HOCs";
 import { selectShip } from "../../../redux/index";
 
