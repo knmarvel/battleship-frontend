@@ -25,6 +25,7 @@ class Battleship extends React.Component {
   };
 
   onShipClick = () => {
+    document.body.style.cursor = "url('/missToken.png'), help"
     this.props.selectShip({
       name: this.state.name,
       length: this.state.length,
