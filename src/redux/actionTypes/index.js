@@ -32,3 +32,9 @@ export const VERIFYJOIN = createActionTypes("VERIFYJOIN");
 
 export const CHECKREADYSTART = createActionTypes("CHECKREADYSTART");
 export const POSTMESSAGE = createActionTypes("POSTMESSAGE");
+
+//action types related to game play
+
+export const DELETELASTTORPEDOMESSAGE = createActionTypes(
+  "DELETELASTTORPEDOMESSAGE"
+);

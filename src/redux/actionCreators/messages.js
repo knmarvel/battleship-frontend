@@ -1,6 +1,10 @@
 // post a single message.  text: XXXX + words/message, where XXXX = game number
 import { domain, jsonHeaders, handleJsonResponse } from "./constants";
-import { POSTMESSAGE, FETCHLASTMESSAGE } from "../actionTypes";
+import {
+  POSTMESSAGE,
+  FETCHLASTMESSAGE,
+  DELETELASTTORPEDOMESSAGE
+} from "../actionTypes";
 
 const url = domain + "/messages";
 
@@ -48,6 +52,29 @@ export const fetchLastMessage = playerName => dispatch => {
     .catch(err => {
       return Promise.reject(
         dispatch({ type: FETCHLASTMESSAGE.FAIL, payload: err })
+      );
+    });
+};
+
+export const deleteLastTorpedoMessage = messageId => dispatch => {
+  dispatch({
+    type: DELETELASTTORPEDOMESSAGE.START
+  });
+  const token = JSON.parse(localStorage.login).result.token;
+  return fetch(url + "/" + messageId, {
+    method: "DELETE",
+    headers: { ...jsonHeaders, Authorization: "Bearer " + token }
+  })
+    .then(handleJsonResponse)
+    .then(result => {
+      return dispatch({
+        type: DELETELASTTORPEDOMESSAGE.SUCCESS,
+        payload: result
+      });
+    })
+    .catch(err => {
+      return Promise.reject(
+        dispatch({ type: DELETELASTTORPEDOMESSAGE.FAIL, payload: err })
       );
     });
 };
