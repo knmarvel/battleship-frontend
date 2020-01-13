@@ -10,8 +10,10 @@ const createActionTypes = actionName => {
 export const LOGIN = createActionTypes("LOGIN");
 export const LOGOUT = createActionTypes("LOGOUT");
 
+//action type for play game
+export const FIRETORPEDO = createActionTypes("FIRETORPEDO");
+export const ADDCOORDINATES = createActionTypes("ADDCOORDINATES");
 //action types related to setUpGame
-
 export const PLACEBATTLESHIP = createActionTypes("PLACEBATTLESHIP");
 export const PLACECARRIER = createActionTypes("PLACECARRIER");
 export const PLACECRUISER = createActionTypes("PLACECRUISER");
@@ -19,9 +21,7 @@ export const PLACEDESTROYER = createActionTypes("PLACEDESTROYER");
 export const PLACESUBMARINE = createActionTypes("PLACESUBMARINE");
 export const SELECTSHIP = createActionTypes("SELECTSHIP");
 export const FETCHLASTMESSAGE = createActionTypes("FETCHLASTMESSAGE");
-export const POSTCOORDINATESMESSAGE = createActionTypes(
-  "POSTCOORDINATESMESSAGE"
-);
+export const POSTCOORDINATESMESSAGE = createActionTypes("POSTCOORDINATESMESSAGE");
 
 //action types related to welcome
 
