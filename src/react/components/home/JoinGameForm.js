@@ -4,18 +4,21 @@ import { withAsyncAction } from "../../HOCs";
 import { Redirect } from "../";
 import { connect } from "react-redux";
 import {
-  verifyJoin,
-  deleteMessage,
+  // deleteMessage,
   getOldMessages,
   startGame,
   login
 } from "../../../redux/actionCreators";
+import { WaitScreen } from "../waitScreen";
 
 class JoinGameForm extends React.Component {
   state = {
     value: "",
     goToSetup: false,
-    loginData: {}
+    loginData: {},
+    lookingForMatch: false,
+    message: "Searching for your game...",
+    hasStartedGame: false
   };
   componentWillUnmount() {
     clearInterval(this.interval);
@@ -27,7 +30,11 @@ class JoinGameForm extends React.Component {
 
   handleJoin = e => {
     e.preventDefault();
+    console.log("handleJoin has started");
     this.props.login({ username: "playerB", password: "playerB" });
+    console.log("handleJoin says we have logged in as player B");
+    this.setState({ lookingForMatch: true });
+    console.log("handleJoin set state of lookingForMatch: true");
     // setTimeout(function() {
     //   return true;
     // }, 20000);
@@ -39,22 +46,29 @@ class JoinGameForm extends React.Component {
   };
 
   waitToBeLoggedIn = () => {
-    if (this.props.token) {
+    console.log("waitToBeLoggedIn started");
+    if (this.state.hasStartedGame === false) {
       this.props.startGame(this.state.value, this.props.token);
+      console.log("waitToBeLoggedIn ran startGame");
+      this.setState({ hasStartedGame: true });
+    }
+    if (this.props.token) {
+      console.log("waitToBeLoggedIn detected a token");
       this.checkGameNumber();
+      console.log("waitToBeLoggedIn ran checkGameNumber()");
       return true;
     } else {
       return false;
     }
   };
 
-  deleteOldMessages = () => {
-    this.props.getOldMessages("playerB").then(result => {
-      result.payload.messages.map(message =>
-        this.props.deleteMessage(message.id)
-      );
-    });
-  };
+  // deleteOldMessages = () => {
+  //   this.props.getOldMessages("playerB").then(result => {
+  //     result.payload.messages.map(message =>
+  //       this.props.deleteMessage(message.id)
+  //     );
+  //   });
+  // };
 
   // generateLoginData = () => {
   //   return this.setState({
@@ -63,20 +77,39 @@ class JoinGameForm extends React.Component {
   // };
 
   checkGameNumber = () => {
-    this.props.verifyJoin().then(
+    console.log("starting function 'this.checkGameNumber'");
+    this.props
+      .getOldMessages("playerA")
       //=====================================
       //stopping point for janell:
       // i'm doing this map (below) incorrectly
       //==================================
-      (result.map(message) = () => {
-        if (message.text === "Game " + this.state.gameNumber + " start") {
-          if (message.username === "playerA") {
-            console.log("game number matches");
-            return this.setState({ goToSetup: true });
+      .then(result => {
+        console.log(result.payload.messages);
+        console.log("looking for game# " + this.state.value);
+        let matchingMessage = result.payload.messages.map(message => {
+          if (message.text === "Game " + this.state.value + " start") {
+            console.log(
+              message.text + " says that we have a message with the game number"
+            );
+            if (message.username === "playerA") {
+              console.log("and it is from playerA");
+              console.log("game number matches");
+              this.setState({ goToSetup: true });
+              console.log("gotosetup is now true");
+            }
           }
-        } else return alert("wrong number");
+          return matchingMessage;
+        });
       })
-    );
+      .then(result => {
+        console.log(result);
+        if (result) {
+          console.log("match found");
+        } else {
+          console.log("no match found");
+        }
+      });
   };
 
   render() {
@@ -86,6 +119,10 @@ class JoinGameForm extends React.Component {
     }
     return (
       <React.Fragment>
+        {this.state.lookingForMatch && (
+          <WaitScreen message={this.state.message} />
+        )}
+
         <form id="login-form" onSubmit={this.handleJoin}>
           <button type="submit" disabled={loading}>
             Join Game
@@ -115,8 +152,7 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = {
-  verifyJoin,
-  deleteMessage,
+  // deleteMessage,
   getOldMessages,
   startGame,
   login

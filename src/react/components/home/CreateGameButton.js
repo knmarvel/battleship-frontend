@@ -8,8 +8,8 @@ import { Redirect } from "..";
 import { WaitScreen } from "../waitScreen/";
 import {
   checkReadyStart,
-  getOldMessages,
-  deleteMessage,
+  // getOldMessages,
+  // deleteMessage,
   startGame
 } from "../../../redux/actionCreators";
 import "./CreateGameButton.css";
@@ -43,18 +43,24 @@ class CreateGameButton extends React.Component {
     this.interval = setInterval(this.checkReadyStart, 5000);
   };
 
-  deleteOldMessages = () => {
-    this.props.getOldMessages("playerA").then(result => {
-      result.payload.messages.map(message =>
-        this.props.deleteMessage(message.id)
-      );
-    });
-  };
+  // deleteOldMessages = () => {
+  //   this.props.getOldMessages("playerA").then(result => {
+  //     result.payload.messages.map(message =>
+  //       this.props.deleteMessage(message.id)
+  //     );
+  //   });
+  // };
 
   checkReadyStart = () => {
+    console.log("checkReadyStart has started");
     if (this.props.token) {
+      console.log("checkReadyStart says the user has a token");
       if (this.state.hasPostedStart === false) {
-        if (this.state.gameNumber !== 0) {
+        console.log("checkReadyStart says that hasPostedStart === false");
+        if (this.state.gameNumber !== "0") {
+          console.log(
+            "checkReadyStart says that the game number in state is not '0'"
+          );
           this.props.startGame(this.state.gameNumber, this.props.token);
           this.setState({ hasPostedStart: true });
           console.log("i started " + this.state.gameNumber);
@@ -64,24 +70,17 @@ class CreateGameButton extends React.Component {
 
     this.props.checkReadyStart().then(result => {
       result.payload.messages.map(message => {
-        if (this.state.gameNumber != 0) {
+        if (this.state.gameNumber !== "0") {
           console.log(
             "game number in creategamebutton is " + this.state.gameNumber
           );
           if (message.text === "Game " + this.state.gameNumber + " start") {
             if (message.username === "playerB") {
-              return this.setState({ goToSetup: true });
+              this.setState({ goToSetup: true });
             }
-
-            //       numberOfMatches++;
-            //     }
-            //     if (numberOfMatches === 2) {
-            //       clearInterval(this.interval);
-            //       return this.setState({ goToSetup: true });
-            //     } else return false;
-            //   });
           }
         }
+        return message.text;
       });
     });
   };
@@ -131,8 +130,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = {
   checkReadyStart,
-  deleteMessage,
-  getOldMessages,
+  // deleteMessage,
+  // getOldMessages,
   startGame
 };
 

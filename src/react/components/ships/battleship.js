@@ -3,11 +3,11 @@
 //own ships on their half of the board
 
 import React from "react";
-import battleshipHorizontal from "../../../Battleship-image/ships/horizShip4.PNG";
-import battleshipVertical from "../../../Battleship-image/ships/vertShip4.PNG";
+import battleshipHorizontal from "../../../Battleship-image/ships/horizShip4.png";
+import battleshipVertical from "../../../Battleship-image/ships/vertShip4.png";
 import { connect } from "../../HOCs";
 import { selectShip } from "../../../redux/index";
-import cursor from "./cursor.png"
+// import cursor from "./cursor.png";
 
 class Battleship extends React.Component {
   state = {
