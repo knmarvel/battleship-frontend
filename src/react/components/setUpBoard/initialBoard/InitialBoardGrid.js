@@ -2,7 +2,6 @@ import React from "react";
 import InitialBoardSquare from "./InitialBoardSquare";
 import { connect } from "../../../HOCs";
 
-
 import {
   placeBattleship,
   placeCarrier,
@@ -138,9 +137,12 @@ class InitialBoardGrid extends React.Component {
     };
     if (orientation === "horizontal") {
       for (let shipSegment = 0; shipSegment < length; shipSegment++) {
-        if (this.targetColumn * 1 + shipSegment > 10
-          || this.doesAShipResideHereAndIfSoWhichOne(this.targetRow + (this.targetColumn * 1 + shipSegment))
-          ) {
+        if (
+          this.targetColumn * 1 + shipSegment > 10 ||
+          this.doesAShipResideHereAndIfSoWhichOne(
+            this.targetRow + (this.targetColumn * 1 + shipSegment)
+          )
+        ) {
           return null;
         }
         positionArray.push(
@@ -150,9 +152,12 @@ class InitialBoardGrid extends React.Component {
     } else {
       let rowIndex = this.rowLabels.indexOf(this.targetRow);
       for (let shipSegment = 0; shipSegment < length; shipSegment++) {
-        if (rowIndex + shipSegment > 10
-          || this.doesAShipResideHereAndIfSoWhichOne(this.rowLabels[rowIndex + shipSegment] + this.targetColumn)
-          ) {
+        if (
+          rowIndex + shipSegment > 10 ||
+          this.doesAShipResideHereAndIfSoWhichOne(
+            this.rowLabels[rowIndex + shipSegment] + this.targetColumn
+          )
+        ) {
           return null;
         }
         positionArray.push(
