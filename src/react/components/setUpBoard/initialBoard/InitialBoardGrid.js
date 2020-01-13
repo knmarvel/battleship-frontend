@@ -35,10 +35,17 @@ class InitialBoardGrid extends React.Component {
         value={label}
         isShip={isShip}
         onClick={this.handleClick}
+        // onClick={this.checkForHeader}
         key={label}
       />
     );
   };
+
+  checkForHeader = e => {
+    if (e.target.innerHTML.length === 1){
+      console.log("test");
+    }
+  }
 
   drawRow = (newRow, rowLabel) => {
     return <div key={rowLabel}>{newRow}</div>;
