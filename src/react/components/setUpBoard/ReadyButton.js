@@ -166,7 +166,8 @@ const mapStateToProps = state => {
     destroyer: state.setUpGame.placeDestroyer.result,
     submarine: state.setUpGame.placeSubmarine.result,
     playerName: state.auth.login.result.username,
-    gameNumber: state.setUpGame.getGameNumber.result
+    gameNumber: state.setUpGame.getGameNumber.result,
+    token: state.auth.login.result.token
   };
 };
 const mapDispatchToProps = { fetchLastMessage, postMessage };

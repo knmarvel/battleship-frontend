@@ -3,8 +3,8 @@
 //own ships on their half of the board
 
 import React from "react";
-import carrierHorizontal from "../../../Battleship-image/ships/horizShip5.PNG";
-import carrierVertical from "../../../Battleship-image/ships/vertShip5.PNG";
+import carrierHorizontal from "../../../Battleship-image/ships/horizShip5.png";
+import carrierVertical from "../../../Battleship-image/ships/vertShip5.png";
 import { connect } from "../../HOCs";
 import { selectShip } from "../../../redux/index";
 
