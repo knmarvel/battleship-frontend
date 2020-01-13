@@ -7,7 +7,7 @@ import battleshipHorizontal from "../../../Battleship-image/ships/horizShip4.png
 import battleshipVertical from "../../../Battleship-image/ships/vertShip4.png";
 import { connect } from "../../HOCs";
 import { selectShip } from "../../../redux/index";
-import cursor from "./cursor.png";
+// import cursor from "./cursor.png";
 
 class Battleship extends React.Component {
   state = {
@@ -25,6 +25,7 @@ class Battleship extends React.Component {
   };
 
   onShipClick = () => {
+    document.body.style.cursor = "url(./battleshipHorizontalCursor.PNG),help";
     this.props.selectShip({
       name: this.state.name,
       length: this.state.length,

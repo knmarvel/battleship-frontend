@@ -1,10 +1,10 @@
 import { domain, jsonHeaders, handleJsonResponse } from "./constants";
 import { LOGIN, LOGOUT } from "../actionTypes";
-import { startGame } from ".";
+// import { startGame } from ".";
 
 const url = domain + "/auth";
 
-export const _login = loginData => dispatch => {
+export const login = loginData => dispatch => {
   dispatch({
     type: LOGIN.START
   });
@@ -26,19 +26,19 @@ export const _login = loginData => dispatch => {
     });
 };
 
-export const login = (gameNumber, loginData) => dispatch => {
-  return dispatch(_login(loginData)).then(() => {
-    console.log("player should be logged in as " + loginData.username);
-    return dispatch(startGame(gameNumber));
-  });
-};
+// export const login = (gameNumber, loginData) => dispatch => {
+//   return dispatch(_login(loginData)).then(() => {
+//     console.log("player should be logged in as " + loginData.username);
+//     return dispatch(startGame(gameNumber));
+//   });
+// };
 
-export const logout = () => (dispatch, getState) => {
+export const logout = token => (dispatch, getState) => {
   dispatch({
     type: LOGOUT.START
   });
 
-  const token = getState().auth.login.result.token;
+  // const token = getState().auth.login.result.token;
 
   return fetch(url + "/logout", {
     method: "GET",
@@ -52,6 +52,12 @@ export const logout = () => (dispatch, getState) => {
       });
     })
     .catch(err => {
+      if (err.statusCode === 401) {
+        return dispatch({
+          type: LOGOUT.SUCCESS,
+          payload: { statusCode: 200 }
+        });
+      }
       return Promise.reject(
         dispatch({ type: LOGOUT.FAIL, payload: err.message })
       );
