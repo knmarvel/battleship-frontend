@@ -1,6 +1,16 @@
 import React from "react";
 import PlayerBoardSquare from "./PlayerBoardSquare";
 import { connect } from "../../../HOCs";
+// import horizontalDestroyer from "../../../../Battleship-image/ships/horizShip1.PNG"
+// import horizontalCruiser from "../../../../Battleship-image/ships/horizShip2.PNG"
+// import horizontalSubmarine from "../../../../Battleship-image/ships/horizShip3.PNG"
+// import horizontalBattleship from "../../../../Battleship-image/ships/horizShip4.PNG"
+// import horizontalCarrier from "../../../../Battleship-image/ships/horizShip5.PNG"
+// import verticalDestroyer from "../../../../Battleship-image/ships/vertShip1.PNG"
+// import verticalCruiser from "../../../../Battleship-image/ships/vertShip2.PNG"
+// import verticalSubmarine from "../../../../Battleship-image/ships/vertShip3.PNG"
+// import verticalBattleship from "../../../../Battleship-image/ships/vertShip4.PNG"
+// import verticalCarrier from "../../../../Battleship-image/ships/vertShip5.PNG"
 
 
 // import {
@@ -19,6 +29,8 @@ class PlayerBoardGrid extends React.Component {
   rowLabels = [" ", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J"];
   targetRow = null;
   targetColumn = null;
+  
+
 
   drawSquare = (label, isShip) => {
     return <PlayerBoardSquare value={label} isShip={isShip} key={label} />;
@@ -28,6 +40,8 @@ class PlayerBoardGrid extends React.Component {
     return <div key={rowLabel}>{newRow}</div>;
   };
 
+
+
   doesAShipResideHereAndIfSoWhichOne = coordinates => {
     if (this.props.battleshipPosition !== null) {
       if (this.props.battleshipPosition.coordinates.includes(coordinates)) {
@@ -36,6 +50,7 @@ class PlayerBoardGrid extends React.Component {
     }
 
     if (this.props.carrierPosition !== null) {
+      this.carrierLocation = []
       if (this.props.carrierPosition.coordinates.includes(coordinates)) {
         return true;
       }

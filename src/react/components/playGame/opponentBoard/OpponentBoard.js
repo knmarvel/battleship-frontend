@@ -1,15 +1,19 @@
 import React from "react";
-
+import { connect } from "react-redux";
+// import { withAsyncAction } from "../../../HOCs";
 import { OpponentBoardGrid } from ".";
 import { WaitScreen } from "../../waitScreen";
 import { connect, withAsyncAction } from "../../../HOCs";
 import { postMessage } from "../../../../redux/index";
+import { fireTorpedo, addCoordinates } from "../../../../redux/index";
+// import {addCoordinates} from "../../../../redux/index"
 
 class OpponentBoard extends React.Component {
   state = {
     opponentTurn: false,
     message: "Waiting for your opponent to take a turn...",
-    opponentTorpedoCoordinates: ""
+    opponentTorpedoCoordinates: "",
+    TargetCell: ""
   };
 
   componentDidMount = () => {
@@ -55,16 +59,22 @@ class OpponentBoard extends React.Component {
     }
   };
 
+  clickHandler = event => {
+    console.log("test Fire " + event.target.innerHTML);
+    this.setState({ TargetCell: event.target.innerHTML });
+    this.props.addCoordinates(this.state.TargetCell);
+  };
+
   render() {
     return (
       <React.Fragment>
         {this.state.opponentTurn && <WaitScreen message={this.state.message} />}
 
-        <div className="newBoard">
+        <div className="newBoard" onClick={this.clickHandler}>
           Opponent Board
           <OpponentBoardGrid />
-          <button onClick={this.toggleTurn}>Toggle turn</button>
         </div>
+        <button onClick={this.toggleTurn}>Toggle turn</button>
       </React.Fragment>
     );
   }
@@ -75,20 +85,16 @@ const mapStateToProps = state => {
     return {
       playerName: state.auth.login.result.username,
       token: state.auth.login.result.token,
-      opponentTorpedoCoordinates: state.play
+      opponentTorpedoCoordinates: state.play,
+      TargetCell: state.play.TargetCell
     };
   } else return {};
 };
 
 const mapDispatchToProps = {
-  // checkReadyStart,
-  // deleteMessage,
-  // getOldMessages,
-  // startGame
-  postMessage
+  postMessage,
+  fireTorpedo,
+  addCoordinates
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(withAsyncAction("auth", "login")(OpponentBoard));
+export default connect(mapStateToProps, mapDispatchToProps)(OpponentBoard);

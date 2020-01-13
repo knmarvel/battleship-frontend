@@ -7,7 +7,10 @@ export default function PlayerBoardSquare(props) {
   }
 
   return (
-    <button className={nameOfClass} onClick={props.onClick} key={props.value}>
+    <button 
+      className={nameOfClass} 
+      onClick={props.onClick} 
+      key={props.value}>
       {props.value}
     </button>
   );
