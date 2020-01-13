@@ -46,6 +46,12 @@
   margin: 4vh;
 }
 
+.shipInstructions {
+  background-color: white;
+  height: 5em;
+  width: 5em;
+}
+
 .availableShip :hover {
   cursor: url(/Battleship-image/ships/battleshipHorizontal.PNG), auto;
 }
