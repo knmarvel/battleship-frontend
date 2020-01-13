@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 // import { withAsyncAction } from "../../../HOCs";
 import { OpponentBoardGrid } from ".";
 import { WaitScreen } from "../../waitScreen";
-import { connect, withAsyncAction } from "../../../HOCs";
 import { postMessage } from "../../../../redux/index";
 import { fireTorpedo, addCoordinates } from "../../../../redux/index";
 // import {addCoordinates} from "../../../../redux/index"
