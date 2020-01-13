@@ -3,11 +3,11 @@ import { STARTGAME } from "../actionTypes";
 
 const url = domain + "/messages";
 
-export const startGame = (gameNumber, token) => dispatch => {
+export const startGame = gameNumber => (dispatch, getState) => {
   dispatch({
     type: STARTGAME.START
   });
-  // const token = getState().auth.login.result.token;
+  const token = getState().auth.login.result.token;
 
   console.log("posting a start game message for game # " + gameNumber);
   console.log(token);

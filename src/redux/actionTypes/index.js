@@ -19,10 +19,6 @@ export const PLACEDESTROYER = createActionTypes("PLACEDESTROYER");
 export const PLACESUBMARINE = createActionTypes("PLACESUBMARINE");
 export const SELECTSHIP = createActionTypes("SELECTSHIP");
 export const FETCHLASTMESSAGE = createActionTypes("FETCHLASTMESSAGE");
-export const POSTCOORDINATESMESSAGE = createActionTypes(
-  "POSTCOORDINATESMESSAGE"
-);
-export const GETGAMENUMBER = createActionTypes("GETGAMENUMBER");
 
 //action types related to welcome
 
