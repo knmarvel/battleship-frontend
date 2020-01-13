@@ -3,9 +3,7 @@ import React from "react";
 import { PlayerBoardGrid } from ".";
 
 class PlayerBoard extends React.Component {
-  handleReadyClick = () => {
-    console.log("ready button clicked mama");
-  };
+  handleReadyClick = () => {};
 
   render() {
     return (

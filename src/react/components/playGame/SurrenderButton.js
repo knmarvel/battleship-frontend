@@ -13,20 +13,30 @@ class SurrenderButton extends React.Component {
     //=================================================================
 
     // delete old messages function below:
+    //
+    //
+    //  DELETE OLD MESSAGES DOES NOT ACTUALLY WORK TO DELETE ANYTHING
+    //
+    //
+    //=================================================================
 
     var goHome = window.confirm("Click OK to be redirected to the home page.");
     if (goHome) {
+      console.log("deleting old messages");
       this.deleteOldMessages();
-      window.location.href = "/";
+      // window.location.href = "/";
     }
   };
 
   deleteOldMessages = () => {
-    this.props.getOldMessages(this.props.playerName).then(result => {
-      result.payload.messages.map(message =>
-        this.props.deleteMessage(message.id, this.props.token)
-      );
-    });
+    this.props
+      .getOldMessages(this.props.playerName)
+      .then(result => {
+        result.payload.messages.map(message =>
+          this.props.deleteMessage(message.id, this.props.token)
+        );
+      })
+      .then((window.location.href = "/"));
   };
 
   onCancel = () => {
