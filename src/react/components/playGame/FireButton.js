@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { fireTorpedo} from "../../../redux/index"
+import { fireTorpedo , getOldMessages } from "../../../redux/index"
 //get the last cell clicked from the oppenent board
 // check state to see if player guess hit enemy ship
 //send a message to the turnHandler that a turn has been taken
@@ -9,7 +9,6 @@ class FireButton extends React.Component {
     FireTorpedo = event => {
         this.props.fireTorpedo({"text": this.props.TargetCell})
     
-        console.log("Torpedo " + this.props.TargetCell +" Fired!");
     };
 
     checkStateForHitMarkers(cellToCheck) {
@@ -30,7 +29,7 @@ const mapStateToProps = state => {
 };
 
 // export default FireButton;
-const mapDispatchToProps = { fireTorpedo };
+const mapDispatchToProps = { fireTorpedo, getOldMessages };
 
 export default connect(
     mapStateToProps,

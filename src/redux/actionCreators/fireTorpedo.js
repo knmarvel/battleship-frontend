@@ -39,3 +39,28 @@ export const fireTorpedo = messageBody => (dispatch, getState) => {
             );
         });
 };
+
+
+const torpedoHit = messageId => (dispatch, getState) => {
+    dispatch({
+      type: TORPEDOHIT.START
+    });
+  
+    const token = getState().auth.login.result.token;
+  
+    return fetch(url, {
+      method: "POST",
+      headers: { Authorization: "Bearer " + token, ...jsonHeaders },
+      body: JSON.stringify({ messageId })
+    })
+      .then(handleJsonResponse)
+      .then(result => {
+        return dispatch({
+          type: ADDLIKE.SUCCESS,
+          payload: result
+        });
+      })
+      .catch(err => {
+        return Promise.reject(dispatch({ type: ADDLIKE.FAIL, payload: err }));
+      });
+  };
