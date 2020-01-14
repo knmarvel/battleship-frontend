@@ -1,18 +1,22 @@
 // post a single message.  text: XXXX + words/message, where XXXX = game number
 import { domain, jsonHeaders, handleJsonResponse } from "./constants";
-import { POSTMESSAGE, FETCHLASTMESSAGE } from "../actionTypes";
-import { DELETEMESSAGE, GETOLDMESSAGES } from "../actionTypes";
+import {
+  POSTMESSAGE,
+  FETCHLASTMESSAGE,
+  DELETEMESSAGE,
+  GETOLDMESSAGES
+} from "../actionTypes";
 
 const url = domain + "/messages";
 // const token = JSON.parse(localStorage.login).result.token;
 
 //battleship-capstone-api.herokuapp.com/messages
 
-export const postMessage = (messageData, token) => dispatch => {
+export const postMessage = messageData => (dispatch, getState) => {
   dispatch({
     type: POSTMESSAGE.START
   });
-
+  const token = getState().auth.login.result.token;
   return fetch(url, {
     method: "POST",
     headers: { ...jsonHeaders, Authorization: "Bearer " + token },

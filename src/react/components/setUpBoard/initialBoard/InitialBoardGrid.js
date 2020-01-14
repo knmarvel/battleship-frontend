@@ -28,7 +28,7 @@ class InitialBoardGrid extends React.Component {
     console.log(this.state.playerName);
   };
 
-  drawSquare = (label, isShip) => {
+  drawSquare = (label, isShip, isHeader) => {
     return (
       <InitialBoardSquare
         value={label}
@@ -38,6 +38,12 @@ class InitialBoardGrid extends React.Component {
       />
     );
   };
+
+  checkForHeader = e => {
+    if (e.target.innerHTML.length === 1){
+      console.log("test");
+    }
+  }
 
   drawRow = (newRow, rowLabel) => {
     return <div key={rowLabel}>{newRow}</div>;
@@ -106,6 +112,7 @@ class InitialBoardGrid extends React.Component {
     switch (this.props.activeShip.name) {
       case "battleship":
         this.props.placeBattleship(position);
+
         this.props.selectShip(null);
         break;
       case "carrier":

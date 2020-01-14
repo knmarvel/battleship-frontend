@@ -7,8 +7,13 @@
 import React from "react";
 import { connect, withAsyncAction } from "../../HOCs";
 import { Redirect } from "../index";
-import { fetchLastMessage, postMessage } from "../../../redux/index";
+import {
+  fetchLastMessage,
+  getOldMessages,
+  startBoard
+} from "../../../redux/index";
 import { WaitScreen } from "../waitScreen";
+import { boards } from ".";
 
 class ReadyButton extends React.Component {
   state = {
@@ -27,10 +32,6 @@ class ReadyButton extends React.Component {
       this.setState({ opponentName: "playerB" });
     } else if (this.props.playerName === "playerB") {
       this.setState({ opponentName: "playerA" });
-    } else {
-      console.log(
-        "cannot set opponent name because playername is not playerA or playerB"
-      );
     }
   };
 
@@ -59,38 +60,70 @@ class ReadyButton extends React.Component {
     }
   };
   postMessagesOfBattleShipLocation = () => {
-    const postCoordinatesMessage = this.props.postCoordinatesMessage;
+    const postMessage = this.props.postMessage;
+    const startBoard = this.props.startBoard;
     const battleshipCoordinates = this.props.battleship.coordinates;
+    const gameNumber = this.props.gameNumber;
+    const playerName = this.props.playerName;
     battleshipCoordinates.forEach(function(coordinate) {
-      postCoordinatesMessage({ text: `battleship ${coordinate}` });
+      postMessage({
+        text: `${gameNumber} battleship ${coordinate}`
+      });
+      boards[playerName][coordinate].ship = "battleship";
+      startBoard(boards);
     });
   };
+
   postMessagesOfCarrierLocation = () => {
-    const postCoordinatesMessage = this.props.postCoordinatesMessage;
+    const postMessage = this.props.postMessage;
     const carrierCoordinates = this.props.carrier.coordinates;
+    const gameNumber = this.props.gameNumber;
+    const playerName = this.props.playerName;
     carrierCoordinates.forEach(function(coordinate) {
-      postCoordinatesMessage({ text: `carrier ${coordinate}` });
+      postMessage({
+        text: `${gameNumber} carrier ${coordinate}`
+      });
+      boards[playerName][coordinate].ship = "carrier";
+      startBoard(boards);
     });
   };
   postMessagesOfCruiserLocation = () => {
-    const postCoordinatesMessage = this.props.postCoordinatesMessage;
+    const postMessage = this.props.postMessage;
     const cruiserCoordinates = this.props.cruiser.coordinates;
+    const gameNumber = this.props.gameNumber;
+    const playerName = this.props.playerName;
     cruiserCoordinates.forEach(function(coordinate) {
-      postCoordinatesMessage({ text: `cruiser ${coordinate}` });
+      postMessage({
+        text: `${gameNumber} cruiser ${coordinate}`
+      });
+      boards[playerName][coordinate].ship = "cruiser";
+      startBoard(boards);
     });
   };
   postMessagesOfDestroyerLocation = () => {
-    const postCoordinatesMessage = this.props.postCoordinatesMessage;
+    const postMessage = this.props.postMessage;
     const destroyerCoordinates = this.props.destroyer.coordinates;
+    const gameNumber = this.props.gameNumber;
+    const playerName = this.props.playerName;
     destroyerCoordinates.forEach(function(coordinate) {
-      postCoordinatesMessage({ text: `destroyer ${coordinate}` });
+      postMessage({
+        text: `${gameNumber} destroyer ${coordinate}`
+      });
+      boards[playerName][coordinate].ship = "destroyer";
+      startBoard(boards);
     });
   };
   postMessagesOfSubmarineLocation = () => {
-    const postCoordinatesMessage = this.props.postCoordinatesMessage;
+    const postMessage = this.props.postMessage;
     const submarineCoordinates = this.props.submarine.coordinates;
+    const gameNumber = this.props.gameNumber;
+    const playerName = this.props.playerName;
     submarineCoordinates.forEach(function(coordinate) {
-      postCoordinatesMessage({ text: `submarine ${coordinate}` });
+      postMessage({
+        text: `${gameNumber} submarine ${coordinate}`
+      });
+      boards[playerName][coordinate].ship = "submarine";
+      startBoard(boards);
     });
   };
 
@@ -116,20 +149,23 @@ class ReadyButton extends React.Component {
   };
 
   redirectToPlayGame = () => {
-    console.log("redirectiong to /play");
+    this.props.getOldMessages(this.state.opponentName);
+    console.log("redirecting to /play");
     this.setState({ redirect: true });
   };
 
   handleClick = () => {
+    console.log(this.props.gameNumber);
     console.log("ReadyButton was clicked.");
     if (this.verifyAllShipsPlaced() === false) {
       return;
     }
     this.setState({ playerReady: true });
-    // this.props.postMessage({ text: `${this.props.gameNumber}` + " ready" });
-    this.props.postMessage({ text: " ready" }, this.props.token);
+    this.props.postMessage({ text: `${this.props.gameNumber} ready` });
+    // this.props.postMessage({ text: " ready" });
 
     this.startCheckingForOpponentReady();
+  
   };
 
   render() {
@@ -153,12 +189,17 @@ const mapStateToProps = state => {
     destroyer: state.setUpGame.placeDestroyer.result,
     submarine: state.setUpGame.placeSubmarine.result,
     playerName: state.auth.login.result.username,
-    // gameNumber: state.auth.getGameNumber.result
-    token: state.auth.login.result.token
+    gameNumber: state.welcome.startGame.result
+      ? state.welcome.startGame.result.message.text.slice(5, 9)
+      : undefined
   };
 };
-const mapDispatchToProps = { fetchLastMessage, postMessage };
+const mapDispatchToProps = {
+  fetchLastMessage,
+  getOldMessages,
+  startBoard
+};
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(withAsyncAction("setUpGame", "postCoordinatesMessage")(ReadyButton));
+)(withAsyncAction("messages", "postMessage")(ReadyButton));
