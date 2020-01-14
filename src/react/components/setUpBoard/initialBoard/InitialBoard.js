@@ -31,7 +31,6 @@ class InitialBoard extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    // selectedShip: state.selectedShip
   };
 };
 const mapDispatchToProps = {};
