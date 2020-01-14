@@ -83,7 +83,7 @@ class OpponentBoard extends React.Component {
         {this.state.opponentTurn && <WaitScreen message={this.state.message} />}
 
         <div className="newBoard" onClick={this.clickHandler}>
-          Opponent Board
+          <h3>Opponent Board</h3>
           <OpponentBoardGrid />
         </div>
         <button onClick={this.toggleTurn}>Toggle turn</button>
