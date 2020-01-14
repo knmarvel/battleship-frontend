@@ -8,7 +8,7 @@
   margin-right: auto;
   height: 150px;
   /* margin-left: 37%; */
-  margin-top: 6%;
+  /* margin-top: 6%; */
   size: 23px;
 }
 
@@ -16,7 +16,7 @@
   text-transform: uppercase;
   margin: 0px;
   color: var(--battleshipRed);
-  text-shadow: 1px 1px 0 var(--battleshipPurple), 5px 5px 0 var(--battleshipPurple);
+  text-shadow: 1px 1px 0 var(--battleshipNavy), 9px 7px 15px var(--battleshipNavy);
   text-align: center;
   margin-right: 60%;
   position: fixed;
@@ -37,6 +37,7 @@
   font-size: 20px;
   padding: 90px 70px;
   border: 2px solid var(--battleshipBlueColumnLines);
+  box-shadow: 0px 10px 35px var(--battleshipBlueColumnLines);
 }
 
 .JoinGameForm {

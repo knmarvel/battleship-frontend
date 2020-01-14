@@ -47,11 +47,7 @@ class SetUpBoard extends React.Component {
     return (
       <React.Fragment>
         <Menu />
-<<<<<<< HEAD
-        <h2>Place Your Ships!</h2>
-=======
         <h2>PLACE YOUR SHIPS</h2>
->>>>>>> dec33f5b68b0b76444eaae2862267629154ddf0d
         <div className="setUpBoard">
           <div className="initialBoard">
             <InitialBoard onClick={this.whatCursor()} />

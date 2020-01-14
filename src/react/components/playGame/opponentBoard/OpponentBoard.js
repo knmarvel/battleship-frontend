@@ -80,15 +80,10 @@ class OpponentBoard extends React.Component {
   render() {
     return (
       <React.Fragment>
-<<<<<<< HEAD
-        <div className="newBoard">
-          <h3>Opponent Board</h3>
-=======
         {this.state.opponentTurn && <WaitScreen message={this.state.message} />}
 
         <div className="newBoard" onClick={this.clickHandler}>
-          Opponent Board
->>>>>>> dec33f5b68b0b76444eaae2862267629154ddf0d
+          <h3>Opponent Board</h3>
           <OpponentBoardGrid />
         </div>
         <button onClick={this.toggleTurn}>Toggle turn</button>
