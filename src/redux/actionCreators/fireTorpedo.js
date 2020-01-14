@@ -1,5 +1,5 @@
 import { domain, jsonHeaders, handleJsonResponse } from "./constants";
-import { FIRETORPEDO, ADDCOORDINATES } from "../actionTypes";
+import { FIRETORPEDO, ADDCOORDINATES, TORPEDOHIT } from "../actionTypes";
 const url = domain + "/messages";
 
 export const addCoordinates = messageData => dispatch => {
@@ -10,11 +10,13 @@ export const addCoordinates = messageData => dispatch => {
 };
 
 export const fireTorpedo = messageBody => (dispatch, getState) => {
+    const username = getState().auth.login.result.username
+
+
     dispatch({
         type: FIRETORPEDO.START
     });
     const token = getState().auth.login.result.token;
-    console.log(token)
     return fetch(url, {
         method: "POST",
         headers: { Authorization: "Bearer " + token, ...jsonHeaders },
@@ -39,3 +41,28 @@ export const fireTorpedo = messageBody => (dispatch, getState) => {
             );
         });
 };
+
+
+export const torpedoHit = messageId => (dispatch, getState) => {
+    dispatch({
+      type: TORPEDOHIT.START
+    });
+  
+    const token = getState().auth.login.result.token;
+  
+    return fetch(domain + "/likes", {
+      method: "POST",
+      headers: { Authorization: "Bearer " + token, ...jsonHeaders },
+      body: JSON.stringify({ messageId })
+    })
+      .then(handleJsonResponse)
+      .then(result => {
+        return dispatch({
+          type: TORPEDOHIT.SUCCESS,
+          payload: result
+        });
+      })
+      .catch(err => {
+        return Promise.reject(dispatch({ type: TORPEDOHIT.FAIL, payload: err }));
+      });
+  };

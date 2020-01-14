@@ -63,7 +63,6 @@ class OpponentBoard extends React.Component {
   };
 
   toggleTurn = () => {
-    // this.props.postMessage({ text: "pretend torpedo Z4" });
     if (this.state.opponentTurn === true) {
       this.setState({ opponentTurn: false });
     } else {
