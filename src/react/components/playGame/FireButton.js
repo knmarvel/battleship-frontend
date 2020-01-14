@@ -42,7 +42,7 @@ class FireButton extends React.Component {
 
     }
   }
-
+//===========hey janell look here===========================================//
   checkForSinking() {
     let hitShips = [
       ["battleship",4],
