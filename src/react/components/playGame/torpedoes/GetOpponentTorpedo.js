@@ -29,7 +29,7 @@ class GetOpponentTorpedo extends React.Component {
       result.payload.messages.map(message => {
         if (message.text.includes("torpedo")) {
           console.log(message.text);
-          this.setState({ torpedoCoordinates: message.text });
+          this.setState({ torpedoCoordinates: message.text.slice(-2) });
         }
       });
     });
@@ -67,6 +67,4 @@ const mapDispatchToProps = { fetchLastMessage };
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(
-  withAsyncAction("playGame", "opponentTorpedoCoordinates")(GetOpponentTorpedo)
-);
+)(withAsyncAction("play", "opponentTorpedoCoordinates")(GetOpponentTorpedo));

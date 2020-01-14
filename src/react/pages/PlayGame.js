@@ -8,7 +8,8 @@ import {
   PlayerBoard,
   SurrenderButton,
   TurnHandler,
-  GetOpponentTorpedo
+  GetOpponentTorpedo,
+  FireButton
 } from "../components/playGame";
 
 class PlayGame extends React.Component {
@@ -22,6 +23,7 @@ class PlayGame extends React.Component {
           <OpponentBoard />
         </div>
         <SurrenderButton />
+        <FireButton />
         <GetOpponentTorpedo />
       </React.Fragment>
     );
