@@ -7,8 +7,8 @@ import {
   OpponentBoard,
   PlayerBoard,
   SurrenderButton,
-  FireButton,
-  TurnHandler
+  FireButton
+  // TurnHandler
 } from "../components/playGame";
 import { connect } from "../HOCs";
 import board from "../components";
@@ -62,13 +62,13 @@ class PlayGame extends React.Component {
     return (
       <React.Fragment>
         <Menu />
-        <TurnHandler />
+        {/* <TurnHandler /> */}
         <div className="twoBoards">
           <PlayerBoard />
           <OpponentBoard />
         </div>
         <SurrenderButton />
-        <FireButton />
+        {/* <FireButton /> */}
       </React.Fragment>
     );
   }
