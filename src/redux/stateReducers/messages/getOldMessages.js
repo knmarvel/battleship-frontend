@@ -9,9 +9,6 @@ const initialState = {
 
 const getOldMessages = (state = initialState, action) => {
   switch (action.type) {
-    case GETOLDMESSAGES.SUCCESS:
-      return { ...state, result: action.payload };
-
     default:
       return state;
   }

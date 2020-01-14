@@ -11,7 +11,7 @@ import {
   TurnHandler
 } from "../components/playGame";
 import { connect } from "../HOCs";
-import board from "../components";
+import board from "../components/setUpBoard/whereDoTheShipsLive";
 import { startBoard, getOldMessages } from "../../redux/index";
 
 class PlayGame extends React.Component {
@@ -21,41 +21,35 @@ class PlayGame extends React.Component {
 
   findOpponentShipCoordinates = () => {
     let opponentName = this.determineOpponent();
-    console.log(opponentName);
-    let shipCoordinates = this.props
-      .getOldMessages(opponentName)
-      .then(console.log(shipCoordinates));
+    this.props.getOldMessages(opponentName)
+      .then(result => {
+        result.payload.messages.map(message => {
+          if (
+                !message.text.includes("ready") 
+                && !message.text.includes("torpedo")
+                && !message.text.includes("start")
+                && message.text.includes(this.props.gameNumber)
+              )
+              {
+                let splitMessage = message.text.split(" ")
+                let messageCoordinate = splitMessage[2];
+                let messageShipName = splitMessage[1];
+                board[opponentName][messageCoordinate].ship = messageShipName
+                
+              }
+        })
+      })
+      .then(this.props.startBoard(board))
+      
 
-    //==================================================================
-    //
-    // stopping point:
-    //
-    //  after we get the old messages back, we want to process them so that
-    //we can pull out the coordinates and ship names from the redux layer.
-    //
-    // something along the lines of this map function
-    //
-    // but the return from getOldMessages is currently showing "undefined" on line 27
-    //
-    //==================================================================
-    //   .then(result => {
-    //     result.payload.map(message => {
-    //       if (!result.payload.includes("ready")) {
-    //         let newObject = {};
-    //         let splitMessage = message.text.split(" ");
-    //         let messageCoordinate = splitMessage[3];
-    //         let messageShipName = splitMessage[2];
-    //         return (newObject[messageCoordinate] = messageShipName);
-    //       }
-    //     });
-    //   });
-    // console.log(shipCoordinates);
   };
+
 
   determineOpponent = () => {
     if (this.props.playerName === "playerA") {
       return "playerB";
     } else return "playerA";
+    
   };
 
   render() {
@@ -74,13 +68,12 @@ class PlayGame extends React.Component {
   }
 }
 const mapStateToProps = state => {
-  if (state.welcome.startGame.result) {
     return {
-      playerName: state.welcome.startGame.result.username
+      playerName: state.welcome.startGame.result ? state.welcome.startGame.result.message.username : null,
+      gameNumber: state.welcome.startGame.result ? state.welcome.startGame.result.message.text.slice(5, 9)  : null,
+      reduxLayerBoard: state.manipulateBoards.startBoard.result
     };
-  } else return {};
-};
-
+  }
 const mapDispatchToProps = {
   getOldMessages,
   startBoard
