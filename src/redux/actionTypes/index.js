@@ -33,3 +33,9 @@ export const GETOLDMESSAGES = createActionTypes("GETOLDMESSAGES");
 
 export const CHECKREADYSTART = createActionTypes("CHECKREADYSTART");
 export const POSTMESSAGE = createActionTypes("POSTMESSAGE");
+
+//action types related to playing the game
+
+export const OPPONENTTORPEDOCOORDINATES = createActionTypes(
+  "OPPONENTTORPEDOCOORDINATES"
+);
