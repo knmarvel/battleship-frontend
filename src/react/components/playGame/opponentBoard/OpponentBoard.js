@@ -3,8 +3,9 @@ import { connect } from "react-redux";
 // import { withAsyncAction } from "../../../HOCs";
 import { OpponentBoardGrid } from ".";
 import { WaitScreen } from "../../waitScreen";
-import { postMessage } from "../../../../redux/index";
-import { fireTorpedo, addCoordinates } from "../../../../redux/index";
+// import { postMessage } from "../../../../redux/index";
+import { addCoordinates } from "../../../../redux/index";
+
 // import {addCoordinates} from "../../../../redux/index"
 
 class OpponentBoard extends React.Component {
