@@ -7,7 +7,11 @@
 import React from "react";
 import { connect, withAsyncAction } from "../../HOCs";
 import { Redirect } from "../index";
-import { fetchLastMessage, getOldMessages } from "../../../redux/index";
+import {
+  fetchLastMessage,
+  getOldMessages,
+  updateBoard
+} from "../../../redux/index";
 import { WaitScreen } from "../waitScreen";
 
 class ReadyButton extends React.Component {
@@ -61,7 +65,7 @@ class ReadyButton extends React.Component {
     battleshipCoordinates.forEach(function(coordinate) {
       postMessage({
         text: `${gameNumber} battleship ${coordinate}`
-      });
+      }).then(this.props.updateBoard(`${coordinate}`, "battleship"));
     });
   };
   postMessagesOfCarrierLocation = () => {
@@ -123,7 +127,7 @@ class ReadyButton extends React.Component {
   };
 
   redirectToPlayGame = () => {
-    this.props.getOldMessages(this.state.opponentName)
+    this.props.getOldMessages(this.state.opponentName);
     console.log("redirectiong to /play");
     this.setState({ redirect: true });
   };
@@ -167,9 +171,11 @@ const mapStateToProps = state => {
       : undefined
   };
 };
-const mapDispatchToProps = { 
+const mapDispatchToProps = {
   fetchLastMessage,
-  getOldMessages };
+  getOldMessages,
+  updateBoard
+};
 export default connect(
   mapStateToProps,
   mapDispatchToProps
