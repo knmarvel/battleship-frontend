@@ -15,8 +15,8 @@
 .homePage h1 {
   text-transform: uppercase;
   margin: 0px;
-  color: #ea4701;
-  text-shadow: 1px 1px 0 #6866ee, 5px 5px 0 #6866ee;
+  color: var(--battleshipRed);
+  text-shadow: 1px 1px 0 var(--battleshipPurple), 5px 5px 0 var(--battleshipPurple);
   text-align: center;
   margin-right: 60%;
   position: fixed;

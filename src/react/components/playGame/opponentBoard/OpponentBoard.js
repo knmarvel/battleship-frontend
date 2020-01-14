@@ -7,7 +7,7 @@ class OpponentBoard extends React.Component {
     return (
       <React.Fragment>
         <div className="newBoard">
-          Opponent Board
+          <h3>Opponent Board</h3>
           <OpponentBoardGrid />
         </div>
       </React.Fragment>

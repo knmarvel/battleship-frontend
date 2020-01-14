@@ -6,6 +6,9 @@
   text-align: center;
   position: relative;
   Z-index: 1;
+  border: 1px solid var(--battleshipBlueColumnLines);
+  color: white;
+  font-weight: bold
 }
 
 .newBoardSquare:hover {
@@ -26,6 +29,7 @@
   align-items: center;
   margin-left:200px;
   margin-right:80px;
+  border: 2px solid var(--battleshipBlueColumnLines)
 }
 
 .placedShip {
