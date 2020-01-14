@@ -65,7 +65,8 @@ class ReadyButton extends React.Component {
     battleshipCoordinates.forEach(function(coordinate) {
       postMessage({
         text: `${gameNumber} battleship ${coordinate}`
-      }).then(this.props.updateBoard(`${coordinate}`, "battleship"));
+      });
+      // .then(this.props.updateBoard(`${coordinate}`, "battleship"));
     });
   };
   postMessagesOfCarrierLocation = () => {

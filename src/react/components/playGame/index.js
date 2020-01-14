@@ -3,4 +3,3 @@ export { PlayerBoard } from "./playerBoard";
 export { default as SurrenderButton } from "./SurrenderButton";
 export { default as TurnHandler } from "./TurnHandler";
 export { default as FireButton } from "./FireButton.js";
-export { GetOpponentTorpedo } from "./torpedoes";

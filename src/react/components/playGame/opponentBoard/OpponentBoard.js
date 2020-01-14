@@ -58,7 +58,7 @@ class OpponentBoard extends React.Component {
   };
 
   getOpponentTorpedoMessage = () => {
-    return this.props.torpedoMessage;
+    // return this.props.torpedoMessage;
     //chelsea's function
   };
 
