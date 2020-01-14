@@ -5,8 +5,10 @@ import * as messages from "./messages";
 import * as playGame from "./playGame";
 import * as setUpGame from "./setUpGame";
 import * as play from "./play";
+import * as updateBoard from "./updateBoard";
 import * as welcome from "./welcome";
 import * as waitScreen from "./waitScreen";
+
 
 export default history =>
   combineReducers({
@@ -16,6 +18,7 @@ export default history =>
     playGame: combineReducers(playGame),
     setUpGame: combineReducers(setUpGame),
     play: combineReducers(play),
+    updateBoard: combineReducers(updateBoard),
     welcome: combineReducers(welcome),
     waitScreen: combineReducers(waitScreen)
   });
