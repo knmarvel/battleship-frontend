@@ -61,7 +61,7 @@ class OpponentBoard extends React.Component {
   clickHandler = event => {
     console.log("test Fire " + event.target.innerHTML);
     this.setState({ TargetCell: event.target.innerHTML });
-    this.props.addCoordinates(this.state.TargetCell);
+    this.props.addCoordinates(event.target.innerHTML);
   };
 
   render() {
@@ -90,10 +90,7 @@ const mapStateToProps = state => {
   } else return {};
 };
 
-const mapDispatchToProps = {
-  postMessage,
-  fireTorpedo,
-  addCoordinates
-};
+// export default OpponentBoard;
+const mapDispatchToProps = { addCoordinates };
 
 export default connect(mapStateToProps, mapDispatchToProps)(OpponentBoard);

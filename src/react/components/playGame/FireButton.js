@@ -8,7 +8,8 @@ import { fireTorpedo} from "../../../redux/index"
 class FireButton extends React.Component {
     FireTorpedo = event => {
         this.props.fireTorpedo({"text": this.props.TargetCell})
-        console.log("Torpedo Fired!", this.props.TargetCell);
+    
+        console.log("Torpedo " + this.props.TargetCell +" Fired!");
     };
 
     checkStateForHitMarkers(cellToCheck) {
@@ -24,7 +25,7 @@ class FireButton extends React.Component {
 
 const mapStateToProps = state => {
     return {
-        TargetCell: state.play.addCoordinates.result,
+        TargetCell: state.play.addCoordinates.result ? state.play.addCoordinates.result : null,
     };
 };
 
