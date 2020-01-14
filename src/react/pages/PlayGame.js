@@ -21,35 +21,30 @@ class PlayGame extends React.Component {
 
   findOpponentShipCoordinates = () => {
     let opponentName = this.determineOpponent();
-    this.props.getOldMessages(opponentName)
+    this.props
+      .getOldMessages(opponentName)
       .then(result => {
         result.payload.messages.map(message => {
           if (
-                !message.text.includes("ready") 
-                && !message.text.includes("torpedo")
-                && !message.text.includes("start")
-                && message.text.includes(this.props.gameNumber)
-              )
-              {
-                let splitMessage = message.text.split(" ")
-                let messageCoordinate = splitMessage[2];
-                let messageShipName = splitMessage[1];
-                board[opponentName][messageCoordinate].ship = messageShipName
-                
-              }
-        })
+            !message.text.includes("ready") &&
+            !message.text.includes("torpedo") &&
+            !message.text.includes("start") &&
+            message.text.includes(this.props.gameNumber)
+          ) {
+            let splitMessage = message.text.split(" ");
+            let messageCoordinate = splitMessage[3];
+            let messageShipName = splitMessage[2];
+            board[opponentName][messageCoordinate].ship = messageShipName;
+          }
+        });
       })
-      .then(this.props.startBoard(board))
-      
-
+      .then(this.props.startBoard(board));
   };
-
 
   determineOpponent = () => {
     if (this.props.playerName === "playerA") {
       return "playerB";
     } else return "playerA";
-    
   };
 
   render() {
@@ -68,12 +63,16 @@ class PlayGame extends React.Component {
   }
 }
 const mapStateToProps = state => {
-    return {
-      playerName: state.welcome.startGame.result ? state.welcome.startGame.result.message.username : null,
-      gameNumber: state.welcome.startGame.result ? state.welcome.startGame.result.message.text.slice(5, 9)  : null,
-      reduxLayerBoard: state.manipulateBoards.startBoard.result
-    };
-  }
+  return {
+    playerName: state.welcome.startGame.result
+      ? state.welcome.startGame.result.message.username
+      : null,
+    gameNumber: state.welcome.startGame.result
+      ? state.welcome.startGame.result.message.text.slice(5, 9)
+      : null,
+    reduxLayerBoard: state.manipulateBoards.startBoard.result
+  };
+};
 const mapDispatchToProps = {
   getOldMessages,
   startBoard

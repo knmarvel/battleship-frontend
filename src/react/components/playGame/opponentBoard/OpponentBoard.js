@@ -85,6 +85,15 @@ class OpponentBoard extends React.Component {
         let torpedoStatus = this.props.board[this.props.playerName][
           opponentTorpedoCoordinates
         ].torpedo;
+
+        //=================================================
+        //
+        //janell says:
+        //@kano - we're getting a bug that says it's here.  it's not
+        //reading "torpedo" of line 85.  chelsea and i weren't able to
+        //figure this out. could you take a look at it please?  thanks!
+        //
+        //=======================================================
         console.log(
           "torpedo status for opponent board coordinates: " + torpedoStatus
         );
