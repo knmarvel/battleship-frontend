@@ -150,7 +150,7 @@ class ReadyButton extends React.Component {
 
   redirectToPlayGame = () => {
     this.props.getOldMessages(this.state.opponentName);
-    console.log("redirectiong to /play");
+    console.log("redirecting to /play");
     this.setState({ redirect: true });
   };
 
@@ -165,6 +165,7 @@ class ReadyButton extends React.Component {
     // this.props.postMessage({ text: " ready" });
 
     this.startCheckingForOpponentReady();
+  
   };
 
   render() {

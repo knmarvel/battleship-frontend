@@ -63,11 +63,11 @@ class OpponentBoard extends React.Component {
   };
 
   toggleTurn = () => {
-    if (this.state.opponentTurn === true) {
-      this.setState({ opponentTurn: false });
-    } else {
-      this.setState({ opponentTurn: true });
-    }
+    // if (this.state.opponentTurn === true) {
+    //   this.setState({ opponentTurn: false });
+    // } else {
+    //   this.setState({ opponentTurn: true });
+    // }
   };
 
   clickHandler = event => {

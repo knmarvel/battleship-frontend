@@ -27,5 +27,9 @@ class PlayGame extends React.Component {
     );
   }
 }
+const mapStateToProps = {
+  
+}
 
-export default PlayGame;
+
+export default connect(mapStateToProps, mapDispatchToProps)(PlayGame);

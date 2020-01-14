@@ -10,9 +10,6 @@ export const addCoordinates = messageData => dispatch => {
 };
 
 export const fireTorpedo = messageBody => (dispatch, getState) => {
-    const username = getState().auth.login.result.username
-
-
     dispatch({
         type: FIRETORPEDO.START
     });
