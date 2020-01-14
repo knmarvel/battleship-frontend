@@ -1,12 +1,10 @@
 import { UPDATEBOARD } from "../actionTypes";
+import { boards } from "../../react/components/setUpBoard/whereDoTheShipsLive"
+
+export const startBoard = 
 
 export const updateBoard = (player, coordinates, shipName, torpedo) => dispatch => {
-    if(shipName===null){
-        return dispatch({
-            type: UPDATEBOARD.SUCCESS,
-            payload: 
-          }});
-    }
+
   return dispatch({
     type: UPDATEBOARD.SUCCESS,
     payload: {
