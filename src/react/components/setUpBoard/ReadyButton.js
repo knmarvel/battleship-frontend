@@ -10,9 +10,10 @@ import { Redirect } from "../index";
 import {
   fetchLastMessage,
   getOldMessages,
-  updateBoard
+  startBoard
 } from "../../../redux/index";
 import { WaitScreen } from "../waitScreen";
+import { boards } from ".";
 
 class ReadyButton extends React.Component {
   state = {
@@ -60,7 +61,7 @@ class ReadyButton extends React.Component {
   };
   postMessagesOfBattleShipLocation = () => {
     const postMessage = this.props.postMessage;
-    const updateBoard = this.props.updateBoard;
+    const startBoard = this.props.startBoard;
     const battleshipCoordinates = this.props.battleship.coordinates;
     const gameNumber = this.props.gameNumber;
     const playerName = this.props.playerName;
@@ -68,16 +69,21 @@ class ReadyButton extends React.Component {
       postMessage({
         text: `${gameNumber} battleship ${coordinate}`
       });
-      updateBoard(playerName, `${coordinate}`, "battleship", false);
+      boards[playerName][coordinate].ship = "battleship";
+      startBoard(boards);
     });
   };
+
   postMessagesOfCarrierLocation = () => {
     const postMessage = this.props.postMessage;
     const carrierCoordinates = this.props.carrier.coordinates;
     const gameNumber = this.props.gameNumber;
     carrierCoordinates.forEach(function(coordinate) {
-      // postMessage({ text: `carrier ${coordinate}` });
-      postMessage({ text: `${gameNumber} carrier ${coordinate}` });
+      postMessage({
+        text: `${gameNumber} carrier ${coordinate}`
+      });
+      boards[playerName][coordinate].ship = "carrier";
+      startBoard(boards);
     });
   };
   postMessagesOfCruiserLocation = () => {
@@ -85,8 +91,11 @@ class ReadyButton extends React.Component {
     const cruiserCoordinates = this.props.cruiser.coordinates;
     const gameNumber = this.props.gameNumber;
     cruiserCoordinates.forEach(function(coordinate) {
-      // postMessage({ text: `cruiser ${coordinate}` });
-      postMessage({ text: `${gameNumber} cruiser ${coordinate}` });
+      postMessage({
+        text: `${gameNumber} cruiser ${coordinate}`
+      });
+      boards[playerName][coordinate].ship = "cruiser";
+      startBoard(boards);
     });
   };
   postMessagesOfDestroyerLocation = () => {
@@ -94,8 +103,11 @@ class ReadyButton extends React.Component {
     const destroyerCoordinates = this.props.destroyer.coordinates;
     const gameNumber = this.props.gameNumber;
     destroyerCoordinates.forEach(function(coordinate) {
-      // postMessage({ text: `destroyer ${coordinate}` });
-      postMessage({ text: `${gameNumber} destroyer ${coordinate}` });
+      postMessage({
+        text: `${gameNumber} destroyer ${coordinate}`
+      });
+      boards[playerName][coordinate].ship = "destroyer";
+      startBoard(boards);
     });
   };
   postMessagesOfSubmarineLocation = () => {
@@ -103,8 +115,11 @@ class ReadyButton extends React.Component {
     const submarineCoordinates = this.props.submarine.coordinates;
     const gameNumber = this.props.gameNumber;
     submarineCoordinates.forEach(function(coordinate) {
-      // postCoordinatesMessage({ text: `submarine ${coordinate}` });
-      postMessage({ text: `${gameNumber} submarine ${coordinate}` });
+      postMessage({
+        text: `${gameNumber} submarine ${coordinate}`
+      });
+      boards[playerName][coordinate].ship = "submarine";
+      startBoard(boards);
     });
   };
 
@@ -177,7 +192,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = {
   fetchLastMessage,
   getOldMessages,
-  updateBoard
+  startBoard
 };
 export default connect(
   mapStateToProps,
