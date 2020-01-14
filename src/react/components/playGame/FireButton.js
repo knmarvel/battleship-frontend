@@ -1,38 +1,50 @@
 import React from "react";
 import { connect } from "react-redux";
-import { fireTorpedo} from "../../../redux/index"
+import { fireTorpedo } from "../../../redux/index";
 //get the last cell clicked from the oppenent board
 // check state to see if player guess hit enemy ship
 //send a message to the turnHandler that a turn has been taken
 
 class FireButton extends React.Component {
-    FireTorpedo = event => {
-        this.props.fireTorpedo({"text": this.props.TargetCell})
-    
-        console.log("Torpedo " + this.props.TargetCell +" Fired!");
-    };
+  FireTorpedo = event => {
+    this.props.fireTorpedo({
+      text:
+        "Game " + this.props.gameNumber + " torpedo " + this.props.TargetCell
+    });
 
-    checkStateForHitMarkers(cellToCheck) {
-        // for (let i = 0; length of state object; i++)
-        // if (object includes(cellToCheck))
-        //mark hit on board
-    }
+    console.log("Torpedo " + this.props.TargetCell + " Fired!");
+  };
 
-    render() {
-        return <button onClick={this.FireTorpedo} style={{ backgroundColor: "red", borderRadius: ".5em" }}>Fire Torpedo!</button>;
-    }
+  checkStateForHitMarkers(cellToCheck) {
+    // for (let i = 0; length of state object; i++)
+    // if (object includes(cellToCheck))
+    //mark hit on board
+  }
+
+  render() {
+    return (
+      <button
+        onClick={this.FireTorpedo}
+        style={{ backgroundColor: "red", borderRadius: ".5em" }}
+      >
+        Fire Torpedo!
+      </button>
+    );
+  }
 }
 
 const mapStateToProps = state => {
-    return {
-        TargetCell: state.play.addCoordinates.result ? state.play.addCoordinates.result : null,
-    };
+  return {
+    TargetCell: state.play.addCoordinates.result
+      ? state.play.addCoordinates.result
+      : null,
+    gameNumber: state.welcome.startGame.result
+      ? state.welcome.startGame.result.message.text.slice(5, 9)
+      : undefined
+  };
 };
 
 // export default FireButton;
 const mapDispatchToProps = { fireTorpedo };
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(FireButton);
+export default connect(mapStateToProps, mapDispatchToProps)(FireButton);
