@@ -7,12 +7,17 @@ import { fireTorpedo } from "../../../redux/index";
 
 class FireButton extends React.Component {
   FireTorpedo = event => {
-    this.props.fireTorpedo({
-      text:
-        "Game " + this.props.gameNumber + " torpedo " + this.props.TargetCell
-    });
+    if (this.props.TargetCell === null) {
+      alert("please choose coordinates by clicking on your opponent's board");
+    } else {
+      this.props.fireTorpedo({
+        text:
+          "Game " + this.props.gameNumber + " torpedo " + this.props.TargetCell
+      });
 
-    console.log("Torpedo " + this.props.TargetCell + " Fired!");
+      console.log("Torpedo " + this.props.TargetCell + " Fired!");
+
+    }
   };
 
   checkStateForHitMarkers(cellToCheck) {
@@ -40,11 +45,11 @@ const mapStateToProps = state => {
       : null,
     gameNumber: state.welcome.startGame.result
       ? state.welcome.startGame.result.message.text.slice(5, 9)
-      : undefined
+      : null
   };
 };
 
 // export default FireButton;
-const mapDispatchToProps = { fireTorpedo, getOldMessages };
+const mapDispatchToProps = { fireTorpedo };
 
 export default connect(mapStateToProps, mapDispatchToProps)(FireButton);

@@ -4,7 +4,6 @@ export { default as Menu } from "./Menu";
 export { Battleship, Carrier, Cruiser, Destroyer, Submarine } from "./ships";
 export { Welcome } from "./home";
 export { WaitScreen } from "./waitScreen";
-export { GetOpponentTorpedo } from "./playGame";
 
 // components from other packages
 export { Router, Switch, Route, Link, Redirect } from "react-router-dom";

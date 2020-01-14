@@ -10,6 +10,9 @@ const createActionTypes = actionName => {
 export const LOGIN = createActionTypes("LOGIN");
 export const LOGOUT = createActionTypes("LOGOUT");
 
+//action types for update board
+export const UPDATEBOARD = createActionTypes("UPDATEBOARD")
+
 //action type for play game
 export const FIRETORPEDO = createActionTypes("FIRETORPEDO");
 export const ADDCOORDINATES = createActionTypes("ADDCOORDINATES");

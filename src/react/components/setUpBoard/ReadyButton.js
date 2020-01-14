@@ -7,7 +7,11 @@
 import React from "react";
 import { connect, withAsyncAction } from "../../HOCs";
 import { Redirect } from "../index";
-import { fetchLastMessage } from "../../../redux/index";
+import {
+  fetchLastMessage,
+  getOldMessages,
+  updateBoard
+} from "../../../redux/index";
 import { WaitScreen } from "../waitScreen";
 
 class ReadyButton extends React.Component {
@@ -27,10 +31,6 @@ class ReadyButton extends React.Component {
       this.setState({ opponentName: "playerB" });
     } else if (this.props.playerName === "playerB") {
       this.setState({ opponentName: "playerA" });
-    } else {
-      console.log(
-        "cannot set opponent name because playername is not playerA or playerB"
-      );
     }
   };
 
@@ -60,13 +60,15 @@ class ReadyButton extends React.Component {
   };
   postMessagesOfBattleShipLocation = () => {
     const postMessage = this.props.postMessage;
+    const updateBoard = this.props.updateBoard;
     const battleshipCoordinates = this.props.battleship.coordinates;
     const gameNumber = this.props.gameNumber;
+    const playerName = this.props.playerName;
     battleshipCoordinates.forEach(function(coordinate) {
-      // postMessage({ text: `battleship ${coordinate}` });
       postMessage({
         text: `${gameNumber} battleship ${coordinate}`
       });
+      updateBoard(playerName, `${coordinate}`, "battleship", false);
     });
   };
   postMessagesOfCarrierLocation = () => {
@@ -128,6 +130,7 @@ class ReadyButton extends React.Component {
   };
 
   redirectToPlayGame = () => {
+    this.props.getOldMessages(this.state.opponentName);
     console.log("redirectiong to /play");
     this.setState({ redirect: true });
   };
@@ -171,7 +174,11 @@ const mapStateToProps = state => {
       : undefined
   };
 };
-const mapDispatchToProps = { fetchLastMessage };
+const mapDispatchToProps = {
+  fetchLastMessage,
+  getOldMessages,
+  updateBoard
+};
 export default connect(
   mapStateToProps,
   mapDispatchToProps

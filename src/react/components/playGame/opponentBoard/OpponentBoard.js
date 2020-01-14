@@ -31,11 +31,22 @@ class OpponentBoard extends React.Component {
 
   startWaitingForOpponent = () => {
     // this.setState({ opponentTurn: true });
-    // this.interval = setInterval(this.checkOpponentTurn, 5000);
+    this.interval = setInterval(this.checkOpponentTurn, 5000);
   };
 
   checkOpponentTurn = () => {
-    this.getOpponentTorpedoMessage();
+    if (this.props.torpedoMessage) {
+      if (this.props.torpedoMessage.username !== this.props.playerName) {
+        clearInterval(this.interval);
+        this.toggleTurn();
+        let torpedoCoordinates = this.props.torpedoMessage.text
+          .split(" ")
+          .slice(-1);
+        console.log("torpedoCoordinates are " + torpedoCoordinates);
+        this.setState({ opponentTorpedoCoordinates: torpedoCoordinates });
+        console.log("we need to check hits next");
+      }
+    }
     //look for the word torpedo
     //grab the coordinates (if none (at start), keep it as "")
     //compare coordinates to opponentTorpedoCoordinates
@@ -47,11 +58,11 @@ class OpponentBoard extends React.Component {
   };
 
   getOpponentTorpedoMessage = () => {
+    // return this.props.torpedoMessage;
     //chelsea's function
   };
 
   toggleTurn = () => {
-    this.props.postMessage({ text: "pretend torpedo Z4" });
     if (this.state.opponentTurn === true) {
       this.setState({ opponentTurn: false });
     } else {
@@ -60,9 +71,10 @@ class OpponentBoard extends React.Component {
   };
 
   clickHandler = event => {
-    console.log("test Fire " + event.target.innerHTML);
     this.setState({ TargetCell: event.target.innerHTML });
     this.props.addCoordinates(event.target.innerHTML);
+    this.toggleTurn();
+    this.startWaitingForOpponent();
   };
 
   render() {
@@ -85,8 +97,17 @@ const mapStateToProps = state => {
     return {
       playerName: state.auth.login.result.username,
       token: state.auth.login.result.token,
-      opponentTorpedoCoordinates: state.play,
-      TargetCell: state.play.TargetCell
+
+      torpedoMessage: state.play.fireTorpedo.result
+        ? state.play.fireTorpedo.result.message
+        : null,
+
+      opponentTorpedoCoordinates: state.play.fireTorpedo.result
+        ? state.play.fireTorpedo.result.message.text
+        : null,
+      TargetCell: state.play.addCoordinates.result
+        ? state.play.addCoordinates.result
+        : null
     };
   } else return {};
 };

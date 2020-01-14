@@ -1,21 +1,30 @@
-import { UPDATEBOARD } from "../actionTypes";
-import { boards } from "../../react/components/setUpBoard/whereDoTheShipsLive"
+import { STARTBOARD, UPDATEBOARD } from "../actionTypes";
 
-export const startBoard = 
+export const startBoard = (originalBoard) => dispatch =>{
+    return dispatch({
+        type: startBoard.SUCCESS,
+        payload: originalBoard
+    })
+}
 
-export const updateBoard = (player, coordinates, shipName, torpedo) => dispatch => {
-
+export const updateBoard = (
+  player,
+  coordinates,
+  shipName,
+  torpedo
+) => dispatch => {
+  if (shipName === null) {
+    return dispatch({
+      type: UPDATEBOARD.SUCCESS,
+      payload: { player, coordinates, torpedo }
+    });
+  }
   return dispatch({
     type: UPDATEBOARD.SUCCESS,
-    payload: {
-        coordinates = {
-            "ship": shipName,
-            "torpedo": torpedo
-        }
-  }});
+    payload: { player, coordinates, shipName, torpedo }
+  });
 };
 
-updateBoard("A1", null, true)
+// updateBoard("A1", null, true);
 
-updateBoard("A1", shipName, false)
-
+// updateBoard("A1", shipName, false);

@@ -10,12 +10,14 @@ export const addCoordinates = messageData => dispatch => {
 };
 
 export const fireTorpedo = messageBody => (dispatch, getState) => {
+    const username = getState().auth.login.result.username
+
+
     dispatch({
         type: FIRETORPEDO.START
     });
     const token = getState().auth.login.result.token;
-    console.log(token)
-    return fetch(domain, {
+    return fetch(url, {
         method: "POST",
         headers: { Authorization: "Bearer " + token, ...jsonHeaders },
         body: JSON.stringify(messageBody)
@@ -38,12 +40,10 @@ export const fireTorpedo = messageBody => (dispatch, getState) => {
                 dispatch({ type: FIRETORPEDO.FAIL, payload: err.message })
             );
         });
-
-        
 };
 
 
-const torpedoHit = messageId => (dispatch, getState) => {
+export const torpedoHit = messageId => (dispatch, getState) => {
     dispatch({
       type: TORPEDOHIT.START
     });
