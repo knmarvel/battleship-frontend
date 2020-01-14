@@ -21,7 +21,7 @@ class FireButton extends React.Component {
           "Game " + this.props.gameNumber + " torpedo " + this.props.TargetCell
       });
       boards[this.opponentName][this.props.TargetCell].torpedo = true;
-      this.props.startBoard(boards)
+
       console.log("Torpedo " + this.props.TargetCell + " Fired!");
       this.checkStateForHitMarkers(this.props.TargetCell)
 
