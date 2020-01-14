@@ -27,10 +27,6 @@ class ReadyButton extends React.Component {
       this.setState({ opponentName: "playerB" });
     } else if (this.props.playerName === "playerB") {
       this.setState({ opponentName: "playerA" });
-    } else {
-      console.log(
-        "cannot set opponent name because playername is not playerA or playerB"
-      );
     }
   };
 
@@ -63,7 +59,6 @@ class ReadyButton extends React.Component {
     const battleshipCoordinates = this.props.battleship.coordinates;
     const gameNumber = this.props.gameNumber;
     battleshipCoordinates.forEach(function(coordinate) {
-      // postMessage({ text: `battleship ${coordinate}` });
       postMessage({
         text: `${gameNumber} battleship ${coordinate}`
       });
