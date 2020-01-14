@@ -29,8 +29,7 @@ class FireButton extends React.Component {
   };
 
   checkStateForHitMarkers(cellToCheck) {
-    console.log(this.props.board[this.opponentName][this.props.TargetCell].ship)
-    if(this.props.board[this.opponentName][this.props.TargetCell].ship===null){
+    if(this.props.board[this.opponentName][cellToCheck].ship===null){
       alert("Miss")
       //we also want to put a miss token in the appropriate div
     }
@@ -38,12 +37,51 @@ class FireButton extends React.Component {
       alert("HIT!")
       //check for sinkage (another function)
       //we need to put a hit token in the appropriate div
+      this.checkForSinking()
+      
 
     }
   }
 
-  checkStateForSinkage(cellToCheck){
-    //tbd
+  checkForSinking() {
+    let hitShips = [
+      ["battleship",4],
+      ["carrier",5],
+      ["cruiser",3],
+      ["submarine",3],
+      ["destroyer",2]
+    ]
+    for(let coordinates in this.props.board[this.opponentName]){
+      if(this.props.board[this.opponentName][coordinates].ship && this.props.board[this.opponentName][coordinates].torpedo){
+        hitShips.forEach(ship =>{
+          if(ship[0] === boards[this.opponentName][coordinates].ship){
+            ship[1] -= 1
+          }
+        })
+      }
+      
+    }
+  
+    let shipsSunk = 0;
+    let sinkingList = "you've sunk the opponent's "
+    hitShips.forEach(x => {
+      if(x[1]===0){
+        shipsSunk++
+        if(sinkingList = "you've sunk the opponent's "){
+          sinkingList += x[0]
+        }
+        else{
+          sinkingList += "and " + x[0]
+        }
+      }
+    })
+    if(shipsSunk === 5){
+      sinkingList = "You've sunk the opponent's fleet! You win!"
+      
+    }
+    console.log(shipsSunk)
+    if(shipsSunk > 0){
+      alert(sinkingList)}
   }
 
   render() {
