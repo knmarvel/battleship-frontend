@@ -52,18 +52,11 @@ class CreateGameButton extends React.Component {
   // };
 
   checkReadyStart = () => {
-    console.log("checkReadyStart has started");
     if (this.props.token) {
-      console.log("checkReadyStart says the user has a token");
       if (this.state.hasPostedStart === false) {
-        console.log("checkReadyStart says that hasPostedStart === false");
         if (this.state.gameNumber !== "0") {
-          console.log(
-            "checkReadyStart says that the game number in state is not '0'"
-          );
           this.props.startGame(this.state.gameNumber, this.props.token);
           this.setState({ hasPostedStart: true });
-          console.log("i started " + this.state.gameNumber);
         }
       }
     }
@@ -71,9 +64,6 @@ class CreateGameButton extends React.Component {
     this.props.checkReadyStart().then(result => {
       result.payload.messages.map(message => {
         if (this.state.gameNumber !== "0") {
-          console.log(
-            "game number in creategamebutton is " + this.state.gameNumber
-          );
           if (message.text === "Game " + this.state.gameNumber + " start") {
             if (message.username === "playerB") {
               this.setState({ goToSetup: true });

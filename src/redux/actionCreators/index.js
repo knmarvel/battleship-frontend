@@ -5,3 +5,4 @@ export * from "./fireTorpedo";
 export * from "./setUpGame";
 export * from "./welcome";
 export * from "./waitScreen";
+export * from "./playGame";

@@ -1,5 +1,3 @@
-
-
 import React from "react";
 import battleshipHorizontal from "../../../Battleship-image/ships/horizShip4.png";
 import battleshipVertical from "../../../Battleship-image/ships/vertShip4.png";

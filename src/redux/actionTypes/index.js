@@ -23,7 +23,9 @@ export const PLACEDESTROYER = createActionTypes("PLACEDESTROYER");
 export const PLACESUBMARINE = createActionTypes("PLACESUBMARINE");
 export const SELECTSHIP = createActionTypes("SELECTSHIP");
 export const FETCHLASTMESSAGE = createActionTypes("FETCHLASTMESSAGE");
-export const POSTCOORDINATESMESSAGE = createActionTypes("POSTCOORDINATESMESSAGE");
+export const POSTCOORDINATESMESSAGE = createActionTypes(
+  "POSTCOORDINATESMESSAGE"
+);
 
 //action types related to welcome
 
@@ -35,3 +37,9 @@ export const GETOLDMESSAGES = createActionTypes("GETOLDMESSAGES");
 
 export const CHECKREADYSTART = createActionTypes("CHECKREADYSTART");
 export const POSTMESSAGE = createActionTypes("POSTMESSAGE");
+
+//action types related to playing the game
+
+export const OPPONENTTORPEDOCOORDINATES = createActionTypes(
+  "OPPONENTTORPEDOCOORDINATES"
+);
