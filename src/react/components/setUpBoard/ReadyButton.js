@@ -67,7 +67,7 @@ class ReadyButton extends React.Component {
     const playerName = this.props.playerName;
     battleshipCoordinates.forEach(function(coordinate) {
       postMessage({
-        text: `${gameNumber} battleship ${coordinate}`
+        text: `Game ${gameNumber} battleship ${coordinate}`
       });
       boards[playerName][coordinate].ship = "battleship";
       startBoard(boards);
@@ -81,7 +81,7 @@ class ReadyButton extends React.Component {
     const playerName = this.props.playerName;
     carrierCoordinates.forEach(function(coordinate) {
       postMessage({
-        text: `${gameNumber} carrier ${coordinate}`
+        text: `Game ${gameNumber} carrier ${coordinate}`
       });
       boards[playerName][coordinate].ship = "carrier";
       startBoard(boards);
@@ -94,7 +94,7 @@ class ReadyButton extends React.Component {
     const playerName = this.props.playerName;
     cruiserCoordinates.forEach(function(coordinate) {
       postMessage({
-        text: `${gameNumber} cruiser ${coordinate}`
+        text: `Game ${gameNumber} cruiser ${coordinate}`
       });
       boards[playerName][coordinate].ship = "cruiser";
       startBoard(boards);
@@ -107,7 +107,7 @@ class ReadyButton extends React.Component {
     const playerName = this.props.playerName;
     destroyerCoordinates.forEach(function(coordinate) {
       postMessage({
-        text: `${gameNumber} destroyer ${coordinate}`
+        text: `Game ${gameNumber} destroyer ${coordinate}`
       });
       boards[playerName][coordinate].ship = "destroyer";
       startBoard(boards);
@@ -120,7 +120,7 @@ class ReadyButton extends React.Component {
     const playerName = this.props.playerName;
     submarineCoordinates.forEach(function(coordinate) {
       postMessage({
-        text: `${gameNumber} submarine ${coordinate}`
+        text: `Game ${gameNumber} submarine ${coordinate}`
       });
       boards[playerName][coordinate].ship = "submarine";
       startBoard(boards);
