@@ -40,7 +40,7 @@ const mapStateToProps = state => {
       : null,
     gameNumber: state.welcome.startGame.result
       ? state.welcome.startGame.result.message.text.slice(5, 9)
-      : undefined
+      : null
   };
 };
 
