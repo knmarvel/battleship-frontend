@@ -1,31 +1,71 @@
-// set the cursor on hover over the board in CSS to be the correctly oriented
-//picture of the ship.  if no ship has been selected yet, cursor
-//should be default.  get "selectedShip" from "ShipsAvailable" via
-//"mapStateToProps" and "connect"
-//
-// suggest using "mapStateToProps" and "connect"
-//to get relevant props
-
 import React from "react";
 import { InitialBoard, ShipsAvailable } from "../components/setUpBoard";
 import { Menu } from "../components";
 import "./SetUpBoard.css";
+import { connect } from "../HOCs";
+import boards from "../components/setUpBoard/whereDoTheShipsLive";
+import { startBoard } from "../../redux/index";
 
 class SetUpBoard extends React.Component {
+  componentDidMount = () => {
+    this.props.startBoard(boards);
+  };
+
+  whatCursor = () => {
+    if (this.props.selectedShip === null) {
+      document.body.style.cursor = "auto";
+      return null;
+    } else {
+      if (this.props.selectedShip.name === "battleship") {
+        this.props.selectedShip.orientation === "horizontal"
+          ? (document.body.style.cursor = "url('./horizShip4Cursor.png'),help")
+          : (document.body.style.cursor = "url('./vertShip4Cursor.png'),help");
+      }
+      if (this.props.selectedShip.name === "carrier") {
+        this.props.selectedShip.orientation === "horizontal"
+          ? (document.body.style.cursor = "url('./horizShip5Cursor.png'),help")
+          : (document.body.style.cursor = "url('./vertShip5Cursor.png'),help");
+      }
+      if (this.props.selectedShip.name === "submarine") {
+        this.props.selectedShip.orientation === "horizontal"
+          ? (document.body.style.cursor = "url('./horizShip3Cursor.png'),help")
+          : (document.body.style.cursor = "url('./vertShip3Cursor.png'),help");
+      }
+      if (this.props.selectedShip.name === "cruiser") {
+        this.props.selectedShip.orientation === "horizontal"
+          ? (document.body.style.cursor = "url('./horizShip2Cursor.png'),help")
+          : (document.body.style.cursor = "url('./vertShip2Cursor.png'),help");
+      }
+      if (this.props.selectedShip.name === "destroyer") {
+        this.props.selectedShip.orientation === "horizontal"
+          ? (document.body.style.cursor = "url('./horizShip1Cursor.png'),help")
+          : (document.body.style.cursor = "url('./vertShip1Cursor.png'),help");
+      }
+    }
+  };
   render() {
     return (
       <React.Fragment>
         <Menu />
+<<<<<<< HEAD
         <h2>Place Your Ships!</h2>
+=======
+        <h2>PLACE YOUR SHIPS</h2>
+>>>>>>> dec33f5b68b0b76444eaae2862267629154ddf0d
         <div className="setUpBoard">
           <div className="initialBoard">
-            <InitialBoard />
+            <InitialBoard onClick={this.whatCursor()} />
           </div>
-          <ShipsAvailable />
+          <ShipsAvailable onClick={this.whatCursor()} />
         </div>
       </React.Fragment>
     );
   }
 }
-
-export default SetUpBoard;
+const mapStateToProps = state => {
+  return {
+    selectedShip: state.setUpGame.selectShip.result
+  };
+};
+const mapDispatchToProps = { startBoard };
+export default connect(mapStateToProps, mapDispatchToProps)(SetUpBoard);

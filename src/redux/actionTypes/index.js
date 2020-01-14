@@ -10,8 +10,16 @@ const createActionTypes = actionName => {
 export const LOGIN = createActionTypes("LOGIN");
 export const LOGOUT = createActionTypes("LOGOUT");
 
-//action types related to setUpGame
+//action types for update board
+export const STARTBOARD = createActionTypes("STARTBOARD")
+export const UPDATEBOARD = createActionTypes("UPDATEBOARD")
 
+//action type for play game
+export const FIRETORPEDO = createActionTypes("FIRETORPEDO");
+export const ADDCOORDINATES = createActionTypes("ADDCOORDINATES");
+export const TORPEDOHIT = createActionTypes("TORPEDOHIT");
+
+//action types related to setUpGame
 export const PLACEBATTLESHIP = createActionTypes("PLACEBATTLESHIP");
 export const PLACECARRIER = createActionTypes("PLACECARRIER");
 export const PLACECRUISER = createActionTypes("PLACECRUISER");
@@ -26,9 +34,16 @@ export const POSTCOORDINATESMESSAGE = createActionTypes(
 //action types related to welcome
 
 export const STARTGAME = createActionTypes("STARTGAME");
-export const VERIFYJOIN = createActionTypes("VERIFYJOIN");
+export const DELETEMESSAGE = createActionTypes("DELETEMESSAGE");
+export const GETOLDMESSAGES = createActionTypes("GETOLDMESSAGES");
 
 //action types related to the waiting/memo screens
 
 export const CHECKREADYSTART = createActionTypes("CHECKREADYSTART");
 export const POSTMESSAGE = createActionTypes("POSTMESSAGE");
+
+//action types related to playing the game
+
+export const OPPONENTTORPEDOCOORDINATES = createActionTypes(
+  "OPPONENTTORPEDOCOORDINATES"
+);

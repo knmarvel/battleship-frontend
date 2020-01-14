@@ -5,6 +5,10 @@ export default function InitialBoardSquare(props) {
   if(props.isShip){
     nameOfClass += " placedShip"
   }
+  if(props.isHeader){
+    nameOfClass += " headerSquare"
+  }
+
   
   return (
     <button

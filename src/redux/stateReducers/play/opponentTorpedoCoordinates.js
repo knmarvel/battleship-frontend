@@ -1,4 +1,4 @@
-import { VERIFYJOIN } from "../../actionTypes";
+import { OPPONENTTORPEDOCOORDINATES } from "../../actionTypes";
 import { withAsyncReducer } from "../../HORs";
 
 const initialState = {
@@ -25,16 +25,19 @@ const getInitStateFromStorage = (key, initialState) => {
   return initialState;
 };
 
-const verifyJoin = (
-  state = getInitStateFromStorage("verifyJoin", initialState),
+const opponentTorpedoCoordinates = (
+  state = getInitStateFromStorage("opponentTorpedoCoordinates", initialState),
   action
 ) => {
   switch (action.type) {
-    case VERIFYJOIN.SUCCESS:
+    case OPPONENTTORPEDOCOORDINATES.SUCCESS:
       return { ...initialState };
     default:
       return state;
   }
 };
 
-export default withAsyncReducer(VERIFYJOIN, verifyJoin);
+export default withAsyncReducer(
+  OPPONENTTORPEDOCOORDINATES,
+  opponentTorpedoCoordinates
+);

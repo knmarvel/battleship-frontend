@@ -3,14 +3,26 @@ import { Spinner } from "../";
 import { withAsyncAction } from "../../HOCs";
 import { Redirect } from "../";
 import { connect } from "react-redux";
-import { verifyJoin } from "../../../redux/actionCreators";
+import {
+  // deleteMessage,
+  getOldMessages,
+  startGame,
+  login
+} from "../../../redux/actionCreators";
+import { WaitScreen } from "../waitScreen";
 
 class JoinGameForm extends React.Component {
   state = {
     value: "",
     goToSetup: false,
-    loginData: {}
+    loginData: {},
+    lookingForMatch: false,
+    message: "Searching for your game...",
+    hasStartedGame: false
   };
+  componentWillUnmount() {
+    clearInterval(this.interval);
+  }
 
   handleChange = e => {
     this.setState({ value: e.target.value });
@@ -18,37 +30,66 @@ class JoinGameForm extends React.Component {
 
   handleJoin = e => {
     e.preventDefault();
-    this.generateLoginData();
-    this.checkGameNumber();
+    this.props.login({ username: "playerB", password: "playerB" });
+    this.setState({ lookingForMatch: true });
+    this.interval = setInterval(this.waitToBeLoggedIn, 5000);
   };
 
-  generateLoginData = () => {
-    return this.setState({
-      loginData: { username: "playerB", password: "playerB" }
-    });
+  waitToBeLoggedIn = () => {
+    if (this.state.hasStartedGame === false) {
+      this.props.startGame(this.state.value, this.props.token);
+      this.setState({ hasStartedGame: true });
+    }
+    if (this.props.token) {
+      this.checkGameNumber();
+      return true;
+    } else {
+      return false;
+    }
   };
+
+  // deleteOldMessages = () => {
+  //   this.props.getOldMessages("playerB").then(result => {
+  //     result.payload.messages.map(message =>
+  //       this.props.deleteMessage(message.id)
+  //     );
+  //   });
+  // };
 
   checkGameNumber = () => {
-    this.props.verifyJoin().then(result => {
-      if (
-        result.payload.messages[0].text ===
-        "Game " + this.state.value + " start"
-      ) {
-        console.log("game number matches");
-        return this.props
-          .login(this.state.value, this.state.loginData)
-          .then(this.setState({ goToSetup: true }));
-      } else return alert("wrong number");
-    });
+    this.props
+      .getOldMessages("playerA")
+
+      .then(result => {
+        let matchingMessage = result.payload.messages.map(message => {
+          if (message.text === "Game " + this.state.value + " start") {
+            if (message.username === "playerA") {
+              clearInterval(this.interval);
+
+              this.setState({ goToSetup: true });
+            }
+          }
+          return matchingMessage;
+        });
+      })
+      .then(result => {
+        if (result) {
+        } else {
+        }
+      });
   };
 
   render() {
     const { loading, error } = this.props;
     if (this.state.goToSetup === true) {
-      return <Redirect to="/setup" />
+      return <Redirect to="/setup" />;
     }
     return (
       <React.Fragment>
+        {this.state.lookingForMatch && (
+          <WaitScreen message={this.state.message} />
+        )}
+
         <form id="login-form" onSubmit={this.handleJoin}>
           <button type="submit" disabled={loading}>
             Join Game
@@ -69,14 +110,22 @@ class JoinGameForm extends React.Component {
   }
 }
 
-// const mapStateToProps = state => {
-//   return {
-//     //example  --- selectedShip: state.selectedShip
-//   };
-// };
+const mapStateToProps = state => {
+  if (state.auth.login.result) {
+    return {
+      token: state.auth.login.result.token
+    };
+  } else return {};
+};
 
-const mapDispatchToProps = { verifyJoin };
+const mapDispatchToProps = {
+  // deleteMessage,
+  getOldMessages,
+  startGame,
+  login
+};
+
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(withAsyncAction("auth", "login")(JoinGameForm));

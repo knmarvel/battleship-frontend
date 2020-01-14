@@ -3,18 +3,18 @@
 //own ships on their half of the board
 
 import React from "react";
-import twoHorizontal from "../../../Battleship-image/ships/2Horizontal.PNG";
-import twoVertical from "../../../Battleship-image/ships/2Vertical.PNG";
+import submarineHorizontal from "../../../Battleship-image/ships/horizShip3.png";
+import submarineVertical from "../../../Battleship-image/ships/vertShip3.png";
 import { connect } from "../../HOCs";
 import { selectShip } from "../../../redux/index";
 
 class Submarine extends React.Component {
   state = {
     name: "submarine",
-    length: 2,
+    length: 3,
     orientation: "horizontal",
-    imageHorizontal: twoHorizontal,
-    imageVertical: twoVertical
+    imageHorizontal: submarineHorizontal,
+    imageVertical: submarineVertical
   };
 
   rotateShip = () => {

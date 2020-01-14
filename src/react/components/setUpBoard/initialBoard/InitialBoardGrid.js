@@ -1,21 +1,15 @@
 import React from "react";
 import InitialBoardSquare from "./InitialBoardSquare";
 import { connect } from "../../../HOCs";
-// import twoHorizontal from "../../../../Battleship-image/ships/2Horizontal.PNG";
-// import threeHorizontal from "../../../../Battleship-image/ships/3Horizontal.PNG";
-// import fourHorizontal from "../../../../Battleship-image/ships/4Horizontal.PNG";
-// import fiveHorizontal from "../../../../Battleship-image/ships/5Horizontal.PNG";
-// import twoVertical from "../../../../Battleship-image/ships/2Vertical.PNG";
-// import threeVertical from "../../../../Battleship-image/ships/3Vertical.PNG";
-// import fourVertical from "../../../../Battleship-image/ships/4Vertical.PNG";
-// import fiveVertical from "../../../../Battleship-image/ships/4Vertical.PNG";
+
 
 import {
   placeBattleship,
   placeCarrier,
   placeCruiser,
   placeDestroyer,
-  placeSubmarine
+  placeSubmarine,
+  selectShip
 } from "../../../../redux/index";
 
 class InitialBoardGrid extends React.Component {
@@ -35,7 +29,7 @@ class InitialBoardGrid extends React.Component {
     console.log(this.state.playerName);
   };
 
-  drawSquare = (label, isShip) => {
+  drawSquare = (label, isShip, isHeader) => {
     return (
       <InitialBoardSquare
         value={label}
@@ -45,6 +39,12 @@ class InitialBoardGrid extends React.Component {
       />
     );
   };
+
+  checkForHeader = e => {
+    if (e.target.innerHTML.length === 1){
+      console.log("test");
+    }
+  }
 
   drawRow = (newRow, rowLabel) => {
     return <div key={rowLabel}>{newRow}</div>;
@@ -113,18 +113,24 @@ class InitialBoardGrid extends React.Component {
     switch (this.props.activeShip.name) {
       case "battleship":
         this.props.placeBattleship(position);
+
+        this.props.selectShip(null);
         break;
       case "carrier":
         this.props.placeCarrier(position);
+        this.props.selectShip(null);
         break;
       case "cruiser":
         this.props.placeCruiser(position);
+        this.props.selectShip(null);
         break;
       case "destroyer":
         this.props.placeDestroyer(position);
+        this.props.selectShip(null);
         break;
       case "submarine":
         this.props.placeSubmarine(position);
+        this.props.selectShip(null);
         break;
       default:
         alert("No ship selected");
@@ -139,7 +145,9 @@ class InitialBoardGrid extends React.Component {
     };
     if (orientation === "horizontal") {
       for (let shipSegment = 0; shipSegment < length; shipSegment++) {
-        if (this.targetColumn * 1 + shipSegment > 10) {
+        if (this.targetColumn * 1 + shipSegment > 10
+          || this.doesAShipResideHereAndIfSoWhichOne(this.targetRow + (this.targetColumn * 1 + shipSegment))
+          ) {
           return null;
         }
         positionArray.push(
@@ -149,7 +157,9 @@ class InitialBoardGrid extends React.Component {
     } else {
       let rowIndex = this.rowLabels.indexOf(this.targetRow);
       for (let shipSegment = 0; shipSegment < length; shipSegment++) {
-        if (rowIndex + shipSegment > 10) {
+        if (rowIndex + shipSegment > 10
+          || this.doesAShipResideHereAndIfSoWhichOne(this.rowLabels[rowIndex + shipSegment] + this.targetColumn)
+          ) {
           return null;
         }
         positionArray.push(
@@ -221,7 +231,8 @@ const mapDispatchToProps = {
   placeCarrier,
   placeCruiser,
   placeDestroyer,
-  placeSubmarine
+  placeSubmarine,
+  selectShip
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(InitialBoardGrid);

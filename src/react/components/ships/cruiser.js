@@ -4,9 +4,8 @@
 //own ships on their half of the board
 
 import React from "react";
-
-import threeHorizontal from "../../../Battleship-image/ships/3Horizontal.PNG";
-import threeVertical from "../../../Battleship-image/ships/3Vertical.PNG";
+import cruiserHorizontal from "../../../Battleship-image/ships/horizShip2.png";
+import cruiserVertical from "../../../Battleship-image/ships/vertShip2.png";
 import { connect } from "../../HOCs";
 import { selectShip } from "../../../redux/index";
 
@@ -15,8 +14,8 @@ class Cruiser extends React.Component {
     name: "cruiser",
     length: 3,
     orientation: "horizontal",
-    imageHorizontal: threeHorizontal,
-    imageVertical: threeVertical
+    imageHorizontal: cruiserHorizontal,
+    imageVertical: cruiserVertical
   };
 
   rotateShip = () => {
