@@ -7,7 +7,7 @@
 import React from "react";
 import { connect, withAsyncAction } from "../../HOCs";
 import { Redirect } from "../index";
-import { fetchLastMessage } from "../../../redux/index";
+import { fetchLastMessage, getOldMessages } from "../../../redux/index";
 import { WaitScreen } from "../waitScreen";
 
 class ReadyButton extends React.Component {
@@ -128,6 +128,7 @@ class ReadyButton extends React.Component {
   };
 
   redirectToPlayGame = () => {
+    this.props.getOldMessages(this.state.opponentName)
     console.log("redirectiong to /play");
     this.setState({ redirect: true });
   };
@@ -171,7 +172,9 @@ const mapStateToProps = state => {
       : undefined
   };
 };
-const mapDispatchToProps = { fetchLastMessage };
+const mapDispatchToProps = { 
+  fetchLastMessage,
+  getOldMessages };
 export default connect(
   mapStateToProps,
   mapDispatchToProps

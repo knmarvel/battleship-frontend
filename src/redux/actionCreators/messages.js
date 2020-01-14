@@ -90,6 +90,7 @@ export const getOldMessages = playerName => dispatch => {
   })
     .then(handleJsonResponse)
     .then(result => {
+      console.log(result)
       return dispatch({
         type: GETOLDMESSAGES.SUCCESS,
         payload: result

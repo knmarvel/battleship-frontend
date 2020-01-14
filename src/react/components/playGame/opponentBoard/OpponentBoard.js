@@ -13,7 +13,7 @@ class OpponentBoard extends React.Component {
     opponentTurn: false,
     message: "Waiting for your opponent to take a turn...",
     opponentTorpedoCoordinates: "",
-    TargetCell: ""
+    TargetCell: "",
   };
 
   componentDidMount = () => {
@@ -51,7 +51,6 @@ class OpponentBoard extends React.Component {
   };
 
   toggleTurn = () => {
-    this.props.postMessage({ text: "pretend torpedo Z4" });
     if (this.state.opponentTurn === true) {
       this.setState({ opponentTurn: false });
     } else {
@@ -60,7 +59,6 @@ class OpponentBoard extends React.Component {
   };
 
   clickHandler = event => {
-    console.log("test Fire " + event.target.innerHTML);
     this.setState({ TargetCell: event.target.innerHTML });
     this.props.addCoordinates(event.target.innerHTML);
   };
