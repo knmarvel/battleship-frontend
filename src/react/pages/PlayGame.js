@@ -25,6 +25,19 @@ class PlayGame extends React.Component {
     let shipCoordinates = this.props
       .getOldMessages(opponentName)
       .then(console.log(shipCoordinates));
+
+    //==================================================================
+    //
+    // stopping point:
+    //
+    //  after we get the old messages back, we want to process them so that
+    //we can pull out the coordinates and ship names from the redux layer.
+    //
+    // something along the lines of this map function
+    //
+    // but the return from getOldMessages is currently showing "undefined" on line 27
+    //
+    //==================================================================
     //   .then(result => {
     //     result.payload.map(message => {
     //       if (!result.payload.includes("ready")) {
