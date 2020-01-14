@@ -1,8 +1,10 @@
-import { STARTBOARD, UPDATEBOARD } from "../actionTypes";
+import { STARTBOARD, 
+        UPDATEBOARD } 
+          from "../actionTypes";
 
 export const startBoard = (originalBoard) => dispatch =>{
     return dispatch({
-        type: startBoard.SUCCESS,
+        type: STARTBOARD.SUCCESS,
         payload: originalBoard
     })
 }

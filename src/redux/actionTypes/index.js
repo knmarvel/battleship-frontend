@@ -11,6 +11,7 @@ export const LOGIN = createActionTypes("LOGIN");
 export const LOGOUT = createActionTypes("LOGOUT");
 
 //action types for update board
+export const STARTBOARD = createActionTypes("STARTBOARD")
 export const UPDATEBOARD = createActionTypes("UPDATEBOARD")
 
 //action type for play game

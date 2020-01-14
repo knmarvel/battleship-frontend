@@ -4,7 +4,7 @@ import * as auth from "./auth";
 import * as messages from "./messages";
 import * as setUpGame from "./setUpGame";
 import * as play from "./play";
-import * as updateBoard from "./updateBoard";
+import * as manipulateBoards from "./manipulateBoards";
 import * as welcome from "./welcome";
 import * as waitScreen from "./waitScreen";
 
@@ -16,7 +16,7 @@ export default history =>
     messages: combineReducers(messages),
     setUpGame: combineReducers(setUpGame),
     play: combineReducers(play),
-    updateBoard: combineReducers(updateBoard),
+    manipulateBoards: combineReducers(manipulateBoards),
     welcome: combineReducers(welcome),
     waitScreen: combineReducers(waitScreen)
   });

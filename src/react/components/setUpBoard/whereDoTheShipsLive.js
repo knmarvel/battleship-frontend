@@ -1,4 +1,4 @@
-export const boards = { 
+const boards = { 
     //we want to know:
     //hit ready game
         //player board populated by ready messsage, ready messages to API
@@ -11,810 +11,811 @@ export const boards = {
                 //if not win, end turn.
 
     playerA: 
-        [
-            {"A1": {
+        {
+            "A1": {
                 "ship": null,
                 "torpedo": false,
-            }},	
-            {"B1": {
+            },	
+            "B1": {
                 "ship": null,
                 "torpedo": false,
-            }},	
-            {"C1": {
+            },	
+            "C1": {
                 "ship": null,
                 "torpedo": false,
-            }},	
-            {"D1": {
+            },	
+            "D1": {
                 "ship": null,
                 "torpedo": false,
-            }},	
-            {"E1": {
+            },	
+            "E1": {
                 "ship": null,
                 "torpedo": false,
-            }},	
-            {"F1": {
+            },	
+            "F1": {
                 "ship": null,
                 "torpedo": false,
-            }},	
-            {"G1": {
+            },	
+            "G1": {
                 "ship": null,
                 "torpedo": false,
-            }},	
-            {"H1": {
+            },	
+            "H1": {
                 "ship": null,
                 "torpedo": false,
-            }},	
-            {"I1": {
+            },	
+            "I1": {
                 "ship": null,
                 "torpedo": false,
-            }},	
-            {"J1": {
+            },	
+            "J1": {
                 "ship": null,
                 "torpedo": false,
-            }},
-            {"A2": {
+            },
+            "A2": {
                 "ship": null,
                 "torpedo": false,
-            }},	
-            {"B2": {
+            },	
+            "B2": {
                 "ship": null,
                 "torpedo": false,
-            }},	
-            {"C2": {
+            },	
+            "C2": {
                 "ship": null,
                 "torpedo": false,
-            }},	
-            {"D2": {
+            },	
+            "D2": {
                 "ship": null,
                 "torpedo": false,
-            }},	
-            {"E2": {
+            },	
+            "E2": {
                 "ship": null,
                 "torpedo": false,
-            }},	
-            {"F2": {
+            },	
+            "F2": {
                 "ship": null,
                 "torpedo": false,
-            }},	
-            {"G2": {
+            },	
+            "G2": {
                 "ship": null,
                 "torpedo": false,
-            }},	
-            {"H2": {
+            },	
+            "H2": {
                 "ship": null,
                 "torpedo": false,
-            }},	
-            {"I2": {
+            },	
+            "I2": {
                 "ship": null,
                 "torpedo": false,
-            }},	
-            {"J2": {
+            },	
+            "J2": {
                 "ship": null,
                 "torpedo": false,
-            }},
-            {"A3": {
+            },
+            "A3": {
                 "ship": null,
                 "torpedo": false,
-            }},	
-            {"B3": {
+            },	
+            "B3": {
                 "ship": null,
                 "torpedo": false,
-            }},	
-            {"C3": {
+            },	
+            "C3": {
                 "ship": null,
                 "torpedo": false,
-            }},	
-            {"D3": {
+            },	
+            "D3": {
                 "ship": null,
                 "torpedo": false,
-            }},	
-            {"E3": {
+            },	
+            "E3": {
                 "ship": null,
                 "torpedo": false,
-            }},	
-            {"F3": {
+            },	
+            "F3": {
                 "ship": null,
                 "torpedo": false,
-            }},	
-            {"G3": {
+            },	
+            "G3": {
                 "ship": null,
                 "torpedo": false,
-            }},	
-            {"H3": {
+            },	
+            "H3": {
                 "ship": null,
                 "torpedo": false,
-            }},	
-            {"I3": {
+            },	
+            "I3": {
                 "ship": null,
                 "torpedo": false,
-            }},	
-            {"J3": {
+            },	
+            "J3": {
                 "ship": null,
                 "torpedo": false,
-            }},
-            {"A4": {
+            },
+            "A4": {
                 "ship": null,
                 "torpedo": false,
-            }},	
-            {"B4": {
+            },	
+            "B4": {
                 "ship": null,
                 "torpedo": false,
-            }},	
-            {"C4": {
+            },	
+            "C4": {
                 "ship": null,
                 "torpedo": false,
-            }},	
-            {"D4": {
+            },	
+            "D4": {
                 "ship": null,
                 "torpedo": false,
-            }},	
-            {"E4": {
+            },	
+            "E4": {
                 "ship": null,
                 "torpedo": false,
-            }},	
-            {"F4": {
+            },	
+            "F4": {
                 "ship": null,
                 "torpedo": false,
-            }},	
-            {"G4": {
+            },	
+            "G4": {
                 "ship": null,
                 "torpedo": false,
-            }},	
-            {"H4": {
+            },	
+            "H4": {
                 "ship": null,
                 "torpedo": false,
-            }},	
-            {"I4": {
+            },	
+            "I4": {
                 "ship": null,
                 "torpedo": false,
-            }},	
-            {"J4": {
+            },	
+            "J4": {
                 "ship": null,
                 "torpedo": false,
-            }},
-            {"A5": {
+            },
+            "A5": {
                 "ship": null,
                 "torpedo": false,
-            }},	
-            {"B5": {
+            },	
+            "B5": {
                 "ship": null,
                 "torpedo": false,
-            }},	
-            {"C5": {
+            },	
+            "C5": {
                 "ship": null,
                 "torpedo": false,
-            }},	
-            {"D5": {
+            },	
+            "D5": {
                 "ship": null,
                 "torpedo": false,
-            }},	
-            {"E5": {
+            },	
+            "E5": {
                 "ship": null,
                 "torpedo": false,
-            }},	
-            {"F5": {
+            },	
+            "F5": {
                 "ship": null,
                 "torpedo": false,
-            }},	
-            {"G5": {
+            },	
+            "G5": {
                 "ship": null,
                 "torpedo": false,
-            }},	
-            {"H5": {
+            },	
+            "H5": {
                 "ship": null,
                 "torpedo": false,
-            }},	
-            {"I5": {
+            },	
+            "I5": {
                 "ship": null,
                 "torpedo": false,
-            }},	
-            {"J5": {
+            },	
+            "J5": {
                 "ship": null,
                 "torpedo": false,
-            }},
-            {"A6": {
+            },
+            "A6": {
                 "ship": null,
                 "torpedo": false,
-            }},	
-            {"B6": {
+            },	
+            "B6": {
                 "ship": null,
                 "torpedo": false,
-            }},	
-            {"C6": {
+            },	
+            "C6": {
                 "ship": null,
                 "torpedo": false,
-            }},	
-            {"D6": {
+            },	
+            "D6": {
                 "ship": null,
                 "torpedo": false,
-            }},	
-            {"E6": {
+            },	
+            "E6": {
                 "ship": null,
                 "torpedo": false,
-            }},	
-            {"F6": {
+            },	
+            "F6": {
                 "ship": null,
                 "torpedo": false,
-            }},	
-            {"G6": {
+            },	
+            "G6": {
                 "ship": null,
                 "torpedo": false,
-            }},	
-            {"H6": {
+            },	
+            "H6": {
                 "ship": null,
                 "torpedo": false,
-            }},	
-            {"I6": {
+            },	
+            "I6": {
                 "ship": null,
                 "torpedo": false,
-            }},	
-            {"J6": {
+            },	
+            "J6": {
                 "ship": null,
                 "torpedo": false,
-            }},
-            {"A7": {
+            },
+            "A7": {
                 "ship": null,
                 "torpedo": false,
-            }},	
-            {"B7": {
+            },	
+            "B7": {
                 "ship": null,
                 "torpedo": false,
-            }},	
-            {"C7": {
+            },	
+            "C7": {
                 "ship": null,
                 "torpedo": false,
-            }},	
-            {"D7": {
+            },	
+            "D7": {
                 "ship": null,
                 "torpedo": false,
-            }},	
-            {"E7": {
+            },	
+            "E7": {
                 "ship": null,
                 "torpedo": false,
-            }},	
-            {"F7": {
+            },	
+            "F7": {
                 "ship": null,
                 "torpedo": false,
-            }},	
-            {"G7": {
+            },	
+            "G7": {
                 "ship": null,
                 "torpedo": false,
-            }},	
-            {"H7": {
+            },	
+            "H7": {
                 "ship": null,
                 "torpedo": false,
-            }},	
-            {"I7": {
+            },	
+            "I7": {
                 "ship": null,
                 "torpedo": false,
-            }},	
-            {"J7": {
+            },	
+            "J7": {
                 "ship": null,
                 "torpedo": false,
-            }},
-            {"A8": {
+            },
+            "A8": {
                 "ship": null,
                 "torpedo": false,
-            }},	
-            {"B8": {
+            },	
+            "B8": {
                 "ship": null,
                 "torpedo": false,
-            }},	
-            {"C8": {
+            },	
+            "C8": {
                 "ship": null,
                 "torpedo": false,
-            }},	
-            {"D8": {
+            },	
+            "D8": {
                 "ship": null,
                 "torpedo": false,
-            }},	
-            {"E8": {
+            },	
+            "E8": {
                 "ship": null,
                 "torpedo": false,
-            }},	
-            {"F8": {
+            },	
+            "F8": {
                 "ship": null,
                 "torpedo": false,
-            }},	
-            {"G8": {
+            },	
+            "G8": {
                 "ship": null,
                 "torpedo": false,
-            }},	
-            {"H8": {
+            },	
+            "H8": {
                 "ship": null,
                 "torpedo": false,
-            }},	
-            {"I8": {
+            },	
+            "I8": {
                 "ship": null,
                 "torpedo": false,
-            }},	
-            {"J8": {
+            },	
+            "J8": {
                 "ship": null,
                 "torpedo": false,
-            }},
-            {"A9": {
+            },
+            "A9": {
                 "ship": null,
                 "torpedo": false,
-            }},	
-            {"B9": {
+            },	
+            "B9": {
                 "ship": null,
                 "torpedo": false,
-            }},	
-            {"C9": {
+            },	
+            "C9": {
                 "ship": null,
                 "torpedo": false,
-            }},	
-            {"D9": {
+            },	
+            "D9": {
                 "ship": null,
                 "torpedo": false,
-            }},	
-            {"E9": {
+            },	
+            "E9": {
                 "ship": null,
                 "torpedo": false,
-            }},	
-            {"F9": {
+            },	
+            "F9": {
                 "ship": null,
                 "torpedo": false,
-            }},	
-            {"G9": {
+            },	
+            "G9": {
                 "ship": null,
                 "torpedo": false,
-            }},	
-            {"H9": {
+            },	
+            "H9": {
                 "ship": null,
                 "torpedo": false,
-            }},	
-            {"I9": {
+            },	
+            "I9": {
                 "ship": null,
                 "torpedo": false,
-            }},	
-            {"J9": {
+            },	
+            "J9": {
                 "ship": null,
                 "torpedo": false,
-            }},
-            {"A10": {
+            },
+            "A10": {
                 "ship": null,
                 "torpedo": false,
-            }},	
-            {"B10": {
+            },	
+            "B10": {
                 "ship": null,
                 "torpedo": false,
-            }},	
-            {"C10": {
+            },	
+            "C10": {
                 "ship": null,
                 "torpedo": false,
-            }},	
-            {"D10": {
+            },	
+            "D10": {
                 "ship": null,
                 "torpedo": false,
-            }},	
-            {"E10": {
+            },	
+            "E10": {
                 "ship": null,
                 "torpedo": false,
-            }},	
-            {"F10": {
+            },	
+            "F10": {
                 "ship": null,
                 "torpedo": false,
-            }},	
-            {"G10": {
+            },	
+            "G10": {
                 "ship": null,
                 "torpedo": false,
-            }},	
-            {"H10": {
+            },	
+            "H10": {
                 "ship": null,
                 "torpedo": false,
-            }},	
-            {"I10": {
+            },	
+            "I10": {
                 "ship": null,
                 "torpedo": false,
-            }},	
-            {"J10": {
+            },	
+            "J10": {
                 "ship": null,
                 "torpedo": false,
-            }}
-        ],
+            }
+            },
     playerB: 
-        [
-            {"A1": {
-                "ship": null,
-                "torpedo": false,
-            }},	
-            {"B1": {
-                "ship": null,
-                "torpedo": false,
-            }},	
-            {"C1": {
-                "ship": null,
-                "torpedo": false,
-            }},	
-            {"D1": {
-                "ship": null,
-                "torpedo": false,
-            }},	
-            {"E1": {
-                "ship": null,
-                "torpedo": false,
-            }},	
-            {"F1": {
-                "ship": null,
-                "torpedo": false,
-            }},	
-            {"G1": {
-                "ship": null,
-                "torpedo": false,
-            }},	
-            {"H1": {
-                "ship": null,
-                "torpedo": false,
-            }},	
-            {"I1": {
-                "ship": null,
-                "torpedo": false,
-            }},	
-            {"J1": {
-                "ship": null,
-                "torpedo": false,
-            }},
-            {"A2": {
-                "ship": null,
-                "torpedo": false,
-            }},	
-            {"B2": {
-                "ship": null,
-                "torpedo": false,
-            }},	
-            {"C2": {
-                "ship": null,
-                "torpedo": false,
-            }},	
-            {"D2": {
-                "ship": null,
-                "torpedo": false,
-            }},	
-            {"E2": {
-                "ship": null,
-                "torpedo": false,
-            }},	
-            {"F2": {
-                "ship": null,
-                "torpedo": false,
-            }},	
-            {"G2": {
-                "ship": null,
-                "torpedo": false,
-            }},	
-            {"H2": {
-                "ship": null,
-                "torpedo": false,
-            }},	
-            {"I2": {
-                "ship": null,
-                "torpedo": false,
-            }},	
-            {"J2": {
-                "ship": null,
-                "torpedo": false,
-            }},
-            {"A3": {
-                "ship": null,
-                "torpedo": false,
-            }},	
-            {"B3": {
-                "ship": null,
-                "torpedo": false,
-            }},	
-            {"C3": {
-                "ship": null,
-                "torpedo": false,
-            }},	
-            {"D3": {
-                "ship": null,
-                "torpedo": false,
-            }},	
-            {"E3": {
-                "ship": null,
-                "torpedo": false,
-            }},	
-            {"F3": {
-                "ship": null,
-                "torpedo": false,
-            }},	
-            {"G3": {
-                "ship": null,
-                "torpedo": false,
-            }},	
-            {"H3": {
-                "ship": null,
-                "torpedo": false,
-            }},	
-            {"I3": {
-                "ship": null,
-                "torpedo": false,
-            }},	
-            {"J3": {
-                "ship": null,
-                "torpedo": false,
-            }},
-            {"A4": {
-                "ship": null,
-                "torpedo": false,
-            }},	
-            {"B4": {
-                "ship": null,
-                "torpedo": false,
-            }},	
-            {"C4": {
-                "ship": null,
-                "torpedo": false,
-            }},	
-            {"D4": {
-                "ship": null,
-                "torpedo": false,
-            }},	
-            {"E4": {
-                "ship": null,
-                "torpedo": false,
-            }},	
-            {"F4": {
-                "ship": null,
-                "torpedo": false,
-            }},	
-            {"G4": {
-                "ship": null,
-                "torpedo": false,
-            }},	
-            {"H4": {
-                "ship": null,
-                "torpedo": false,
-            }},	
-            {"I4": {
-                "ship": null,
-                "torpedo": false,
-            }},	
-            {"J4": {
-                "ship": null,
-                "torpedo": false,
-            }},
-            {"A5": {
-                "ship": null,
-                "torpedo": false,
-            }},	
-            {"B5": {
-                "ship": null,
-                "torpedo": false,
-            }},	
-            {"C5": {
-                "ship": null,
-                "torpedo": false,
-            }},	
-            {"D5": {
-                "ship": null,
-                "torpedo": false,
-            }},	
-            {"E5": {
-                "ship": null,
-                "torpedo": false,
-            }},	
-            {"F5": {
-                "ship": null,
-                "torpedo": false,
-            }},	
-            {"G5": {
-                "ship": null,
-                "torpedo": false,
-            }},	
-            {"H5": {
-                "ship": null,
-                "torpedo": false,
-            }},	
-            {"I5": {
-                "ship": null,
-                "torpedo": false,
-            }},	
-            {"J5": {
-                "ship": null,
-                "torpedo": false,
-            }},
-            {"A6": {
-                "ship": null,
-                "torpedo": false,
-            }},	
-            {"B6": {
-                "ship": null,
-                "torpedo": false,
-            }},	
-            {"C6": {
-                "ship": null,
-                "torpedo": false,
-            }},	
-            {"D6": {
-                "ship": null,
-                "torpedo": false,
-            }},	
-            {"E6": {
-                "ship": null,
-                "torpedo": false,
-            }},	
-            {"F6": {
-                "ship": null,
-                "torpedo": false,
-            }},	
-            {"G6": {
-                "ship": null,
-                "torpedo": false,
-            }},	
-            {"H6": {
-                "ship": null,
-                "torpedo": false,
-            }},	
-            {"I6": {
-                "ship": null,
-                "torpedo": false,
-            }},	
-            {"J6": {
-                "ship": null,
-                "torpedo": false,
-            }},
-            {"A7": {
-                "ship": null,
-                "torpedo": false,
-            }},	
-            {"B7": {
-                "ship": null,
-                "torpedo": false,
-            }},	
-            {"C7": {
-                "ship": null,
-                "torpedo": false,
-            }},	
-            {"D7": {
-                "ship": null,
-                "torpedo": false,
-            }},	
-            {"E7": {
-                "ship": null,
-                "torpedo": false,
-            }},	
-            {"F7": {
-                "ship": null,
-                "torpedo": false,
-            }},	
-            {"G7": {
-                "ship": null,
-                "torpedo": false,
-            }},	
-            {"H7": {
-                "ship": null,
-                "torpedo": false,
-            }},	
-            {"I7": {
-                "ship": null,
-                "torpedo": false,
-            }},	
-            {"J7": {
-                "ship": null,
-                "torpedo": false,
-            }},
-            {"A8": {
-                "ship": null,
-                "torpedo": false,
-            }},	
-            {"B8": {
-                "ship": null,
-                "torpedo": false,
-            }},	
-            {"C8": {
-                "ship": null,
-                "torpedo": false,
-            }},	
-            {"D8": {
-                "ship": null,
-                "torpedo": false,
-            }},	
-            {"E8": {
-                "ship": null,
-                "torpedo": false,
-            }},	
-            {"F8": {
-                "ship": null,
-                "torpedo": false,
-            }},	
-            {"G8": {
-                "ship": null,
-                "torpedo": false,
-            }},	
-            {"H8": {
-                "ship": null,
-                "torpedo": false,
-            }},	
-            {"I8": {
-                "ship": null,
-                "torpedo": false,
-            }},	
-            {"J8": {
-                "ship": null,
-                "torpedo": false,
-            }},
-            {"A9": {
-                "ship": null,
-                "torpedo": false,
-            }},	
-            {"B9": {
-                "ship": null,
-                "torpedo": false,
-            }},	
-            {"C9": {
-                "ship": null,
-                "torpedo": false,
-            }},	
-            {"D9": {
-                "ship": null,
-                "torpedo": false,
-            }},	
-            {"E9": {
-                "ship": null,
-                "torpedo": false,
-            }},	
-            {"F9": {
-                "ship": null,
-                "torpedo": false,
-            }},	
-            {"G9": {
-                "ship": null,
-                "torpedo": false,
-            }},	
-            {"H9": {
-                "ship": null,
-                "torpedo": false,
-            }},	
-            {"I9": {
-                "ship": null,
-                "torpedo": false,
-            }},	
-            {"J9": {
-                "ship": null,
-                "torpedo": false,
-            }},
-            {"A10": {
-                "ship": null,
-                "torpedo": false,
-            }},	
-            {"B10": {
-                "ship": null,
-                "torpedo": false,
-            }},	
-            {"C10": {
-                "ship": null,
-                "torpedo": false,
-            }},	
-            {"D10": {
-                "ship": null,
-                "torpedo": false,
-            }},	
-            {"E10": {
-                "ship": null,
-                "torpedo": false,
-            }},	
-            {"F10": {
-                "ship": null,
-                "torpedo": false,
-            }},	
-            {"G10": {
-                "ship": null,
-                "torpedo": false,
-            }},	
-            {"H10": {
-                "ship": null,
-                "torpedo": false,
-            }},	
-            {"I10": {
-                "ship": null,
-                "torpedo": false,
-            }},	
-            {"J10": {
-                "ship": null,
-                "torpedo": false,
-            }}
-        ]
-    
+       {     "A1": {
+        "ship": null,
+        "torpedo": false,
+    },	
+    "B1": {
+        "ship": null,
+        "torpedo": false,
+    },	
+    "C1": {
+        "ship": null,
+        "torpedo": false,
+    },	
+    "D1": {
+        "ship": null,
+        "torpedo": false,
+    },	
+    "E1": {
+        "ship": null,
+        "torpedo": false,
+    },	
+    "F1": {
+        "ship": null,
+        "torpedo": false,
+    },	
+    "G1": {
+        "ship": null,
+        "torpedo": false,
+    },	
+    "H1": {
+        "ship": null,
+        "torpedo": false,
+    },	
+    "I1": {
+        "ship": null,
+        "torpedo": false,
+    },	
+    "J1": {
+        "ship": null,
+        "torpedo": false,
+    },
+    "A2": {
+        "ship": null,
+        "torpedo": false,
+    },	
+    "B2": {
+        "ship": null,
+        "torpedo": false,
+    },	
+    "C2": {
+        "ship": null,
+        "torpedo": false,
+    },	
+    "D2": {
+        "ship": null,
+        "torpedo": false,
+    },	
+    "E2": {
+        "ship": null,
+        "torpedo": false,
+    },	
+    "F2": {
+        "ship": null,
+        "torpedo": false,
+    },	
+    "G2": {
+        "ship": null,
+        "torpedo": false,
+    },	
+    "H2": {
+        "ship": null,
+        "torpedo": false,
+    },	
+    "I2": {
+        "ship": null,
+        "torpedo": false,
+    },	
+    "J2": {
+        "ship": null,
+        "torpedo": false,
+    },
+    "A3": {
+        "ship": null,
+        "torpedo": false,
+    },	
+    "B3": {
+        "ship": null,
+        "torpedo": false,
+    },	
+    "C3": {
+        "ship": null,
+        "torpedo": false,
+    },	
+    "D3": {
+        "ship": null,
+        "torpedo": false,
+    },	
+    "E3": {
+        "ship": null,
+        "torpedo": false,
+    },	
+    "F3": {
+        "ship": null,
+        "torpedo": false,
+    },	
+    "G3": {
+        "ship": null,
+        "torpedo": false,
+    },	
+    "H3": {
+        "ship": null,
+        "torpedo": false,
+    },	
+    "I3": {
+        "ship": null,
+        "torpedo": false,
+    },	
+    "J3": {
+        "ship": null,
+        "torpedo": false,
+    },
+    "A4": {
+        "ship": null,
+        "torpedo": false,
+    },	
+    "B4": {
+        "ship": null,
+        "torpedo": false,
+    },	
+    "C4": {
+        "ship": null,
+        "torpedo": false,
+    },	
+    "D4": {
+        "ship": null,
+        "torpedo": false,
+    },	
+    "E4": {
+        "ship": null,
+        "torpedo": false,
+    },	
+    "F4": {
+        "ship": null,
+        "torpedo": false,
+    },	
+    "G4": {
+        "ship": null,
+        "torpedo": false,
+    },	
+    "H4": {
+        "ship": null,
+        "torpedo": false,
+    },	
+    "I4": {
+        "ship": null,
+        "torpedo": false,
+    },	
+    "J4": {
+        "ship": null,
+        "torpedo": false,
+    },
+    "A5": {
+        "ship": null,
+        "torpedo": false,
+    },	
+    "B5": {
+        "ship": null,
+        "torpedo": false,
+    },	
+    "C5": {
+        "ship": null,
+        "torpedo": false,
+    },	
+    "D5": {
+        "ship": null,
+        "torpedo": false,
+    },	
+    "E5": {
+        "ship": null,
+        "torpedo": false,
+    },	
+    "F5": {
+        "ship": null,
+        "torpedo": false,
+    },	
+    "G5": {
+        "ship": null,
+        "torpedo": false,
+    },	
+    "H5": {
+        "ship": null,
+        "torpedo": false,
+    },	
+    "I5": {
+        "ship": null,
+        "torpedo": false,
+    },	
+    "J5": {
+        "ship": null,
+        "torpedo": false,
+    },
+    "A6": {
+        "ship": null,
+        "torpedo": false,
+    },	
+    "B6": {
+        "ship": null,
+        "torpedo": false,
+    },	
+    "C6": {
+        "ship": null,
+        "torpedo": false,
+    },	
+    "D6": {
+        "ship": null,
+        "torpedo": false,
+    },	
+    "E6": {
+        "ship": null,
+        "torpedo": false,
+    },	
+    "F6": {
+        "ship": null,
+        "torpedo": false,
+    },	
+    "G6": {
+        "ship": null,
+        "torpedo": false,
+    },	
+    "H6": {
+        "ship": null,
+        "torpedo": false,
+    },	
+    "I6": {
+        "ship": null,
+        "torpedo": false,
+    },	
+    "J6": {
+        "ship": null,
+        "torpedo": false,
+    },
+    "A7": {
+        "ship": null,
+        "torpedo": false,
+    },	
+    "B7": {
+        "ship": null,
+        "torpedo": false,
+    },	
+    "C7": {
+        "ship": null,
+        "torpedo": false,
+    },	
+    "D7": {
+        "ship": null,
+        "torpedo": false,
+    },	
+    "E7": {
+        "ship": null,
+        "torpedo": false,
+    },	
+    "F7": {
+        "ship": null,
+        "torpedo": false,
+    },	
+    "G7": {
+        "ship": null,
+        "torpedo": false,
+    },	
+    "H7": {
+        "ship": null,
+        "torpedo": false,
+    },	
+    "I7": {
+        "ship": null,
+        "torpedo": false,
+    },	
+    "J7": {
+        "ship": null,
+        "torpedo": false,
+    },
+    "A8": {
+        "ship": null,
+        "torpedo": false,
+    },	
+    "B8": {
+        "ship": null,
+        "torpedo": false,
+    },	
+    "C8": {
+        "ship": null,
+        "torpedo": false,
+    },	
+    "D8": {
+        "ship": null,
+        "torpedo": false,
+    },	
+    "E8": {
+        "ship": null,
+        "torpedo": false,
+    },	
+    "F8": {
+        "ship": null,
+        "torpedo": false,
+    },	
+    "G8": {
+        "ship": null,
+        "torpedo": false,
+    },	
+    "H8": {
+        "ship": null,
+        "torpedo": false,
+    },	
+    "I8": {
+        "ship": null,
+        "torpedo": false,
+    },	
+    "J8": {
+        "ship": null,
+        "torpedo": false,
+    },
+    "A9": {
+        "ship": null,
+        "torpedo": false,
+    },	
+    "B9": {
+        "ship": null,
+        "torpedo": false,
+    },	
+    "C9": {
+        "ship": null,
+        "torpedo": false,
+    },	
+    "D9": {
+        "ship": null,
+        "torpedo": false,
+    },	
+    "E9": {
+        "ship": null,
+        "torpedo": false,
+    },	
+    "F9": {
+        "ship": null,
+        "torpedo": false,
+    },	
+    "G9": {
+        "ship": null,
+        "torpedo": false,
+    },	
+    "H9": {
+        "ship": null,
+        "torpedo": false,
+    },	
+    "I9": {
+        "ship": null,
+        "torpedo": false,
+    },	
+    "J9": {
+        "ship": null,
+        "torpedo": false,
+    },
+    "A10": {
+        "ship": null,
+        "torpedo": false,
+    },	
+    "B10": {
+        "ship": null,
+        "torpedo": false,
+    },	
+    "C10": {
+        "ship": null,
+        "torpedo": false,
+    },	
+    "D10": {
+        "ship": null,
+        "torpedo": false,
+    },	
+    "E10": {
+        "ship": null,
+        "torpedo": false,
+    },	
+    "F10": {
+        "ship": null,
+        "torpedo": false,
+    },	
+    "G10": {
+        "ship": null,
+        "torpedo": false,
+    },	
+    "H10": {
+        "ship": null,
+        "torpedo": false,
+    },	
+    "I10": {
+        "ship": null,
+        "torpedo": false,
+    },	
+    "J10": {
+        "ship": null,
+        "torpedo": false,
+    }
+    }
 }
+
+export default boards
+
