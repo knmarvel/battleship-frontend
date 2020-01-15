@@ -221,7 +221,7 @@ class InitialBoardGrid extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    playerName: state.auth.login.result.username,
+    playerName: state.auth.login.result ? state.auth.login.result.username : null,
     activeShip: state.setUpGame.selectShip.result,
     battleshipPosition: state.setUpGame.placeBattleship.result,
     carrierPosition: state.setUpGame.placeCarrier.result,

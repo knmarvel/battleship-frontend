@@ -10,7 +10,7 @@ export default function OpponentBoardSquare(props) {
     <button
       className={
         props.image !== undefined
-          ? props.image == "Hit"
+          ? props.image === "Hit"
             ? "hitBoardSquare"
             : "missBoardSquare"
           : nameOfClass
