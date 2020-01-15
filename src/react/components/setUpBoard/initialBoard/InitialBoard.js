@@ -22,8 +22,8 @@ class InitialBoard extends React.Component {
         <div className="newBoard">
           <InitialBoardGrid />
         </div>
-        <ReadyButton />
         <ClearBoardButton />
+        <ReadyButton />
       </React.Fragment>
     );
   }

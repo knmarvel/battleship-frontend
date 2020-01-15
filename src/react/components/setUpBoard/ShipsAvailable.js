@@ -111,16 +111,18 @@ class ShipsAvailable extends React.Component {
     }
   };
 
+
+
   render() {
     return (
       <React.Fragment>
         <div className="shipsAvailable">
           <div className="shipInstructions">Ship Placing Instructions</div>
-          {this.renderBattleship()}
           {this.renderCarrier()}
+          {this.renderBattleship()}
+          {this.renderSubmarine()}
           {this.renderCruiser()}
           {this.renderDestroyer()}
-          {this.renderSubmarine()}
         </div>
       </React.Fragment>
     );

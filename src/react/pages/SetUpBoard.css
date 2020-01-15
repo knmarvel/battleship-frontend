@@ -34,6 +34,7 @@
   max-height: 80vh;
   box-shadow: 0px 10px 35px var(--battleshipBlueColumnLines);
   border: 2px solid var(--battleshipBlueColumnLines);
+  margin: 4vh;
 }
 
 .initialBoard {
@@ -51,8 +52,14 @@
   color: var(--highLightText);
 }
 
+.shipGroups {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
 .availableShip {
-  margin: 4vh;
+  margin: 2vh;
 }
 
 .shipInstructions {
