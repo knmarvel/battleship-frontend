@@ -94,4 +94,4 @@ const mapDispatchToProps = {
   startBoard
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(FireButton);
+export default connect(mapStateToProps, mapDispatchToProps)(CheckForWin);
