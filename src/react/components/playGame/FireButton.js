@@ -1,16 +1,18 @@
 import React from "react";
 import { connect } from "react-redux";
-import { 
-  fireTorpedo,
-  startBoard
- } from "../../../redux/index";
+import { fireTorpedo, startBoard } from "../../../redux/index";
 import { boards } from "../setUpBoard";
 //get the last cell clicked from the oppenent board
 // check state to see if player guess hit enemy ship
 //send a message to the turnHandler that a turn has been taken
 
 class FireButton extends React.Component {
-  opponentName = this.props.playerName === "playerA" ? "playerB" : "playerA"
+  state = {
+    hitAddress: [],
+    missAddress: []
+  };
+
+  opponentName = this.props.playerName === "playerA" ? "playerB" : "playerA";
 
   FireTorpedo = event => {
     if (this.props.TargetCell === null) {
@@ -23,26 +25,25 @@ class FireButton extends React.Component {
       boards[this.opponentName][this.props.TargetCell].torpedo = true;
 
       console.log("Torpedo " + this.props.TargetCell + " Fired!");
-      this.checkStateForHitMarkers(this.props.TargetCell)
-
+      this.checkStateForHitMarkers(this.props.TargetCell);
     }
   };
 
   checkStateForHitMarkers(cellToCheck) {
-    console.log(this.props.board[this.opponentName][this.props.TargetCell].ship)
-    if(this.props.board[this.opponentName][this.props.TargetCell].ship===null){
-      alert("Miss")
+    console.log(this.props.board[this.opponentName][cellToCheck].ship);
+    if (this.props.board[this.opponentName][cellToCheck].ship === null) {
+      alert("Miss");
+      this.props.returnDecision("Miss", cellToCheck);
       //we also want to put a miss token in the appropriate div
-    }
-    else{
-      alert("HIT!")
+    } else {
+      alert("HIT!");
+      this.props.returnDecision("Hit", cellToCheck);
       //check for sinkage (another function)
       //we need to put a hit token in the appropriate div
-
     }
   }
 
-  checkStateForSinkage(cellToCheck){
+  checkStateForSinkage(cellToCheck) {
     //tbd
   }
 
@@ -72,7 +73,7 @@ const mapStateToProps = state => {
 };
 
 // export default FireButton;
-const mapDispatchToProps = { 
+const mapDispatchToProps = {
   fireTorpedo,
   startBoard
 };

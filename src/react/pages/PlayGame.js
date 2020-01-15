@@ -6,15 +6,20 @@ import "./PlayGame.css";
 import {
   OpponentBoard,
   PlayerBoard,
-  SurrenderButton,
-  FireButton,
-  TurnHandler
+  SurrenderButton
+  // FireButton
+  // TurnHandler
 } from "../components/playGame";
 import { connect } from "../HOCs";
 import board from "../components/setUpBoard/whereDoTheShipsLive";
 import { startBoard, getOldMessages } from "../../redux/index";
 
 class PlayGame extends React.Component {
+  state = {
+    // hitAddress: [],
+    // missAddress: []
+  };
+
   componentDidMount = () => {
     this.findOpponentShipCoordinates();
   };
@@ -24,7 +29,7 @@ class PlayGame extends React.Component {
     this.props
       .getOldMessages(opponentName)
       .then(result => {
-        result.payload.messages.map(message => {
+        result.payload.messages.forEach(message => {
           if (
             !message.text.includes("ready") &&
             !message.text.includes("torpedo") &&
@@ -32,13 +37,14 @@ class PlayGame extends React.Component {
             message.text.includes(this.props.gameNumber)
           ) {
             let splitMessage = message.text.split(" ");
-            let messageCoordinate = splitMessage[2];
-            let messageShipName = splitMessage[1];
+            let messageCoordinate = splitMessage[3];
+            let messageShipName = splitMessage[2];
             board[opponentName][messageCoordinate].ship = messageShipName;
           }
         });
       })
       .then(this.props.startBoard(board));
+    return true;
   };
 
   determineOpponent = () => {
@@ -47,21 +53,33 @@ class PlayGame extends React.Component {
     } else return "playerA";
   };
 
+  // returnDecision = (msg, address) => {
+  //   if (msg === "Hit") {
+  //     this.setState({
+  //       hitAddress: this.state.hitAddress.concat(address)
+  //     });
+  //   } else {
+  //     this.setState({
+  //       missAddress: this.state.missAddress.concat(address)
+  //     });
+  //   }
+  // };
+
   render() {
     return (
       <React.Fragment>
         <Menu />
+        {/* <TurnHandler /> */}
         <div className="twoBoards">
-          <div className="newGamePlayerBoard">
-            <PlayerBoard />
-            <SurrenderButton />
-            <FireButton />
-          </div>
-          <div className="newGameOpponentBoard">
-            <OpponentBoard />
-            <TurnHandler />
-          </div>
+          <PlayerBoard />
+          <OpponentBoard
+            hitAddress={this.state.hitAddress}
+            missAddress={this.state.missAddress}
+          />
         </div>
+        <SurrenderButton />
+
+        {/* <FireButton returnDecision={this.returnDecision} /> */}
       </React.Fragment>
     );
   }
