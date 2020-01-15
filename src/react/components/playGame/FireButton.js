@@ -25,23 +25,37 @@ class FireButton extends React.Component {
       boards[this.opponentName][this.props.TargetCell].torpedo = true;
 
       console.log("Torpedo " + this.props.TargetCell + " Fired!");
-      this.checkStateForHitMarkers(this.props.TargetCell);
+      // this.checkStateForHitMarkers(this.props.TargetCell);
     }
   };
 
-  checkStateForHitMarkers(cellToCheck) {
-    console.log(this.props.board[this.opponentName][cellToCheck].ship);
-    if (this.props.board[this.opponentName][cellToCheck].ship === null) {
-      alert("Miss");
-      this.props.returnDecision("Miss", cellToCheck);
-      //we also want to put a miss token in the appropriate div
-    } else {
-      alert("HIT!");
-      this.props.returnDecision("Hit", cellToCheck);
-      //check for sinkage (another function)
-      //we need to put a hit token in the appropriate div
-    }
-  }
+  // checkStateForHitMarkers(cellToCheck) {
+  //   console.log(this.props.board[this.opponentName][cellToCheck].ship);
+  //   if (this.props.board[this.opponentName][cellToCheck].ship === null) {
+  //     alert("Miss");
+  //     this.props.returnDecision("Miss", cellToCheck);
+  //     //we also want to put a miss token in the appropriate div
+  //   } else {
+  //     alert("HIT!");
+  //     this.props.returnDecision("Hit", cellToCheck);
+  //     //check for sinkage (another function)
+  //     //we need to put a hit token in the appropriate div
+  //   }
+  // }
+
+  // returnDecision = () => {
+  //   if (this.props.board[this.state.TargetCell] !== null) {
+  //     this.setState({
+  //       hitAddress: this.state.TargetCell
+  //     });
+  //     console.log(this.state.hitAddress);
+  //   } else {
+  //     this.setState({
+  //       missAddress: this.state.TargetCell
+  //     });
+  //     console.log(this.state.missAddress);
+  //   }
+  // };
 
   checkStateForSinkage(cellToCheck) {
     //tbd
