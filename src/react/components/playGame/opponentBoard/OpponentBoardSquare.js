@@ -7,7 +7,17 @@ export default function OpponentBoardSquare(props) {
   }
 
   return (
-    <button className={nameOfClass} onClick={props.onClick} key={props.value}>
+    <button
+      className={
+        props.image !== undefined
+          ? props.image === "Hit"
+            ? "hitBoardSquare"
+            : "missBoardSquare"
+          : nameOfClass
+      }
+      onClick={props.onClick}
+      key={props.value}
+    >
       {props.value}
     </button>
   );

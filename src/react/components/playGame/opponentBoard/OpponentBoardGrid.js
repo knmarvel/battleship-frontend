@@ -2,8 +2,10 @@ import React from "react";
 import OpponentBoardSquare from "./OpponentBoardSquare";
 import { connect } from "../../../HOCs";
 
-
 class OpponentBoardGrid extends React.Component {
+  state = {
+    opponentName: ""
+  }
   label = "";
   newRow = [];
   newBoard = [];
@@ -12,9 +14,39 @@ class OpponentBoardGrid extends React.Component {
   targetRow = null;
   targetColumn = null;
 
+  componentDidMount = () => {
+    this.findOpponent()
+  }
+
   drawSquare = label => {
-    return <OpponentBoardSquare value={label} key={label} />;
+    if(!this.props.torpedoMessage){
+      return <OpponentBoardSquare value={label} key={label} />;
+    }
+    if(this.props.torpedoMessage.split(" ").slice(-1) === label){
+      if(this.isItAHit(label)){
+        return <OpponentBoardSquare value={label} key={label} image="Hit" />;
+      } 
+      else {
+        return <OpponentBoardSquare value={label} key={label} image="Miss" />;
+      }}
+      return <OpponentBoardSquare value={label} key={label} />;
   };
+
+  isItAHit = label => {
+    if(this.props.theBoard[this.state.opponentName][label].ship){
+      return true
+    }
+    return 
+  }
+
+  findOpponent = () => {
+    if(this.props.playerName === "playerA"){
+      this.setState({opponentName: "playerB"})
+    }
+    else{
+      this.setState({opponentName: "playerA"})
+    }
+  }
 
   drawRow = (newRow, rowLabel) => {
     return <div key={rowLabel}>{newRow}</div>;
@@ -61,7 +93,15 @@ class OpponentBoardGrid extends React.Component {
 }
 
 const mapStateToProps = state => {
-  return {};
+  return {
+    torpedoMessage: state.play.addCoordinates.result
+      ? state.play.addCoordinates.result
+      : null,
+    //playerName
+    //the board
+    playerName: state.auth.login.result.username,
+    theBoard: state.manipulateBoards.startBoard.result,
+  };
 };
 
 const mapDispatchToProps = {};
