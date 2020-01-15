@@ -4,19 +4,11 @@ import { deleteMessage, getOldMessages } from "../../../redux/index";
 import { connect, withAsyncAction } from "../../HOCs";
 
 class WaitScreen extends React.Component {
-  deleteOldMessages = () => {
-    this.props.getOldMessages(this.props.playerName).then(result => {
-      result.payload.messages.map(message =>
-        this.props.deleteMessage(message.id, this.props.token)
-      );
-    });
-  };
-
   render() {
     return (
       <div className="waitScreen">
         <p className="waitMessage">{this.props.message}</p>
-        <button onClick={this.deleteOldMessages}>deleteOldMessages</button>
+        {/* <button onClick={this.deleteOldMessages}>deleteOldMessages</button> */}
       </div>
     );
   }

@@ -6,9 +6,9 @@ import "./PlayGame.css";
 import {
   OpponentBoard,
   PlayerBoard,
-  SurrenderButton,
-  FireButton,
-  TurnHandler
+  SurrenderButton
+  // FireButton
+  // TurnHandler
 } from "../components/playGame";
 import { connect } from "../HOCs";
 import board from "../components/setUpBoard/whereDoTheShipsLive";
@@ -16,8 +16,8 @@ import { startBoard, getOldMessages } from "../../redux/index";
 
 class PlayGame extends React.Component {
   state = {
-    hitAddress: [],
-    missAddress: []
+    // hitAddress: [],
+    // missAddress: []
   };
 
   componentDidMount = () => {
@@ -29,7 +29,7 @@ class PlayGame extends React.Component {
     this.props
       .getOldMessages(opponentName)
       .then(result => {
-        result.payload.messages.map(message => {
+        result.payload.messages.forEach(message => {
           if (
             !message.text.includes("ready") &&
             !message.text.includes("torpedo") &&
@@ -44,6 +44,7 @@ class PlayGame extends React.Component {
         });
       })
       .then(this.props.startBoard(board));
+    return true;
   };
 
   determineOpponent = () => {
@@ -52,24 +53,23 @@ class PlayGame extends React.Component {
     } else return "playerA";
   };
 
-  returnDecision = (msg, address) => {
-    if (msg === "Hit") {
-      this.setState({
-        hitAddress: this.state.hitAddress.concat(address)
-      });
-    } else {
-      this.setState({
-        missAddress: this.state.missAddress.concat(address)
-      });
-    }
-  };
+  // returnDecision = (msg, address) => {
+  //   if (msg === "Hit") {
+  //     this.setState({
+  //       hitAddress: this.state.hitAddress.concat(address)
+  //     });
+  //   } else {
+  //     this.setState({
+  //       missAddress: this.state.missAddress.concat(address)
+  //     });
+  //   }
+  // };
 
   render() {
-    console.log("this.state", this.state);
     return (
       <React.Fragment>
         <Menu />
-        <TurnHandler />
+        {/* <TurnHandler /> */}
         <div className="twoBoards">
           <PlayerBoard />
           <OpponentBoard
@@ -78,7 +78,8 @@ class PlayGame extends React.Component {
           />
         </div>
         <SurrenderButton />
-        <FireButton returnDecision={this.returnDecision} />
+
+        {/* <FireButton returnDecision={this.returnDecision} /> */}
       </React.Fragment>
     );
   }

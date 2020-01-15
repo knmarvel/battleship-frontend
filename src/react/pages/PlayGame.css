@@ -6,5 +6,11 @@
 
 h3 {
   color: var(--battleshipRed);
-  text-shadow: 1px 1px 0 var(--battleshipPurple), 5px 5px 0 var(--battleshipPurple);
+  text-shadow: 1px 1px 0 var(--battleshipNavy), 9px 7px 10px var(--battleshipNavy);
+}
+
+.newGamePlayerBoard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
