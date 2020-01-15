@@ -6,7 +6,7 @@ import { WaitScreen } from "../../waitScreen";
 // import { postMessage } from "../../../../redux/index";
 import { addCoordinates, fetchLastMessage } from "../../../../redux/index";
 import { FireButton } from "../index";
-import board from "../../setUpBoard/whereDoTheShipsLive";
+import board from "../../setUpBoard/whereDoTheShipsLive"
 
 // import {addCoordinates} from "../../../../redux/index"
 
@@ -83,8 +83,8 @@ class OpponentBoard extends React.Component {
         this.setState({ playerHasWon: true });
       }
       if (result.payload.messages[0].text.includes("torpedo")) {
-        let torpedoStatus = this.props.board[this.props.playerName][
-          opponentTorpedoCoordinates].torpedo;
+        let torpedoStatus 
+        = this.props.board[this.props.playerName][opponentTorpedoCoordinates].torpedo;
         console.log(
           "torpedo status for opponent board coordinates: " + torpedoStatus
         );
@@ -135,13 +135,8 @@ class OpponentBoard extends React.Component {
         )}
 
         <div className="newBoard" onClick={this.clickHandler}>
-          <h3>Opponent Board</h3>
-          <div className="newBoard" onClick={this.clickHandler}>
-            <OpponentBoardGrid
-              hitAddress={this.props.hitAddress}
-              missAddress={this.props.missAddress}
-            />
-          </div>
+          Opponent Board
+          <OpponentBoardGrid />
         </div>
         <div onClick={this.handleFireButtonClick}>
           <FireButton />
