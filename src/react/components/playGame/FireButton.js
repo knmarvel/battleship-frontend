@@ -2,6 +2,8 @@ import React from "react";
 import { connect } from "react-redux";
 import { fireTorpedo, startBoard } from "../../../redux/index";
 import { boards } from "../setUpBoard";
+import { checkForWin } from "./CheckForWin"
+import { WaitScreen } from "../waitScreen/";
 //get the last cell clicked from the oppenent board
 // check state to see if player guess hit enemy ship
 //send a message to the turnHandler that a turn has been taken
@@ -9,7 +11,8 @@ import { boards } from "../setUpBoard";
 class FireButton extends React.Component {
   state = {
     hitAddress: [],
-    missAddress: []
+    missAddress: [],
+    didPlayerWin: false
   };
 
   opponentName = this.props.playerName === "playerA" ? "playerB" : "playerA";
@@ -23,52 +26,35 @@ class FireButton extends React.Component {
           "Game " + this.props.gameNumber + " torpedo " + this.props.TargetCell
       });
       boards[this.opponentName][this.props.TargetCell].torpedo = true;
-
       console.log("Torpedo " + this.props.TargetCell + " Fired!");
+      if(checkForWin(boards[this.opponentName])){
+        this.setState({didPlayerWin: true})
+        alert("YOU WIN")
+      }
       // this.checkStateForHitMarkers(this.props.TargetCell);
     }
   };
 
-  // checkStateForHitMarkers(cellToCheck) {
-  //   console.log(this.props.board[this.opponentName][cellToCheck].ship);
-  //   if (this.props.board[this.opponentName][cellToCheck].ship === null) {
-  //     alert("Miss");
-  //     this.props.returnDecision("Miss", cellToCheck);
-  //     //we also want to put a miss token in the appropriate div
-  //   } else {
-  //     alert("HIT!");
-  //     this.props.returnDecision("Hit", cellToCheck);
-  //     //check for sinkage (another function)
-  //     //we need to put a hit token in the appropriate div
-  //   }
-  // }
-
-  // returnDecision = () => {
-  //   if (this.props.board[this.state.TargetCell] !== null) {
-  //     this.setState({
-  //       hitAddress: this.state.TargetCell
-  //     });
-  //     console.log(this.state.hitAddress);
-  //   } else {
-  //     this.setState({
-  //       missAddress: this.state.TargetCell
-  //     });
-  //     console.log(this.state.missAddress);
-  //   }
-  // };
-
-  checkStateForSinkage(cellToCheck) {
-    //tbd
+  winCheck = () =>{
+    if(this.state.didPlayerWin){
+      return <WaitScreen message="Congratulations! You sunk your opponent's fleet! You win!" />
+    }
   }
+
+ 
 
   render() {
     return (
+
+      <span>
+        {this.winCheck}
       <button
         onClick={this.FireTorpedo}
         style={{ backgroundColor: "red", borderRadius: ".5em" }}
       >
         Fire Torpedo!
       </button>
+      </span>
     );
   }
 }
