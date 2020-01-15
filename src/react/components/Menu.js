@@ -11,7 +11,7 @@ class Menu extends React.Component {
 
   render() {
     return (
-      <div id="menu">
+      <nav id="menu">
         <Link to="/home">Home</Link>
         {this.props.isAuthenticated && (
           <div id="menu-links">
@@ -20,7 +20,7 @@ class Menu extends React.Component {
           </div>
         )}
         <Link to="/credits">Credits</Link>
-      </div>
+      </nav>
     );
   }
 }

@@ -14,11 +14,7 @@ class Credits extends React.Component{
         return (
             <React.Fragment>
                 <Menu/>
-                <p>
-                Backend and HOC's adapted from "Kwitter" project skeleton, by Taylor Hunt, Kenzie Academy 2nd Quarter Instructor
-                Technologies used: JavaScript, HTML, CSS, React-Redux, ... anything else you can think of
-
-                </p>
+                
             </React.Fragment>
         )
     }
