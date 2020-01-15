@@ -15,6 +15,11 @@ import board from "../components/setUpBoard/whereDoTheShipsLive";
 import { startBoard, getOldMessages } from "../../redux/index";
 
 class PlayGame extends React.Component {
+  state = {
+    hitAddress: [],
+    missAddress: []
+  };
+
   componentDidMount = () => {
     this.findOpponentShipCoordinates();
   };
@@ -45,19 +50,42 @@ class PlayGame extends React.Component {
     if (this.props.playerName === "playerA") {
       return "playerB";
     } else return "playerA";
+<<<<<<< HEAD
+=======
+  };
+
+  returnDecision = (msg, address) => {
+    if (msg === "Hit") {
+      this.setState({
+        hitAddress: this.state.hitAddress.concat(address)
+      });
+    } else {
+      this.setState({
+        missAddress: this.state.missAddress.concat(address)
+      });
+    }
+>>>>>>> 19d348954580030efa2593eb84b53332e0269b1e
   };
 
   render() {
+    console.log("this.state", this.state);
     return (
       <React.Fragment>
         <Menu />
         {/* <TurnHandler /> */}
         <div className="twoBoards">
           <PlayerBoard />
-          <OpponentBoard />
+          <OpponentBoard
+            hitAddress={this.state.hitAddress}
+            missAddress={this.state.missAddress}
+          />
         </div>
         <SurrenderButton />
+<<<<<<< HEAD
         {/* <FireButton /> */}
+=======
+        <FireButton returnDecision={this.returnDecision} />
+>>>>>>> 19d348954580030efa2593eb84b53332e0269b1e
       </React.Fragment>
     );
   }

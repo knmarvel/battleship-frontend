@@ -109,10 +109,37 @@ class ShipsAvailable extends React.Component {
     }
   };
 
+  renderShipPlacingInstructions = () => {
+    if (
+      this.props.placeBattleship &&
+      this.props.placeCarrier &&
+      this.props.placeCruiser &&
+      this.props.placeDestroyer &&
+      this.props.placeSubmarine
+    ) {
+      return (
+        <div className="shipInstructions">
+          Click the Ready button to begin the game!
+        </div>
+      );
+    }
+
+    if (this.props.nameOfSelectedShip) {
+      return (
+        <div className="shipInstructions">
+          Click on the board to place the ship.
+        </div>
+      );
+    } else {
+      return <div className="shipInstructions">Click a ship to select it.</div>;
+    }
+  };
+
   render() {
     return (
       <React.Fragment>
         <div className="shipsAvailable">
+<<<<<<< HEAD
           {this.props.nameOfSelectedShip && (
             <div className="shipInstructions">
               Click on the board to place the ship.
@@ -123,6 +150,9 @@ class ShipsAvailable extends React.Component {
               Click on a ship to select it.
             </div>
           )}
+=======
+          {this.renderShipPlacingInstructions()}
+>>>>>>> 19d348954580030efa2593eb84b53332e0269b1e
           {this.renderBattleship()}
           {this.renderCarrier()}
           {this.renderCruiser()}

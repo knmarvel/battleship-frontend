@@ -128,6 +128,7 @@ class OpponentBoard extends React.Component {
   render() {
     return (
       <React.Fragment>
+<<<<<<< HEAD
         {this.state.opponentTurn && (
           <WaitScreen message={this.state.waitMessage} />
         )}
@@ -136,8 +137,17 @@ class OpponentBoard extends React.Component {
         )}
 
         <div className="newBoard" onClick={this.clickHandler}>
+=======
+        {this.state.opponentTurn && <WaitScreen message={this.state.message} />}
+        <div>
+>>>>>>> 19d348954580030efa2593eb84b53332e0269b1e
           <h3>Opponent Board</h3>
-          <OpponentBoardGrid />
+          <div className="newBoard" onClick={this.clickHandler}>
+            <OpponentBoardGrid
+              hitAddress={this.props.hitAddress}
+              missAddress={this.props.missAddress}
+            />
+          </div>
         </div>
         <div onClick={this.handleFireButtonClick}>
           <FireButton />
