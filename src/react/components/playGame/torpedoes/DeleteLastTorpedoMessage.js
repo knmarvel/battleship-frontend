@@ -15,6 +15,7 @@ class DeleteLastTorpedoMessage extends React.Component {
           this.setState({ id: message.id });
           this.props.deleteMessage(this.state.id, this.props.token);
         }
+        return console.log(message.id + " has been deleted");
       });
     });
   };
