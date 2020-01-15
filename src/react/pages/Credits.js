@@ -25,7 +25,9 @@ class Credits extends React.Component {
             Andrew Belanger
             <br />
             How to get in touch with Andrew: <br />
-            DOES HE HAVE LINKS?
+            <a href="https://www.linkedin.com/in/andrew-belanger-014a1018b/">
+              LinkedIn
+            </a>
           </div>
           <div class="individualProfiles">
             Drashti Dalsania
