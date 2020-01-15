@@ -1,6 +1,10 @@
 import React from "react";
 import { connect } from "react-redux";
-import { fireTorpedo, startBoard } from "../../../redux/index";
+import {
+  fireTorpedo,
+  startBoard,
+  fetchLastMessage
+} from "../../../redux/index";
 import { boards } from "../setUpBoard";
 //get the last cell clicked from the oppenent board
 // check state to see if player guess hit enemy ship
@@ -9,7 +13,9 @@ import { boards } from "../setUpBoard";
 class FireButton extends React.Component {
   state = {
     hitAddress: [],
-    missAddress: []
+    missAddress: [],
+    playerName: this.props.playerName,
+    id: 0
   };
 
   opponentName = this.props.playerName === "playerA" ? "playerB" : "playerA";
@@ -18,15 +24,37 @@ class FireButton extends React.Component {
     if (this.props.TargetCell === null) {
       alert("please choose coordinates by clicking on your opponent's board");
     } else {
-      this.props.fireTorpedo({
-        text:
-          "Game " + this.props.gameNumber + " torpedo " + this.props.TargetCell
-      });
+      let messageToDeleteId = this.getLastTorpedoMessageId();
+
+      this.props.fireTorpedo(
+        {
+          text:
+            "Game " +
+            this.props.gameNumber +
+            " torpedo " +
+            this.props.TargetCell
+        },
+        messageToDeleteId,
+        this.props.token
+      );
       boards[this.opponentName][this.props.TargetCell].torpedo = true;
 
-      console.log("Torpedo " + this.props.TargetCell + " Fired!");
+      // console.log("Torpedo " + this.props.TargetCell + " Fired!");
       this.checkStateForHitMarkers(this.props.TargetCell);
     }
+  };
+
+  getLastTorpedoMessageId = () => {
+    this.props.fetchLastMessage(this.props.playerName).then(result => {
+      result.payload.messages.forEach(message => {
+        if (message.text.includes("torpedo")) {
+          console.log(message.id);
+          this.setState({ id: message.id });
+          // this.props.deleteMessage(this.state.id, this.props.token);
+        }
+        return this.state.id;
+      });
+    });
   };
 
   checkStateForHitMarkers(cellToCheck) {
@@ -68,14 +96,16 @@ const mapStateToProps = state => {
     gameNumber: state.welcome.startGame.result
       ? state.welcome.startGame.result.message.text.slice(5, 9)
       : null,
-    board: state.manipulateBoards.startBoard.result
+    board: state.manipulateBoards.startBoard.result,
+    token: state.auth.login.result.token
   };
 };
 
 // export default FireButton;
 const mapDispatchToProps = {
   fireTorpedo,
-  startBoard
+  startBoard,
+  fetchLastMessage
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(FireButton);
