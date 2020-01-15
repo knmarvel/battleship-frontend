@@ -8,7 +8,7 @@ class PlayerBoard extends React.Component {
     return (
       <React.Fragment>
         <div>
-          Player Board
+          <h3>Player Board</h3>
           <div className="newBoard">
             <PlayerBoardGrid />
           </div>

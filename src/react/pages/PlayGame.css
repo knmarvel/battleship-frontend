@@ -3,3 +3,8 @@
   flex-direction: row;
   justify-content: space-evenly;
 }
+
+h3 {
+  color: var(--battleshipRed);
+  text-shadow: 1px 1px 0 var(--battleshipPurple), 5px 5px 0 var(--battleshipPurple);
+}

@@ -31,10 +31,10 @@
   /* pirate theme colors */
 
   --battleshipPurple: #6866ee;
-  --battleshipRed: #ea4600;
+  --battleshipRed: #ea3100;
   --battleshipNavy: #364d6f;
-  --battleshipNavyBackground: #a2b1c7ee;
-  --battleshipBlueColumnLines: #3fa3e9;
+  --battleshipNavyBackground: #364d6f90;
+  --battleshipBlueColumnLines: #3D99DC;
 
   /* changing cursors */
   --cursorImage: auto;

@@ -82,7 +82,7 @@ class OpponentBoard extends React.Component {
       <React.Fragment>
         {this.state.opponentTurn && <WaitScreen message={this.state.message} />}
         <div>
-          Opponent Board
+          <h3>Opponent Board</h3>
           <div className="newBoard" onClick={this.clickHandler}>
             <OpponentBoardGrid
               hitAddress={this.props.hitAddress}
