@@ -4,57 +4,114 @@ import { connect } from "react-redux";
 import { OpponentBoardGrid } from ".";
 import { WaitScreen } from "../../waitScreen";
 // import { postMessage } from "../../../../redux/index";
-import { addCoordinates } from "../../../../redux/index";
+import {
+  addCoordinates,
+  fetchLastMessage,
+  startBoard
+} from "../../../../redux/index";
+import { FireButton } from "../index";
+// import board from "../../setUpBoard/whereDoTheShipsLive";
 
 // import {addCoordinates} from "../../../../redux/index"
 
 class OpponentBoard extends React.Component {
   state = {
     opponentTurn: false,
-    message: "Waiting for your opponent to take a turn...",
-    opponentTorpedoCoordinates: "",
-    TargetCell: ""
+    waitMessage: "Waiting for your opponent to take a turn...",
+    winMessage: "Congratulations!  You won!  Your opponent has surrendered.",
+    // opponentTorpedoCoordinates: "",
+    TargetCell: "",
+    opponentName: "",
+    playerHasWon: false,
+
+    hitAddress: [],
+    missAddress: []
   };
 
   componentDidMount = () => {
-    //determine if this is playerA or playerB.  if it's playerB, set opponentTurn to true.
+    this.determineOpponentName();
     this.determineFirstMove();
+    setInterval(this.checkOpponentTurn, 5000);
+  };
+
+  determineOpponentName = () => {
+    if (this.props.playerName === "playerA") {
+      this.setState({ opponentName: "playerB" });
+    } else {
+      this.setState({ opponentName: "playerA" });
+    }
   };
 
   determineFirstMove = () => {
     if (this.props.playerName === "playerB") {
       this.setState({ opponentTurn: true });
+      this.startWaitingForOpponent();
     }
   };
 
-  componentWillUnmount = () => {};
-
-  startWaitingForOpponent = () => {
-    // this.setState({ opponentTurn: true });
-    this.interval = setInterval(this.checkOpponentTurn, 5000);
+  componentWillUnmount = () => {
+    clearInterval();
   };
+
+  startWaitingForOpponent = () => {};
 
   checkOpponentTurn = () => {
-    if (this.props.torpedoMessage) {
-      if (this.props.torpedoMessage.username !== this.props.playerName) {
-        clearInterval(this.interval);
-        this.toggleTurn();
-        let torpedoCoordinates = this.props.torpedoMessage.text
-          .split(" ")
-          .slice(-1);
-        console.log("torpedoCoordinates are " + torpedoCoordinates);
-        this.setState({ opponentTorpedoCoordinates: torpedoCoordinates });
-        console.log("we need to check hits next");
-      }
+    console.log("tick");
+    if (this.state.opponentTurn === false) {
+      return;
     }
-    //look for the word torpedo
-    //grab the coordinates (if none (at start), keep it as "")
-    //compare coordinates to opponentTorpedoCoordinates
-    //if same, return false
-    //if different, assign coordinates to opponentTorpedoCoordinates
-    //set opponentTurn to true
-    //and
-    //clearInterval(this.interval);
+    console.log(
+      "opponent name that we're looking for torpedos is " +
+        this.state.opponentName
+    );
+    this.props.fetchLastMessage(this.state.opponentName).then(result => {
+      let opponentTorpedoCoordinates = result.payload.messages[0].text
+        .split(" ")
+        .slice(-1);
+      console.log(
+        "last word of last message from opponent is:  " +
+          opponentTorpedoCoordinates
+      );
+      //check game #
+      let messageGameNumber = result.payload.messages[0].text
+        .split(" ")
+        .slice(1, 2);
+      console.log(" opponent message game number is " + messageGameNumber);
+      console.log("props gameNumber is " + this.props.gameNumber);
+      if (messageGameNumber && this.props.gameNumber) {
+        if (messageGameNumber.toString() === this.props.gameNumber.toString()) {
+          console.log("same game number found");
+
+          // else {
+          //   console.log(
+          //     "it looks like " +
+          //       messageGameNumber +
+          //       " and  " +
+          //       this.props.gameNumber +
+          //       " are different."
+          //   );
+          // }
+          if (result.payload.messages[0].text.includes("surrender")) {
+            this.setState({ playerHasWon: true });
+          }
+          if (result.payload.messages[0].text.includes("torpedo")) {
+            let torpedoStatus = this.props.board[this.props.playerName][
+              opponentTorpedoCoordinates
+            ].torpedo;
+            console.log(
+              "torpedo status for opponent board coordinates: " + torpedoStatus
+            );
+            if (torpedoStatus === false) {
+              this.props.board[this.props.playerName][
+                opponentTorpedoCoordinates
+              ].torpedo = true;
+              this.props.startBoard(this.props.board);
+              this.toggleTurn();
+            }
+          }
+        }
+      }
+    });
   };
 
   getOpponentTorpedoMessage = () => {
@@ -63,24 +120,49 @@ class OpponentBoard extends React.Component {
   };
 
   toggleTurn = () => {
-    // if (this.state.opponentTurn === true) {
-    //   this.setState({ opponentTurn: false });
-    // } else {
-    //   this.setState({ opponentTurn: true });
-    // }
+    if (this.state.opponentTurn === true) {
+      this.setState({ opponentTurn: false });
+    } else {
+      this.setState({ opponentTurn: true });
+    }
   };
 
   clickHandler = event => {
     this.setState({ TargetCell: event.target.innerHTML });
     this.props.addCoordinates(event.target.innerHTML);
-    this.toggleTurn();
     this.startWaitingForOpponent();
+  };
+
+  handleFireButtonClick = () => {
+    if (this.state.TargetCell) {
+      console.log("we have a target cell");
+      this.setState({ opponentTurn: true });
+    } else {
+      console.log("we do not have a target cell");
+    }
+  };
+
+  returnDecision = (msg, address) => {
+    if (msg === "Hit") {
+      this.setState({
+        hitAddress: this.state.hitAddress.concat(address)
+      });
+    } else {
+      this.setState({
+        missAddress: this.state.missAddress.concat(address)
+      });
+    }
   };
 
   render() {
     return (
       <React.Fragment>
-        {this.state.opponentTurn && <WaitScreen message={this.state.message} />}
+        {this.state.opponentTurn && (
+          <WaitScreen message={this.state.waitMessage} />
+        )}
+        {this.state.playerHasWon && (
+          <WaitScreen message={this.state.winMessage} />
+        )}
         <div>
           <h3>Opponent Board</h3>
           <div className="newBoard" onClick={this.clickHandler}>
@@ -90,7 +172,10 @@ class OpponentBoard extends React.Component {
             />
           </div>
         </div>
-        <button onClick={this.toggleTurn}>Toggle turn</button>
+        <div onClick={this.handleFireButtonClick}>
+          <FireButton returnDecision={this.returnDecision} />
+        </div>
+        {/* <button onClick={this.toggleTurn}>Toggle turn</button> */}
       </React.Fragment>
     );
   }
@@ -106,17 +191,23 @@ const mapStateToProps = state => {
         ? state.play.fireTorpedo.result.message
         : null,
 
-      opponentTorpedoCoordinates: state.play.fireTorpedo.result
-        ? state.play.fireTorpedo.result.message.text
-        : null,
+      // opponentTorpedoCoordinates: state.play.fireTorpedo.result
+      //   ? state.play.fireTorpedo.result.message.text
+      //   : null,
       TargetCell: state.play.addCoordinates.result
         ? state.play.addCoordinates.result
-        : null
+        : null,
+
+      board: state.manipulateBoards.startBoard.result,
+
+      gameNumber: state.welcome.startGame.result
+        ? state.welcome.startGame.result.message.text.slice(5, 9)
+        : undefined
     };
   } else return {};
 };
 
 // export default OpponentBoard;
-const mapDispatchToProps = { addCoordinates };
+const mapDispatchToProps = { addCoordinates, fetchLastMessage, startBoard };
 
 export default connect(mapStateToProps, mapDispatchToProps)(OpponentBoard);

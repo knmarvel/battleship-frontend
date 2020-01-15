@@ -7,6 +7,11 @@ import { boards } from "../setUpBoard";
 //send a message to the turnHandler that a turn has been taken
 
 class FireButton extends React.Component {
+  state = {
+    hitAddress: [],
+    missAddress: []
+  };
+
   opponentName = this.props.playerName === "playerA" ? "playerB" : "playerA";
 
   FireTorpedo = event => {
@@ -25,18 +30,14 @@ class FireButton extends React.Component {
   };
 
   checkStateForHitMarkers(cellToCheck) {
-    console.log(
-      this.props.board[this.opponentName][this.props.TargetCell].ship
-    );
-    if (
-      this.props.board[this.opponentName][this.props.TargetCell].ship === null
-    ) {
+    console.log(this.props.board[this.opponentName][cellToCheck].ship);
+    if (this.props.board[this.opponentName][cellToCheck].ship === null) {
       alert("Miss");
-      this.props.returnDecision("Miss", this.props.TargetCell);
+      this.props.returnDecision("Miss", cellToCheck);
       //we also want to put a miss token in the appropriate div
     } else {
       alert("HIT!");
-      this.props.returnDecision("Hit", this.props.TargetCell);
+      this.props.returnDecision("Hit", cellToCheck);
       //check for sinkage (another function)
       //we need to put a hit token in the appropriate div
     }
