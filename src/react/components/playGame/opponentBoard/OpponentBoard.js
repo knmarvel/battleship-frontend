@@ -4,7 +4,11 @@ import { connect } from "react-redux";
 import { OpponentBoardGrid } from ".";
 import { WaitScreen } from "../../waitScreen";
 // import { postMessage } from "../../../../redux/index";
-import { addCoordinates, fetchLastMessage } from "../../../../redux/index";
+import {
+  addCoordinates,
+  fetchLastMessage,
+  startBoard
+} from "../../../../redux/index";
 import { FireButton } from "../index";
 // import board from "../../setUpBoard/whereDoTheShipsLive";
 
@@ -27,6 +31,7 @@ class OpponentBoard extends React.Component {
   componentDidMount = () => {
     this.determineOpponentName();
     this.determineFirstMove();
+    setInterval(this.checkOpponentTurn, 5000);
   };
 
   determineOpponentName = () => {
@@ -44,13 +49,17 @@ class OpponentBoard extends React.Component {
     }
   };
 
-  componentWillUnmount = () => {};
-
-  startWaitingForOpponent = () => {
-    this.interval = setInterval(this.checkOpponentTurn, 5000);
+  componentWillUnmount = () => {
+    clearInterval();
   };
 
+  startWaitingForOpponent = () => {};
+
   checkOpponentTurn = () => {
+    console.log("tick");
+    if (this.state.opponentTurn === false) {
+      return;
+    }
     console.log(
       "opponent name that we're looking for torpedos is " +
         this.state.opponentName
@@ -60,41 +69,46 @@ class OpponentBoard extends React.Component {
         .split(" ")
         .slice(-1);
       console.log(
-        "opponentTorpedoCoordinates are " + opponentTorpedoCoordinates
+        "last word of last message from opponent is:  " +
+          opponentTorpedoCoordinates
       );
-
       //check game #
       let messageGameNumber = result.payload.messages[0].text
         .split(" ")
         .slice(1, 2);
       console.log(" opponent message game number is " + messageGameNumber);
       console.log("props gameNumber is " + this.props.gameNumber);
-      if (messageGameNumber.toString() === this.props.gameNumber.toString()) {
-        console.log("same game number found");
-      } else {
-        console.log(
-          "it looks like " +
-            messageGameNumber +
-            " and  " +
-            this.props.gameNumber +
-            " are different."
-        );
-        // window.alert("  Aborting mission.  Mission fail.");
-        return;
-      }
-      if (result.payload.messages[0].text.includes("surrender")) {
-        this.setState({ playerHasWon: true });
-      }
-      if (result.payload.messages[0].text.includes("torpedo")) {
-        let torpedoStatus = this.props.board[this.props.playerName][
-          opponentTorpedoCoordinates
-        ].torpedo;
-        console.log(
-          "torpedo status for opponent board coordinates: " + torpedoStatus
-        );
-        if (torpedoStatus === false) {
-          clearInterval(this.interval);
-          this.toggleTurn();
+      if (messageGameNumber && this.props.gameNumber) {
+        if (messageGameNumber.toString() === this.props.gameNumber.toString()) {
+          console.log("same game number found");
+
+          // else {
+          //   console.log(
+          //     "it looks like " +
+          //       messageGameNumber +
+          //       " and  " +
+          //       this.props.gameNumber +
+          //       " are different."
+          //   );
+          // }
+          if (result.payload.messages[0].text.includes("surrender")) {
+            this.setState({ playerHasWon: true });
+          }
+          if (result.payload.messages[0].text.includes("torpedo")) {
+            let torpedoStatus = this.props.board[this.props.playerName][
+              opponentTorpedoCoordinates
+            ].torpedo;
+            console.log(
+              "torpedo status for opponent board coordinates: " + torpedoStatus
+            );
+            if (torpedoStatus === false) {
+              this.props.board[this.props.playerName][
+                opponentTorpedoCoordinates
+              ].torpedo = true;
+              this.props.startBoard(this.props.board);
+              this.toggleTurn();
+            }
+          }
         }
       }
     });
@@ -122,7 +136,7 @@ class OpponentBoard extends React.Component {
   handleFireButtonClick = () => {
     if (this.state.TargetCell) {
       console.log("we have a target cell");
-      this.toggleTurn();
+      this.setState({ opponentTurn: true });
     } else {
       console.log("we do not have a target cell");
     }
@@ -145,6 +159,9 @@ class OpponentBoard extends React.Component {
       <React.Fragment>
         {this.state.opponentTurn && (
           <WaitScreen message={this.state.waitMessage} />
+        )}
+        {this.state.playerHasWon && (
+          <WaitScreen message={this.state.winMessage} />
         )}
         <div>
           <h3>Opponent Board</h3>
@@ -191,6 +208,6 @@ const mapStateToProps = state => {
 };
 
 // export default OpponentBoard;
-const mapDispatchToProps = { addCoordinates, fetchLastMessage };
+const mapDispatchToProps = { addCoordinates, fetchLastMessage, startBoard };
 
 export default connect(mapStateToProps, mapDispatchToProps)(OpponentBoard);
