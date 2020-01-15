@@ -1,12 +1,14 @@
 import React from "react";
-import { Redirect } from "react-router-dom"
+import { Link } from "react-router-dom"
 import "./WaitScreen.css";
 import { deleteMessage, getOldMessages } from "../../../redux/index";
 import { connect, withAsyncAction } from "../../HOCs";
 
+
+
 class WaitScreen extends React.Component {
   handleGoToCreditsClick = event => {
-    return <Redirect to="/Credits" />;
+    return <Link to="/Credits" />;
   }
   isThisAGameEndingMessage = (trueOrFalse) =>{
     if(trueOrFalse){
