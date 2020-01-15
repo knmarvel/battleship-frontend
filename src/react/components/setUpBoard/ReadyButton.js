@@ -129,19 +129,19 @@ class ReadyButton extends React.Component {
 
   startCheckingForOpponentReady = () => {
     this.interval = setInterval(() => {
-      console.log("checking opponent readiness");
+      // console.log("checking opponent readiness");
       this.checkReadyPlay();
     }, 2000);
   };
 
   checkReadyPlay = () => {
-    console.log("checkReadyPlay has been called");
-    console.log("opponent name is " + this.state.opponentName);
-    console.log("playerName is " + this.props.playerName);
+    // console.log("checkReadyPlay has been called");
+    // console.log("opponent name is " + this.state.opponentName);
+    // console.log("playerName is " + this.props.playerName);
     this.props.fetchLastMessage(this.state.opponentName).then(result => {
       result.payload.messages.map(message => {
         if (!message.text.includes("start")) {
-          console.log("player is ready");
+          // console.log("player is ready");
           return this.redirectToPlayGame();
         } else return false;
       });
@@ -150,13 +150,13 @@ class ReadyButton extends React.Component {
 
   redirectToPlayGame = () => {
     this.props.getOldMessages(this.state.opponentName);
-    console.log("redirecting to /play");
+    // console.log("redirecting to /play");
     this.setState({ redirect: true });
   };
 
   handleClick = () => {
-    console.log(this.props.gameNumber);
-    console.log("ReadyButton was clicked.");
+    // console.log(this.props.gameNumber);
+    // console.log("ReadyButton was clicked.");
     if (this.verifyAllShipsPlaced() === false) {
       return;
     }

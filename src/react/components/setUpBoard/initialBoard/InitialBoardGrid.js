@@ -41,7 +41,7 @@ class InitialBoardGrid extends React.Component {
 
   checkForHeader = e => {
     if (e.target.innerHTML.length === 1){
-      console.log("test");
+      // console.log("test");
     }
   }
 
@@ -95,7 +95,7 @@ class InitialBoardGrid extends React.Component {
       return;
     } //is the case if a header row/column is clicked
     if (this.props.activeShip === null) {
-      console.log("No ship selected");
+      // console.log("No ship selected");
     } else {
       this.placeShip(this.props.activeShip.name);
     }

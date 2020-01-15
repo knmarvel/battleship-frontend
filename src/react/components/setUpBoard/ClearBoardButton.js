@@ -6,7 +6,7 @@ import React from "react";
 
 class ClearBoardButton extends React.Component {
   handleClick = () => {
-    console.log("ClearBoardButton was clicked.");
+    // console.log("ClearBoardButton was clicked.");
     window.location.reload();
 
   };

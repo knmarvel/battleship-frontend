@@ -9,8 +9,8 @@ export const startGame = gameNumber => (dispatch, getState) => {
   });
   const token = getState().auth.login.result.token;
 
-  console.log("posting a start game message for game # " + gameNumber);
-  console.log(token);
+  // console.log("posting a start game message for game # " + gameNumber);
+  // console.log(token);
   return fetch(url, {
     method: "POST",
     headers: { ...jsonHeaders, Authorization: "Bearer " + token },
