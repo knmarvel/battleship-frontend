@@ -1,8 +1,13 @@
-p {
-  font-size: calc((var(--h) / 64));
+div {
+  flex-basis: 33.3%;
 }
 
 div #profiles {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+p {
+  font-size: calc((var(--h) / 64));
 }

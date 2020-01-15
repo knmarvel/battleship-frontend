@@ -22,6 +22,12 @@ class Credits extends React.Component {
         <h4>The people who made this happen:</h4>
         <div id="profiles">
           <div>
+            Andrew Belanger
+            <br />
+            How to get in touch with Andrew: <br />
+            DOES HE HAVE LINKS?
+          </div>
+          <div>
             Drashti Dalsania
             <br />
             How to get in touch with Drashti: <br />
@@ -63,11 +69,14 @@ class Credits extends React.Component {
             Kano Marvel
             <br />
             How to get in touch with Kano: <br />
-            {/* <a href="">LinkedIn</a> <br />
-            <a href="">GitLab</a>
+            <a href="https://www.linkedin.com/in/karen-kano-marvel-3761b0b5/">
+              LinkedIn
+            </a>
             <br />
-            <a href="">GitHub</a> */}
+            {/* <a href="">GitLab</a>
             <br />
+            <a href="">GitHub</a>
+            <br /> */}
           </div>
           <div>
             Chelsea White <br />
