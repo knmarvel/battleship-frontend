@@ -6,6 +6,9 @@
   text-align: center;
   position: relative;
   z-index: 1;
+  border: 1px solid var(--battleshipBlueColumnLines);
+  color: white;
+  font-weight: bold;
 }
 
 .newBoardSquare:hover {
@@ -24,13 +27,19 @@
   flex-shrink: 1;
   background-color: var(--battleshipNavyBackground);
   justify-content: flex-start;
+  justify-items: center;
   align-items: center;
   margin-left: 10vh;
   margin-right: 4vh;
   max-height: 80vh;
+  box-shadow: 0px 10px 35px var(--battleshipBlueColumnLines);
+  border: 2px solid var(--battleshipBlueColumnLines);
 }
 
 .initialBoard {
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0px 10px 35px var(--battleshipBlueColumnLines);
   margin: 4vh;
 }
 
@@ -47,9 +56,17 @@
 }
 
 .shipInstructions {
-  background-color: white;
-  height: 5em;
-  width: 5em;
+  margin-top: 1%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: var(--battleshipNavy);
+  border: 2px solid var(--battleshipBlueColumnLines);
+  height: auto;
+  width: auto;
+  padding: 20px;
+  color: white;
+  border-radius: 1em;
 }
 
 .availableShip :hover {
@@ -66,10 +83,12 @@
 }
 
 h2 {
+  /* text-shadow: 1px 1px 0 var(--battleshipPurple), 9px 7px 15px var(--battleshipPurple); */
+  text-shadow: 1px 1px 0 var(--battleshipNavy), 9px 7px 10px var(--battleshipNavy);
+
   text-transform: uppercase;
   margin: 0px;
-  color: #ea4701;
-  text-shadow: 1px 1px 0 #6866ee, 5px 5px 0 #6866ee;
+  color: var(--battleshipRed);
   text-align: center;
   /* margin-right: 60%; */
   /* position: fixed; */
