@@ -60,9 +60,9 @@ class OpponentBoard extends React.Component {
       );
 
       //check game #
-      let messageGameNumber = (opponentTorpedoCoordinates = result.payload.messages[0].text
+      let messageGameNumber = result.payload.messages[0].text
         .split(" ")
-        .slice(1, 2));
+        .slice(1, 2);
       console.log(" opponent message game number is " + messageGameNumber);
       console.log("props gameNumber is " + this.props.gameNumber);
       if (messageGameNumber == this.props.gameNumber) {
@@ -82,24 +82,30 @@ class OpponentBoard extends React.Component {
         this.setState({ playerHasWon: true });
       }
       if (result.payload.messages[0].text.includes("torpedo")) {
-        let torpedoStatus = this.props.board[this.props.playerName][
+        if (
+          this.props.board &&
+          this.props.playerName &&
           opponentTorpedoCoordinates
-        ].torpedo;
+        ) {
+          let torpedoStatus = this.props.board[this.props.playerName][
+            opponentTorpedoCoordinates
+          ].torpedo;
 
-        //=================================================
-        //
-        //janell says:
-        //@kano - we're getting a bug that says it's here.  it's not
-        //reading "torpedo" of line 85.  chelsea and i weren't able to
-        //figure this out. could you take a look at it please?  thanks!
-        //
-        //=======================================================
-        console.log(
-          "torpedo status for opponent board coordinates: " + torpedoStatus
-        );
-        if (torpedoStatus === false) {
-          clearInterval(this.interval);
-          this.toggleTurn();
+          //=================================================
+          //
+          //janell says:
+          //@kano - we're getting a bug that says it's here.  it's not
+          //reading "torpedo" of line 85.  chelsea and i weren't able to
+          //figure this out. could you take a look at it please?  thanks!
+          //
+          //=======================================================
+          console.log(
+            "torpedo status for opponent board coordinates: " + torpedoStatus
+          );
+          if (torpedoStatus === false) {
+            clearInterval(this.interval);
+            this.toggleTurn();
+          }
         }
       }
     });
