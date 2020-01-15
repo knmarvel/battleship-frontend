@@ -32,8 +32,8 @@ class PlayGame extends React.Component {
               )
               {
                 let splitMessage = message.text.split(" ")
-                let messageCoordinate = splitMessage[2];
-                let messageShipName = splitMessage[1];
+                let messageCoordinate = splitMessage[3];
+                let messageShipName = splitMessage[2];
                 board[opponentName][messageCoordinate].ship = messageShipName
                 
               }
