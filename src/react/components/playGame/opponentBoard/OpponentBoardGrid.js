@@ -92,8 +92,6 @@ const mapStateToProps = state => {
     torpedoMessage: state.play.addCoordinates.result
       ? state.play.addCoordinates.result
       : null,
-    //playerName
-    //the board
     playerName: state.auth.login.result.username,
     theBoard: state.manipulateBoards.startBoard.result
   };

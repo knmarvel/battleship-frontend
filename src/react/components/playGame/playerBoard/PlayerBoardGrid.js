@@ -12,7 +12,6 @@ import { connect } from "../../../HOCs";
 // import verticalBattleship from "../../../../Battleship-image/ships/vertShip4.png"
 // import verticalCarrier from "../../../../Battleship-image/ships/vertShip5.png"
 
-
 // import {
 //   placeBattleship,
 //   placeCarrier,
@@ -29,18 +28,45 @@ class PlayerBoardGrid extends React.Component {
   rowLabels = [" ", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J"];
   targetRow = null;
   targetColumn = null;
-  
-
 
   drawSquare = (label, isShip) => {
     return <PlayerBoardSquare value={label} isShip={isShip} key={label} />;
   };
 
+  drawSquare = (label, isShip) => {
+    if (this.props.hitAddress.includes(label)) {
+      return (
+        <PlayerBoardSquare
+          value={label}
+          isShip={isShip}
+          key={label}
+          image="Hit"
+        />
+      );
+    } else if (this.props.missAddress.includes(label)) {
+      return (
+        <PlayerBoardSquare
+          value={label}
+          isShip={isShip}
+          key={label}
+          image="Miss"
+        />
+      );
+    } else {
+      return <PlayerBoardSquare value={label} isShip={isShip} key={label} />;
+    }
+  };
+
+  isItAHit = label => {
+    if (this.props.theBoard[this.props.playerName][label].ship) {
+      return true;
+    }
+    return;
+  };
+
   drawRow = (newRow, rowLabel) => {
     return <div key={rowLabel}>{newRow}</div>;
   };
-
-
 
   doesAShipResideHereAndIfSoWhichOne = coordinates => {
     if (this.props.battleshipPosition !== null) {
@@ -50,7 +76,7 @@ class PlayerBoardGrid extends React.Component {
     }
 
     if (this.props.carrierPosition !== null) {
-      this.carrierLocation = []
+      this.carrierLocation = [];
       if (this.props.carrierPosition.coordinates.includes(coordinates)) {
         return true;
       }
@@ -132,7 +158,8 @@ const mapStateToProps = state => {
     carrierPosition: state.setUpGame.placeCarrier.result,
     cruiserPosition: state.setUpGame.placeCruiser.result,
     destroyerPosition: state.setUpGame.placeDestroyer.result,
-    submarinePosition: state.setUpGame.placeSubmarine.result
+    submarinePosition: state.setUpGame.placeSubmarine.result,
+    playerName: state.auth.login.result.username
   };
 };
 
