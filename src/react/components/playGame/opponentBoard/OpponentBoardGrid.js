@@ -5,7 +5,7 @@ import { connect } from "../../../HOCs";
 class OpponentBoardGrid extends React.Component {
   state = {
     opponentName: ""
-  }
+  };
   label = "";
   newRow = [];
   newBoard = [];
@@ -15,38 +15,33 @@ class OpponentBoardGrid extends React.Component {
   targetColumn = null;
 
   componentDidMount = () => {
-    this.findOpponent()
-  }
+    this.findOpponent();
+  };
 
   drawSquare = label => {
-    if(!this.props.torpedoMessage){
+    if (this.props.hitAddress.includes(label)) {
+      return <OpponentBoardSquare value={label} key={label} image="Hit" />;
+    } else if (this.props.missAddress.includes(label)) {
+      return <OpponentBoardSquare value={label} key={label} image="Miss" />;
+    } else {
       return <OpponentBoardSquare value={label} key={label} />;
     }
-    if(this.props.torpedoMessage.split(" ").slice(-1) === label){
-      if(this.isItAHit(label)){
-        return <OpponentBoardSquare value={label} key={label} image="Hit" />;
-      } 
-      else {
-        return <OpponentBoardSquare value={label} key={label} image="Miss" />;
-      }}
-      return <OpponentBoardSquare value={label} key={label} />;
   };
 
   isItAHit = label => {
-    if(this.props.theBoard[this.state.opponentName][label].ship){
-      return true
+    if (this.props.theBoard[this.state.opponentName][label].ship) {
+      return true;
     }
-    return 
-  }
+    return;
+  };
 
   findOpponent = () => {
-    if(this.props.playerName === "playerA"){
-      this.setState({opponentName: "playerB"})
+    if (this.props.playerName === "playerA") {
+      this.setState({ opponentName: "playerB" });
+    } else {
+      this.setState({ opponentName: "playerA" });
     }
-    else{
-      this.setState({opponentName: "playerA"})
-    }
-  }
+  };
 
   drawRow = (newRow, rowLabel) => {
     return <div key={rowLabel}>{newRow}</div>;
@@ -100,7 +95,7 @@ const mapStateToProps = state => {
     //playerName
     //the board
     playerName: state.auth.login.result.username,
-    theBoard: state.manipulateBoards.startBoard.result,
+    theBoard: state.manipulateBoards.startBoard.result
   };
 };
 

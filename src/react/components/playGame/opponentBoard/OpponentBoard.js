@@ -23,7 +23,6 @@ class OpponentBoard extends React.Component {
     TargetCell: "",
     opponentName: "",
     playerHasWon: false,
-
     hitAddress: [],
     missAddress: []
   };
@@ -82,15 +81,6 @@ class OpponentBoard extends React.Component {
         if (messageGameNumber.toString() === this.props.gameNumber.toString()) {
           console.log("same game number found");
 
-          // else {
-          //   console.log(
-          //     "it looks like " +
-          //       messageGameNumber +
-          //       " and  " +
-          //       this.props.gameNumber +
-          //       " are different."
-          //   );
-          // }
           if (result.payload.messages[0].text.includes("surrender")) {
             this.setState({ playerHasWon: true });
           }
@@ -134,23 +124,41 @@ class OpponentBoard extends React.Component {
   };
 
   handleFireButtonClick = () => {
+    console.log(this.props.TargetCell);
     if (this.state.TargetCell) {
-      console.log("we have a target cell");
+      console.log("we have a target cell " + this.state.TargetCell);
+      this.checkStateForHitMarkers(this.props.TargetCell);
       this.setState({ opponentTurn: true });
     } else {
       console.log("we do not have a target cell");
     }
   };
 
-  returnDecision = (msg, address) => {
+  checkStateForHitMarkers(cellToCheck) {
+    console.log(this.props.board[this.state.opponentName][cellToCheck].ship);
+    if (this.props.board[this.state.opponentName][cellToCheck].ship === null) {
+      alert("Miss");
+      this.returnDecision("Miss", cellToCheck);
+      //we also want to put a miss token in the appropriate div
+    } else {
+      alert("HIT!");
+      this.returnDecision("Hit", cellToCheck);
+      //check for sinkage (another function)
+      //we need to put a hit token in the appropriate div
+    }
+  }
+
+  returnDecision = (msg, cellToCheck) => {
     if (msg === "Hit") {
       this.setState({
-        hitAddress: this.state.hitAddress.concat(address)
+        hitAddress: this.state.hitAddress.concat(cellToCheck)
       });
+      console.log(this.state.hitAddress);
     } else {
       this.setState({
-        missAddress: this.state.missAddress.concat(address)
+        missAddress: this.state.missAddress.concat(cellToCheck)
       });
+      console.log(this.state.missAddress);
     }
   };
 
@@ -167,8 +175,8 @@ class OpponentBoard extends React.Component {
           <h3>Opponent Board</h3>
           <div className="newBoard" onClick={this.clickHandler}>
             <OpponentBoardGrid
-              hitAddress={this.props.hitAddress}
-              missAddress={this.props.missAddress}
+              hitAddress={this.state.hitAddress}
+              missAddress={this.state.missAddress}
             />
           </div>
         </div>
