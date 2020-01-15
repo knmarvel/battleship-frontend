@@ -2,7 +2,6 @@ import React from "react";
 import OpponentBoardSquare from "./OpponentBoardSquare";
 import { connect } from "../../../HOCs";
 
-
 class OpponentBoardGrid extends React.Component {
   label = "";
   newRow = [];
@@ -13,7 +12,13 @@ class OpponentBoardGrid extends React.Component {
   targetColumn = null;
 
   drawSquare = label => {
-    return <OpponentBoardSquare value={label} key={label} />;
+    if (this.props.hitAddress.includes(label)) {
+      return <OpponentBoardSquare value={label} key={label} image="Hit" />;
+    } else if (this.props.missAddress.includes(label)) {
+      return <OpponentBoardSquare value={label} key={label} image="Miss" />;
+    } else {
+      return <OpponentBoardSquare value={label} key={label} />;
+    }
   };
 
   drawRow = (newRow, rowLabel) => {

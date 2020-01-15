@@ -136,7 +136,12 @@ class OpponentBoard extends React.Component {
 
         <div className="newBoard" onClick={this.clickHandler}>
           <h3>Opponent Board</h3>
-          <OpponentBoardGrid />
+          <div className="newBoard" onClick={this.clickHandler}>
+            <OpponentBoardGrid
+              hitAddress={this.props.hitAddress}
+              missAddress={this.props.missAddress}
+            />
+          </div>
         </div>
         <div onClick={this.handleFireButtonClick}>
           <FireButton />

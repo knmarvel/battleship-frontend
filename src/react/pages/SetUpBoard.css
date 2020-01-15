@@ -6,6 +6,7 @@
   text-align: center;
   position: relative;
   z-index: 1;
+  overflow: hidden;
   border: 1px solid var(--battleshipBlueColumnLines);
   color: white;
   font-weight: bold;
@@ -17,6 +18,30 @@
 
 .newBoardSquare:focus {
   background-color: var(--battleshipNavy);
+}
+
+.hitBoardSquare {
+  background-color: red;
+  border-radius: 50%;
+  --squareSize: 6vh;
+  width: var(--squareSize);
+  height: var(--squareSize);
+  text-align: center;
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.missBoardSquare {
+  background-color: white;
+  border-radius: 50%;
+  --squareSize: 6vh;
+  width: var(--squareSize);
+  height: var(--squareSize);
+  text-align: center;
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
 }
 
 .shipsAvailable {
@@ -72,6 +97,7 @@
 .availableShip :hover {
   cursor: url(/Battleship-image/ships/battleshipHorizontal.PNG), auto;
 }
+
 .initialShip2 {
   width: 400px;
   height: 200px;
@@ -85,11 +111,14 @@
 h2 {
   /* text-shadow: 1px 1px 0 var(--battleshipPurple), 9px 7px 15px var(--battleshipPurple); */
   text-shadow: 1px 1px 0 var(--battleshipNavy), 9px 7px 10px var(--battleshipNavy);
-
   text-transform: uppercase;
   margin: 0px;
   color: var(--battleshipRed);
   text-align: center;
   /* margin-right: 60%; */
   /* position: fixed; */
+}
+
+.newBoard {
+  background-color: var(--battleshipNavyBackground);
 }
