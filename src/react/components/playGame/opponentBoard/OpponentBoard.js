@@ -128,7 +128,9 @@ class OpponentBoard extends React.Component {
   render() {
     return (
       <React.Fragment>
-        {this.state.opponentTurn && <WaitScreen message={this.state.message} />}
+        {this.state.opponentTurn && (
+          <WaitScreen message={this.state.waitMessage} />
+        )}
         <div>
           <h3>Opponent Board</h3>
           <div className="newBoard" onClick={this.clickHandler}>
