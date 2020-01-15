@@ -21,7 +21,7 @@ class Credits extends React.Component {
         <h4>Technologies used: JavaScript, HTML, CSS, React-Redux</h4>
         <h4>The people who made this happen:</h4>
         <div id="profiles">
-          <div>
+          <div class="individualProfiles">
             Andrew Belanger
             <br />
             How to get in touch with Andrew: <br />
