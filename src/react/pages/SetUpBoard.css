@@ -121,4 +121,5 @@ h2 {
 
 .newBoard {
   background-color: var(--battleshipNavyBackground);
+  border: 1px solid var(--battleshipBlueColumnLines);
 }
