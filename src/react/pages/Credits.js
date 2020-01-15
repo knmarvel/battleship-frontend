@@ -27,13 +27,13 @@ class Credits extends React.Component {
             How to get in touch with Andrew: <br />
             DOES HE HAVE LINKS?
           </div>
-          <div>
+          <div class="individualProfiles">
             Drashti Dalsania
             <br />
             How to get in touch with Drashti: <br />
             <a href="https://gitlab.com/dpdalsania">GitLab</a>
           </div>
-          <div>
+          <div class="individualProfiles">
             Givon Dickeron
             <br />
             How to get in touch with Givon: <br />
@@ -43,7 +43,7 @@ class Credits extends React.Component {
             <br />
             <a href="https://www.codewars.com/users/givond4">CodeWars</a>
           </div>
-          <div>
+          <div class="individualProfiles">
             LeighAnn Featheringill
             <br />
             How to get in touch with LeighAnn: <br />
@@ -55,17 +55,17 @@ class Credits extends React.Component {
               LinkedIn
             </a>
           </div>
-          <div>
+          <div class="individualProfiles">
             Janell Huyck
             <br />
             How to get in touch with Janell: <br />
             <a href="https://www.linkedin.com/in/janell-huyck-b050a05a/">
               LinkedIn
-            </a>{" "}
+            </a>
             <br />
             <a href="https://gitlab.com/Janell">Gitlab</a>
           </div>
-          <div>
+          <div class="individualProfiles">
             Kano Marvel
             <br />
             How to get in touch with Kano: <br />
@@ -78,7 +78,7 @@ class Credits extends React.Component {
             <a href="">GitHub</a>
             <br /> */}
           </div>
-          <div>
+          <div class="individualProfiles">
             Chelsea White <br />
             How to get in touch with Chelsea: <br />
             <a href="https://www.linkedin.com/in/chelsea-white-34b19735/">
