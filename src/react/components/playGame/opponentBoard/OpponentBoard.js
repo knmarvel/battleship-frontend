@@ -6,7 +6,7 @@ import { WaitScreen } from "../../waitScreen";
 // import { postMessage } from "../../../../redux/index";
 import { addCoordinates, fetchLastMessage } from "../../../../redux/index";
 import { FireButton } from "../index";
-import board from "../../setUpBoard/whereDoTheShipsLive";
+// import board from "../../setUpBoard/whereDoTheShipsLive";
 
 // import {addCoordinates} from "../../../../redux/index"
 
@@ -18,7 +18,10 @@ class OpponentBoard extends React.Component {
     // opponentTorpedoCoordinates: "",
     TargetCell: "",
     opponentName: "",
-    playerHasWon: false
+    playerHasWon: false,
+
+    hitAddress: [],
+    missAddress: []
   };
 
   componentDidMount = () => {
@@ -66,7 +69,7 @@ class OpponentBoard extends React.Component {
         .slice(1, 2);
       console.log(" opponent message game number is " + messageGameNumber);
       console.log("props gameNumber is " + this.props.gameNumber);
-      if (messageGameNumber == this.props.gameNumber) {
+      if (messageGameNumber.toString() === this.props.gameNumber.toString()) {
         console.log("same game number found");
       } else {
         console.log(
@@ -125,6 +128,18 @@ class OpponentBoard extends React.Component {
     }
   };
 
+  returnDecision = (msg, address) => {
+    if (msg === "Hit") {
+      this.setState({
+        hitAddress: this.state.hitAddress.concat(address)
+      });
+    } else {
+      this.setState({
+        missAddress: this.state.missAddress.concat(address)
+      });
+    }
+  };
+
   render() {
     return (
       <React.Fragment>
@@ -141,7 +156,7 @@ class OpponentBoard extends React.Component {
           </div>
         </div>
         <div onClick={this.handleFireButtonClick}>
-          <FireButton />
+          <FireButton returnDecision={this.returnDecision} />
         </div>
         {/* <button onClick={this.toggleTurn}>Toggle turn</button> */}
       </React.Fragment>

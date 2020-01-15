@@ -7,6 +7,11 @@ import { boards } from "../setUpBoard";
 //send a message to the turnHandler that a turn has been taken
 
 class FireButton extends React.Component {
+  state = {
+    hitAddress: [],
+    missAddress: []
+  };
+
   opponentName = this.props.playerName === "playerA" ? "playerB" : "playerA";
 
   FireTorpedo = event => {
