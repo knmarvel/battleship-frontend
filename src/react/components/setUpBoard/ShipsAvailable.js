@@ -111,11 +111,23 @@ class ShipsAvailable extends React.Component {
     }
   };
 
+  renderShipPlacingInstructions = () => {
+    if(
+      this.props.placeBattleship === null
+      || this.props.placeCarrier === null
+      || this.props.placeCruiser === null
+      || this.props.placeDestroyer === null
+      || this.props.placeSubmarine === null
+    ){
+      return <div className="shipInstructions">Ship Placing Instructions</div>
+    }
+  }
+
   render() {
     return (
       <React.Fragment>
         <div className="shipsAvailable">
-          <div className="shipInstructions">Ship Placing Instructions</div>
+          {this.renderShipPlacingInstructions()}
           {this.renderBattleship()}
           {this.renderCarrier()}
           {this.renderCruiser()}
