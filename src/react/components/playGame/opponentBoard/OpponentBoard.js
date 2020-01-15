@@ -6,6 +6,7 @@ import { WaitScreen } from "../../waitScreen";
 // import { postMessage } from "../../../../redux/index";
 import { addCoordinates, fetchLastMessage } from "../../../../redux/index";
 import { FireButton } from "../index";
+import board from "../../setUpBoard/whereDoTheShipsLive";
 
 // import {addCoordinates} from "../../../../redux/index"
 
@@ -75,37 +76,22 @@ class OpponentBoard extends React.Component {
             this.props.gameNumber +
             " are different."
         );
-        window.alert("  Aborting mission.  Mission fail.");
+        // window.alert("  Aborting mission.  Mission fail.");
         return;
       }
       if (result.payload.messages[0].text.includes("surrender")) {
         this.setState({ playerHasWon: true });
       }
       if (result.payload.messages[0].text.includes("torpedo")) {
-        if (
-          this.props.board &&
-          this.props.playerName &&
+        let torpedoStatus = this.props.board[this.props.playerName][
           opponentTorpedoCoordinates
-        ) {
-          let torpedoStatus = this.props.board[this.props.playerName][
-            opponentTorpedoCoordinates
-          ].torpedo;
-
-          //=================================================
-          //
-          //janell says:
-          //@kano - we're getting a bug that says it's here.  it's not
-          //reading "torpedo" of line 85.  chelsea and i weren't able to
-          //figure this out. could you take a look at it please?  thanks!
-          //
-          //=======================================================
-          console.log(
-            "torpedo status for opponent board coordinates: " + torpedoStatus
-          );
-          if (torpedoStatus === false) {
-            clearInterval(this.interval);
-            this.toggleTurn();
-          }
+        ].torpedo;
+        console.log(
+          "torpedo status for opponent board coordinates: " + torpedoStatus
+        );
+        if (torpedoStatus === false) {
+          clearInterval(this.interval);
+          this.toggleTurn();
         }
       }
     });
