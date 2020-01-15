@@ -139,7 +139,6 @@ class ShipsAvailable extends React.Component {
     return (
       <React.Fragment>
         <div className="shipsAvailable">
-<<<<<<< HEAD
           {this.props.nameOfSelectedShip && (
             <div className="shipInstructions">
               Click on the board to place the ship.
@@ -150,9 +149,7 @@ class ShipsAvailable extends React.Component {
               Click on a ship to select it.
             </div>
           )}
-=======
           {this.renderShipPlacingInstructions()}
->>>>>>> 19d348954580030efa2593eb84b53332e0269b1e
           {this.renderBattleship()}
           {this.renderCarrier()}
           {this.renderCruiser()}

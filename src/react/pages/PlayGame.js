@@ -50,8 +50,6 @@ class PlayGame extends React.Component {
     if (this.props.playerName === "playerA") {
       return "playerB";
     } else return "playerA";
-<<<<<<< HEAD
-=======
   };
 
   returnDecision = (msg, address) => {
@@ -64,7 +62,6 @@ class PlayGame extends React.Component {
         missAddress: this.state.missAddress.concat(address)
       });
     }
->>>>>>> 19d348954580030efa2593eb84b53332e0269b1e
   };
 
   render() {
@@ -81,11 +78,8 @@ class PlayGame extends React.Component {
           />
         </div>
         <SurrenderButton />
-<<<<<<< HEAD
-        {/* <FireButton /> */}
-=======
+
         <FireButton returnDecision={this.returnDecision} />
->>>>>>> 19d348954580030efa2593eb84b53332e0269b1e
       </React.Fragment>
     );
   }
