@@ -1,0 +1,8 @@
+p {
+  font-size: calc((var(--h) / 64));
+}
+
+div #profiles {
+  display: flex;
+  justify-content: space-evenly;
+}
