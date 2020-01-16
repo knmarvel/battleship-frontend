@@ -117,7 +117,8 @@
 
 h2 {
   /* text-shadow: 1px 1px 0 var(--battleshipPurple), 9px 7px 15px var(--battleshipPurple); */
-  text-shadow: 1px 1px 0 var(--battleshipNavy), 9px 7px 10px var(--battleshipNavy);
+  text-shadow: 1px 1px 0 var(--battleshipNavy),
+    9px 7px 10px var(--battleshipNavy);
   text-transform: uppercase;
   margin: 0px;
   color: var(--battleshipRed);
@@ -129,4 +130,5 @@ h2 {
 .newBoard {
   background-color: var(--battleshipNavyBackground);
   border: 1px solid var(--battleshipBlueColumnLines);
+  width: 66vh;
 }

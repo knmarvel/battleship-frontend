@@ -82,6 +82,7 @@ class FireButton extends React.Component {
     }
     return (
       <button
+        className={"fireButton"}
         onClick={this.FireTorpedo}
         style={{ backgroundColor: "red", borderRadius: ".5em" }}
       >

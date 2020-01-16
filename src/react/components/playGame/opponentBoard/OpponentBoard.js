@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 // import { withAsyncAction } from "../../../HOCs";
 import { OpponentBoardGrid } from ".";
-import { checkForLose } from "../checkForLose"
+import { checkForLose } from "../checkForLose";
 import { WaitScreen } from "../../waitScreen";
 // import { postMessage } from "../../../../redux/index";
 import {
@@ -105,7 +105,7 @@ class OpponentBoard extends React.Component {
               ].torpedo = true;
               this.props.startBoard(this.props.board);
               //kano lose conditions pt 1/2//
-              this.checkForPlayerLoss(this.props.board)
+              this.checkForPlayerLoss(this.props.board);
               //end kano lose conditions pt 1/2//
               this.toggleTurn();
             }
@@ -173,48 +173,52 @@ class OpponentBoard extends React.Component {
     }
   };
 
-  checkForPlayerLoss = (boards)=>{
-  
-    if(checkForLose(boards[this.props.playerName]) === true){
-      this.setState({didPlayerLose: true})
+  checkForPlayerLoss = boards => {
+    if (checkForLose(boards[this.props.playerName]) === true) {
+      this.setState({ didPlayerLose: true });
+    } else {
+      if (!this.state.didOpponentSinkBattleship) {
+        if (
+          checkForLose(boards[this.props.playerName]).includes("battleship")
+        ) {
+          this.setState({ didOpponentSinkBattleship: true });
+          alert("Your opponent sank your battleship!");
+        }
+      }
+      if (!this.state.didOpponentSinkCarrier) {
+        if (checkForLose(boards[this.props.playerName]).includes("carrier")) {
+          this.setState({ didOpponentSinkCarrier: true });
+          alert("Your opponent sank your carrier!");
+        }
+      }
+      if (!this.state.didOpponentSinkCruiser) {
+        if (checkForLose(boards[this.props.playerName]).includes("cruiser")) {
+          this.setState({ didOpponentSinkCruiser: true });
+          alert("Your opponent sank your cruiser!");
+        }
+      }
+      if (!this.state.didOpponentSinkSubmarine) {
+        if (checkForLose(boards[this.props.playerName]).includes("submarine")) {
+          this.setState({ didOpponentSinkSubmarine: true });
+          alert("Your opponent sank your submarine!");
+        }
+      }
+      if (!this.state.didOpponentSinkDestroyer) {
+        if (checkForLose(boards[this.props.playerName]).includes("destroyer")) {
+          this.setState({ didOpponentSinkDestroyer: true });
+          alert("Your opponent sank your destroyer!");
+        }
+      }
     }
-    else{
-      if(!this.state.didOpponentSinkBattleship){
-        if(checkForLose(boards[this.props.playerName]).includes("battleship")){
-          this.setState({didOpponentSinkBattleship: true})
-          alert("Your opponent sank your battleship!")
-        }
-      }
-      if(!this.state.didOpponentSinkCarrier){
-        if(checkForLose(boards[this.props.playerName]).includes("carrier")){
-          this.setState({didOpponentSinkCarrier: true})
-          alert("Your opponent sank your carrier!")
-        }
-      }
-      if(!this.state.didOpponentSinkCruiser){
-        if(checkForLose(boards[this.props.playerName]).includes("cruiser")){
-          this.setState({didOpponentSinkCruiser: true})
-          alert("Your opponent sank your cruiser!")
-        }
-      }
-      if(!this.state.didOpponentSinkSubmarine){
-        if(checkForLose(boards[this.props.playerName]).includes("submarine")){
-          this.setState({didOpponentSinkSubmarine: true})
-          alert("Your opponent sank your submarine!")
-        }
-      }
-      if(!this.state.didOpponentSinkDestroyer){
-        if(checkForLose(boards[this.props.playerName]).includes("destroyer")){
-          this.setState({didOpponentSinkDestroyer: true})
-          alert("Your opponent sank your destroyer!")
-        }
-      }
-    }
-  }
+  };
 
   render() {
-    if(this.state.didPlayerLose){
-      return <WaitScreen message="Your opponent destroyed your fleet! You lose!">true</WaitScreen>
+    if (this.state.didPlayerLose) {
+      return (
+        <WaitScreen message="Your opponent destroyed your fleet! You lose!">
+          true
+        </WaitScreen>
+      );
     }
     return (
       <React.Fragment>
@@ -224,7 +228,7 @@ class OpponentBoard extends React.Component {
         {this.state.playerHasWon && (
           <WaitScreen message={this.state.winMessage} />
         )}
-        <div>
+        <div className={"opponentBoard"}>
           <h3>Opponent Board</h3>
           <div className="newBoard" onClick={this.clickHandler}>
             <OpponentBoardGrid
@@ -232,9 +236,9 @@ class OpponentBoard extends React.Component {
               missAddress={this.state.missAddress}
             />
           </div>
-        </div>
-        <div onClick={this.handleFireButtonClick}>
-          <FireButton returnDecision={this.returnDecision} />
+          <div onClick={this.handleFireButtonClick}>
+            <FireButton returnDecision={this.returnDecision} />
+          </div>
         </div>
         {/* <button onClick={this.toggleTurn}>Toggle turn</button> */}
       </React.Fragment>
