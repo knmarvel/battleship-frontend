@@ -152,7 +152,6 @@ class ShipsAvailable extends React.Component {
           {this.renderShipPlacingInstructions()}
           {this.renderBattleship()}
           {this.renderCarrier()}
-          {this.renderBattleship()}
           {this.renderSubmarine()}
           {this.renderCruiser()}
           {this.renderDestroyer()}
