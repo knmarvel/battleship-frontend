@@ -3,7 +3,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { fireTorpedo, startBoard } from "../../../redux/index";
 import { boards } from "../setUpBoard";
-import { checkForWin } from "./checkForWin"
+import { checkForWin } from "./checkForWin";
 import { WaitScreen } from "../waitScreen/";
 //get the last cell clicked from the oppenent board
 // check state to see if player guess hit enemy ship
@@ -34,38 +34,37 @@ class FireButton extends React.Component {
       });
       boards[this.opponentName][this.props.TargetCell].torpedo = true;
       // console.log("Torpedo " + this.props.TargetCell + " Fired!");
-      if(checkForWin(boards[this.opponentName]) === true){
-        this.setState({didPlayerWin: true})
-      }
-      else{
-        if(!this.state.didPlayerSinkBattleship){
-          if(checkForWin(boards[this.opponentName]).includes("battleship")){
-            this.setState({didPlayerSinkBattleship: true})
-            alert("You sank your opponent's battleship!")
+      if (checkForWin(boards[this.opponentName]) === true) {
+        this.setState({ didPlayerWin: true });
+      } else {
+        if (!this.state.didPlayerSinkBattleship) {
+          if (checkForWin(boards[this.opponentName]).includes("battleship")) {
+            this.setState({ didPlayerSinkBattleship: true });
+            alert("You sank your opponent's battleship!");
           }
         }
-        if(!this.state.didPlayerSinkCarrier){
-          if(checkForWin(boards[this.opponentName]).includes("carrier")){
-            this.setState({didPlayerSinkCarrier: true})
-            alert("You sank your opponent's carrier!")
+        if (!this.state.didPlayerSinkCarrier) {
+          if (checkForWin(boards[this.opponentName]).includes("carrier")) {
+            this.setState({ didPlayerSinkCarrier: true });
+            alert("You sank your opponent's carrier!");
           }
         }
-        if(!this.state.didPlayerSinkCruiser){
-          if(checkForWin(boards[this.opponentName]).includes("cruiser")){
-            this.setState({didPlayerSinkCruiser: true})
-            alert("You sank your opponent's cruiser!")
+        if (!this.state.didPlayerSinkCruiser) {
+          if (checkForWin(boards[this.opponentName]).includes("cruiser")) {
+            this.setState({ didPlayerSinkCruiser: true });
+            alert("You sank your opponent's cruiser!");
           }
         }
-        if(!this.state.didPlayerSinkSubmarine){
-          if(checkForWin(boards[this.opponentName]).includes("submarine")){
-            this.setState({didPlayerSinkSubmarine: true})
-            alert("You sank your opponent's submarine!")
+        if (!this.state.didPlayerSinkSubmarine) {
+          if (checkForWin(boards[this.opponentName]).includes("submarine")) {
+            this.setState({ didPlayerSinkSubmarine: true });
+            alert("You sank your opponent's submarine!");
           }
         }
-        if(!this.state.didPlayerSinkDestroyer){
-          if(checkForWin(boards[this.opponentName]).includes("destroyer")){
-            this.setState({didPlayerSinkDestroyer: true})
-            alert("You sank your opponent's destroyer!")
+        if (!this.state.didPlayerSinkDestroyer) {
+          if (checkForWin(boards[this.opponentName]).includes("destroyer")) {
+            this.setState({ didPlayerSinkDestroyer: true });
+            alert("You sank your opponent's destroyer!");
           }
         }
       }
@@ -73,16 +72,17 @@ class FireButton extends React.Component {
     }
   };
 
-
- 
-
   render() {
-    if(this.state.didPlayerWin){
-      return <WaitScreen message="Congratulations! You sunk your opponent's fleet! You win!">true</WaitScreen>
+    if (this.state.didPlayerWin) {
+      return (
+        <WaitScreen message="Congratulations! You sunk your opponent's fleet! You win!">
+          true
+        </WaitScreen>
+      );
     }
     return (
-
       <button
+        className={"fireButton"}
         onClick={this.FireTorpedo}
         style={{ backgroundColor: "red", borderRadius: ".5em" }}
       >

@@ -1,13 +1,119 @@
-div .individualProfiles {
-  flex-basis: 33.3%;
+.teamBox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 98%;
+  height: 100%;
+  background-color: #B1D7EE90;
+  border: 2px solid var(--battleshipBlueColumnLines);
+  padding: 10px;
+  border-radius: 1em;
+  margin-top: 30px;
+  color: black;
+  font-weight: bold;
 }
 
-div #profiles {
+/* .team {
   display: flex;
-  justify-content: space-around;
-  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  background-color: var(--battleshipNavyBackground);
+  border: 1px solid var(--battleshipBlueColumnLines);
+} */
+
+.leader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* width: 100%;
+  height: 100%;
+  background-color: var(--battleshipNavyBackground);
+  border: 1px solid var(--battleshipBlueColumnLines); */
+  color: white;
+  border-radius: 1em;
+  padding: 5px;
+}
+
+.gyals {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  /* width: 100%;
+  height: 100%;
+  background-color: var(--battleshipNavyBackground);
+  border: 1px solid var(--battleshipBlueColumnLines); */
+  color: black;
+  border-radius: 1em;
+  padding: 5px;
+font-weight: bold;
+}
+
+.guys {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  /* width: 100%;
+  height: 100%;
+  background-color: var(--battleshipNavyBackground);
+  border: 1px solid var(--battleshipBlueColumnLines); */
+  color: black;
+  border-radius: 1em;
+  padding: 5px;
+}
+
+.otherInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 98vw;
+  height: 100%;
+  background-color: var(--battleshipNavyBackground);
+  border: 2px solid var(--battleshipBlueColumnLines);
+  color: white;
+  border-radius: 1em;
+  padding: 5px;
+}
+
+#janell, #kano, #givon, #drashti, #andrew, #chelsea, #leighann {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* flex-basis: 33.3%; */
+}
+
+#kano, #leighann {
+  margin-left: 20px;
+  margin-right: 20px;
 }
 
 p {
   font-size: calc((var(--h) / 64));
+}
+
+#verticalLine {
+  width: 0px;
+  height: 100%;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+a:link, a:visited {
+  color: navy;
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--battleshipRed)
+}
+
+hr {
+  display: flex;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+  margin-left: auto;
+  margin-right: auto;
+  border-style: inset;
+  border-width: 1px;
 }

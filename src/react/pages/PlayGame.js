@@ -1,7 +1,7 @@
 //this page is where the game is played, once the setup is complete
 
 import React from "react";
-import { Menu } from "../components";
+// import { Menu } from "../components";
 import "./PlayGame.css";
 import {
   OpponentBoard,
@@ -68,7 +68,7 @@ class PlayGame extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <Menu />
+        {/* <Menu /> */}
         {/* <TurnHandler /> */}
         <div className="twoBoards">
           <PlayerBoard />
