@@ -9,7 +9,7 @@ class DeleteLastTorpedoMessage extends React.Component {
   };
   getLastTorpedoMessage = () => {
     this.props.fetchLastMessage(this.state.playerName).then(result => {
-      result.payload.messages.map(message => {
+      result.payload.messages.forEach(message => {
         if (message.text.includes("torpedo")) {
           // console.log(message.id);
           this.setState({ id: message.id });

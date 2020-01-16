@@ -1,20 +1,29 @@
 import React from "react";
-import { Link } from "react-router-dom"
+import { Link } from "react-router-dom";
 import "./WaitScreen.css";
 import { deleteMessage, getOldMessages } from "../../../redux/index";
 import { connect, withAsyncAction } from "../../HOCs";
 
-
-
 class WaitScreen extends React.Component {
-  handleGoToCreditsClick = event => {
-    return <Link to="/Credits" />;
-  }
-  isThisAGameEndingMessage = (trueOrFalse) =>{
-    if(trueOrFalse){
-      return <button onClick={this.handleGoToCreditsClick}>Credits</button>
+  handleGoToCreditsClick = event => {};
+  isThisAGameEndingMessage = trueOrFalse => {
+    if (trueOrFalse) {
+      return (
+        <div>
+          {/* <Link to="/Credits">Credits </Link>; */}
+          Product Owner: Janell Hyuck; Design & CSS: LeighAnn Featheringill &
+          Givon Dickerson; Javascript, React, Redux: Andrew Belanger, Chelsea
+          White, Drashti Dalsania, Kano Marvel; API: Taylor Hurt
+          <Link
+            to="/"
+            title="Product Owner: Janell Hyuck; Design & CSS: LeighAnn Featheringill & Givon Dickerson; Javascript, React, Redux: Andrew Belanger, Chelsea White, Drashti Dalsania, Kano Marvel; API: Taylor Hurt"
+          >
+            PLAY AGAIN?
+          </Link>
+        </div>
+      );
     }
-  }
+  };
   render() {
     return (
       <div className="waitScreen">
