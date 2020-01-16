@@ -8,11 +8,19 @@ import { connect, withAsyncAction } from "../../HOCs";
 
 class WaitScreen extends React.Component {
   handleGoToCreditsClick = event => {
-    return <Link to="/Credits" />;
+    
   }
   isThisAGameEndingMessage = (trueOrFalse) =>{
     if(trueOrFalse){
-      return <button onClick={this.handleGoToCreditsClick}>Credits</button>
+      return (
+        <div>
+         {/* <Link to="/Credits">Credits </Link>; */}
+         Product Owner: <a href="https://gitlab.com/Janell ">Janell Hyuck</a>
+         Design & CSS Engineers: LeighAnn Featheringill & <a href="https://gitlab.com/givond4">Givon Dickerson</a>
+         Javascript, React, Redux Engineers: <a href="https://gitlab.com/And1drew">Andrew Belanger</a>, <a href="https://www.gitlab.com/chelseawhite">Chelsea White</a>, <a href="https://gitlab.com/dpdalsania">Drashti Dalsania</a>, <a href="https://gitlab.com/knmarvel">Kano Marvel</a>
+         API: <a href="https://github.com/thurt">Taylor Hurt</a>
+       </div>
+        )
     }
   }
   render() {
