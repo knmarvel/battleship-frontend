@@ -22,7 +22,7 @@ class CreditCard extends React.Component {
               {this.props.engineerName}
             </span>
           </div>
-          <div className="creditCardProjectRole">{this.props.projectRole}</div>
+          <div className="creditCardProjectRole">{this.props.engineerRole}</div>
           <button
             className="creditCardExpanderButton"
             onClick={this.handleExpanderClick}
@@ -39,9 +39,9 @@ class CreditCard extends React.Component {
             <div className="creditCardNameLarge">{this.props.engineerName}</div>
             <div className="creditCardPicLarge">{this.props.engineerPic}</div>
           </div>
-          <div className="creditCardProjectRole">{this.props.projectRole}</div>
+          <div className="creditCardProjectRole">{this.props.engineerRole}</div>
           <div className="creditCardFurtherInformation">
-              <b>Battleship responsibilities:</b> {this.props.projectResponsibilities}
+              <b>Battleship responsibilities:</b> {this.props.engineerResponsibilities}
               <b>Tools utilized:</b> {this.props.engineerTools}
               <b>Contact information:</b> {this.props.engineerContact}
           </div>

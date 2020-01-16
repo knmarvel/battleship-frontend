@@ -10,7 +10,11 @@ import { Menu } from "../components";
 import "./Credits.css";
 
 class Credits extends React.Component {
-  
+  engineers = [
+    {
+      engineerPic: 
+    }
+  ]
   render() {
     return (
       <React.Fragment>
