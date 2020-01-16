@@ -69,6 +69,30 @@
   margin: 4vh;
 }
 
+.headerSquare{
+  --squareSize: 6vh;
+  width: var(--squareSize);
+  height: var(--squareSize);
+  background-color: var(--battleshipNavyBackground);
+  text-align: center;
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+  border: 1px solid var(--battleshipBlueColumnLines);
+  color: white;
+  font-weight: bold;
+}
+
+.headerSquare:hover {
+  background-color: var(--battleshipNavyBackground);
+  outline:0
+}
+
+.headerSquare:focus {
+  background-color: var(--battleshipNavyBackground);
+  outline:0
+}
+
 .placedShip {
   --squareSize: 6vh;
   width: var(--squareSize);
