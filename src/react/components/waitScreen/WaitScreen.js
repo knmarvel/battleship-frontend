@@ -19,6 +19,8 @@ class WaitScreen extends React.Component {
          Design & CSS Engineers: LeighAnn Featheringill & <a href="https://gitlab.com/givond4">Givon Dickerson</a>
          Javascript, React, Redux Engineers: <a href="https://gitlab.com/And1drew">Andrew Belanger</a>, <a href="https://www.gitlab.com/chelseawhite">Chelsea White</a>, <a href="https://gitlab.com/dpdalsania">Drashti Dalsania</a>, <a href="https://gitlab.com/knmarvel">Kano Marvel</a>
          API: <a href="https://github.com/thurt">Taylor Hurt</a>
+
+         <Link to="/">PLAY AGAIN?</Link>
        </div>
         )
     }
