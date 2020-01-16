@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 // import { withAsyncAction } from "../../../HOCs";
 import { OpponentBoardGrid } from ".";
+import { checkForLose } from "../checkForLose"
 import { WaitScreen } from "../../waitScreen";
 // import { postMessage } from "../../../../redux/index";
 import {
@@ -24,7 +25,14 @@ class OpponentBoard extends React.Component {
     opponentName: "",
     playerHasWon: false,
     hitAddress: [],
-    missAddress: []
+    missAddress: [],
+    didOpponentWin: false,
+    didOpponentAcknowledgeWin: false,
+    didOpponentSinkBattleship: false,
+    didOpponentSinkCarrier: false,
+    didOpponentSinkCruiser: false,
+    didOpponentSinkSubmarine: false,
+    didOpponentSinkDestroyer: false
   };
 
   componentDidMount = () => {
@@ -55,31 +63,31 @@ class OpponentBoard extends React.Component {
   startWaitingForOpponent = () => {};
 
   checkOpponentTurn = () => {
-    console.log("tick");
+    // console.log("tick");
     if (this.state.opponentTurn === false) {
       return;
     }
-    console.log(
-      "opponent name that we're looking for torpedos is " +
-        this.state.opponentName
-    );
+    // console.log(
+    //   "opponent name that we're looking for torpedos is " +
+    //     this.state.opponentName
+    // );
     this.props.fetchLastMessage(this.state.opponentName).then(result => {
       let opponentTorpedoCoordinates = result.payload.messages[0].text
         .split(" ")
         .slice(-1);
-      console.log(
-        "last word of last message from opponent is:  " +
-          opponentTorpedoCoordinates
-      );
+      // console.log(
+      //   "last word of last message from opponent is:  " +
+      //     opponentTorpedoCoordinates
+      // );
       //check game #
       let messageGameNumber = result.payload.messages[0].text
         .split(" ")
         .slice(1, 2);
-      console.log(" opponent message game number is " + messageGameNumber);
-      console.log("props gameNumber is " + this.props.gameNumber);
+      // console.log(" opponent message game number is " + messageGameNumber);
+      // console.log("props gameNumber is " + this.props.gameNumber);
       if (messageGameNumber && this.props.gameNumber) {
         if (messageGameNumber.toString() === this.props.gameNumber.toString()) {
-          console.log("same game number found");
+          // console.log("same game number found");
 
           if (result.payload.messages[0].text.includes("surrender")) {
             this.setState({ playerHasWon: true });
@@ -88,14 +96,17 @@ class OpponentBoard extends React.Component {
             let torpedoStatus = this.props.board[this.props.playerName][
               opponentTorpedoCoordinates
             ].torpedo;
-            console.log(
-              "torpedo status for opponent board coordinates: " + torpedoStatus
-            );
+            // console.log(
+            //   "torpedo status for opponent board coordinates: " + torpedoStatus
+            // );
             if (torpedoStatus === false) {
               this.props.board[this.props.playerName][
                 opponentTorpedoCoordinates
               ].torpedo = true;
               this.props.startBoard(this.props.board);
+              //kano lose conditions pt 1/2//
+              this.checkForPlayerLoss(this.props.board)
+              //end kano lose conditions pt 1/2//
               this.toggleTurn();
             }
           }
@@ -124,18 +135,18 @@ class OpponentBoard extends React.Component {
   };
 
   handleFireButtonClick = () => {
-    console.log(this.props.TargetCell);
+    // console.log(this.props.TargetCell);
     if (this.state.TargetCell) {
       console.log("we have a target cell " + this.state.TargetCell);
       this.checkStateForHitMarkers(this.props.TargetCell);
       this.setState({ opponentTurn: true });
     } else {
-      console.log("we do not have a target cell");
+      // console.log("we do not have a target cell");
     }
   };
 
   checkStateForHitMarkers(cellToCheck) {
-    console.log(this.props.board[this.state.opponentName][cellToCheck].ship);
+    // console.log(this.props.board[this.state.opponentName][cellToCheck].ship);
     if (this.props.board[this.state.opponentName][cellToCheck].ship === null) {
       alert("Miss");
       this.returnDecision("Miss", cellToCheck);
@@ -153,16 +164,58 @@ class OpponentBoard extends React.Component {
       this.setState({
         hitAddress: this.state.hitAddress.concat(cellToCheck)
       });
-      console.log(this.state.hitAddress);
+      // console.log(this.state.hitAddress);
     } else {
       this.setState({
         missAddress: this.state.missAddress.concat(cellToCheck)
       });
-      console.log(this.state.missAddress);
+      // console.log(this.state.missAddress);
     }
   };
 
+  checkForPlayerLoss = (boards)=>{
+  
+    if(checkForLose(boards[this.props.playerName]) === true){
+      this.setState({didPlayerLose: true})
+    }
+    else{
+      if(!this.state.didOpponentSinkBattleship){
+        if(checkForLose(boards[this.props.playerName]).includes("battleship")){
+          this.setState({didOpponentSinkBattleship: true})
+          alert("Your opponent sank your battleship!")
+        }
+      }
+      if(!this.state.didOpponentSinkCarrier){
+        if(checkForLose(boards[this.props.playerName]).includes("carrier")){
+          this.setState({didOpponentSinkCarrier: true})
+          alert("Your opponent sank your carrier!")
+        }
+      }
+      if(!this.state.didOpponentSinkCruiser){
+        if(checkForLose(boards[this.props.playerName]).includes("cruiser")){
+          this.setState({didOpponentSinkCruiser: true})
+          alert("Your opponent sank your cruiser!")
+        }
+      }
+      if(!this.state.didOpponentSinkSubmarine){
+        if(checkForLose(boards[this.props.playerName]).includes("submarine")){
+          this.setState({didOpponentSinkSubmarine: true})
+          alert("Your opponent sank your submarine!")
+        }
+      }
+      if(!this.state.didOpponentSinkDestroyer){
+        if(checkForLose(boards[this.props.playerName]).includes("destroyer")){
+          this.setState({didOpponentSinkDestroyer: true})
+          alert("Your opponent sank your destroyer!")
+        }
+      }
+    }
+  }
+
   render() {
+    if(this.state.didPlayerLose){
+      return <WaitScreen message="Your opponent destroyed your fleet! You lose!">true</WaitScreen>
+    }
     return (
       <React.Fragment>
         {this.state.opponentTurn && (

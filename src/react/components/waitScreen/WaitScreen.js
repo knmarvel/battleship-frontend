@@ -1,13 +1,25 @@
 import React from "react";
+import { Link } from "react-router-dom"
 import "./WaitScreen.css";
 import { deleteMessage, getOldMessages } from "../../../redux/index";
 import { connect, withAsyncAction } from "../../HOCs";
 
+
+
 class WaitScreen extends React.Component {
+  handleGoToCreditsClick = event => {
+    return <Link to="/Credits" />;
+  }
+  isThisAGameEndingMessage = (trueOrFalse) =>{
+    if(trueOrFalse){
+      return <button onClick={this.handleGoToCreditsClick}>Credits</button>
+    }
+  }
   render() {
     return (
       <div className="waitScreen">
         <p className="waitMessage">{this.props.message}</p>
+        {this.isThisAGameEndingMessage(this.props.children)}
         {/* <button onClick={this.deleteOldMessages}>deleteOldMessages</button> */}
       </div>
     );

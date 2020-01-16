@@ -13,7 +13,7 @@ class InitialBoard extends React.Component {
   label = "";
 
   handleReadyClick = () => {
-    console.log("ready button clicked mama");
+    // console.log("ready button clicked mama");
   };
 
   render() {

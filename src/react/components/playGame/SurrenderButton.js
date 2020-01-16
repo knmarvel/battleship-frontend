@@ -5,7 +5,7 @@ import { getOldMessages, deleteMessage } from "../../../redux/actionCreators";
 
 class SurrenderButton extends React.Component {
   onConfirm = () => {
-    console.log("player surrendered");
+    // console.log("player surrendered");
     //====================================================================
     //janell says: stopping point: need to
     //post "XXXX surrender" and add checking for "surrender" to andrew's part
@@ -22,7 +22,7 @@ class SurrenderButton extends React.Component {
 
     var goHome = window.confirm("Click OK to be redirected to the home page.");
     if (goHome) {
-      console.log("deleting old messages");
+      // console.log("deleting old messages");
       this.deleteOldMessages();
       // window.location.href = "/";
     }
@@ -40,11 +40,11 @@ class SurrenderButton extends React.Component {
   };
 
   onCancel = () => {
-    console.log("player continues fighting");
+    // console.log("player continues fighting");
   };
 
   confirmAlert = () => {
-    console.log("surrender button clicked");
+    // console.log("surrender button clicked");
 
     window.confirm("Do You Really Want To Surrender?")
       ? this.onConfirm()
