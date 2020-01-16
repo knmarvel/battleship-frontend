@@ -1,5 +1,4 @@
 export const checkForWin = (board) => {
-  console.log(board)
   let arrayOfSinkage = []
   if(checkForOpponentBattleship(board)){
     arrayOfSinkage.push("battleship")
