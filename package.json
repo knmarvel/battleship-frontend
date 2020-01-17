@@ -1,7 +1,7 @@
 {
   "name": "battleship",
   "version": "0.1.0",
-  "homepage": "https://janell-s-kenzie-projects.gitlab.io/battleship-frontend",
+  "homepage": "https://knmarvel.gitlab.io/battleship-frontend",
   "private": true,
   "dependencies": {
     "connected-react-router": "^6.5.2",
